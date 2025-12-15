@@ -25,7 +25,7 @@ const navigation = [
         children: [
             { name: "Target", href: "/revenue/target" },
             { name: "Actual", href: "/revenue/actual" },
-            { name: "Import Data", href: "/revenue/import" },
+            { name: "Revenue PLN", href: "/revenue/pln" },
         ],
     },
     {
