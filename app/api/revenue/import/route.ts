@@ -74,13 +74,10 @@ export async function POST(req: NextRequest) {
             [importId, file.name, periodMonth, periodYear, uploadedBy]
         );
 
-        // 2. Load Excel with full calculation enabled
+        // 2. Load Excel
         const buffer = await file.arrayBuffer();
         const workbook = new ExcelJS.Workbook();
-        await workbook.xlsx.load(Buffer.from(buffer) as any, {
-            // Enable formula calculation to ensure GAP and other calculated columns are up-to-date
-            calcMode: 'auto'
-        });
+        await workbook.xlsx.load(Buffer.from(buffer) as any);
 
         // 3. Process Sheet 1: DETAIL NON RETAIL
         const detailSheet = workbook.getWorksheet("DETAIL NON RETAIL");
@@ -362,6 +359,45 @@ export async function POST(req: NextRequest) {
                 }
             });
 
+            // POST-PROCESS: Recalculate GAP columns to ensure negative values are correct
+            // GAP columns typically follow pattern: "GAP [something]" or contain "GAP" in header
+            const gapHeaders = headers.filter(h => h.toUpperCase().includes('GAP'));
+
+            gapHeaders.forEach(gapHeader => {
+                // Try to find corresponding TARGET and REALISASI columns
+                // Common patterns: "TARGET [X]" and "REALISA [X]" or "REALISASI [X]"
+                const gapParts = gapHeader.split(' ').filter(p => p !== 'GAP');
+
+                // Find matching target and realisasi columns
+                let targetCol = null;
+                let realisaCol = null;
+
+                for (const header of headers) {
+                    const headerUpper = header.toUpperCase();
+                    // Check if this is a TARGET column matching the GAP context
+                    if (headerUpper.includes('TARGET') && gapParts.some(part => headerUpper.includes(part.toUpperCase()))) {
+                        targetCol = header;
+                    }
+                    // Check if this is a REALISASI column matching the GAP context
+                    if ((headerUpper.includes('REALISA') || headerUpper.includes('REALISASI')) &&
+                        gapParts.some(part => headerUpper.includes(part.toUpperCase()))) {
+                        realisaCol = header;
+                    }
+                }
+
+                // If we found both columns, recalculate GAP
+                if (targetCol && realisaCol) {
+                    const targetVal = rowData[targetCol];
+                    const realisaVal = rowData[realisaCol];
+
+                    if (typeof targetVal === 'number' && typeof realisaVal === 'number') {
+                        const calculatedGap = targetVal - realisaVal;
+                        rowData[gapHeader] = calculatedGap;
+                        console.log(`Recalculated ${gapHeader} for ${rawBidang}: ${targetVal} - ${realisaVal} = ${calculatedGap}`);
+                    }
+                }
+            });
+
             // Collect for DB
             summaryRowsToInsert.push([
                 importId, periodMonth, periodYear, rawBidang, value, JSON.stringify(rowData)
@@ -394,6 +430,37 @@ export async function POST(req: NextRequest) {
                         totalRowData[headerKey] = null;
                     } else {
                         totalRowData[headerKey] = cellVal;
+                    }
+                }
+            });
+
+            // POST-PROCESS: Recalculate GAP columns for TOTAL row as well
+            const gapHeadersTotal = headers.filter(h => h.toUpperCase().includes('GAP'));
+
+            gapHeadersTotal.forEach(gapHeader => {
+                const gapParts = gapHeader.split(' ').filter(p => p !== 'GAP');
+                let targetCol = null;
+                let realisaCol = null;
+
+                for (const header of headers) {
+                    const headerUpper = header.toUpperCase();
+                    if (headerUpper.includes('TARGET') && gapParts.some(part => headerUpper.includes(part.toUpperCase()))) {
+                        targetCol = header;
+                    }
+                    if ((headerUpper.includes('REALISA') || headerUpper.includes('REALISASI')) &&
+                        gapParts.some(part => headerUpper.includes(part.toUpperCase()))) {
+                        realisaCol = header;
+                    }
+                }
+
+                if (targetCol && realisaCol) {
+                    const targetVal = totalRowData[targetCol];
+                    const realisaVal = totalRowData[realisaCol];
+
+                    if (typeof targetVal === 'number' && typeof realisaVal === 'number') {
+                        const calculatedGap = targetVal - realisaVal;
+                        totalRowData[gapHeader] = calculatedGap;
+                        console.log(`Recalculated ${gapHeader} for TOTAL: ${targetVal} - ${realisaVal} = ${calculatedGap}`);
                     }
                 }
             });
