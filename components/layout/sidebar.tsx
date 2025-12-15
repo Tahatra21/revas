@@ -12,7 +12,6 @@ import {
     ChevronDown,
     LogOut,
     User,
-    Upload,
 } from "lucide-react";
 import { useState } from "react";
 import clsx from "clsx";
@@ -20,7 +19,6 @@ import clsx from "clsx";
 const navigation = [
     { name: "Dashboard", href: "/", icon: LayoutDashboard },
     { name: "Pipeline", href: "/pipeline", icon: PieChart },
-    { name: "Upload Data", href: "/upload/pipeline", icon: Upload },
     {
         name: "Revenue",
         icon: DollarSign,
