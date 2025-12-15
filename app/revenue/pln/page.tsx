@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { Upload, FileSpreadsheet, ArrowUpCircle, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -247,9 +249,16 @@ export default function RevenuePLNPage() {
                                                     if (typeof val === 'number') {
                                                         const headerLower = header.toLowerCase();
                                                         if (headerLower.includes("%")) {
-                                                            displayVal = (val * 100).toLocaleString("id-ID", { maximumFractionDigits: 1 }) + "%";
+                                                            displayVal = (val * 100).toLocaleString("id-ID", {
+                                                                maximumFractionDigits: 1,
+                                                                signDisplay: "auto"
+                                                            }) + "%";
                                                         } else {
-                                                            displayVal = val.toLocaleString("id-ID", { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+                                                            displayVal = val.toLocaleString("id-ID", {
+                                                                minimumFractionDigits: 0,
+                                                                maximumFractionDigits: 2,
+                                                                signDisplay: "auto"
+                                                            });
                                                         }
                                                     } else {
                                                         alignClass = "text-left";

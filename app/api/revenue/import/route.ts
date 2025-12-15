@@ -340,12 +340,22 @@ export async function POST(req: NextRequest) {
                 if (colNum === colTarget) {
                     rowData[headerKey] = value;
                 } else {
-                    // Format value
+                    // Format value - handle formulas, numbers, and preserve negatives
                     let cellVal = row.getCell(colNum).value;
+
+                    // Handle formula results
                     if (cellVal && typeof cellVal === 'object' && 'result' in cellVal) {
                         cellVal = cellVal.result;
                     }
-                    rowData[headerKey] = cellVal;
+
+                    // Ensure numeric values (including negatives) are properly stored
+                    if (typeof cellVal === 'number') {
+                        rowData[headerKey] = cellVal; // Preserve the number as-is
+                    } else if (cellVal === null || cellVal === undefined || cellVal === '') {
+                        rowData[headerKey] = null; // Use null for empty cells
+                    } else {
+                        rowData[headerKey] = cellVal; // Keep other types as-is
+                    }
                 }
             });
 
@@ -368,10 +378,20 @@ export async function POST(req: NextRequest) {
                     totalRowData[headerKey] = calculatedTotal;
                 } else {
                     let cellVal = totalRow.getCell(colNum).value;
+
+                    // Handle formula results
                     if (cellVal && typeof cellVal === 'object' && 'result' in cellVal) {
                         cellVal = cellVal.result;
                     }
-                    totalRowData[headerKey] = cellVal;
+
+                    // Ensure numeric values (including negatives) are properly stored
+                    if (typeof cellVal === 'number') {
+                        totalRowData[headerKey] = cellVal;
+                    } else if (cellVal === null || cellVal === undefined || cellVal === '') {
+                        totalRowData[headerKey] = null;
+                    } else {
+                        totalRowData[headerKey] = cellVal;
+                    }
                 }
             });
 
