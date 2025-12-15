@@ -91,19 +91,19 @@ export function Sidebar() {
             {/* Sidebar */}
             <aside
                 className={clsx(
-                    "fixed top-0 left-0 z-40 h-screen w-64 bg-surface border-r border-surface-border transition-transform",
+                    "fixed top-0 left-0 z-40 h-screen w-52 bg-surface border-r border-surface-border transition-transform",
                     mobileMenuOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
                 )}
             >
                 <div className="flex flex-col h-full">
                     {/* Logo */}
-                    <div className="p-6 border-b border-surface-border">
-                        <h1 className="text-2xl font-bold">Revas</h1>
-                        <p className="text-xs text-primary-subtle">Revenue Assurance Monitoring</p>
+                    <div className="p-4 border-b border-surface-border">
+                        <h1 className="text-xl font-bold">Revas</h1>
+                        <p className="text-[10px] text-primary-subtle">Revenue Assurance</p>
                     </div>
 
                     {/* Navigation */}
-                    <nav className="flex-1 overflow-y-auto p-4 space-y-1">
+                    <nav className="flex-1 overflow-y-auto p-3 space-y-0.5">
                         {navigation.map((item) => {
                             const isActive = pathname === item.href;
                             const isExpanded = expandedItems.includes(item.name);
@@ -115,21 +115,22 @@ export function Sidebar() {
                                         <>
                                             <button
                                                 onClick={() => toggleExpanded(item.name)}
-                                                className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-sm font-medium text-primary-subtle hover:bg-surface-border/50 transition-colors"
+                                                className="w-full flex items-center justify-between px-3 py-1.5 rounded-lg text-xs font-medium text-primary-subtle hover:bg-surface-border/50 transition-colors"
+
                                             >
-                                                <div className="flex items-center gap-3">
-                                                    <item.icon className="w-5 h-5" />
+                                                <div className="flex items-center gap-2">
+                                                    <item.icon className="w-4 h-4" />
                                                     <span>{item.name}</span>
                                                 </div>
                                                 <ChevronDown
                                                     className={clsx(
-                                                        "w-4 h-4 transition-transform",
+                                                        "w-3 h-3 transition-transform",
                                                         isExpanded && "rotate-180"
                                                     )}
                                                 />
                                             </button>
                                             {isExpanded && (
-                                                <div className="ml-8 mt-1 space-y-1">
+                                                <div className="ml-7 mt-0.5 space-y-0.5">
                                                     {item.children.map((child) => {
                                                         const isChildActive = pathname === child.href;
                                                         return (
@@ -137,7 +138,7 @@ export function Sidebar() {
                                                                 key={child.href}
                                                                 href={child.href}
                                                                 className={clsx(
-                                                                    "block px-3 py-2 rounded-xl text-sm transition-colors",
+                                                                    "block px-3 py-1.5 rounded-lg text-xs transition-colors",
                                                                     isChildActive
                                                                         ? "bg-accent text-white font-medium"
                                                                         : "text-primary-subtle hover:bg-surface-border/50"
@@ -154,13 +155,13 @@ export function Sidebar() {
                                         <Link
                                             href={item.href!}
                                             className={clsx(
-                                                "flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-colors",
+                                                "flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors",
                                                 isActive
                                                     ? "bg-accent text-white"
                                                     : "text-primary-subtle hover:bg-surface-border/50"
                                             )}
                                         >
-                                            <item.icon className="w-5 h-5" />
+                                            <item.icon className="w-4 h-4" />
                                             <span>{item.name}</span>
                                         </Link>
                                     )}

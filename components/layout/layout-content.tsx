@@ -14,7 +14,7 @@ export function LayoutContent({ children }: { children: React.ReactNode }) {
     return (
         <>
             <Sidebar />
-            <div className="lg:pl-64">{children}</div>
+            <div className="lg:pl-52">{children}</div>
         </>
     );
 }
