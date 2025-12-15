@@ -180,6 +180,7 @@ export async function POST(req: NextRequest) {
         // 4. Process Sheet 2: REVENUE PLN
         const plnSheet = workbook.getWorksheet("REVENUE PLN");
         if (!plnSheet) {
+            console.error("Sheet 'REVENUE PLN' not found. Available sheets:", workbook.worksheets.map(s => s.name));
             throw new Error("Sheet 'REVENUE PLN' not found");
         }
 
@@ -188,6 +189,7 @@ export async function POST(req: NextRequest) {
         let colBidang = -1;
         let colTarget = -1;
         const potentialHeaders = getMonthHeaders(periodMonth);
+        console.log(`Searching for Month ${periodMonth} headers:`, potentialHeaders);
 
         plnSheet.eachRow((row, rowNumber) => {
             if (plnHeaderRowIdx !== -1) return;
@@ -195,21 +197,21 @@ export async function POST(req: NextRequest) {
             const values = row.values as any[];
             values.forEach((val, colIdx) => {
                 const str = String(val).toLowerCase().trim();
-                if (str.includes("bidang") || str.includes("sbu")) colBidang = colIdx;
+                if (str.includes("bidang") || str.includes("sbu")) {
+                    colBidang = colIdx;
+                    console.log(`Found BIDANG column at row ${rowNumber}, col ${colIdx}`);
+                }
 
                 // Check for target month column
-                // Check against potential headers
                 const cellStr = String(val).trim();
                 if (potentialHeaders.some(h => cellStr.toLowerCase().includes(h.toLowerCase()))) {
                     colTarget = colIdx;
+                    console.log(`Found Target Column '${cellStr}' at row ${rowNumber}, col ${colIdx}`);
                 }
             });
 
-            if (colBidang !== -1) { // Found pivot row
+            if (colBidang !== -1) {
                 plnHeaderRowIdx = rowNumber;
-                // If colTarget matches header row or maybe row-1? 
-                // Usually headers are in one row.
-                // If colTarget not found yet, maybe look specifically in this row
             }
         });
 
@@ -219,17 +221,21 @@ export async function POST(req: NextRequest) {
 
         // Retrying target col search specifically in header row if not found
         if (colTarget === -1) {
+            console.log("Retrying target column search in header row:", plnHeaderRowIdx);
             const headerRow = plnSheet.getRow(plnHeaderRowIdx);
             headerRow.eachCell((cell, colNumber) => {
                 const val = cell.value?.toString() || "";
                 if (potentialHeaders.some(h => val.toLowerCase().includes(h.toLowerCase()))) {
                     colTarget = colNumber;
+                    console.log(`Found Target Column '${val}' at col ${colNumber} (Retry)`);
                 }
             });
         }
 
         if (colTarget === -1) {
-            throw new Error(`Target column for month ${periodMonth} not found in REVENUE PLN`);
+            const months = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
+            const expected = months[periodMonth - 1];
+            throw new Error(`Column for '${expected}' (e.g., 'Realisasi ${expected}') not found in 'REVENUE PLN'. Check if selected Month matches file headers.`);
         }
 
         // Update Import record with target column name
