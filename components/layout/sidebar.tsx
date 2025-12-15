@@ -13,7 +13,7 @@ import {
     LogOut,
     User,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import clsx from "clsx";
 
 const navigation = [
