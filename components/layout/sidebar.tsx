@@ -23,8 +23,9 @@ const navigation = [
         name: "Revenue",
         icon: DollarSign,
         children: [
-            { name: "Targets", href: "/revenue/target" },
-            { name: "Actuals", href: "/revenue/actual" },
+            { name: "Target", href: "/revenue/target" },
+            { name: "Actual", href: "/revenue/actual" },
+            { name: "Import Data", href: "/revenue/import" },
         ],
     },
     {
