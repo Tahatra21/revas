@@ -35,7 +35,9 @@ export async function GET(req: NextRequest) {
         );
 
         // Extract items from row_data
-        const cleanRows = rows.map((r: any) => r.row_data);
+        const cleanRows = rows
+            .map((r: any) => r.row_data)
+            .filter((r: any) => r !== null && typeof r === 'object');
 
         return NextResponse.json({
             headers: headers,

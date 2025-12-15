@@ -197,8 +197,11 @@ export default function RevenuePLNPage() {
                                 </TableHeader>
                                 <TableBody>
                                     {data.map((row: any, index: number) => {
+                                        if (!row) return null;
+
                                         // Check if it is a TOTAL row for styling
-                                        const firstVal = Object.values(row)[0] as string;
+                                        const vals = Object.values(row);
+                                        const firstVal = vals.length > 0 ? vals[0] as string : "";
                                         const isTotal = String(firstVal).toUpperCase().includes("TOTAL");
 
                                         return (
