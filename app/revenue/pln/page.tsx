@@ -193,74 +193,69 @@ export default function RevenuePLNPage() {
                         </div>
                     ) : (
                         <div className="relative w-full overflow-auto max-h-[calc(100vh-300px)] border rounded-lg shadow-sm">
-                            <Table className="border-collapse w-full">
-                                <TableHeader className="sticky top-0 z-20">
-                                    <TableRow className="bg-[#389196] hover:bg-[#389196] border-b-0">
-                                        <TableHead className="w-[50px] text-white font-bold border-r border-white/20">No</TableHead>
-                                        {headers.map((header, i) => (
-                                            <TableHead key={i} className="whitespace-nowrap text-white font-bold text-xs uppercase border-r border-white/20 last:border-0 h-10 px-4 py-3 text-center">
-                                                {header}
-                                            </TableHead>
-                                        ))}
-                                    </TableRow>
-                                </TableHeader>
-                                <TableBody>
-                                    {data.map((row: any, index: number) => {
-                                        if (!row) return null;
+                            <div className="relative w-full border rounded-lg shadow-sm">
+                                <Table className="w-full table-fixed">
+                                    <TableHeader className="sticky top-0 z-20">
+                                        <TableRow className="bg-[#389196] hover:bg-[#389196] border-b-0">
+                                            {headers.map((header, i) => (
+                                                <TableHead key={i} className="text-white font-bold text-[10px] uppercase border-r border-white/20 last:border-0 h-auto py-3 text-center align-middle break-words leading-tight">
+                                                    {header}
+                                                </TableHead>
+                                            ))}
+                                        </TableRow>
+                                    </TableHeader>
+                                    <TableBody>
+                                        {data.map((row: any, index: number) => {
+                                            if (!row) return null;
 
-                                        // Check if it is a TOTAL row for styling
-                                        const vals = Object.values(row);
-                                        const firstVal = vals.length > 0 ? vals[0] as string : "";
-                                        const isTotal = String(firstVal).toUpperCase().includes("TOTAL");
+                                            // Check if it is a TOTAL row for styling
+                                            const vals = Object.values(row);
+                                            const firstVal = vals.length > 0 ? vals[0] as string : "";
+                                            const isTotal = String(firstVal).toUpperCase().includes("TOTAL");
 
-                                        // Row Background logic: Total=Teal, Odd=Beige, Even=White
-                                        let rowClass = "bg-white";
-                                        if (isTotal) rowClass = "bg-[#389196] text-white font-bold sticky bottom-0 z-10 shadow-lg"; // Sticky Total
-                                        else if (index % 2 === 0) rowClass = "bg-[#ffeed9]/30"; // Light Beige
+                                            // Row Background logic: Total=Teal, Odd=Beige, Even=White
+                                            let rowClass = "bg-white";
+                                            if (isTotal) rowClass = "bg-[#389196] text-white font-bold sticky bottom-0 z-10 shadow-lg"; // Sticky Total
+                                            else if (index % 2 === 0) rowClass = "bg-[#ffeed9]/30"; // Light Beige
 
-                                        return (
-                                            <TableRow key={index} className={`${rowClass} hover:bg-opacity-90 border-b border-black/5`}>
-                                                <TableCell className={`text-xs text-center border-r border-black/5 ${isTotal ? "text-white" : "text-primary-subtle"}`}>
-                                                    {isTotal ? "" : index + 1}
-                                                </TableCell>
-                                                {headers.map((header, i) => {
-                                                    const val = row[header];
+                                            return (
+                                                <TableRow key={index} className={`${rowClass} hover:bg-opacity-90 border-b border-black/5`}>
+                                                    {headers.map((header, i) => {
+                                                        const val = row[header];
 
-                                                    // Formatting
-                                                    let displayVal = val;
-                                                    let alignClass = "text-right"; // Default number alignment
+                                                        // Formatting
+                                                        let displayVal = val;
+                                                        let alignClass = "text-right"; // Default number alignment
 
-                                                    if (typeof val === 'number') {
-                                                        // Check if percentage (heuristic: header contains % or value is small decimal? ExcelJS usually keeps raw number)
-                                                        // Based on image, % columns exist.
-                                                        const headerLower = header.toLowerCase();
-                                                        if (headerLower.includes("%")) {
-                                                            displayVal = (val * 100).toLocaleString("id-ID", { maximumFractionDigits: 2 }) + "%";
+                                                        if (typeof val === 'number') {
+                                                            const headerLower = header.toLowerCase();
+                                                            if (headerLower.includes("%")) {
+                                                                displayVal = (val * 100).toLocaleString("id-ID", { maximumFractionDigits: 1 }) + "%";
+                                                            } else {
+                                                                displayVal = val.toLocaleString("id-ID", { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+                                                            }
                                                         } else {
-                                                            displayVal = val.toLocaleString("id-ID", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                                                            alignClass = "text-left";
+                                                            if (!val) displayVal = "-";
                                                         }
-                                                    } else {
-                                                        alignClass = "text-left";
-                                                        if (!val) displayVal = "-";
-                                                    }
 
-                                                    // Specific alignment for first column (BIDANG)
-                                                    if (i === 0) alignClass = "text-left font-medium";
+                                                        // Specific alignment for first column (BIDANG)
+                                                        if (i === 0) alignClass = "text-left font-medium";
 
-                                                    return (
-                                                        <TableCell key={i} className={`text-xs px-3 py-2 border-r border-black/5 last:border-0 ${alignClass} whitespace-nowrap`}>
-                                                            {displayVal}
-                                                        </TableCell>
-                                                    );
-                                                })}
-                                            </TableRow>
-                                        );
-                                    })}
-                                </TableBody>
-                            </Table>
-                        </div>
+                                                        return (
+                                                            <TableCell key={i} className={`text-xs px-3 py-2 border-r border-black/5 last:border-0 ${alignClass} whitespace-nowrap`}>
+                                                                {displayVal}
+                                                            </TableCell>
+                                                        );
+                                                    })}
+                                                </TableRow>
+                                            );
+                                        })}
+                                    </TableBody>
+                                </Table>
+                            </div>
                     )}
-                </SectionShell>
+                        </SectionShell>
             </div>
         </main>
     );
