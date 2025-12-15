@@ -74,10 +74,13 @@ export async function POST(req: NextRequest) {
             [importId, file.name, periodMonth, periodYear, uploadedBy]
         );
 
-        // 2. Load Excel
+        // 2. Load Excel with full calculation enabled
         const buffer = await file.arrayBuffer();
         const workbook = new ExcelJS.Workbook();
-        await workbook.xlsx.load(Buffer.from(buffer) as any);
+        await workbook.xlsx.load(Buffer.from(buffer) as any, {
+            // Enable formula calculation to ensure GAP and other calculated columns are up-to-date
+            calcMode: 'auto'
+        });
 
         // 3. Process Sheet 1: DETAIL NON RETAIL
         const detailSheet = workbook.getWorksheet("DETAIL NON RETAIL");
