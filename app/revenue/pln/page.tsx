@@ -19,6 +19,7 @@ export default function RevenuePLNPage() {
     // Upload states
     const [isUploading, setIsUploading] = useState(false);
     const [file, setFile] = useState<File | null>(null);
+    const [isDeleting, setIsDeleting] = useState(false);
 
     useEffect(() => {
         fetchData();
@@ -107,6 +108,33 @@ export default function RevenuePLNPage() {
         }
     };
 
+    const handleDeleteData = async () => {
+        const monthName = new Date(0, periodMonth - 1).toLocaleString('default', { month: 'long' });
+        const confirmMsg = `Apakah Anda yakin ingin menghapus SEMUA data Revenue PLN untuk ${monthName} ${periodYear}?\n\nData yang dihapus TIDAK DAPAT dikembalikan!`;
+
+        if (!confirm(confirmMsg)) return;
+
+        setIsDeleting(true);
+        try {
+            const response = await fetch(`/api/revenue/pln?month=${periodMonth}&year=${periodYear}`, {
+                method: "DELETE",
+            });
+
+            if (response.ok) {
+                alert("Data berhasil dihapus");
+                await fetchData(); // Refresh to show empty state
+            } else {
+                const err = await response.json();
+                alert(`Gagal menghapus data: ${err.message || 'Unknown error'}`);
+            }
+        } catch (error) {
+            console.error("Delete error", error);
+            alert("Gagal menghapus data karena network error");
+        } finally {
+            setIsDeleting(false);
+        }
+    };
+
     return (
         <main className="min-h-screen p-8">
             <div className="max-w-6xl mx-auto space-y-6">
@@ -152,7 +180,7 @@ export default function RevenuePLNPage() {
                         </div>
                     </div>
 
-                    {/* Upload Action */}
+                    {/* Upload & Delete Actions */}
                     <div className="flex gap-3 items-center">
                         <input
                             id="file-upload-pln"
@@ -186,6 +214,22 @@ export default function RevenuePLNPage() {
                                 <Upload className="w-4 h-4 mr-2" />
                                 Import Update (.xlsx)
                             </Button>
+                        )}
+
+                        {/* Reset/Delete Button */}
+                        {data.length > 0 && (
+                            <>
+                                <div className="h-8 w-[1px] bg-surface-border mx-1"></div>
+                                <Button
+                                    variant="danger"
+                                    onClick={handleDeleteData}
+                                    isLoading={isDeleting}
+                                    size="sm"
+                                    className="h-9 text-xs"
+                                >
+                                    {isDeleting ? "Menghapus..." : "Reset Data"}
+                                </Button>
+                            </>
                         )}
                     </div>
                 </div>

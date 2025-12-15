@@ -53,3 +53,58 @@ export async function GET(req: NextRequest) {
         );
     }
 }
+
+export async function DELETE(req: NextRequest) {
+    const searchParams = req.nextUrl.searchParams;
+    const year = parseInt(searchParams.get("year") || "0");
+    const month = parseInt(searchParams.get("month") || "0");
+
+    if (!year || !month || month < 1 || month > 12) {
+        return NextResponse.json(
+            { message: "Invalid year or month parameter" },
+            { status: 400 }
+        );
+    }
+
+    try {
+        // Delete revenue_summary_pln records for this period
+        await query(
+            `DELETE FROM revenue_summary_pln 
+             WHERE import_id IN (
+                 SELECT id FROM revenue_imports 
+                 WHERE period_year = $1 AND period_month = $2
+             )`,
+            [year, month]
+        );
+
+        // Delete revenue_detail_non_retail records for this period
+        await query(
+            `DELETE FROM revenue_detail_non_retail 
+             WHERE import_id IN (
+                 SELECT id FROM revenue_imports 
+                 WHERE period_year = $1 AND period_month = $2
+             )`,
+            [year, month]
+        );
+
+        // Delete the import records themselves
+        const result = await query(
+            `DELETE FROM revenue_imports 
+             WHERE period_year = $1 AND period_month = $2`,
+            [year, month]
+        );
+
+        return NextResponse.json({
+            message: "Data deleted successfully",
+            year,
+            month
+        });
+
+    } catch (error: any) {
+        console.error("Error deleting revenue PLN data:", error);
+        return NextResponse.json(
+            { message: "Failed to delete data", error: error.message },
+            { status: 500 }
+        );
+    }
+}
