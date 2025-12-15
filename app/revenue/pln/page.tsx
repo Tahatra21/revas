@@ -172,24 +172,33 @@ export default function RevenuePLNPage() {
                 {/* Data Table */}
                 <SectionShell
                     title={`Realisasi ${new Date(0, periodMonth - 1).toLocaleString('default', { month: 'long' })} ${periodYear}`}
-                    description={lastUpdated ? `Last updated: ${new Date(lastUpdated).toLocaleString()}` : "No data found for this period"}
+                    description={lastUpdated ? `Last updated: ${new Date(lastUpdated).toLocaleString('id-ID', { dateStyle: 'full', timeStyle: 'short' })}` : "No data found for this period"}
+                    className="overflow-hidden" // Contain stickiness
                 >
                     {loading ? (
-                        <div className="py-12 text-center text-primary-subtle">Loading data...</div>
+                        <div className="py-20 text-center text-primary-subtle animate-pulse">Loading data...</div>
                     ) : data.length === 0 ? (
-                        <div className="py-12 text-center text-primary-subtle flex flex-col items-center">
-                            <FileSpreadsheet className="w-12 h-12 text-slate-200 mb-4" />
-                            <p>No data available for this period.</p>
-                            <p className="text-xs mt-1">Upload a "Lampiran Pendapatan" file to populate data.</p>
+                        <div className="py-20 text-center text-primary-subtle flex flex-col items-center">
+                            <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mb-4">
+                                <FileSpreadsheet className="w-8 h-8 text-slate-400" />
+                            </div>
+                            <h3 className="font-semibold text-lg text-surface">No Data Available</h3>
+                            <p className="max-w-md mx-auto mt-2 mb-6">
+                                Start by uploading a "Lampiran Pendapatan.xlsx" file to populate the revenue realization data for this period.
+                            </p>
+                            <Button variant="outline" onClick={() => document.getElementById("file-upload-pln")?.click()}>
+                                <Upload className="w-4 h-4 mr-2" />
+                                Upload Now
+                            </Button>
                         </div>
                     ) : (
-                        <div className="overflow-x-auto">
-                            <Table>
-                                <TableHeader>
-                                    <TableRow className="bg-accent text-white hover:bg-accent">
-                                        <TableHead className="w-[50px] text-white">No</TableHead>
+                        <div className="relative w-full overflow-auto max-h-[calc(100vh-300px)] border rounded-lg shadow-sm">
+                            <Table className="border-collapse w-full">
+                                <TableHeader className="sticky top-0 z-20">
+                                    <TableRow className="bg-[#389196] hover:bg-[#389196] border-b-0">
+                                        <TableHead className="w-[50px] text-white font-bold border-r border-white/20">No</TableHead>
                                         {headers.map((header, i) => (
-                                            <TableHead key={i} className="whitespace-nowrap text-white font-semibold text-xs uppercase border-r border-white/20 last:border-0 h-10">
+                                            <TableHead key={i} className="whitespace-nowrap text-white font-bold text-xs uppercase border-r border-white/20 last:border-0 h-10 px-4 py-3 text-center">
                                                 {header}
                                             </TableHead>
                                         ))}
@@ -204,18 +213,42 @@ export default function RevenuePLNPage() {
                                         const firstVal = vals.length > 0 ? vals[0] as string : "";
                                         const isTotal = String(firstVal).toUpperCase().includes("TOTAL");
 
+                                        // Row Background logic: Total=Teal, Odd=Beige, Even=White
+                                        let rowClass = "bg-white";
+                                        if (isTotal) rowClass = "bg-[#389196] text-white font-bold sticky bottom-0 z-10 shadow-lg"; // Sticky Total
+                                        else if (index % 2 === 0) rowClass = "bg-[#ffeed9]/30"; // Light Beige
+
                                         return (
-                                            <TableRow key={index} className={isTotal ? "bg-[#339396] font-bold text-white hover:bg-[#339396]" : index % 2 === 0 ? "bg-orange-50/30" : "bg-white"}>
-                                                <TableCell className={`text-xs ${isTotal ? "text-white" : "text-primary-subtle"}`}>{index + 1}</TableCell>
+                                            <TableRow key={index} className={`${rowClass} hover:bg-opacity-90 border-b border-black/5`}>
+                                                <TableCell className={`text-xs text-center border-r border-black/5 ${isTotal ? "text-white" : "text-primary-subtle"}`}>
+                                                    {isTotal ? "" : index + 1}
+                                                </TableCell>
                                                 {headers.map((header, i) => {
                                                     const val = row[header];
-                                                    // Simple formatting heuristic
+
+                                                    // Formatting
                                                     let displayVal = val;
+                                                    let alignClass = "text-right"; // Default number alignment
+
                                                     if (typeof val === 'number') {
-                                                        displayVal = val.toLocaleString("id-ID", { maximumFractionDigits: 2 });
+                                                        // Check if percentage (heuristic: header contains % or value is small decimal? ExcelJS usually keeps raw number)
+                                                        // Based on image, % columns exist.
+                                                        const headerLower = header.toLowerCase();
+                                                        if (headerLower.includes("%")) {
+                                                            displayVal = (val * 100).toLocaleString("id-ID", { maximumFractionDigits: 2 }) + "%";
+                                                        } else {
+                                                            displayVal = val.toLocaleString("id-ID", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                                                        }
+                                                    } else {
+                                                        alignClass = "text-left";
+                                                        if (!val) displayVal = "-";
                                                     }
+
+                                                    // Specific alignment for first column (BIDANG)
+                                                    if (i === 0) alignClass = "text-left font-medium";
+
                                                     return (
-                                                        <TableCell key={i} className="text-xs border-r border-slate-100 last:border-0">
+                                                        <TableCell key={i} className={`text-xs px-3 py-2 border-r border-black/5 last:border-0 ${alignClass} whitespace-nowrap`}>
                                                             {displayVal}
                                                         </TableCell>
                                                     );
