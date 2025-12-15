@@ -56,7 +56,7 @@ export default function LoginPage() {
                 {/* Logo */}
                 <div className="text-center mb-8">
                     <h1 className="text-5xl font-bold mb-2">Revas</h1>
-                    <p className="text-primary-subtle">Revenue Monitoring Application</p>
+                    <p className="text-primary-subtle">Revenue Assurance Monitoring Application</p>
                 </div>
 
                 {/* Login Card */}

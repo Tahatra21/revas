@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
     LayoutDashboard,
     PieChart,
@@ -10,6 +10,8 @@ import {
     Menu,
     X,
     ChevronDown,
+    LogOut,
+    User,
 } from "lucide-react";
 import { useState } from "react";
 import clsx from "clsx";
@@ -39,8 +41,37 @@ const navigation = [
 
 export function Sidebar() {
     const pathname = usePathname();
+    const router = useRouter();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [expandedItems, setExpandedItems] = useState<string[]>(["Revenue", "Master Data"]);
+    const [revenueOpen, setRevenueOpen] = useState(false);
+    const [masterDataOpen, setMasterDataOpen] = useState(false);
+
+    const handleLogout = () => {
+        // Clear authentication data
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+
+        // Redirect to login
+        router.push("/login");
+    };
+
+    // Get user info from localStorage
+    const getUserInfo = () => {
+        if (typeof window !== "undefined") {
+            const userStr = localStorage.getItem("user");
+            if (userStr) {
+                try {
+                    return JSON.parse(userStr);
+                } catch {
+                    return null;
+                }
+            }
+        }
+        return null;
+    };
+
+    const user = getUserInfo();
 
     const toggleExpanded = (name: string) => {
         setExpandedItems((prev) =>
@@ -69,7 +100,7 @@ export function Sidebar() {
                     {/* Logo */}
                     <div className="p-6 border-b border-surface-border">
                         <h1 className="text-2xl font-bold">Revas</h1>
-                        <p className="text-xs text-primary-subtle">Revenue Monitoring</p>
+                        <p className="text-xs text-primary-subtle">Revenue Assurance Monitoring</p>
                     </div>
 
                     {/* Navigation */}
@@ -139,12 +170,24 @@ export function Sidebar() {
                         })}
                     </nav>
 
-                    {/* Footer */}
-                    <div className="p-4 border-t border-surface-border">
-                        <div className="px-3 py-2 rounded-xl bg-bg">
-                            <p className="text-xs font-medium">Admin User</p>
-                            <p className="text-xs text-primary-subtle">admin@revas.com</p>
+                    {/* User Info & Logout */}
+                    <div className="p-6 border-t border-surface-border mt-auto">
+                        <div className="flex items-center gap-3 mb-4">
+                            <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center">
+                                <User className="w-5 h-5 text-accent" />
+                            </div>
+                            <div className="flex-1">
+                                <p className="text-sm font-medium">{user?.username || "Admin"}</p>
+                                <p className="text-xs text-primary-subtle">{user?.role || "Administrator"}</p>
+                            </div>
                         </div>
+                        <button
+                            onClick={handleLogout}
+                            className="w-full flex items-center gap-3 px-4 py-2 rounded-xl text-sm font-medium text-red-600 hover:bg-red-50 transition-colors"
+                        >
+                            <LogOut className="w-4 h-4" />
+                            Logout
+                        </button>
                     </div>
                 </div>
             </aside>

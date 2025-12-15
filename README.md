@@ -516,7 +516,7 @@ Untuk issues atau pertanyaan:
 
 ## 🎉 Acknowledgments
 
-Built with ❤️ for PLN Group revenue monitoring operations.
+Built with ❤️ for PLN Group revenue assurance monitoring operations. By JMaharyuda
 
 **Version:** 1.0.0  
 **Status:** Production Ready  

@@ -93,7 +93,7 @@ export default function HomePage() {
                     <div>
                         <h1 className="text-4xl font-bold mb-2">Dashboard</h1>
                         <p className="text-primary-subtle">
-                            Revenue Monitoring Application for PLN Group
+                            Revenue Assurance Monitoring Application for PLN Group
                         </p>
                     </div>
                     <div className="flex items-center gap-3">

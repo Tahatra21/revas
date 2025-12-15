@@ -9,11 +9,11 @@ const config: Config = {
     theme: {
         extend: {
             colors: {
-                bg: "#020617", // slate-950
-                surface: "#0f172a", // slate-900
-                "surface-border": "#1e293b", // slate-800
-                primary: "#f8fafc", // slate-50
-                "primary-subtle": "#94a3b8", // slate-400
+                bg: "#ffffff", // white
+                surface: "#f8fafc", // slate-50
+                "surface-border": "#e2e8f0", // slate-200
+                primary: "#0f172a", // slate-900
+                "primary-subtle": "#64748b", // slate-500
                 accent: "#3b82f6", // blue-500
             },
         },

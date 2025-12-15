@@ -11,8 +11,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-    title: "Revas - Revenue Monitoring Application",
-    description: "Revenue Monitoring Application for PLN Group",
+    title: "Revas - Revenue Assurance Monitoring Application",
+    description: "Revenue Assurance Monitoring Application for PLN Group",
 };
 
 export default function RootLayout({
