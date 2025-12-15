@@ -15,7 +15,8 @@ interface RevenueData {
 export default function RevenuePLNPage() {
     const [periodMonth, setPeriodMonth] = useState(new Date().getMonth() + 1);
     const [periodYear, setPeriodYear] = useState(new Date().getFullYear());
-    const [data, setData] = useState<RevenueData[]>([]);
+    const [data, setData] = useState<any[]>([]); // Dynamic row data
+    const [headers, setHeaders] = useState<string[]>([]);
     const [lastUpdated, setLastUpdated] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
 
@@ -33,6 +34,7 @@ export default function RevenuePLNPage() {
             const response = await fetch(`/api/revenue/pln?year=${periodYear}&month=${periodMonth}`);
             const result = await response.json();
             setData(result.data || []);
+            setHeaders(result.headers || []);
             setLastUpdated(result.lastUpdated);
         } catch (error) {
             console.error("Failed to fetch data", error);
@@ -80,7 +82,8 @@ export default function RevenuePLNPage() {
                 // Optional: Show success toast
             } else {
                 const err = await response.json();
-                alert(`Upload failed: ${err.message}`);
+                const errorMessage = err.error || err.message || "Unknown error occurred";
+                alert(`Upload failed: ${errorMessage}`);
             }
         } catch (error) {
             console.error("Upload error", error);
@@ -180,26 +183,46 @@ export default function RevenuePLNPage() {
                             <p className="text-xs mt-1">Upload a "Lampiran Pendapatan" file to populate data.</p>
                         </div>
                     ) : (
-                        <Table>
-                            <TableHeader>
-                                <TableRow>
-                                    <TableHead className="w-[100px]">No</TableHead>
-                                    <TableHead>Bidang / SBU</TableHead>
-                                    <TableHead className="text-right">Realisasi (Miliar)</TableHead>
-                                </TableRow>
-                            </TableHeader>
-                            <TableBody>
-                                {data.map((row, index) => (
-                                    <TableRow key={index} className={row.kode_bidang.toLowerCase().includes("total") ? "font-bold bg-surface" : ""}>
-                                        <TableCell className="text-primary-subtle">{index + 1}</TableCell>
-                                        <TableCell>{row.kode_bidang}</TableCell>
-                                        <TableCell className="text-right font-mono">
-                                            {row.realisasi_billion.toLocaleString("id-ID", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} M
-                                        </TableCell>
+                        <div className="overflow-x-auto">
+                            <Table>
+                                <TableHeader>
+                                    <TableRow className="bg-accent text-white hover:bg-accent">
+                                        <TableHead className="w-[50px] text-white">No</TableHead>
+                                        {headers.map((header, i) => (
+                                            <TableHead key={i} className="whitespace-nowrap text-white font-semibold text-xs uppercase border-r border-white/20 last:border-0 h-10">
+                                                {header}
+                                            </TableHead>
+                                        ))}
                                     </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
+                                </TableHeader>
+                                <TableBody>
+                                    {data.map((row: any, index: number) => {
+                                        // Check if it is a TOTAL row for styling
+                                        const firstVal = Object.values(row)[0] as string;
+                                        const isTotal = String(firstVal).toUpperCase().includes("TOTAL");
+
+                                        return (
+                                            <TableRow key={index} className={isTotal ? "bg-[#339396] font-bold text-white hover:bg-[#339396]" : index % 2 === 0 ? "bg-orange-50/30" : "bg-white"}>
+                                                <TableCell className={`text-xs ${isTotal ? "text-white" : "text-primary-subtle"}`}>{index + 1}</TableCell>
+                                                {headers.map((header, i) => {
+                                                    const val = row[header];
+                                                    // Simple formatting heuristic
+                                                    let displayVal = val;
+                                                    if (typeof val === 'number') {
+                                                        displayVal = val.toLocaleString("id-ID", { maximumFractionDigits: 2 });
+                                                    }
+                                                    return (
+                                                        <TableCell key={i} className="text-xs border-r border-slate-100 last:border-0">
+                                                            {displayVal}
+                                                        </TableCell>
+                                                    );
+                                                })}
+                                            </TableRow>
+                                        );
+                                    })}
+                                </TableBody>
+                            </Table>
+                        </div>
                     )}
                 </SectionShell>
             </div>

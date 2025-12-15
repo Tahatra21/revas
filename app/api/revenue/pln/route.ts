@@ -8,8 +8,8 @@ export async function GET(req: NextRequest) {
 
     try {
         // 1. Find the latest successful import for this period
-        const imports = await query<{ id: string; uploaded_at: Date }>(
-            `SELECT id, uploaded_at 
+        const imports = await query<{ id: string; uploaded_at: Date; table_headers: any }>(
+            `SELECT id, uploaded_at, table_headers 
        FROM revenue_imports 
        WHERE period_year = $1 AND period_month = $2 AND status = 'SUCCESS'
        ORDER BY uploaded_at DESC 
@@ -23,18 +23,23 @@ export async function GET(req: NextRequest) {
 
         const importId = imports[0].id;
         const lastUpdated = imports[0].uploaded_at;
+        const headers = imports[0].table_headers || [];
 
         // 2. Fetch summary data for this import
         const rows = await query(
-            `SELECT kode_bidang, realisasi_billion
+            `SELECT row_data
        FROM revenue_summary_pln
        WHERE import_id = $1
-       ORDER BY id ASC`, // Maintain insertion order usually matches excel row order roughly
+       ORDER BY id ASC`,
             [importId]
         );
 
+        // Extract items from row_data
+        const cleanRows = rows.map((r: any) => r.row_data);
+
         return NextResponse.json({
-            data: rows,
+            headers: headers,
+            data: cleanRows,
             lastUpdated: lastUpdated
         });
 

@@ -238,11 +238,18 @@ export async function POST(req: NextRequest) {
             throw new Error(`Column for '${expected}' (e.g., 'Realisasi ${expected}') not found in 'REVENUE PLN'. Check if selected Month matches file headers.`);
         }
 
-        // Update Import record with target column name
-        const targetColName = plnSheet.getRow(plnHeaderRowIdx).getCell(colTarget).value?.toString();
+        // Capture Headers
+        const headers: string[] = [];
+        const headerRow = plnSheet.getRow(plnHeaderRowIdx);
+        headerRow.eachCell((cell, colNumber) => {
+            headers.push(cell.value?.toString() || `Column ${colNumber}`);
+        });
+
+        // Update Import record with target column name AND all headers
+        const targetColName = headerRow.getCell(colTarget).value?.toString();
         await client.query(
-            "UPDATE revenue_imports SET target_realisasi_column = $1 WHERE id = $2",
-            [targetColName, importId]
+            "UPDATE revenue_imports SET target_realisasi_column = $1, table_headers = $2 WHERE id = $3",
+            [targetColName, JSON.stringify(headers), importId]
         );
 
         let calculatedTotal = 0;
@@ -254,16 +261,24 @@ export async function POST(req: NextRequest) {
             if (rowNumber <= plnHeaderRowIdx) return;
 
             const rawBidang = row.getCell(colBidang).value?.toString() || "";
+            // Some rows might be empty or spacer rows, check if they have meaningful data
+            // For the table view, we generally want to capture what's in the excel.
+            // But strict "BIDANG" check might exclude some.
+            // Let's rely on rawBidang presence for now.
             if (!rawBidang) return;
 
             // Check if TOTAL row
             if (rawBidang.toUpperCase().includes("TOTAL")) {
                 totalRowIndex = rowNumber;
+                // We'll process TOTAL row after loop or handle it here?
+                // The logic requires summing up calculatedTotal from detail sheets first.
+                // So we skip TOTAL here and write it later. 
+                // BUT we want to capture it for display. 
+                // We will capture it in a second pass or simple variable updates.
                 return;
             }
 
             // Mapping Logic: "AAA - BBB" -> "AAA"
-            // If not containing " - ", use as is
             let sbuKey = "";
             if (rawBidang.includes("-")) {
                 sbuKey = rawBidang.split("-")[0].trim();
@@ -271,39 +286,72 @@ export async function POST(req: NextRequest) {
                 sbuKey = rawBidang.trim();
             }
 
-            // Uppercase for map lookup? "SBU CODE" in sheet 1 was normalized
-            // Usually codes like "JBT", "JBY", etc.
-            // Assuming map keys are "AAA", "BBB".
-            // Let's normalize sbuKey same as map key
             const normalizedKey = normalizeCode(sbuKey);
-
             const value = sbuMap.get(normalizedKey) || 0; // In Billions
 
-            // Update Cell
+            // Update Cell in Excel
             row.getCell(colTarget).value = value;
             calculatedTotal += value;
 
+            // Capture Full Row Data for DB
+            const rowData: any = {};
+            headerRow.eachCell((headerCell, colNum) => {
+                const headerKey = headerCell.value?.toString() || `col_${colNum}`;
+                // If it's the target column, use the NEW value
+                if (colNum === colTarget) {
+                    rowData[headerKey] = value;
+                } else {
+                    // Format value
+                    let cellVal = row.getCell(colNum).value;
+                    if (cellVal && typeof cellVal === 'object' && 'result' in cellVal) {
+                        cellVal = cellVal.result;
+                    }
+                    rowData[headerKey] = cellVal;
+                }
+            });
+
             // Collect for DB
             summaryRowsToInsert.push([
-                importId, periodMonth, periodYear, rawBidang, value
+                importId, periodMonth, periodYear, rawBidang, value, JSON.stringify(rowData)
             ]);
         });
 
-        // Update TOTAL row
+        // Update TOTAL row in Excel
         if (totalRowIndex !== -1) {
-            plnSheet.getRow(totalRowIndex).getCell(colTarget).value = calculatedTotal;
+            const totalRow = plnSheet.getRow(totalRowIndex);
+            totalRow.getCell(colTarget).value = calculatedTotal;
+
+            // Also capture the TOTAL row for DB
+            const totalRowData: any = {};
+            headerRow.eachCell((headerCell, colNum) => {
+                const headerKey = headerCell.value?.toString() || `col_${colNum}`;
+                if (colNum === colTarget) {
+                    totalRowData[headerKey] = calculatedTotal;
+                } else {
+                    let cellVal = totalRow.getCell(colNum).value;
+                    if (cellVal && typeof cellVal === 'object' && 'result' in cellVal) {
+                        cellVal = cellVal.result;
+                    }
+                    totalRowData[headerKey] = cellVal;
+                }
+            });
+
+            const rawBidangTotal = totalRow.getCell(colBidang).value?.toString() || "TOTAL";
+
+            summaryRowsToInsert.push([
+                importId, periodMonth, periodYear, rawBidangTotal, calculatedTotal, JSON.stringify(totalRowData)
+            ]);
         }
 
         // Insert Summary to DB
         for (const s of summaryRowsToInsert) {
             await client.query(
                 `INSERT INTO revenue_summary_pln (
-                import_id, period_month, period_year, kode_bidang, realisasi_billion
-            ) VALUES ($1, $2, $3, $4, $5)`,
+                import_id, period_month, period_year, kode_bidang, realisasi_billion, row_data
+            ) VALUES ($1, $2, $3, $4, $5, $6)`,
                 s
             );
         }
-
         // Commit Transaction
         await client.query("UPDATE revenue_imports SET status = 'SUCCESS' WHERE id = $1", [importId]);
         await client.query("COMMIT");
