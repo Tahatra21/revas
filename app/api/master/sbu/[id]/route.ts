@@ -10,10 +10,9 @@ export async function GET(_req: Request, props: Params) {
     try {
         const id = Number(params.id);
         const rows = await query(
-            `SELECT s.id, s.code, s.name, s.region_id, s.is_active, r.code AS region_code
-       FROM master_sbu s
-       LEFT JOIN master_region r ON s.region_id = r.id
-       WHERE s.id = $1`,
+            `SELECT id, code, name, is_active
+       FROM master_sbu
+       WHERE id = $1`,
             [id]
         );
 
@@ -38,15 +37,13 @@ export async function PUT(req: Request, props: Params) {
       UPDATE master_sbu
          SET code = COALESCE($1, code),
              name = COALESCE($2, name),
-             region_id = COALESCE($3, region_id),
-             is_active = COALESCE($4, is_active)
-       WHERE id = $5
-       RETURNING id, code, name, region_id, is_active
+             is_active = COALESCE($3, is_active)
+       WHERE id = $4
+       RETURNING id, code, name, is_active
     `;
         const values = [
             body.code ?? null,
             body.name ?? null,
-            body.region_id ?? null,
             body.is_active ?? null,
             id
         ];

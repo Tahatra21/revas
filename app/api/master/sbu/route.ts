@@ -7,17 +7,12 @@ export async function GET() {
             id: number;
             code: string;
             name: string;
-            region_id: number;
-            region_code: string;
             is_active: boolean;
         }>(`
-      SELECT 
-        s.id, s.code, s.name, s.region_id, s.is_active,
-        r.code AS region_code
-      FROM master_sbu s
-      LEFT JOIN master_region r ON s.region_id = r.id
-      WHERE s.is_active = TRUE
-      ORDER BY s.code
+      SELECT id, code, name, is_active
+      FROM master_sbu
+      WHERE is_active = TRUE
+      ORDER BY code
     `);
 
         return NextResponse.json(rows);
@@ -42,11 +37,11 @@ export async function POST(req: Request) {
         }
 
         const sql = `
-      INSERT INTO master_sbu (code, name, region_id, is_active)
-      VALUES ($1, $2, $3, COALESCE($4, TRUE))
-      RETURNING id, code, name, region_id, is_active
+      INSERT INTO master_sbu (code, name, is_active)
+      VALUES ($1, $2, COALESCE($3, TRUE))
+      RETURNING id, code, name, is_active
     `;
-        const params = [body.code, body.name, body.region_id ?? null, body.is_active];
+        const params = [body.code, body.name, body.is_active];
 
         const rows = await query(sql, params);
         return NextResponse.json(rows[0], { status: 201 });

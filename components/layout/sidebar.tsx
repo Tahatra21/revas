@@ -32,7 +32,6 @@ const navigation = [
         name: "Master Data",
         icon: Database,
         children: [
-            { name: "Regions", href: "/master/region" },
             { name: "SBUs", href: "/master/sbu" },
             { name: "Customers", href: "/master/customer" },
             { name: "Service Categories", href: "/master/service-category" },
@@ -40,6 +39,7 @@ const navigation = [
     },
 ];
 
+// Refresh Sidebar Cache
 export function Sidebar() {
     const pathname = usePathname();
     const router = useRouter();

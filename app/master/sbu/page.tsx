@@ -18,24 +18,15 @@ interface SBU {
     id: number;
     code: string;
     name: string;
-    regionId: number;
-    regionCode: string;
     is_active: boolean;
-}
-
-interface Region {
-    id: number;
-    code: string;
-    name: string;
 }
 
 export default function SBUPage() {
     const [sbus, setSbus] = useState<SBU[]>([]);
-    const [regions, setRegions] = useState<Region[]>([]);
     const [loading, setLoading] = useState(true);
     const [showForm, setShowForm] = useState(false);
     const [editingId, setEditingId] = useState<number | null>(null);
-    const [formData, setFormData] = useState({ code: "", name: "", regionId: "" });
+    const [formData, setFormData] = useState({ code: "", name: "" });
     const [errors, setErrors] = useState<Record<string, string>>({});
 
     useEffect(() => {
@@ -44,18 +35,9 @@ export default function SBUPage() {
 
     const fetchData = async () => {
         try {
-            const [sbusRes, regionsRes] = await Promise.all([
-                fetch("/api/master/sbu"),
-                fetch("/api/master/region"),
-            ]);
-
-            const [sbusData, regionsData] = await Promise.all([
-                sbusRes.json(),
-                regionsRes.json(),
-            ]);
-
-            setSbus(sbusData);
-            setRegions(regionsData);
+            const response = await fetch("/api/master/sbu");
+            const data = await response.json();
+            setSbus(data);
         } catch (error) {
             console.error("Error fetching data:", error);
         } finally {
@@ -66,11 +48,10 @@ export default function SBUPage() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        if (!formData.code || !formData.name || !formData.regionId) {
+        if (!formData.code || !formData.name) {
             setErrors({
                 code: !formData.code ? "Code is required" : "",
                 name: !formData.name ? "Name is required" : "",
-                regionId: !formData.regionId ? "Region is required" : "",
             });
             return;
         }
@@ -85,7 +66,6 @@ export default function SBUPage() {
                 body: JSON.stringify({
                     code: formData.code,
                     name: formData.name,
-                    regionId: Number(formData.regionId),
                 }),
             });
 
@@ -103,7 +83,6 @@ export default function SBUPage() {
         setFormData({
             code: sbu.code,
             name: sbu.name,
-            regionId: sbu.regionId.toString(),
         });
         setEditingId(sbu.id);
         setShowForm(true);
@@ -127,7 +106,7 @@ export default function SBUPage() {
     };
 
     const resetForm = () => {
-        setFormData({ code: "", name: "", regionId: "" });
+        setFormData({ code: "", name: "" });
         setEditingId(null);
         setShowForm(false);
         setErrors({});
@@ -155,7 +134,7 @@ export default function SBUPage() {
                         description="Enter SBU details"
                     >
                         <form onSubmit={handleSubmit} className="space-y-4">
-                            <div className="grid gap-4 md:grid-cols-3">
+                            <div className="grid gap-4 md:grid-cols-2">
                                 <FormField label="Code" htmlFor="code" required error={errors.code}>
                                     <input
                                         type="text"
@@ -174,21 +153,6 @@ export default function SBUPage() {
                                         value={formData.name}
                                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                     />
-                                </FormField>
-
-                                <FormField label="Region" htmlFor="regionId" required error={errors.regionId}>
-                                    <select
-                                        name="regionId"
-                                        value={formData.regionId}
-                                        onChange={(e) => setFormData({ ...formData, regionId: e.target.value })}
-                                    >
-                                        <option value="">Select Region</option>
-                                        {regions.map((region) => (
-                                            <option key={region.id} value={region.id}>
-                                                {region.code} - {region.name}
-                                            </option>
-                                        ))}
-                                    </select>
                                 </FormField>
                             </div>
 
@@ -212,7 +176,6 @@ export default function SBUPage() {
                                 <TableRow>
                                     <TableHead>Code</TableHead>
                                     <TableHead>Name</TableHead>
-                                    <TableHead>Region</TableHead>
                                     <TableHead>Status</TableHead>
                                     <TableHead className="text-right">Actions</TableHead>
                                 </TableRow>
@@ -222,12 +185,11 @@ export default function SBUPage() {
                                     <TableRow key={sbu.id}>
                                         <TableCell className="font-medium">{sbu.code}</TableCell>
                                         <TableCell>{sbu.name}</TableCell>
-                                        <TableCell>{sbu.regionCode}</TableCell>
                                         <TableCell>
                                             <span
                                                 className={`inline-flex px-2 py-1 rounded-full text-xs ${sbu.is_active
-                                                        ? "bg-emerald-500/20 text-emerald-400"
-                                                        : "bg-red-500/20 text-red-400"
+                                                    ? "bg-emerald-500/20 text-emerald-400"
+                                                    : "bg-red-500/20 text-red-400"
                                                     }`}
                                             >
                                                 {sbu.is_active ? "Active" : "Inactive"}
