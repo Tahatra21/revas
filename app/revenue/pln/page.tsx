@@ -246,8 +246,11 @@ export default function RevenuePLNPage() {
                                                         }
                                                     }
 
+                                                    // Explicitly force bold for TOTAL row
+                                                    const cellWeight = isTotal ? "font-extrabold" : "";
+
                                                     return (
-                                                        <TableCell key={i} className={`text-xs px-3 py-2 border-r border-black/5 last:border-0 ${alignClass} whitespace-nowrap`}>
+                                                        <TableCell key={i} className={`text-[10px] px-1 py-2 border-r border-black/5 last:border-0 ${alignClass} ${cellWeight} break-words leading-tight`}>
                                                             {displayVal}
                                                         </TableCell>
                                                     );
