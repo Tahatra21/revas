@@ -1,16 +1,10 @@
-"use client";
-
 import { useState, useEffect } from "react";
-import { Upload, FileSpreadsheet, Download, Calendar, ArrowUpCircle } from "lucide-react";
+import { Upload, FileSpreadsheet, ArrowUpCircle, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SectionShell } from "@/components/ui/section-shell";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
-import { Toast } from "@/components/ui/toast";
+// Toast import removed as it wasn't being used correctly or exported
 
-interface RevenueData {
-    kode_bidang: string;
-    realisasi_billion: number;
-}
 
 export default function RevenuePLNPage() {
     const [periodMonth, setPeriodMonth] = useState(new Date().getMonth() + 1);
@@ -183,7 +177,7 @@ export default function RevenuePLNPage() {
                             </div>
                         ) : (
                             <Button
-                                variant="outline"
+                                variant="secondary"
                                 onClick={() => document.getElementById("file-upload-pln")?.click()}
                                 className="h-9 text-sm px-4 border-dashed border-primary/20 hover:border-primary/50 text-primary-subtle hover:text-primary transition-colors"
                             >
@@ -198,7 +192,6 @@ export default function RevenuePLNPage() {
                 <SectionShell
                     title={`Realisasi ${new Date(0, periodMonth - 1).toLocaleString('default', { month: 'long' })} ${periodYear}`}
                     description={lastUpdated ? `Last updated: ${new Date(lastUpdated).toLocaleString('id-ID', { dateStyle: 'full', timeStyle: 'short' })}` : "No data found for this period"}
-                    className="overflow-hidden" // Contain stickiness
                 >
                     {loading ? (
                         <div className="py-20 text-center text-primary-subtle animate-pulse">Loading data...</div>
@@ -211,7 +204,7 @@ export default function RevenuePLNPage() {
                             <p className="max-w-md mx-auto mt-2 mb-6">
                                 Start by uploading a "Lampiran Pendapatan.xlsx" file to populate the revenue realization data for this period.
                             </p>
-                            <Button variant="outline" onClick={() => document.getElementById("file-upload-pln")?.click()}>
+                            <Button variant="secondary" onClick={() => document.getElementById("file-upload-pln")?.click()}>
                                 <Upload className="w-4 h-4 mr-2" />
                                 Upload Now
                             </Button>
@@ -285,11 +278,10 @@ export default function RevenuePLNPage() {
                                     })}
                                 </TableBody>
                             </Table>
-                        </div >
-                    )
-                    }
-                </SectionShell >
-            </div >
-        </main >
+                        </div>
+                    )}
+                </SectionShell>
+            </div>
+        </main>
     );
 }
