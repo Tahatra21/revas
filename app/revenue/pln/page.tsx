@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Upload, FileSpreadsheet, ArrowUpCircle, X } from "lucide-react";
+import { Upload, FileSpreadsheet, ArrowUpCircle, X, TrendingUp, Target, DollarSign, AlertCircle } from "lucide-react";
+import { KpiCard } from "@/components/ui/kpi-card";
 import { Button } from "@/components/ui/button";
 import { SectionShell } from "@/components/ui/section-shell";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
@@ -21,6 +22,14 @@ export default function RevenuePLNPage() {
     const [file, setFile] = useState<File | null>(null);
     const [isDeleting, setIsDeleting] = useState(false);
 
+    // KPI Dashboard metrics
+    const [kpis, setKpis] = useState({
+        target: 0,
+        realisasi: 0,
+        achievement: 0,
+        gap: 0
+    });
+
     useEffect(() => {
         fetchData();
     }, [periodMonth, periodYear]);
@@ -36,17 +45,50 @@ export default function RevenuePLNPage() {
                 setData(result.data || []);
                 setHeaders(result.headers || []);
                 setLastUpdated(result.lastUpdated);
+
+                // Calculate KPIs from TOTAL row
+                calculateKPIs(result.data || [], result.headers || []);
             } else {
                 console.error("Failed to fetch data:", res.status, res.statusText);
                 setData([]);
                 setHeaders([]);
                 setLastUpdated(null);
+                setKpis({ target: 0, realisasi: 0, achievement: 0, gap: 0 });
             }
         } catch (error) {
             console.error("Failed to fetch data", error);
         } finally {
             setLoading(false);
         }
+    };
+
+    const calculateKPIs = (dataRows: any[], headers: string[]) => {
+        // Find TOTAL row (last row typically)
+        const totalRow = dataRows.find(row => {
+            const firstCol = row[headers[0]];
+            return typeof firstCol === 'string' && firstCol.toUpperCase().includes('TOTAL');
+        });
+
+        if (!totalRow || headers.length === 0) {
+            setKpis({ target: 0, realisasi: 0, achievement: 0, gap: 0 });
+            return;
+        }
+
+        // Find TARGET and REALISASI columns (typically contain these keywords)
+        let targetCol = headers.find(h => h.toUpperCase().includes('TARGET') && !h.toUpperCase().includes('NOV') && !h.toUpperCase().includes('DES'));
+        let realisasiCol = headers.find(h => (h.toUpperCase().includes('REALISA') || h.toUpperCase().includes('REALISASI')) && h.toUpperCase().includes('SI'));
+
+        const targetVal = targetCol ? (totalRow[targetCol] || 0) : 0;
+        const realisasiVal = realisasiCol ? (totalRow[realisasiCol] || 0) : 0;
+        const gapVal = targetVal - realisasiVal;
+        const achievementPct = targetVal > 0 ? (realisasiVal / targetVal) * 100 : 0;
+
+        setKpis({
+            target: targetVal,
+            realisasi: realisasiVal,
+            achievement: achievementPct,
+            gap: gapVal
+        });
     };
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -146,6 +188,40 @@ export default function RevenuePLNPage() {
                         </p>
                     </div>
                 </div>
+
+                {/* KPI Dashboard - High Level Summary */}
+                {data.length > 0 && (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <KpiCard
+                            label="Target Pendapatan"
+                            value={kpis.target.toLocaleString("id-ID", { maximumFractionDigits: 2 })}
+                            subLabel="Miliar Rupiah"
+                            icon={Target}
+                            tone="default"
+                        />
+                        <KpiCard
+                            label="Realisasi"
+                            value={kpis.realisasi.toLocaleString("id-ID", { maximumFractionDigits: 2 })}
+                            subLabel="Miliar Rupiah"
+                            icon={DollarSign}
+                            tone={kpis.achievement >= 100 ? "positive" : kpis.achievement >= 80 ? "warning" : "negative"}
+                        />
+                        <KpiCard
+                            label="Achievement"
+                            value={kpis.achievement.toFixed(1) + "%"}
+                            subLabel={kpis.achievement >= 100 ? "Target tercapai!" : "Dari target"}
+                            icon={TrendingUp}
+                            tone={kpis.achievement >= 100 ? "positive" : kpis.achievement >= 80 ? "warning" : "negative"}
+                        />
+                        <KpiCard
+                            label="GAP"
+                            value={kpis.gap.toLocaleString("id-ID", { maximumFractionDigits: 2, signDisplay: "auto" })}
+                            subLabel={kpis.gap < 0 ? "Deficit" : kpis.gap > 0 ? "Surplus" : "Balance"}
+                            icon={AlertCircle}
+                            tone={kpis.gap < 0 ? "negative" : kpis.gap > 0 ? "positive" : "default"}
+                        />
+                    </div>
+                )}
 
                 {/* Compact Top Bar */}
                 <div className="bg-surface border border-surface-border rounded-xl p-4 flex items-center justify-between shadow-sm">
