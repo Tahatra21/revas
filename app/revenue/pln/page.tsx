@@ -192,71 +192,62 @@ export default function RevenuePLNPage() {
                             </Button>
                         </div>
                     ) : (
-                        <div className="relative w-full overflow-auto max-h-[calc(100vh-300px)] border rounded-lg shadow-sm">
-                            <div className="relative w-full border rounded-lg shadow-sm">
-                                <Table className="w-full table-fixed">
-                                    <TableHeader className="sticky top-0 z-20">
-                                        <TableRow className="bg-[#389196] hover:bg-[#389196] border-b-0">
-                                            {headers.map((header, i) => (
-                                                <TableHead key={i} className="text-white font-bold text-[10px] uppercase border-r border-white/20 last:border-0 h-auto py-3 text-center align-middle break-words leading-tight">
-                                                    {header}
-                                                </TableHead>
-                                            ))}
-                                        </TableRow>
-                                    </TableHeader>
-                                    <TableBody>
-                                        {data.map((row: any, index: number) => {
-                                            if (!row) return null;
+                                    </TableRow>
+            </TableHeader>
+            <TableBody>
+                {data.map((row: any, index: number) => {
+                    if (!row) return null;
 
-                                            // Check if it is a TOTAL row for styling
-                                            const vals = Object.values(row);
-                                            const firstVal = vals.length > 0 ? vals[0] as string : "";
-                                            const isTotal = String(firstVal).toUpperCase().includes("TOTAL");
+                    // Check if it is a TOTAL row for styling
+                    const vals = Object.values(row);
+                    const firstVal = vals.length > 0 ? vals[0] as string : "";
+                    const isTotal = String(firstVal).toUpperCase().includes("TOTAL");
 
-                                            // Row Background logic: Total=Teal, Odd=Beige, Even=White
-                                            let rowClass = "bg-white";
-                                            if (isTotal) rowClass = "bg-[#389196] text-white font-bold sticky bottom-0 z-10 shadow-lg"; // Sticky Total
-                                            else if (index % 2 === 0) rowClass = "bg-[#ffeed9]/30"; // Light Beige
+                    // Row Background logic: Total=Teal, Odd=Beige, Even=White
+                    let rowClass = "bg-white";
+                    if (isTotal) rowClass = "bg-[#389196] text-white font-bold sticky bottom-0 z-10 shadow-lg"; // Sticky Total
+                    else if (index % 2 === 0) rowClass = "bg-[#ffeed9]/30"; // Light Beige
 
-                                            return (
-                                                <TableRow key={index} className={`${rowClass} hover:bg-opacity-90 border-b border-black/5`}>
-                                                    {headers.map((header, i) => {
-                                                        const val = row[header];
+                    return (
+                        <TableRow key={index} className={`${rowClass} hover:bg-opacity-90 border-b border-black/5`}>
+                            {headers.map((header, i) => {
+                                const val = row[header];
 
-                                                        // Formatting
-                                                        let displayVal = val;
-                                                        let alignClass = "text-right"; // Default number alignment
+                                // Formatting
+                                let displayVal = val;
+                                let alignClass = "text-right"; // Default number alignment
 
-                                                        if (typeof val === 'number') {
-                                                            const headerLower = header.toLowerCase();
-                                                            if (headerLower.includes("%")) {
-                                                                displayVal = (val * 100).toLocaleString("id-ID", { maximumFractionDigits: 1 }) + "%";
-                                                            } else {
-                                                                displayVal = val.toLocaleString("id-ID", { minimumFractionDigits: 0, maximumFractionDigits: 2 });
-                                                            }
-                                                        } else {
-                                                            alignClass = "text-left";
-                                                            if (!val) displayVal = "-";
-                                                        }
+                                if (typeof val === 'number') {
+                                    const headerLower = header.toLowerCase();
+                                    if (headerLower.includes("%")) {
+                                        displayVal = (val * 100).toLocaleString("id-ID", { maximumFractionDigits: 1 }) + "%";
+                                    } else {
+                                        displayVal = val.toLocaleString("id-ID", { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+                                    }
+                                } else {
+                                    alignClass = "text-left";
+                                    if (!val) displayVal = "-";
+                                }
 
-                                                        // Specific alignment for first column (BIDANG)
-                                                        if (i === 0) alignClass = "text-left font-medium";
+                                // Specific alignment for first column (BIDANG)
+                                if (i === 0) alignClass = "text-left font-medium";
 
-                                                        return (
-                                                            <TableCell key={i} className={`text-xs px-3 py-2 border-r border-black/5 last:border-0 ${alignClass} whitespace-nowrap`}>
-                                                                {displayVal}
-                                                            </TableCell>
-                                                        );
-                                                    })}
-                                                </TableRow>
-                                            );
-                                        })}
-                                    </TableBody>
-                                </Table>
-                            </div>
-                    )}
-                        </SectionShell>
-            </div>
-        </main>
+                                return (
+                                    <TableCell key={i} className={`text-xs px-3 py-2 border-r border-black/5 last:border-0 ${alignClass} whitespace-nowrap`}>
+                                        {displayVal}
+                                    </TableCell>
+                                );
+                            })}
+                        </TableRow>
+                    );
+                })}
+            </TableBody>
+        </Table>
+                        </div >
+                    )
+}
+                </SectionShell >
+            </div >
+        </main >
     );
 }
