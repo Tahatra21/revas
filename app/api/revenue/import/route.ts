@@ -77,7 +77,7 @@ export async function POST(req: NextRequest) {
         // 2. Load Excel
         const buffer = await file.arrayBuffer();
         const workbook = new ExcelJS.Workbook();
-        await workbook.xlsx.load(Buffer.from(buffer));
+        await workbook.xlsx.load(Buffer.from(buffer) as any);
 
         // 3. Process Sheet 1: DETAIL NON RETAIL
         const detailSheet = workbook.getWorksheet("DETAIL NON RETAIL");
