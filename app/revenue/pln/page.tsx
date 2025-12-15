@@ -196,28 +196,28 @@ export default function RevenuePLNPage() {
                             label="Target Pendapatan"
                             value={kpis.target.toLocaleString("id-ID", { maximumFractionDigits: 2 })}
                             subLabel="Miliar Rupiah"
-                            icon={Target}
+                            icon={<Target className="w-5 h-5" />}
                             tone="default"
                         />
                         <KpiCard
                             label="Realisasi"
                             value={kpis.realisasi.toLocaleString("id-ID", { maximumFractionDigits: 2 })}
                             subLabel="Miliar Rupiah"
-                            icon={DollarSign}
+                            icon={<DollarSign className="w-5 h-5" />}
                             tone={kpis.achievement >= 100 ? "positive" : kpis.achievement >= 80 ? "warning" : "negative"}
                         />
                         <KpiCard
                             label="Achievement"
                             value={kpis.achievement.toFixed(1) + "%"}
                             subLabel={kpis.achievement >= 100 ? "Target tercapai!" : "Dari target"}
-                            icon={TrendingUp}
+                            icon={<TrendingUp className="w-5 h-5" />}
                             tone={kpis.achievement >= 100 ? "positive" : kpis.achievement >= 80 ? "warning" : "negative"}
                         />
                         <KpiCard
                             label="GAP"
                             value={kpis.gap.toLocaleString("id-ID", { maximumFractionDigits: 2, signDisplay: "auto" })}
                             subLabel={kpis.gap < 0 ? "Deficit" : kpis.gap > 0 ? "Surplus" : "Balance"}
-                            icon={AlertCircle}
+                            icon={<AlertCircle className="w-5 h-5" />}
                             tone={kpis.gap < 0 ? "negative" : kpis.gap > 0 ? "positive" : "default"}
                         />
                     </div>
