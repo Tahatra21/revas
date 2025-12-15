@@ -105,16 +105,20 @@ export default function RevenuePLNPage() {
                     </div>
                 </div>
 
-                {/* Filters & Actions */}
-                <SectionShell title="Period & Data Management" description="Filter data or update via upload">
-                    <div className="flex flex-col md:flex-row gap-6 items-end justify-between">
-                        <div className="flex gap-4">
+                {/* Compact Top Bar */}
+                <div className="bg-surface border border-surface-border rounded-xl p-4 flex items-center justify-between shadow-sm">
+                    <div className="flex items-center gap-6">
+                        <div className="flex flex-col">
+                            <h2 className="text-sm font-semibold">Period & Data</h2>
+                            <p className="text-[10px] text-primary-subtle">Filter or update data</p>
+                        </div>
+                        <div className="h-8 w-[1px] bg-surface-border mx-2"></div>
+                        <div className="flex items-center gap-3">
                             <div>
-                                <label className="block text-xs font-medium mb-1.5 ml-1">Month</label>
                                 <select
                                     value={periodMonth}
                                     onChange={(e) => setPeriodMonth(parseInt(e.target.value))}
-                                    className="px-4 py-2 rounded-xl border border-surface-border bg-bg text-primary w-40"
+                                    className="px-3 py-1.5 rounded-lg border border-surface-border bg-bg text-sm w-36 focus:ring-1 focus:ring-accent outline-none"
                                 >
                                     {[...Array(12)].map((_, i) => (
                                         <option key={i + 1} value={i + 1}>
@@ -124,50 +128,53 @@ export default function RevenuePLNPage() {
                                 </select>
                             </div>
                             <div>
-                                <label className="block text-xs font-medium mb-1.5 ml-1">Year</label>
                                 <input
                                     type="number"
                                     value={periodYear}
                                     onChange={(e) => setPeriodYear(parseInt(e.target.value))}
-                                    className="px-4 py-2 rounded-xl border border-surface-border bg-bg text-primary w-28"
+                                    className="px-3 py-1.5 rounded-lg border border-surface-border bg-bg text-sm w-24 focus:ring-1 focus:ring-accent outline-none"
                                 />
                             </div>
                         </div>
-
-                        {/* Upload Simple UI */}
-                        <div className="flex gap-3 items-center">
-                            <input
-                                id="file-upload-pln"
-                                type="file"
-                                accept=".xlsx"
-                                className="hidden"
-                                onChange={handleFileChange}
-                            />
-                            {file ? (
-                                <div className="flex items-center gap-2">
-                                    <span className="text-xs text-primary-subtle truncate max-w-[150px]">{file.name}</span>
-                                    <Button
-                                        onClick={handleUpload}
-                                        isLoading={isUploading}
-                                        className="bg-emerald-600 hover:bg-emerald-700 text-white"
-                                    >
-                                        <ArrowUpCircle className="w-4 h-4" />
-                                        Process Upload
-                                    </Button>
-                                    <Button onClick={() => setFile(null)} variant="ghost" size="sm">Cancel</Button>
-                                </div>
-                            ) : (
-                                <Button
-                                    onClick={() => document.getElementById("file-upload-pln")?.click()}
-                                    variant="outline"
-                                >
-                                    <Upload className="w-4 h-4" />
-                                    Import Update (.xlsx)
-                                </Button>
-                            )}
-                        </div>
                     </div>
-                </SectionShell>
+
+                    {/* Upload Action */}
+                    <div className="flex gap-3 items-center">
+                        <input
+                            id="file-upload-pln"
+                            type="file"
+                            accept=".xlsx"
+                            className="hidden"
+                            onChange={handleFileChange}
+                        />
+                        {file ? (
+                            <div className="flex items-center gap-2 bg-slate-50 px-3 py-1 rounded-lg border border-slate-100">
+                                <span className="text-xs text-primary-subtle truncate max-w-[150px]">{file.name}</span>
+                                <Button
+                                    onClick={handleUpload}
+                                    isLoading={isUploading}
+                                    size="sm"
+                                    className="h-8 bg-emerald-600 hover:bg-emerald-700 text-white text-xs"
+                                >
+                                    <ArrowUpCircle className="w-3 h-3 mr-1.5" />
+                                    Process
+                                </Button>
+                                <Button onClick={() => setFile(null)} variant="ghost" size="sm" className="h-8 w-8 p-0 text-slate-400 hover:text-red-500">
+                                    <X className="w-4 h-4" />
+                                </Button>
+                            </div>
+                        ) : (
+                            <Button
+                                variant="outline"
+                                onClick={() => document.getElementById("file-upload-pln")?.click()}
+                                className="h-9 text-sm px-4 border-dashed border-primary/20 hover:border-primary/50 text-primary-subtle hover:text-primary transition-colors"
+                            >
+                                <Upload className="w-4 h-4 mr-2" />
+                                Import Update (.xlsx)
+                            </Button>
+                        )}
+                    </div>
+                </div>
 
                 {/* Data Table */}
                 <SectionShell
