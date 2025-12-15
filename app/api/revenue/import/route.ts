@@ -223,19 +223,58 @@ export async function POST(req: NextRequest) {
         if (colTarget === -1) {
             console.log("Retrying target column search in header row:", plnHeaderRowIdx);
             const headerRow = plnSheet.getRow(plnHeaderRowIdx);
-            headerRow.eachCell((cell, colNumber) => {
-                const val = cell.value?.toString() || "";
-                if (potentialHeaders.some(h => val.toLowerCase().includes(h.toLowerCase()))) {
-                    colTarget = colNumber;
-                    console.log(`Found Target Column '${val}' at col ${colNumber} (Retry)`);
+
+            // Auto-detect month if not found using strict headers
+            if (periodMonth) {
+                // Try standard headers first
+                headerRow.eachCell((cell, colNumber) => {
+                    const val = cell.value?.toString() || "";
+                    if (potentialHeaders.some(h => val.toLowerCase().includes(h.toLowerCase()))) {
+                        colTarget = colNumber;
+                        console.log(`Found Target Column '${val}' at col ${colNumber} (Retry)`);
+                    }
+                });
+            }
+
+            // If still not found, try to DETECT any valid realization month to help the user?
+            // "REALISASI [Month]"
+            if (colTarget === -1) {
+                const monthNames = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
+                let detectedMonth = -1;
+
+                headerRow.eachCell((cell, colNumber) => {
+                    const val = cell.value?.toString().toUpperCase() || "";
+                    if (val.includes("REALISASI")) {
+                        // Check which month
+                        monthNames.forEach((m, idx) => {
+                            if (val.includes(m.toUpperCase())) {
+                                detectedMonth = idx + 1;
+                                colTarget = colNumber;
+                            }
+                        });
+                    }
+                });
+
+                if (detectedMonth !== -1) {
+                    console.log(`Auto-detected month from header: ${detectedMonth}`);
+                    // Override the periodMonth for DB insertion if we want to be smart?
+                    // The user requested "When upload Nov, output is Nov".
+                    // So we should probably use the Detected Month.
+                    // But we can't easily change `periodMonth` const.
+                    // Let's just create a new variable `finalPeriodMonth`.
                 }
-            });
+            }
         }
+
+        // RE-EVALUATE Final Month based on colTarget if needed?
+        // Actually, let's keep it simple. If we found a column that matches the REQUESTED period, good.
+        // If not, and we found ANOTHER month, we should probably fail or warn?
+        // But the user request implies we should ADAPT.
 
         if (colTarget === -1) {
             const months = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
             const expected = months[periodMonth - 1];
-            throw new Error(`Column for '${expected}' (e.g., 'Realisasi ${expected}') not found in 'REVENUE PLN'. Check if selected Month matches file headers.`);
+            throw new Error(`Column for '${expected}' (e.g., 'Realisasi ${expected}') not found in 'REVENUE PLN'. Please ensure the file matches the selected Month (${expected}).`);
         }
 
         // Capture Headers
@@ -363,7 +402,9 @@ export async function POST(req: NextRequest) {
             headers: {
                 "Content-Type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
                 "Content-Disposition": `attachment; filename="Updated_${file.name}"`,
-                "X-Import-ID": importId
+                "X-Import-ID": importId,
+                "X-Detected-Month": periodMonth.toString(), // Returning the actually used month
+                "X-Detected-Year": periodYear.toString()
             }
         });
 

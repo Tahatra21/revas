@@ -28,14 +28,23 @@ export default function RevenuePLNPage() {
         fetchData();
     }, [periodMonth, periodYear]);
 
-    const fetchData = async () => {
+    const fetchData = async (overrideMonth?: number, overrideYear?: number) => {
         setLoading(true);
         try {
-            const response = await fetch(`/api/revenue/pln?year=${periodYear}&month=${periodMonth}`);
-            const result = await response.json();
-            setData(result.data || []);
-            setHeaders(result.headers || []);
-            setLastUpdated(result.lastUpdated);
+            const m = overrideMonth || periodMonth;
+            const y = overrideYear || periodYear;
+            const res = await fetch(`/api/revenue/pln?month=${m}&year=${y}`);
+            if (res.ok) {
+                const result = await res.json();
+                setData(result.data || []);
+                setHeaders(result.headers || []);
+                setLastUpdated(result.lastUpdated);
+            } else {
+                console.error("Failed to fetch data:", res.status, res.statusText);
+                setData([]);
+                setHeaders([]);
+                setLastUpdated(null);
+            }
         } catch (error) {
             console.error("Failed to fetch data", error);
         } finally {
@@ -65,21 +74,30 @@ export default function RevenuePLNPage() {
             });
 
             if (response.ok) {
-                // Download result
+                // Read detected period from headers to auto-switch view
+                const detectedMonth = response.headers.get("X-Detected-Month");
+                const detectedYear = response.headers.get("X-Detected-Year");
+
+                if (detectedMonth) setPeriodMonth(parseInt(detectedMonth));
+                if (detectedYear) setPeriodYear(parseInt(detectedYear));
+
+                // Wait for state update then fetch? 
+                // Using the NEW values for fetch immediately
+                const monthDto = detectedMonth ? parseInt(detectedMonth) : periodMonth;
+                const yearDto = detectedYear ? parseInt(detectedYear) : periodYear;
+
+                // Download updated file
                 const blob = await response.blob();
                 const url = window.URL.createObjectURL(blob);
-                const a = document.createElement("a");
+                const a = document.createElement('a');
                 a.href = url;
-                a.download = `Updated_${file.name}`;
+                a.download = `Updated_${file?.name || 'Revenue_PLN.xlsx'}`;
                 document.body.appendChild(a);
                 a.click();
-                window.URL.revokeObjectURL(url);
-                document.body.removeChild(a);
+                a.remove();
 
-                // Refresh data
-                await fetchData();
-                setFile(null); // Reset file
-                // Optional: Show success toast
+                await fetchData(monthDto, yearDto); // Pass explicit args to ensure correct fetch
+                setFile(null);
             } else {
                 const err = await response.json();
                 const errorMessage = err.error || err.message || "Unknown error occurred";
