@@ -47,6 +47,7 @@ export function Sidebar() {
     const [expandedItems, setExpandedItems] = useState<string[]>(["Revenue", "Master Data"]);
     const [revenueOpen, setRevenueOpen] = useState(false);
     const [masterDataOpen, setMasterDataOpen] = useState(false);
+    const [user, setUser] = useState<any>(null); // Initialize as null to match server
 
     const handleLogout = () => {
         // Clear authentication data
@@ -57,22 +58,19 @@ export function Sidebar() {
         router.push("/login");
     };
 
-    // Get user info from localStorage
-    const getUserInfo = () => {
+    // Get user info from localStorage on client side only
+    useEffect(() => {
         if (typeof window !== "undefined") {
             const userStr = localStorage.getItem("user");
             if (userStr) {
                 try {
-                    return JSON.parse(userStr);
+                    setUser(JSON.parse(userStr));
                 } catch {
-                    return null;
+                    // Ignore parse errors
                 }
             }
         }
-        return null;
-    };
-
-    const user = getUserInfo();
+    }, []);
 
     const toggleExpanded = (name: string) => {
         setExpandedItems((prev) =>
