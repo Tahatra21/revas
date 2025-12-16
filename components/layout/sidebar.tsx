@@ -32,6 +32,7 @@ const navigation = [
         name: "Master Data",
         icon: Database,
         children: [
+            { name: "Bulk Upload", href: "/master/bulk-upload" },
             { name: "SBUs", href: "/master/sbu" },
             { name: "Customers", href: "/master/customer" },
             { name: "Service Categories", href: "/master/service-category" },
