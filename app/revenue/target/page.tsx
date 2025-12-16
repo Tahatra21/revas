@@ -67,9 +67,17 @@ export default function RevenueTargetPage() {
             setLoading(true);
             const response = await fetch(`/api/revenue/target/yearly?year=${year}`);
             const data = await response.json();
-            setTargets(data);
+
+            // Ensure data is an array
+            if (Array.isArray(data)) {
+                setTargets(data);
+            } else {
+                console.error("API returned non-array data:", data);
+                setTargets([]);
+            }
         } catch (error) {
             console.error("Error fetching targets:", error);
+            setTargets([]);
         } finally {
             setLoading(false);
         }
