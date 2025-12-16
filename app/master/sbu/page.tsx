@@ -197,18 +197,16 @@ export default function SBUPage() {
                 {/* Table */}
                 <SectionShell
                     title="All SBUs"
-                    description={
-                        <div className="flex items-center justify-between">
-                            <span>{sbus.filter(s => showInactive || s.is_active).length} SBUs{showInactive ? ' (termasuk inactive)' : ' (hanya active)'}</span>
-                            <Button
-                                variant="ghost"
-                                size="sm"
-                                onClick={() => setShowInactive(!showInactive)}
-                                className="text-xs"
-                            >
-                                {showInactive ? '✓ Tampilkan Inactive' : 'Tampilkan Inactive'}
-                            </Button>
-                        </div>
+                    description={`${sbus.filter(s => showInactive || s.is_active).length} SBUs${showInactive ? ' (termasuk inactive)' : ' (hanya active)'}`}
+                    actions={
+                        <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => setShowInactive(!showInactive)}
+                            className="text-xs"
+                        >
+                            {showInactive ? '✓ Tampilkan Inactive' : 'Tampilkan Inactive'}
+                        </Button>
                     }
                 >
                     {loading ? (
