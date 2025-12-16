@@ -38,14 +38,16 @@ export async function POST(req: Request) {
         let headerRowIdx = -1;
         worksheet.eachRow((row, rowNumber) => {
             const firstCell = row.getCell(1).value?.toString().toUpperCase() || "";
-            if (firstCell.includes("SBU") && firstCell.includes("CODE")) {
+            // Look for "SBU CODE" in the first cell (may have space or without space)
+            if (firstCell.replace(/\s+/g, '').includes("SBUCODE") ||
+                (firstCell.includes("SBU") && firstCell.includes("CODE"))) {
                 headerRowIdx = rowNumber;
                 return;
             }
         });
 
         if (headerRowIdx === -1) {
-            throw new Error("Header row not found. Expected 'SBU Code' column.");
+            throw new Error("Header row not found. Expected 'SBU Code' column in first cell.");
         }
 
         console.log(`Found header at row ${headerRowIdx}`);
