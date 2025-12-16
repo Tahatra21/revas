@@ -333,4 +333,3 @@ export default function PipelineDetailPage({ params }: { params: Promise<{ id: s
         </main>
     );
 }
-```
