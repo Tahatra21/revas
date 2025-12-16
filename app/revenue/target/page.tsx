@@ -191,9 +191,12 @@ export default function RevenueTargetPage() {
             <div className="max-w-7xl mx-auto space-y-6">
                 {/* Header */}
                 <div className="flex items-center justify-between">
+                    {/* Header */}
                     <div>
-                        <h1 className="text-4xl font-bold mb-2">Revenue Targets</h1>
-                        <p className="text-primary-subtle">Manage yearly revenue targets by SBU (in Billion IDR)</p>
+                        <h1 className="text-2xl font-bold mb-2">Revenue Target</h1>
+                        <p className="text-sm text-primary-subtle">
+                            Manage annual revenue targets per SBU
+                        </p>
                     </div>
                     <select
                         value={year}
@@ -289,11 +292,11 @@ export default function RevenueTargetPage() {
                         <Table>
                             <TableHeader>
                                 <TableRow>
-                                    <TableHead className="text-xs">SBU</TableHead>
-                                    <TableHead className="text-right">Target RKAP</TableHead>
-                                    <TableHead className="text-right">CO Tahun Berjalan</TableHead>
-                                    <TableHead className="text-right">Target NR</TableHead>
-                                    <TableHead className="text-right">Actions</TableHead>
+                                    <TableHead className="text-sm">SBU</TableHead>
+                                    <TableHead className="text-right text-sm">Target RKAP</TableHead>
+                                    <TableHead className="text-right text-sm">CO Tahun Berjalan</TableHead>
+                                    <TableHead className="text-right text-sm">Target NR</TableHead>
+                                    <TableHead className="text-right text-sm">Actions</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
