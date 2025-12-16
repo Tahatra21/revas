@@ -186,11 +186,27 @@ export async function POST(req: Request) {
                     }
                 }
 
+                // Normalizing Segment Industri
+                let normalizedSegmenIndustri = segmenIndustri;
+                if (normalizedSegmenIndustri) {
+                    const segmentUpper = normalizedSegmenIndust.toUpperCase();
+
+                    if (segmentUpper === 'DISTRIBUSI') normalizedSegmenIndust = 'Distribusi';
+                    else if (['PEMBANGKIT', 'PEMBANGKITAN'].includes(segmentUpper)) normalizedSegmenIndust = 'Pembangkitan';
+                    else if (segmentUpper === 'TRANSMISI') normalizedSegmenIndust = 'Transmisi';
+                    else if (segmentUpper === 'PELAYANAN PELANGGAN') normalizedSegmenIndust = 'Pelayanan Pelanggan';
+                    else if (segmentUpper === 'SUPPORT') normalizedSegmenIndust = 'Support';
+                    // Fallback: Title Case for unknown segments
+                    else {
+                        normalizedSegmenIndust = normalizedSegmenIndust.charAt(0).toUpperCase() + normalizedSegmenIndust.slice(1).toLowerCase();
+                    }
+                }
+
                 pipelines.push({
                     sbuId,
                     customerId,
                     jenisLayanan,
-                    segmenIndustri,
+                    segmenIndustri: normalizedSegmenIndust, // Use normalized value
                     type,
                     namaLayanan: finalNamaLayanan,
                     kapasitas,

@@ -109,10 +109,10 @@ export async function GET(req: Request) {
         // 7. Pipeline by Segment (for Pie Chart)
         const pipelineBySegment = await query(
             `
-            SELECT COALESCE(UPPER(segment_industri), 'UNCATEGORIZED') as name, SUM(est_revenue) as value
+            SELECT COALESCE(segment_industri, 'Uncategorized') as name, SUM(est_revenue) as value
             FROM pipeline_potensi
             WHERE EXTRACT(YEAR FROM periode_snapshot) = $1
-            GROUP BY UPPER(segment_industri)
+            GROUP BY segment_industri
             ORDER BY value DESC
             LIMIT 6
             `,
