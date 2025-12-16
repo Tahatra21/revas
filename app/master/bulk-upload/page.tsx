@@ -57,10 +57,10 @@ export default function BulkUploadPage() {
         try {
             const formData = new FormData();
             formData.append("file", plnFile);
-            formData.append("uploadedBy", "admin");
+            formData.append("uploaded_by", "admin");
             // Add manual period override (optional, API will auto-detect if not provided)
-            formData.append("periodMonth", plnMonth.toString());
-            formData.append("periodYear", plnYear.toString());
+            formData.append("period_month", plnMonth.toString());
+            formData.append("period_year", plnYear.toString());
 
             const response = await fetch("/api/revenue/import", {
                 method: "POST",
