@@ -277,6 +277,7 @@ export default function RevenueTargetPage() {
                 <SectionShell
                     title={`Targets for ${year}`}
                     description={`${targets.length} targets configured`}
+                    actions={<Button onClick={() => setShowForm(true)}>+ Add New Target</Button>}
                 >
                     {loading ? (
                         <div className="text-center py-12 text-primary-subtle">Loading...</div>
