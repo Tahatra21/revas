@@ -28,6 +28,7 @@ export default function SBUPage() {
     const [editingId, setEditingId] = useState<number | null>(null);
     const [formData, setFormData] = useState({ code: "", name: "", is_active: true });
     const [errors, setErrors] = useState<Record<string, string>>({});
+    const [showInactive, setShowInactive] = useState(false); // Filter toggle
 
     useEffect(() => {
         fetchData();
@@ -134,9 +135,9 @@ export default function SBUPage() {
                         <h1 className="text-4xl font-bold mb-2">SBUs</h1>
                         <p className="text-primary-subtle">Manage Strategic Business Units</p>
                     </div>
-                    <Button onClick={() => setShowForm(!showForm)}>
-                        <Plus className="w-4 h-4" />
-                        {showForm ? "Cancel" : "New SBU"}
+                    <Button onClick={() => setShowForm(true)}>
+                        <Plus className="w-4 h-4 mr-2" />
+                        New SBU
                     </Button>
                 </div>
 
@@ -194,7 +195,22 @@ export default function SBUPage() {
                 )}
 
                 {/* Table */}
-                <SectionShell title="All SBUs" description={`${sbus.length} SBUs`}>
+                <SectionShell
+                    title="All SBUs"
+                    description={
+                        <div className="flex items-center justify-between">
+                            <span>{sbus.filter(s => showInactive || s.is_active).length} SBUs{showInactive ? ' (termasuk inactive)' : ' (hanya active)'}</span>
+                            <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => setShowInactive(!showInactive)}
+                                className="text-xs"
+                            >
+                                {showInactive ? '✓ Tampilkan Inactive' : 'Tampilkan Inactive'}
+                            </Button>
+                        </div>
+                    }
+                >
                     {loading ? (
                         <div className="text-center py-12 text-primary-subtle">Loading...</div>
                     ) : (
@@ -208,35 +224,37 @@ export default function SBUPage() {
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
-                                {sbus.map((sbu) => (
-                                    <TableRow key={sbu.id}>
-                                        <TableCell className="font-medium">{sbu.code}</TableCell>
-                                        <TableCell>{sbu.name}</TableCell>
-                                        <TableCell>
-                                            <span
-                                                className={`inline-flex px-2 py-1 rounded-full text-xs ${sbu.is_active
-                                                    ? "bg-emerald-500/20 text-emerald-400"
-                                                    : "bg-red-500/20 text-red-400"
-                                                    }`}
-                                            >
-                                                {sbu.is_active ? "Active" : "Inactive"}
-                                            </span>
-                                        </TableCell>
-                                        <TableCell className="text-right space-x-2">
-                                            <Button variant="ghost" size="sm" onClick={() => handleEdit(sbu)}>
-                                                <Edit className="w-4 h-4" />
-                                            </Button>
-                                            <Button
-                                                variant="ghost"
-                                                size="sm"
-                                                onClick={() => handleDelete(sbu.id)}
-                                                className="hover:bg-red-500/10 hover:text-red-400"
-                                            >
-                                                <Trash2 className="w-4 h-4" />
-                                            </Button>
-                                        </TableCell>
-                                    </TableRow>
-                                ))}
+                                {sbus
+                                    .filter(sbu => showInactive || sbu.is_active) // Filter: show only active by default
+                                    .map((sbu) => (
+                                        <TableRow key={sbu.id}>
+                                            <TableCell className="font-medium">{sbu.code}</TableCell>
+                                            <TableCell>{sbu.name}</TableCell>
+                                            <TableCell>
+                                                <span
+                                                    className={`inline-flex px-2 py-1 rounded-full text-xs ${sbu.is_active
+                                                        ? "bg-emerald-500/20 text-emerald-400"
+                                                        : "bg-red-500/20 text-red-400"
+                                                        }`}
+                                                >
+                                                    {sbu.is_active ? "Active" : "Inactive"}
+                                                </span>
+                                            </TableCell>
+                                            <TableCell className="text-right space-x-2">
+                                                <Button variant="ghost" size="sm" onClick={() => handleEdit(sbu)}>
+                                                    <Edit className="w-4 h-4" />
+                                                </Button>
+                                                <Button
+                                                    variant="ghost"
+                                                    size="sm"
+                                                    onClick={() => handleDelete(sbu.id)}
+                                                    className="hover:bg-red-500/10 hover:text-red-400"
+                                                >
+                                                    <Trash2 className="w-4 h-4" />
+                                                </Button>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))}
                             </TableBody>
                         </Table>
                     )}
