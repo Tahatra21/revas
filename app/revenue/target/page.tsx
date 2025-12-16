@@ -292,11 +292,11 @@ export default function RevenueTargetPage() {
                         <Table>
                             <TableHeader>
                                 <TableRow>
-                                    <TableHead className="text-sm">SBU</TableHead>
-                                    <TableHead className="text-right text-sm">Target RKAP</TableHead>
-                                    <TableHead className="text-right text-sm">CO Tahun Berjalan</TableHead>
-                                    <TableHead className="text-right text-sm">Target NR</TableHead>
-                                    <TableHead className="text-right text-sm">Actions</TableHead>
+                                    <TableHead className="text-xs">SBU</TableHead>
+                                    <TableHead className="text-right text-xs">Target RKAP</TableHead>
+                                    <TableHead className="text-right text-xs">CO Tahun Berjalan</TableHead>
+                                    <TableHead className="text-right text-xs">Target NR</TableHead>
+                                    <TableHead className="text-right text-xs">Actions</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
