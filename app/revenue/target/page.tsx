@@ -290,7 +290,6 @@ export default function RevenueTargetPage() {
                             <TableHeader>
                                 <TableRow>
                                     <TableHead>SBU</TableHead>
-                                    <TableHead>Name</TableHead>
                                     <TableHead className="text-right">Target RKAP</TableHead>
                                     <TableHead className="text-right">CO Tahun Berjalan</TableHead>
                                     <TableHead className="text-right">Target NR</TableHead>
@@ -301,7 +300,6 @@ export default function RevenueTargetPage() {
                                 {targets.map((target) => (
                                     <TableRow key={target.sbuCode}>
                                         <TableCell className="font-medium">{target.sbuCode}</TableCell>
-                                        <TableCell>{target.sbuName}</TableCell>
                                         <TableCell className="text-right">
                                             Rp {target.targetRkap.toLocaleString("id-ID")} B
                                         </TableCell>
