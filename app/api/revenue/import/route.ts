@@ -203,28 +203,28 @@ export async function POST(req: NextRequest) {
             const detailHeaders = ["BIDANG/SBU", "TARGET", `REALISASI ${getMonthName(periodMonth).toUpperCase()} ${periodYear}`, "ACHIEVEMENT %", "GAP"];
             const summaryRowsToInsert: any[] = [];
 
-            // Process each detail row and convert to summary format
+            // Aggregate by SBU code (sum values for duplicate SBUs)
+            const sbuAggregation = new Map<string, number>();
+
             for (const detailRow of detailRowsToInsert) {
-                // detailRow structure: [importId, sbuCode, grandTotal, grandTotalBillion, rawJson, rowNumber]
                 const sbuCode = detailRow[1]; // Index 1 = sbuCode
-                const grandTotal = detailRow[2]; // Index 2 = grandTotal
                 const grandTotalBillion = detailRow[3]; // Index 3 = grandTotalBillion
 
-                // Create summary row data
-                const rowData: any = {
-                    "BIDANG/SBU": sbuCode,
-                    "TARGET": 0, // No target data from DETAIL sheet
-                    [`REALISASI ${getMonthName(periodMonth).toUpperCase()} ${periodYear}`]: grandTotal || 0,
-                    "ACHIEVEMENT %": 0,
-                    "GAP": 0 - (grandTotal || 0) // Negative gap since no target
-                };
+                // Sum values for same SBU code
+                const currentSum = sbuAggregation.get(sbuCode) || 0;
+                sbuAggregation.set(sbuCode, currentSum + (grandTotalBillion || 0));
+            }
 
+            console.log(`Aggregated ${sbuAggregation.size} unique SBUs from ${detailRowsToInsert.length} detail rows`);
+
+            // Process aggregated data
+            for (const [sbuCode, totalBillion] of sbuAggregation) {
                 summaryRowsToInsert.push([
                     importId,
                     periodMonth,
                     periodYear,
                     sbuCode,
-                    grandTotalBillion || 0  // Use billion value
+                    totalBillion
                 ]);
             }
 
