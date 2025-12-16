@@ -33,18 +33,25 @@ export async function PUT(req: Request, props: Params) {
         const id = Number(params.id);
         const body = await req.json();
 
+        if (!body.code || !body.name) {
+            return NextResponse.json(
+                { message: "code and name are required" },
+                { status: 400 }
+            );
+        }
+
         const sql = `
       UPDATE master_sbu
-         SET code = COALESCE($1, code),
-             name = COALESCE($2, name),
-             is_active = COALESCE($3, is_active)
+         SET code = $1,
+             name = $2,
+             is_active = $3
        WHERE id = $4
        RETURNING id, code, name, is_active
     `;
         const values = [
-            body.code ?? null,
-            body.name ?? null,
-            body.is_active ?? null,
+            body.code,
+            body.name,
+            body.is_active !== undefined ? body.is_active : true,
             id
         ];
 
