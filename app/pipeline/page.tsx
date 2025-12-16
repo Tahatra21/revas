@@ -82,9 +82,17 @@ export default function PipelinePage() {
 
             const response = await fetch(url);
             const data = await response.json();
-            setPipelines(data);
+
+            // Ensure data is always an array
+            if (Array.isArray(data)) {
+                setPipelines(data);
+            } else {
+                console.error("API returned non-array data:", data);
+                setPipelines([]);
+            }
         } catch (error) {
             console.error("Error fetching pipelines:", error);
+            setPipelines([]);
         } finally {
             setLoading(false);
         }
