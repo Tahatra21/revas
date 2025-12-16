@@ -122,6 +122,28 @@ export async function POST(req: Request) {
                         `, [customerName, segmenIndustri, plnGroupId]);
                         customerId = newCustomer[0].id;
                         customerMap.set(customerName.toUpperCase(), customerId);
+                    } else {
+                        // Update existing customer with PLN group if we have one
+                        if (customerGroup) {
+                            let plnGroupId = plnGroupMap.get(customerGroup.toUpperCase());
+                            if (!plnGroupId) {
+                                // Create new PLN group if doesn't exist
+                                const newGroup = await query(`
+                                    INSERT INTO master_segment_pln_group (name, code, is_active)
+                                    VALUES ($1, $2, TRUE)
+                                    RETURNING id
+                                `, [customerGroup, customerGroup.toUpperCase().replace(/\s+/g, '_')]);
+                                plnGroupId = newGroup[0].id;
+                                plnGroupMap.set(customerGroup.toUpperCase(), plnGroupId);
+                            }
+
+                            // Update existing customer with group
+                            await query(`
+                                UPDATE master_customer 
+                                SET pln_group_segment_id = $1
+                                WHERE id = $2 AND (pln_group_segment_id IS NULL OR pln_group_segment_id != $1)
+                            `, [plnGroupId, customerId]);
+                        }
                     }
                 } else {
                     // Create placeholder customer
