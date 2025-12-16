@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Plus, Search, Upload, Download, FileSpreadsheet, CheckCircle, XCircle } from "lucide-react";
+import { Plus, Search, Upload, Download, FileSpreadsheet, CheckCircle, XCircle, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SectionShell } from "@/components/ui/section-shell";
 import {
@@ -307,7 +307,7 @@ export default function PipelinePage() {
                                         <TableHead className="text-xs">Service</TableHead>
                                         <TableHead className="text-right text-xs">Est Revenue</TableHead>
                                         <TableHead className="text-xs">Color</TableHead>
-                                        <TableHead className="text-xs">TARGET</TableHead>
+                                        <TableHead className="text-xs">Target</TableHead>
                                         <TableHead className="text-right text-xs">Actions</TableHead>
                                     </TableRow>
                                 </TableHeader>
@@ -331,20 +331,28 @@ export default function PipelinePage() {
                                                 {formatRevenue(pipeline.estRevenue)}
                                             </TableCell>
                                             <TableCell>
-                                                <span
-                                                    className={`inline-flex px-2 py-1 rounded-full text-xs font-medium border ${statusColors[pipeline.warnaStatusPotensi]
-                                                        }`}
-                                                >
-                                                    {pipeline.warnaStatusPotensi}
-                                                </span>
+                                                <div className="flex items-center gap-2">
+                                                    <div
+                                                        className={`w-3 h-3 rounded-full ${pipeline.warnaStatusPotensi === "HIJAU"
+                                                                ? "bg-green-500"
+                                                                : pipeline.warnaStatusPotensi === "KUNING"
+                                                                    ? "bg-amber-500"
+                                                                    : "bg-red-500"
+                                                            }`}
+                                                        title={pipeline.warnaStatusPotensi}
+                                                    />
+                                                    <span className="text-xs">
+                                                        {pipeline.warnaStatusPotensi}
+                                                    </span>
+                                                </div>
                                             </TableCell>
                                             <TableCell className="text-xs">
                                                 {pipeline.targetAktivasi ? new Date(pipeline.targetAktivasi).toLocaleDateString("id-ID") : "-"}
                                             </TableCell>
                                             <TableCell className="text-right">
                                                 <Link href={`/pipeline/${pipeline.id}`}>
-                                                    <Button variant="ghost" size="sm">
-                                                        View
+                                                    <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                                                        <Eye className="w-4 h-4" />
                                                     </Button>
                                                 </Link>
                                             </TableCell>
