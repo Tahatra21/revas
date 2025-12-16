@@ -91,19 +91,30 @@ export default function SBUPage() {
     };
 
     const handleDelete = async (id: number) => {
-        if (!confirm("Are you sure you want to delete this SBU?")) return;
+        console.log("Delete clicked for SBU ID:", id);
+
+        if (!confirm("Apakah Anda yakin ingin menghapus SBU ini?\n\nSBU akan dinonaktifkan (soft delete).")) return;
 
         try {
+            console.log("Sending DELETE request...");
             const response = await fetch(`/api/master/sbu/${id}`, {
                 method: "DELETE",
             });
 
-            if (!response.ok) throw new Error("Failed to delete SBU");
+            console.log("DELETE response status:", response.status);
 
+            if (!response.ok) {
+                const errorData = await response.json();
+                console.error("DELETE failed:", errorData);
+                throw new Error(errorData.message || "Failed to delete SBU");
+            }
+
+            console.log("DELETE successful, refreshing data...");
             await fetchData();
+            alert("SBU berhasil dihapus (dinonaktifkan)");
         } catch (error) {
             console.error("Error deleting SBU:", error);
-            alert("Failed to delete SBU");
+            alert(`Gagal menghapus SBU: ${error}`);
         }
     };
 
