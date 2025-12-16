@@ -11,7 +11,6 @@ export async function GET() {
         }>(`
       SELECT id, code, name, is_active
       FROM master_sbu
-      WHERE is_active = TRUE
       ORDER BY code
     `);
 

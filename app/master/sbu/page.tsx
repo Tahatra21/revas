@@ -26,7 +26,7 @@ export default function SBUPage() {
     const [loading, setLoading] = useState(true);
     const [showForm, setShowForm] = useState(false);
     const [editingId, setEditingId] = useState<number | null>(null);
-    const [formData, setFormData] = useState({ code: "", name: "" });
+    const [formData, setFormData] = useState({ code: "", name: "", is_active: true });
     const [errors, setErrors] = useState<Record<string, string>>({});
 
     useEffect(() => {
@@ -66,6 +66,7 @@ export default function SBUPage() {
                 body: JSON.stringify({
                     code: formData.code,
                     name: formData.name,
+                    is_active: formData.is_active,
                 }),
             });
 
@@ -83,6 +84,7 @@ export default function SBUPage() {
         setFormData({
             code: sbu.code,
             name: sbu.name,
+            is_active: sbu.is_active,
         });
         setEditingId(sbu.id);
         setShowForm(true);
@@ -106,7 +108,7 @@ export default function SBUPage() {
     };
 
     const resetForm = () => {
-        setFormData({ code: "", name: "" });
+        setFormData({ code: "", name: "", is_active: true });
         setEditingId(null);
         setShowForm(false);
         setErrors({});
@@ -154,6 +156,20 @@ export default function SBUPage() {
                                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                     />
                                 </FormField>
+                            </div>
+
+                            {/* Active Status Checkbox */}
+                            <div className="flex items-center gap-2">
+                                <input
+                                    type="checkbox"
+                                    id="is_active"
+                                    checked={formData.is_active}
+                                    onChange={(e) => setFormData({ ...formData, is_active: e.target.checked })}
+                                    className="w-4 h-4 rounded border-gray-300"
+                                />
+                                <label htmlFor="is_active" className="text-sm">
+                                    Active (uncheck to deactivate)
+                                </label>
                             </div>
 
                             <div className="flex items-center gap-2">
