@@ -8,12 +8,77 @@ import { SectionShell } from "@/components/ui/section-shell";
 export default function BulkUploadPage() {
     const [pipelineFile, setPipelineFile] = useState<File | null>(null);
     const [plnFile, setPlnFile] = useState<File | null>(null);
+    const [targetFile, setTargetFile] = useState<File | null>(null);
     const [uploadingPipeline, setUploadingPipeline] = useState(false);
     const [uploadingPln, setUploadingPln] = useState(false);
+    const [uploadingTarget, setUploadingTarget] = useState(false);
+    const [targetUploadResult, setTargetUploadResult] = useState<any>(null);
 
     // Manual period override for PLN upload
     const [plnMonth, setPlnMonth] = useState(new Date().getMonth() + 1);
     const [plnYear, setPlnYear] = useState(new Date().getFullYear());
+
+    // Year for target upload
+    const [targetYear, setTargetYear] = useState(new Date().getFullYear());
+
+    const handleTargetUpload = async () => {
+        if (!targetFile) {
+            alert("Please select a file first");
+            return;
+        }
+
+        setUploadingTarget(true);
+        setTargetUploadResult(null);
+
+        try {
+            const formData = new FormData();
+            formData.append("file", targetFile);
+            formData.append("year", targetYear.toString());
+
+            const response = await fetch("/api/revenue/target/bulk-upload", {
+                method: "POST",
+                body: formData,
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                setTargetUploadResult(result);
+                alert(`Success! Uploaded ${result.successCount} targets.${result.errors ? `\n${result.errors.length} errors occurred.` : ''}`);
+                setTargetFile(null);
+            } else {
+                alert(`Error: ${result.message || "Upload failed"}`);
+            }
+        } catch (error) {
+            console.error("Target upload error:", error);
+            alert("Network error during upload");
+        } finally {
+            setUploadingTarget(false);
+        }
+    };
+
+    const handleDownloadTemplate = async () => {
+        try {
+            const response = await fetch("/api/revenue/target/download-template");
+
+            if (response.ok) {
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `Revenue_Target_Template_${new Date().toISOString().split('T')[0]}.xlsx`;
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+            } else {
+                alert("Failed to download template");
+            }
+        } catch (error) {
+            console.error("Template download error:", error);
+            alert("Error downloading template");
+        }
+    };
 
     const handlePipelineUpload = async () => {
         if (!pipelineFile) {
@@ -260,6 +325,112 @@ export default function BulkUploadPage() {
                                         {uploadingPln ? "Uploading..." : "Upload Data"}
                                     </Button>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </SectionShell>
+
+                {/* Revenue Target Upload Section */}
+                <SectionShell
+                    title="Revenue Targets"
+                    description="Upload yearly revenue targets (Target RKAP, CO Tahun Berjalan, Target NR)"
+                >
+                    <div className="grid gap-6 md:grid-cols-2">
+                        {/* Left: Instructions & Template */}
+                        <div className="space-y-4">
+                            <div className="bg-surface-subtle p-4 rounded-xl border border-surface-border">
+                                <h3 className="font-semibold mb-2 flex items-center gap-2">
+                                    <FileSpreadsheet className="w-5 h-5" />
+                                    Instructions
+                                </h3>
+                                <ul className="text-sm text-primary-subtle space-y-1 list-disc list-inside">
+                                    <li>Download the Excel template below</li>
+                                    <li>Fill in target values (in Billion IDR) for each SBU</li>
+                                    <li>Leave cells empty for 0 values</li>
+                                    <li>Upload the completed file</li>
+                                </ul>
+                            </div>
+
+                            <div className="space-y-2">
+                                <label className="text-sm font-medium">Target Year</label>
+                                <select
+                                    value={targetYear}
+                                    onChange={(e) => setTargetYear(Number(e.target.value))}
+                                    className="w-full px-4 py-2 rounded-xl border border-surface-border bg-bg"
+                                >
+                                    {[2024, 2025, 2026, 2027].map((y) => (
+                                        <option key={y} value={y}>{y}</option>
+                                    ))}
+                                </select>
+                            </div>
+
+                            <Button
+                                variant="secondary"
+                                onClick={handleDownloadTemplate}
+                                className="w-full"
+                            >
+                                <Download className="w-4 h-4 mr-2" />
+                                Download Template
+                            </Button>
+
+                            {targetUploadResult && (
+                                <div className="bg-surface px-4 py-3 rounded-xl border border-surface-border text-sm">
+                                    <p className="font-medium text-green-600">
+                                        ✓ Uploaded {targetUploadResult.successCount} of {targetUploadResult.totalRows} targets
+                                    </p>
+                                    {targetUploadResult.errors && targetUploadResult.errors.length > 0 && (
+                                        <details className="mt-2">
+                                            <summary className="cursor-pointer text-red-600">
+                                                {targetUploadResult.errors.length} errors - click to view
+                                            </summary>
+                                            <ul className="mt-2 text-xs space-y-1 max-h-40 overflow-y-auto">
+                                                {targetUploadResult.errors.map((err: string, idx: number) => (
+                                                    <li key={idx} className="text-red-600">• {err}</li>
+                                                ))}
+                                            </ul>
+                                        </details>
+                                    )}
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Right: Upload */}
+                        <div className="bg-surface-subtle p-8 rounded-xl border-2 border-dashed border-surface-border flex flex-col items-center justify-center space-y-4">
+                            <input
+                                id="target-upload"
+                                type="file"
+                                accept=".xlsx,.xls"
+                                className="hidden"
+                                onChange={(e) => setTargetFile(e.target.files?.[0] || null)}
+                            />
+                            <FileSpreadsheet className="w-16 h-16 text-primary-subtle" />
+                            <div className="text-center">
+                                <p className="text-sm text-primary-subtle mb-1">
+                                    Supported formats: .xlsx, .xls
+                                </p>
+                            </div>
+                            <div className="space-y-3 w-full">
+                                <Button
+                                    variant="secondary"
+                                    onClick={() => document.getElementById("target-upload")?.click()}
+                                    className="w-full"
+                                >
+                                    Choose File
+                                </Button>
+                                {targetFile && (
+                                    <div className="text-xs text-primary-subtle bg-surface px-3 py-2 rounded-lg">
+                                        Selected: {targetFile.name}
+                                    </div>
+                                )}
+                                <Button
+                                    onClick={handleTargetUpload}
+                                    disabled={!targetFile || uploadingTarget}
+                                    isLoading={uploadingTarget}
+                                    className="w-full"
+                                >
+                                    <Upload className="w-4 h-4 mr-2" />
+                                    {uploadingTarget ? "Uploading..." : "Upload Targets"}
+                                </Button>
                             </div>
                         </div>
                     </div>
