@@ -80,11 +80,14 @@ export async function POST(req: Request) {
                 const category2026 = row.getCell(21).value?.toString() || null;
                 const subCategory = row.getCell(22).value?.toString() || null;
 
-                // Skip rows without essential data
-                if (!sbuCode || !namaLayanan) {
+                // Skip rows without essential data (only SBU is required)
+                if (!sbuCode) {
                     skippedCount++;
                     return;
                 }
+
+                // Use placeholder if layanan is empty
+                const finalNamaLayanan = namaLayanan || 'Unknown Service';
 
                 // Validate SBU
                 const sbuId = sbuMap.get(sbuCode.toUpperCase());
@@ -189,7 +192,7 @@ export async function POST(req: Request) {
                     jenisLayanan,
                     segmenIndustri,
                     type,
-                    namaLayanan,
+                    namaLayanan: finalNamaLayanan,
                     kapasitas,
                     satuanKapasitas,
                     originating,
