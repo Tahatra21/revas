@@ -58,7 +58,8 @@ export function GenericPieChart({ data, colors = DEFAULT_COLORS, valuePrefix = "
                         backgroundColor: "#ffffff",
                         borderColor: "#e2e8f0",
                         borderRadius: "8px",
-                        color: "#1e293b"
+                        color: "#1e293b",
+                        boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)"
                     }}
                     formatter={(value: number, name: string, props: any) => [
                         `${valuePrefix}${props.payload.rawValue.toLocaleString("id-ID")}`,
