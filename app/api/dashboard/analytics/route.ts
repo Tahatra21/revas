@@ -118,6 +118,8 @@ export async function GET(req: Request) {
                 topSegments: topSegments.map(r => ({ name: r.name, value: Number(r.value || 0) })),
                 topProducts: topProducts.map(r => ({ name: r.name, value: Number(r.value || 0) })),
                 pipelineByStatus: pipelineByStatus.map(r => ({ name: r.name, value: Number(r.value || 0) })),
+                pipelineBySegment: pipelineBySegment.map(r => ({ name: r.name, value: Number(r.value || 0) })),
+                pipelineByGroup: pipelineByGroup.map(r => ({ name: r.name, value: Number(r.value || 0) })),
                 monthlyRevenue: monthlyRevenue.map(r => ({ month: r.month, nr: Number(r.nr || 0), co: Number(r.co || 0) }))
             },
             leaderboard: {

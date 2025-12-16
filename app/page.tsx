@@ -6,6 +6,7 @@ import { KpiCard } from "@/components/ui/kpi-card";
 import { SectionShell } from "@/components/ui/section-shell";
 import { MonthlyRevenueChart } from "@/components/dashboard/monthly-revenue-chart";
 import { PipelineCompositionChart } from "@/components/dashboard/pipeline-composition-chart";
+import { GenericPieChart } from "@/components/dashboard/generic-pie-chart";
 import { HorizontalBarChart } from "@/components/dashboard/horizontal-bar-chart";
 import { SbuLeaderboard } from "@/components/dashboard/sbu-leaderboard";
 import {
@@ -41,6 +42,8 @@ export default function HomePage() {
                 charts: {
                     monthlyRevenue: [],
                     pipelineByStatus: [],
+                    pipelineBySegment: [],
+                    pipelineByGroup: [],
                     topSegments: [],
                     topProducts: [],
                 },
@@ -123,19 +126,37 @@ export default function HomePage() {
                 </section>
 
                 {/* Section 2: Macro Trends */}
-                <section className="grid gap-4 lg:grid-cols-[2fr_1fr]">
+                <section className="grid gap-4 lg:grid-cols-1">
                     <SectionShell
                         title="Monthly Revenue Trend"
                         description="NR vs CO realization trend"
                     >
                         <MonthlyRevenueChart data={charts.monthlyRevenue} />
                     </SectionShell>
+                </section>
+
+                {/* Section: Pipeline Composition (3 Pie Charts) */}
+                <section className="grid gap-4 md:grid-cols-3">
+                    <SectionShell
+                        title="By Status"
+                        description="Composition by potential status"
+                    >
+                        {/* Use dedicated component for consistent colors */}
+                        <PipelineCompositionChart data={charts.pipelineByStatus.map((d: any) => ({ color: d.name, value: d.value }))} />
+                    </SectionShell>
 
                     <SectionShell
-                        title="Pipeline Composition"
-                        description="Distribution by confidence (Status)"
+                        title="By Industry Segment"
+                        description="Composition by industry"
                     >
-                        <PipelineCompositionChart data={charts.pipelineByStatus} />
+                        <GenericPieChart data={charts.pipelineBySegment} />
+                    </SectionShell>
+
+                    <SectionShell
+                        title="By Customer Group"
+                        description="Composition by PLN group"
+                    >
+                        <GenericPieChart data={charts.pipelineByGroup} />
                     </SectionShell>
                 </section>
 
