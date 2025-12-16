@@ -289,7 +289,7 @@ export default function RevenueTargetPage() {
                         <Table>
                             <TableHeader>
                                 <TableRow>
-                                    <TableHead>SBU</TableHead>
+                                    <TableHead className="text-xs">SBU</TableHead>
                                     <TableHead className="text-right">Target RKAP</TableHead>
                                     <TableHead className="text-right">CO Tahun Berjalan</TableHead>
                                     <TableHead className="text-right">Target NR</TableHead>
