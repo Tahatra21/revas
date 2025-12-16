@@ -14,15 +14,18 @@ export async function GET(req: Request) {
         p.id,
         s.code AS "sbuCode",
         c.name AS "customerName",
+        seg.name AS "pelangganGroup",
         p.nama_layanan AS "namaLayanan",
         p.segment_industri AS "segmentIndustri",
         p.est_revenue AS "estRevenue",
         p.current_status AS "currentStatus",
         p.warna_status_potensi AS "warnaStatusPotensi",
-        p.periode_snapshot AS "periodeSnapshot"
+        p.periode_snapshot AS "periodeSnapshot",
+        p.target_aktivasi AS "targetAktivasi"
       FROM pipeline_potensi p
       LEFT JOIN master_sbu s ON p.sbu_id = s.id
       LEFT JOIN master_customer c ON p.customer_id = c.id
+      LEFT JOIN master_segment_pln_group seg ON c.pln_group_segment_id = seg.id
       WHERE 1=1
     `;
         const params: any[] = [];

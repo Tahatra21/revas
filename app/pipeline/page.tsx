@@ -24,7 +24,9 @@ interface Pipeline {
     warnaStatusPotensi: "HIJAU" | "KUNING" | "MERAH";
     periodeSnapshot: string;
     segmentIndustri?: string;
+    pelangganGroup?: string;
     newCategory?: string;
+    targetAktivasi?: string;
 }
 
 interface SBU {
@@ -248,39 +250,35 @@ export default function PipelinePage() {
                             <Table>
                                 <TableHeader>
                                     <TableRow>
-                                        <TableHead className="text-xs">SBU</TableHead>
-                                        <TableHead className="text-xs">Customer</TableHead>
-                                        <TableHead className="text-xs">Service</TableHead>
-                                        <TableHead className="text-xs">Segment Industri</TableHead>
-                                        <TableHead className="text-xs">New Category</TableHead>
-                                        <TableHead className="text-right text-xs">Est Revenue</TableHead>
-                                        <TableHead className="text-xs">Status</TableHead>
-                                        <TableHead className="text-xs">Color</TableHead>
-                                        <TableHead className="text-xs">Period</TableHead>
-                                        <TableHead className="text-right text-xs">Actions</TableHead>
+                                        <TableHead className="text-sm">SBU</TableHead>
+                                        <TableHead className="text-sm">Segment</TableHead>
+                                        <TableHead className="text-sm">Group</TableHead>
+                                        <TableHead className="text-sm">Customer Name</TableHead>
+                                        <TableHead className="text-sm">Service</TableHead>
+                                        <TableHead className="text-right text-sm">Est Revenue</TableHead>
+                                        <TableHead className="text-sm">Color</TableHead>
+                                        <TableHead className="text-sm">TARGET</TableHead>
+                                        <TableHead className="text-right text-sm">Actions</TableHead>
                                     </TableRow>
                                 </TableHeader>
                                 <TableBody>
                                     {paginatedPipelines.map((pipeline) => (
                                         <TableRow key={pipeline.id}>
-                                            <TableCell className="font-medium text-xs">
+                                            <TableCell className="font-medium text-sm">
                                                 {pipeline.sbuCode}
                                             </TableCell>
-                                            <TableCell className="text-xs">{pipeline.customerName}</TableCell>
-                                            <TableCell className="max-w-xs truncate text-xs">
-                                                {pipeline.namaLayanan}
-                                            </TableCell>
-                                            <TableCell className="text-xs">
+                                            <TableCell className="text-sm">
                                                 {pipeline.segmentIndustri || "-"}
                                             </TableCell>
-                                            <TableCell className="text-xs">
-                                                {pipeline.newCategory || "-"}
+                                            <TableCell className="text-sm">
+                                                {pipeline.pelangganGroup || "-"}
                                             </TableCell>
-                                            <TableCell className="text-right text-xs font-mono">
+                                            <TableCell className="text-sm">{pipeline.customerName}</TableCell>
+                                            <TableCell className="max-w-xs truncate text-sm">
+                                                {pipeline.namaLayanan}
+                                            </TableCell>
+                                            <TableCell className="text-right text-sm font-mono">
                                                 {formatRevenue(pipeline.estRevenue)}
-                                            </TableCell>
-                                            <TableCell className="text-xs">
-                                                {pipeline.currentStatus || "-"}
                                             </TableCell>
                                             <TableCell>
                                                 <span
@@ -290,8 +288,8 @@ export default function PipelinePage() {
                                                     {pipeline.warnaStatusPotensi}
                                                 </span>
                                             </TableCell>
-                                            <TableCell className="text-xs">
-                                                {new Date(pipeline.periodeSnapshot).toLocaleDateString("id-ID")}
+                                            <TableCell className="text-sm">
+                                                {pipeline.targetAktivasi ? new Date(pipeline.targetAktivasi).toLocaleDateString("id-ID") : "-"}
                                             </TableCell>
                                             <TableCell className="text-right">
                                                 <Link href={`/pipeline/${pipeline.id}`}>
