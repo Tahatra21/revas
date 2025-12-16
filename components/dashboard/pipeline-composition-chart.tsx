@@ -33,7 +33,6 @@ export function PipelineCompositionChart({ data }: PipelineCompositionChartProps
                     fill="#8884d8"
                     paddingAngle={5}
                     dataKey="value"
-                    label={(entry) => `${entry.name}: ${entry.value.toFixed(1)}M`}
                 >
                     {chartData.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={COLORS[entry.name] || "#94a3b8"} />
@@ -46,8 +45,14 @@ export function PipelineCompositionChart({ data }: PipelineCompositionChartProps
                         borderRadius: "8px",
                     }}
                 />
-                <Legend />
+                <Legend
+                    verticalAlign="bottom"
+                    height={36}
+                    iconType="circle"
+                />
             </PieChart>
         </ResponsiveContainer>
     );
 }
+
+```

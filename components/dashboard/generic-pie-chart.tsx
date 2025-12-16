@@ -66,10 +66,10 @@ export function GenericPieChart({ data, colors = DEFAULT_COLORS, valuePrefix = "
                     ]}
                 />
                 <Legend
-                    layout="vertical"
-                    verticalAlign="middle"
-                    align="right"
-                    wrapperStyle={{ fontSize: "12px", maxWidth: "40%" }}
+                    verticalAlign="bottom"
+                    align="center"
+                    iconType="circle"
+                    wrapperStyle={{ fontSize: "11px", paddingTop: "10px" }}
                 />
             </PieChart>
         </ResponsiveContainer>
