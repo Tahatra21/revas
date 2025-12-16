@@ -6,6 +6,8 @@ export async function GET(req: Request) {
         const { searchParams } = new URL(req.url);
         const sbu = searchParams.get("sbu");
         const status = searchParams.get("status");
+        const segment = searchParams.get("segment");
+        const group = searchParams.get("group");
         const year = searchParams.get("year");
         const month = searchParams.get("month");
 
@@ -38,6 +40,16 @@ export async function GET(req: Request) {
         if (status) {
             params.push(status);
             sql += ` AND p.warna_status_potensi = $${params.length}`;
+        }
+
+        if (segment) {
+            params.push(segment);
+            sql += ` AND p.segment_industri = $${params.length}`;
+        }
+
+        if (group) {
+            params.push(group);
+            sql += ` AND seg.name = $${params.length}`;
         }
 
         if (year) {

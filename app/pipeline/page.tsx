@@ -48,6 +48,9 @@ export default function PipelinePage() {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedSbu, setSelectedSbu] = useState("");
     const [selectedStatus, setSelectedStatus] = useState("");
+    const [selectedSegment, setSelectedSegment] = useState("");
+    const [selectedGroup, setSelectedGroup] = useState("");
+    const [selectedYear, setSelectedYear] = useState("");
 
     // Pagination states
     const [currentPage, setCurrentPage] = useState(1);
@@ -61,7 +64,7 @@ export default function PipelinePage() {
     useEffect(() => {
         fetchSBUs();
         fetchPipelines();
-    }, [selectedSbu, selectedStatus]);
+    }, [selectedSbu, selectedStatus, selectedSegment, selectedGroup, selectedYear]);
 
     const fetchSBUs = async () => {
         try {
@@ -79,6 +82,9 @@ export default function PipelinePage() {
             let url = "/api/pipeline?";
             if (selectedSbu) url += `sbu=${selectedSbu}&`;
             if (selectedStatus) url += `status=${selectedStatus}&`;
+            if (selectedSegment) url += `segment=${encodeURIComponent(selectedSegment)}&`;
+            if (selectedGroup) url += `group=${encodeURIComponent(selectedGroup)}&`;
+            if (selectedYear) url += `year=${selectedYear}&`;
 
             const response = await fetch(url);
             const data = await response.json();
@@ -199,9 +205,9 @@ export default function PipelinePage() {
 
                 {/* Filters */}
                 <SectionShell title="Filters" description="Filter pipeline data">
-                    <div className="grid gap-4 md:grid-cols-3">
+                    <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-6">
                         {/* Search */}
-                        <div className="relative">
+                        <div className="relative md:col-span-2">
                             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-primary-subtle" />
                             <input
                                 type="text"
@@ -221,8 +227,32 @@ export default function PipelinePage() {
                             <option value="">All SBUs</option>
                             {sbus.map((sbu) => (
                                 <option key={sbu.id} value={sbu.id}>
-                                    {sbu.code} - {sbu.name}
+                                    {sbu.code}
                                 </option>
+                            ))}
+                        </select>
+
+                        {/* Segment Filter */}
+                        <select
+                            value={selectedSegment}
+                            onChange={(e) => setSelectedSegment(e.target.value)}
+                            className="px-4 py-2 rounded-xl border border-surface-border bg-bg text-primary focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/70"
+                        >
+                            <option value="">All Segments</option>
+                            {Array.from(new Set(pipelines.map(p => p.segmentIndustri).filter(Boolean))).sort().map(seg => (
+                                <option key={seg} value={seg}>{seg}</option>
+                            ))}
+                        </select>
+
+                        {/* Group Filter */}
+                        <select
+                            value={selectedGroup}
+                            onChange={(e) => setSelectedGroup(e.target.value)}
+                            className="px-4 py-2 rounded-xl border border-surface-border bg-bg text-primary focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/70"
+                        >
+                            <option value="">All Groups</option>
+                            {Array.from(new Set(pipelines.map(p => p.pelangganGroup).filter(Boolean))).sort().map(grp => (
+                                <option key={grp} value={grp}>{grp}</option>
                             ))}
                         </select>
 
@@ -233,9 +263,21 @@ export default function PipelinePage() {
                             className="px-4 py-2 rounded-xl border border-surface-border bg-bg text-primary focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/70"
                         >
                             <option value="">All Status</option>
-                            <option value="HIJAU">HIJAU (Most Likely)</option>
-                            <option value="KUNING">KUNING (Possible)</option>
-                            <option value="MERAH">MERAH (At Risk)</option>
+                            <option value="HIJAU">HIJAU</option>
+                            <option value="KUNING">KUNING</option>
+                            <option value="MERAH">MERAH</option>
+                        </select>
+
+                        {/* Year Filter */}
+                        <select
+                            value={selectedYear}
+                            onChange={(e) => setSelectedYear(e.target.value)}
+                            className="px-4 py-2 rounded-xl border border-surface-border bg-bg text-primary focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/70"
+                        >
+                            <option value="">All Years</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                            <option value="2026">2026</option>
                         </select>
                     </div>
                 </SectionShell>
