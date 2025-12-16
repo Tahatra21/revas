@@ -45,6 +45,10 @@ export default function PipelinePage() {
     const [selectedSbu, setSelectedSbu] = useState("");
     const [selectedStatus, setSelectedStatus] = useState("");
 
+    // Pagination states
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 15;
+
     // Upload states
     const [file, setFile] = useState<File | null>(null);
     const [uploading, setUploading] = useState(false);
@@ -139,11 +143,28 @@ export default function PipelinePage() {
         }
     };
 
+    // Helper function to format revenue in billions with M suffix
+    const formatRevenue = (value: number): string => {
+        const billions = value / 1000000000; // Convert to billions  
+        return `${billions.toFixed(2)} M`;
+    };
+
     const filteredPipelines = pipelines.filter((pipeline) =>
         pipeline.customerName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         pipeline.namaLayanan?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         pipeline.sbuCode?.toLowerCase().includes(searchTerm.toLowerCase())
     );
+
+    // Pagination calculations
+    const totalPages = Math.ceil(filteredPipelines.length / itemsPerPage);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const paginatedPipelines = filteredPipelines.slice(startIndex, endIndex);
+
+    // Reset to page 1 when filters change
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [searchTerm, selectedSbu, selectedStatus]);
 
     return (
         <main className="min-h-screen p-8">
@@ -151,15 +172,15 @@ export default function PipelinePage() {
                 {/* Header */}
                 <div className="flex items-center justify-between">
                     <div>
-                        <h1 className="text-4xl font-bold mb-2">Pipeline Management</h1>
-                        <p className="text-primary-subtle">
+                        <h1 className="text-2xl font-bold mb-2">Pipeline Management</h1>
+                        <p className="text-sm text-primary-subtle">
                             Manage revenue pipeline opportunities
                         </p>
                     </div>
                     <Link href="/pipeline/new">
                         <Button>
-                            <Plus className="w-4 h-4" />
-                            New Pipeline
+                            <Plus className="w-4 h-4 mr-2" />
+                            Add Pipeline
                         </Button>
                     </Link>
                 </div>
@@ -209,69 +230,98 @@ export default function PipelinePage() {
 
                 {/* Pipeline Table */}
                 <SectionShell
-                    title="Pipeline Opportunities"
-                    description={`Showing ${filteredPipelines.length} opportunities`}
+                    title="Pipeline Data"
+                    description={`Showing ${paginatedPipelines.length} of ${filteredPipelines.length} opportunities (Page ${currentPage}/${totalPages || 1})`}
                 >
                     {loading ? (
-                        <div className="text-center py-12 text-primary-subtle">
+                        <div className="text-center py-12 text-primary-subtle text-sm">
                             Loading pipelines...
                         </div>
                     ) : filteredPipelines.length === 0 ? (
-                        <div className="text-center py-12 text-primary-subtle">
+                        <div className="text-center py-12 text-primary-subtle text-sm">
                             No pipelines found. Try adjusting your filters.
                         </div>
                     ) : (
-                        <Table>
-                            <TableHeader>
-                                <TableRow>
-                                    <TableHead>SBU</TableHead>
-                                    <TableHead>Customer</TableHead>
-                                    <TableHead>Service</TableHead>
-                                    <TableHead className="text-right">Est Revenue</TableHead>
-                                    <TableHead>Status</TableHead>
-                                    <TableHead>Color</TableHead>
-                                    <TableHead>Period</TableHead>
-                                    <TableHead className="text-right">Actions</TableHead>
-                                </TableRow>
-                            </TableHeader>
-                            <TableBody>
-                                {filteredPipelines.map((pipeline) => (
-                                    <TableRow key={pipeline.id}>
-                                        <TableCell className="font-medium">
-                                            {pipeline.sbuCode}
-                                        </TableCell>
-                                        <TableCell>{pipeline.customerName}</TableCell>
-                                        <TableCell className="max-w-xs truncate">
-                                            {pipeline.namaLayanan}
-                                        </TableCell>
-                                        <TableCell className="text-right">
-                                            Rp {pipeline.estRevenue.toLocaleString("id-ID")}
-                                        </TableCell>
-                                        <TableCell className="text-sm">
-                                            {pipeline.currentStatus || "-"}
-                                        </TableCell>
-                                        <TableCell>
-                                            <span
-                                                className={`inline-flex px-2 py-1 rounded-full text-xs font-medium border ${statusColors[pipeline.warnaStatusPotensi]
-                                                    }`}
-                                            >
-                                                {pipeline.warnaStatusPotensi}
-                                            </span>
-                                        </TableCell>
-                                        <TableCell className="text-sm">
-                                            {new Date(pipeline.periodeSnapshot).toLocaleDateString("id-ID")}
-                                        </TableCell>
-                                        <TableCell className="text-right">
-                                            <Link href={`/pipeline/${pipeline.id}`}>
-                                                <Button variant="ghost" size="sm">
-                                                    View
-                                                </Button>
-                                            </Link>
-                                        </TableCell>
+                        <>
+                            <Table>
+                                <TableHeader>
+                                    <TableRow>
+                                        <TableHead className="text-xs">SBU</TableHead>
+                                        <TableHead className="text-xs">Customer</TableHead>
+                                        <TableHead className="text-xs">Service</TableHead>
+                                        <TableHead className="text-right text-xs">Est Revenue</TableHead>
+                                        <TableHead className="text-xs">Status</TableHead>
+                                        <TableHead className="text-xs">Color</TableHead>
+                                        <TableHead className="text-xs">Period</TableHead>
+                                        <TableHead className="text-right text-xs">Actions</TableHead>
                                     </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
+                                </TableHeader>
+                                <TableBody>
+                                    {paginatedPipelines.map((pipeline) => (
+                                        <TableRow key={pipeline.id}>
+                                            <TableCell className="font-medium text-xs">
+                                                {pipeline.sbuCode}
+                                            </TableCell>
+                                            <TableCell className="text-xs">{pipeline.customerName}</TableCell>
+                                            <TableCell className="max-w-xs truncate text-xs">
+                                                {pipeline.namaLayanan}
+                                            </TableCell>
+                                            <TableCell className="text-right text-xs font-mono">
+                                                {formatRevenue(pipeline.estRevenue)}
+                                            </TableCell>
+                                            <TableCell className="text-xs">
+                                                {pipeline.currentStatus || "-"}
+                                            </TableCell>
+                                            <TableCell>
+                                                <span
+                                                    className={`inline-flex px-2 py-1 rounded-full text-xs font-medium border ${statusColors[pipeline.warnaStatusPotensi]
+                                                        }`}
+                                                >
+                                                    {pipeline.warnaStatusPotensi}
+                                                </span>
+                                            </TableCell>
+                                            <TableCell className="text-xs">
+                                                {new Date(pipeline.periodeSnapshot).toLocaleDateString("id-ID")}
+                                            </TableCell>
+                                            <TableCell className="text-right">
+                                                <Link href={`/pipeline/${pipeline.id}`}>
+                                                    <Button variant="ghost" size="sm">
+                                                        View
+                                                    </Button>
+                                                </Link>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+
+                            {/* Pagination Controls */}
+                            {totalPages > 1 && (
+                                <div className="flex items-center justify-between mt-4 pt-4 border-t border-surface-border">
+                                    <div className="text-xs text-primary-subtle">
+                                        Page {currentPage} of {totalPages}
+                                    </div>
+                                    <div className="flex gap-2">
+                                        <Button
+                                            variant="secondary"
+                                            size="sm"
+                                            onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                                            disabled={currentPage === 1}
+                                        >
+                                            Previous
+                                        </Button>
+                                        <Button
+                                            variant="secondary"
+                                            size="sm"
+                                            onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                                            disabled={currentPage === totalPages}
+                                        >
+                                            Next
+                                        </Button>
+                                    </div>
+                                </div>
+                            )}
+                        </>
                     )}
                 </SectionShell>
             </div>
