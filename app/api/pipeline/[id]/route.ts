@@ -14,10 +14,12 @@ export async function GET(_req: Request, props: Params) {
       SELECT 
         p.*,
         s.code AS "sbuCode",
-        c.name AS "customerName"
+        c.name AS "customerName",
+        seg.name AS "pelangganGroup"
       FROM pipeline_potensi p
       LEFT JOIN master_sbu s ON p.sbu_id = s.id
       LEFT JOIN master_customer c ON p.customer_id = c.id
+      LEFT JOIN master_segment_pln_group seg ON c.pln_group_segment_id = seg.id
       WHERE p.id = $1
       `,
             [id]

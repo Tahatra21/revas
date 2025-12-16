@@ -38,6 +38,7 @@ interface Pipeline {
     target_aktivasi: string;
     category_2026: string;
     sub_category: string;
+    pelangganGroup: string;
 }
 
 export default function PipelineDetailPage({ params }: { params: Promise<{ id: string }> }) {
@@ -169,20 +170,36 @@ export default function PipelineDetailPage({ params }: { params: Promise<{ id: s
                 <SectionShell title="Basic Information">
                     <div className="grid gap-4 md:grid-cols-2">
                         <div>
-                            <p className="text-xs text-primary-subtle mb-1">SBU</p>
+                            <p className="text-xs text-primary-subtle mb-1">RO SBU/DIV</p>
                             <p className="text-sm font-medium">{pipeline.sbuCode}</p>
                         </div>
                         <div>
-                            <p className="text-xs text-primary-subtle mb-1">Customer</p>
+                            <p className="text-xs text-primary-subtle mb-1">JENIS LAYANAN</p>
+                            <p className="text-sm font-medium">{pipeline.jenis_layanan || "-"}</p>
+                        </div>
+                        <div>
+                            <p className="text-xs text-primary-subtle mb-1">SERVICES CATEGORY</p>
+                            <p className="text-sm font-medium">{pipeline.service_category_id || "-"}</p>
+                        </div>
+                        <div>
+                            <p className="text-xs text-primary-subtle mb-1">PELANGGAN GROUP</p>
+                            <p className="text-sm font-medium">{pipeline.pelangganGroup || "-"}</p>
+                        </div>
+                        <div>
+                            <p className="text-xs text-primary-subtle mb-1">NAMA PELANGGAN</p>
                             <p className="text-sm font-medium">{pipeline.customerName}</p>
                         </div>
                         <div>
-                            <p className="text-xs text-primary-subtle mb-1">Service Name</p>
-                            <p className="text-sm font-medium">{pipeline.nama_layanan}</p>
+                            <p className="text-xs text-primary-subtle mb-1">SEGMEN INDUSTRI</p>
+                            <p className="text-sm font-medium">{pipeline.segment_industri || "-"}</p>
                         </div>
                         <div>
-                            <p className="text-xs text-primary-subtle mb-1">Service Type</p>
-                            <p className="text-sm font-medium">{pipeline.jenis_layanan || "-"}</p>
+                            <p className="text-xs text-primary-subtle mb-1">UNIT</p>
+                            <p className="text-sm font-medium">{pipeline.b2b_flag || "-"}</p>
+                        </div>
+                        <div>
+                            <p className="text-xs text-primary-subtle mb-1">LAYANAN</p>
+                            <p className="text-sm font-medium">{pipeline.nama_layanan}</p>
                         </div>
                     </div>
                 </SectionShell>
@@ -191,7 +208,7 @@ export default function PipelineDetailPage({ params }: { params: Promise<{ id: s
                 <SectionShell title="Revenue Information">
                     <div className="grid gap-4 md:grid-cols-2">
                         <div>
-                            <p className="text-xs text-primary-subtle mb-1">Estimated Revenue</p>
+                            <p className="text-xs text-primary-subtle mb-1">EST REVENUE</p>
                             <p className="text-xl font-semibold font-mono">
                                 {formatRevenue(pipeline.est_revenue)}
                             </p>
@@ -203,19 +220,19 @@ export default function PipelineDetailPage({ params }: { params: Promise<{ id: s
                             </p>
                         </div>
                         <div>
-                            <p className="text-xs text-primary-subtle mb-1">OTC Value</p>
+                            <p className="text-xs text-primary-subtle mb-1">INSTALASI (OTC)</p>
                             <p className="text-sm font-medium font-mono">
                                 {formatRevenue(pipeline.nilai_otc || 0)}
                             </p>
                         </div>
                         <div>
-                            <p className="text-xs text-primary-subtle mb-1">MRC Value</p>
+                            <p className="text-xs text-primary-subtle mb-1">SEWA (MONTHLY)</p>
                             <p className="text-sm font-medium font-mono">
                                 {formatRevenue(pipeline.nilai_mrc || 0)}
                             </p>
                         </div>
                         <div>
-                            <p className="text-xs text-primary-subtle mb-1">Revenue Type</p>
+                            <p className="text-xs text-primary-subtle mb-1">TYPE</p>
                             <p className="text-sm font-medium">{pipeline.type_pendapatan || "-"}</p>
                         </div>
                         <div>
@@ -229,17 +246,21 @@ export default function PipelineDetailPage({ params }: { params: Promise<{ id: s
                 <SectionShell title="Technical Details">
                     <div className="grid gap-4 md:grid-cols-2">
                         <div>
-                            <p className="text-xs text-primary-subtle mb-1">Capacity</p>
+                            <p className="text-xs text-primary-subtle mb-1">KAPASITAS</p>
                             <p className="text-sm font-medium">
                                 {pipeline.kapasitas || "-"} {pipeline.satuan_kapasitas || ""}
                             </p>
                         </div>
                         <div>
-                            <p className="text-xs text-primary-subtle mb-1">Originating</p>
+                            <p className="text-xs text-primary-subtle mb-1">SATUAN KAPASITAS</p>
+                            <p className="text-sm font-medium">{pipeline.satuan_kapasitas || "-"}</p>
+                        </div>
+                        <div>
+                            <p className="text-xs text-primary-subtle mb-1">ORIGINATING</p>
                             <p className="text-sm font-medium">{pipeline.originating || "-"}</p>
                         </div>
                         <div>
-                            <p className="text-xs text-primary-subtle mb-1">Terminating</p>
+                            <p className="text-xs text-primary-subtle mb-1">TERMINATING</p>
                             <p className="text-sm font-medium">{pipeline.terminating || "-"}</p>
                         </div>
                     </div>
