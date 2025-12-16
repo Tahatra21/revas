@@ -214,7 +214,7 @@ export default function PipelinePage() {
                                 placeholder="Search customer or service..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full pl-10 pr-4 py-2 rounded-xl border border-surface-border bg-bg text-primary placeholder:text-primary-subtle focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/70"
+                                className="w-full pl-10 pr-4 py-2 text-xs rounded-xl border border-surface-border bg-bg text-primary placeholder:text-primary-subtle focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/70"
                             />
                         </div>
 
@@ -222,7 +222,7 @@ export default function PipelinePage() {
                         <select
                             value={selectedSbu}
                             onChange={(e) => setSelectedSbu(e.target.value)}
-                            className="px-4 py-2 rounded-xl border border-surface-border bg-bg text-primary focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/70"
+                            className="px-4 py-2 text-xs rounded-xl border border-surface-border bg-bg text-primary focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/70"
                         >
                             <option value="">All SBUs</option>
                             {sbus.map((sbu) => (
@@ -236,7 +236,7 @@ export default function PipelinePage() {
                         <select
                             value={selectedSegment}
                             onChange={(e) => setSelectedSegment(e.target.value)}
-                            className="px-4 py-2 rounded-xl border border-surface-border bg-bg text-primary focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/70"
+                            className="px-4 py-2 text-xs rounded-xl border border-surface-border bg-bg text-primary focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/70"
                         >
                             <option value="">All Segments</option>
                             {Array.from(new Set(pipelines.map(p => p.segmentIndustri).filter(Boolean))).sort().map(seg => (
@@ -248,7 +248,7 @@ export default function PipelinePage() {
                         <select
                             value={selectedGroup}
                             onChange={(e) => setSelectedGroup(e.target.value)}
-                            className="px-4 py-2 rounded-xl border border-surface-border bg-bg text-primary focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/70"
+                            className="px-4 py-2 text-xs rounded-xl border border-surface-border bg-bg text-primary focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/70"
                         >
                             <option value="">All Groups</option>
                             {Array.from(new Set(pipelines.map(p => p.pelangganGroup).filter(Boolean))).sort().map(grp => (
@@ -260,7 +260,7 @@ export default function PipelinePage() {
                         <select
                             value={selectedStatus}
                             onChange={(e) => setSelectedStatus(e.target.value)}
-                            className="px-4 py-2 rounded-xl border border-surface-border bg-bg text-primary focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/70"
+                            className="px-4 py-2 text-xs rounded-xl border border-surface-border bg-bg text-primary focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/70"
                         >
                             <option value="">All Status</option>
                             <option value="HIJAU">HIJAU</option>
@@ -272,7 +272,7 @@ export default function PipelinePage() {
                         <select
                             value={selectedYear}
                             onChange={(e) => setSelectedYear(e.target.value)}
-                            className="px-4 py-2 rounded-xl border border-surface-border bg-bg text-primary focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/70"
+                            className="px-4 py-2 text-xs rounded-xl border border-surface-border bg-bg text-primary focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/70"
                         >
                             <option value="">All Years</option>
                             <option value="2024">2024</option>
