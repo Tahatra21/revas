@@ -33,6 +33,10 @@ export async function POST(req: Request) {
         const sbus = await query(`SELECT id, code FROM master_sbu WHERE is_active = TRUE`);
         const sbuMap = new Map(sbus.map((s: any) => [s.code.toUpperCase(), s.id]));
 
+        // Fetch PLN Group segments
+        const plnGroups = await query(`SELECT id, name, code FROM master_segment_pln_group WHERE is_active = TRUE`);
+        const plnGroupMap = new Map(plnGroups.map((g: any) => [g.name.toUpperCase(), g.id]));
+
         // Get or create customers
         const customers = await query(`SELECT id, name FROM master_customer`);
         const customerMap = new Map(customers.map((c: any) => [c.name.toUpperCase(), c.id]));
@@ -94,12 +98,28 @@ export async function POST(req: Request) {
                 if (customerName) {
                     customerId = customerMap.get(customerName.toUpperCase());
                     if (!customerId) {
-                        // Create customer
+                        // Look up PLN Group
+                        let plnGroupId = null;
+                        if (customerGroup) {
+                            plnGroupId = plnGroupMap.get(customerGroup.toUpperCase());
+                            if (!plnGroupId) {
+                                // Create new PLN group if doesn't exist
+                                const newGroup = await query(`
+                                    INSERT INTO master_segment_pln_group (name, code, is_active)
+                                    VALUES ($1, $2, TRUE)
+                                    RETURNING id
+                                `, [customerGroup, customerGroup.toUpperCase().replace(/\s+/g, '_')]);
+                                plnGroupId = newGroup[0].id;
+                                plnGroupMap.set(customerGroup.toUpperCase(), plnGroupId);
+                            }
+                        }
+
+                        // Create customer with PLN group
                         const newCustomer = await query(`
-                            INSERT INTO master_customer (name, segment_industri, is_active)
-                            VALUES ($1, $2, TRUE)
+                            INSERT INTO master_customer (name, segment_industri, pln_group_segment_id, is_active)
+                            VALUES ($1, $2, $3, TRUE)
                             RETURNING id
-                        `, [customerName, segmenIndustri]);
+                        `, [customerName, segmenIndustri, plnGroupId]);
                         customerId = newCustomer[0].id;
                         customerMap.set(customerName.toUpperCase(), customerId);
                     }
@@ -154,10 +174,13 @@ export async function POST(req: Request) {
                     terminating,
                     nilaiOtc: instalasi,
                     nilaiMrc: sewa,
+                    qty,
                     estRevenue: estRevenue || (instalasi + (sewa * qty)),
                     warnaStatus,
                     periodeSnapshot: new Date().toISOString().split('T')[0], // Current date
                     targetAktivasi: targetDate,
+                    category2026,
+                    subCategory,
                     rowNumber
                 });
 
@@ -179,10 +202,11 @@ export async function POST(req: Request) {
                     INSERT INTO pipeline_potensi (
                         sbu_id, customer_id, jenis_layanan, segment_industri,
                         type_pendapatan, nama_layanan, kapasitas, satuan_kapasitas,
-                        originating, terminating, nilai_otc, nilai_mrc,
-                        est_revenue, warna_status_potensi, periode_snapshot, target_aktivasi
+                        originating, terminating, nilai_otc, nilai_mrc, qty,
+                        est_revenue, warna_status_potensi, periode_snapshot, target_aktivasi,
+                        category_2026, sub_category
                     )
-                    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)
+                    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19)
                 `, [
                     pipeline.sbuId,
                     pipeline.customerId,
@@ -196,10 +220,13 @@ export async function POST(req: Request) {
                     pipeline.terminating,
                     pipeline.nilaiOtc,
                     pipeline.nilaiMrc,
+                    pipeline.qty,
                     pipeline.estRevenue,
                     pipeline.warnaStatus,
                     pipeline.periodeSnapshot,
-                    pipeline.targetAktivasi
+                    pipeline.targetAktivasi,
+                    pipeline.category2026,
+                    pipeline.subCategory
                 ]);
 
                 successCount++;
