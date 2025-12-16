@@ -74,6 +74,12 @@ export default function PipelineDetailPage({ params }: { params: Promise<{ id: s
         }
     };
 
+    // Helper function to format revenue in billions with M suffix
+    const formatRevenue = (value: number): string => {
+        const billions = value / 1000000000; // Convert to billions  
+        return `Rp ${billions.toFixed(2)} M`;
+    };
+
     if (loading) {
         return (
             <main className="min-h-screen p-8">
@@ -175,26 +181,26 @@ export default function PipelineDetailPage({ params }: { params: Promise<{ id: s
                     <div className="grid gap-4 md:grid-cols-2">
                         <div>
                             <p className="text-xs text-primary-subtle mb-1">Estimated Revenue</p>
-                            <p className="text-2xl font-semibold">
-                                Rp {pipeline.est_revenue.toLocaleString("id-ID")}
+                            <p className="text-2xl font-semibold font-mono">
+                                {formatRevenue(pipeline.est_revenue)}
                             </p>
                         </div>
                         <div>
                             <p className="text-xs text-primary-subtle mb-1">Mapping Revenue</p>
-                            <p className="text-2xl font-semibold">
-                                Rp {(pipeline.mapping_revenue || 0).toLocaleString("id-ID")}
+                            <p className="text-2xl font-semibold font-mono">
+                                {formatRevenue(pipeline.mapping_revenue || 0)}
                             </p>
                         </div>
                         <div>
                             <p className="text-xs text-primary-subtle mb-1">OTC Value</p>
-                            <p className="font-medium">
-                                Rp {(pipeline.nilai_otc || 0).toLocaleString("id-ID")}
+                            <p className="font-medium font-mono">
+                                {formatRevenue(pipeline.nilai_otc || 0)}
                             </p>
                         </div>
                         <div>
                             <p className="text-xs text-primary-subtle mb-1">MRC Value</p>
-                            <p className="font-medium">
-                                Rp {(pipeline.nilai_mrc || 0).toLocaleString("id-ID")}
+                            <p className="font-medium font-mono">
+                                {formatRevenue(pipeline.nilai_mrc || 0)}
                             </p>
                         </div>
                         <div>
