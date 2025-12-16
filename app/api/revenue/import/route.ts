@@ -44,6 +44,15 @@ const getMonthHeaders = (month: number) => {
     ];
 };
 
+// Helper to get full month name in Indonesian
+const getMonthName = (month: number): string => {
+    const months = [
+        "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+        "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+    ];
+    return months[month - 1] || "Unknown";
+};
+
 export async function POST(req: NextRequest) {
     const client = await getClient();
     const importId = uuidv4();
@@ -177,17 +186,63 @@ export async function POST(req: NextRequest) {
             );
         }
 
-        // 4. Process Sheet 2: REVENUE PLN (OPTIONAL - skip if not present)
+        // 4. Process Sheet 2: REVENUE PLN (OPTIONAL - auto-generate from DETAIL if not present)
         const plnSheet = workbook.getWorksheet("REVENUE PLN");
         if (!plnSheet) {
-            console.log("REVENUE PLN sheet not found - skipping PLN summary processing (only DETAIL NON RETAIL will be imported)");
+            console.log("REVENUE PLN sheet not found - auto-generating summary from DETAIL NON RETAIL data");
 
-            // Return success with only detail data
+            // Auto-generate Revenue PLN summary from DETAIL NON RETAIL
+            // Group by SBU and create summary rows with dummy headers
+            const detailHeaders = ["BIDANG/SBU", "TARGET", `REALISASI ${getMonthName(periodMonth).toUpperCase()} ${periodYear}`, "ACHIEVEMENT %", "GAP"];
+            const summaryRowsToInsert: any[] = [];
+
+            // Process each detail row and convert to summary format
+            for (const detailRow of detailRowsToInsert) {
+                const [, sbuCode, grandTotal] = detailRow;
+
+                // Create summary row data
+                const rowData: any = {
+                    "BIDANG/SBU": sbuCode,
+                    "TARGET": 0, // No target data from DETAIL sheet
+                    [`REALISASI ${getMonthName(periodMonth).toUpperCase()} ${periodYear}`]: grandTotal || 0,
+                    "ACHIEVEMENT %": 0,
+                    "GAP": 0 - (grandTotal || 0) // Negative gap since no target
+                };
+
+                summaryRowsToInsert.push([
+                    importId,
+                    periodMonth,
+                    periodYear,
+                    sbuCode,
+                    grandTotal || 0,
+                    JSON.stringify(rowData)
+                ]);
+            }
+
+            // Insert generated summary rows
+            for (const s of summaryRowsToInsert) {
+                await client.query(
+                    `INSERT INTO revenue_summary_pln (
+                        import_id, period_month, period_year, bidang, target_value, row_data
+                    ) VALUES ($1, $2, $3, $4, $5, $6)`,
+                    s
+                );
+            }
+
+            // Update import record with headers
+            await client.query(
+                `UPDATE revenue_imports SET table_headers = $1 WHERE id = $2`,
+                [JSON.stringify(detailHeaders), importId]
+            );
+
+            await client.query("COMMIT");
+
             return NextResponse.json(
                 {
-                    message: "Import successful (DETAIL NON RETAIL only)",
+                    message: "Import successful (Auto-generated Revenue PLN from DETAIL NON RETAIL)",
                     importId,
                     detailInserted: detailRowsToInsert.length,
+                    summaryGenerated: summaryRowsToInsert.length,
                     periodMonth,
                     periodYear,
                 },
