@@ -20,7 +20,8 @@ export async function GET(req: Request) {
         p.est_revenue AS "estRevenue",
         p.current_status AS "currentStatus",
         p.warna_status_potensi AS "warnaStatusPotensi",
-        p.periode_snapshot AS "periodeSnapshot"
+        p.periode_snapshot AS "periodeSnapshot",
+        p.target_aktivasi AS "targetAktivasi"
       FROM pipeline_potensi p
       LEFT JOIN master_sbu s ON p.sbu_id = s.id
       LEFT JOIN master_customer c ON p.customer_id = c.id

@@ -122,6 +122,25 @@ export async function POST(req: Request) {
                     warnaStatus = 'KUNING';
                 }
 
+                // Parse target aktivasi date
+                let targetDate = null;
+                if (targetAktivasi) {
+                    try {
+                        if (targetAktivasi instanceof Date) {
+                            targetDate = targetAktivasi.toISOString().split('T')[0];
+                        } else if (typeof targetAktivasi === 'number') {
+                            // Excel serial date number
+                            const excelEpoch = new Date(1899, 11, 30);
+                            const date = new Date(excelEpoch.getTime() + targetAktivasi * 86400000);
+                            targetDate = date.toISOString().split('T')[0];
+                        } else if (typeof targetAktivasi === 'string') {
+                            targetDate = targetAktivasi;
+                        }
+                    } catch (e) {
+                        console.error(`Failed to parse date for row ${rowNumber}:`, e);
+                    }
+                }
+
                 pipelines.push({
                     sbuId,
                     customerId,
@@ -138,6 +157,7 @@ export async function POST(req: Request) {
                     estRevenue: estRevenue || (instalasi + (sewa * qty)),
                     warnaStatus,
                     periodeSnapshot: new Date().toISOString().split('T')[0], // Current date
+                    targetAktivasi: targetDate,
                     rowNumber
                 });
 
@@ -160,9 +180,9 @@ export async function POST(req: Request) {
                         sbu_id, customer_id, jenis_layanan, segment_industri,
                         type_pendapatan, nama_layanan, kapasitas, satuan_kapasitas,
                         originating, terminating, nilai_otc, nilai_mrc,
-                        est_revenue, warna_status_potensi, periode_snapshot
+                        est_revenue, warna_status_potensi, periode_snapshot, target_aktivasi
                     )
-                    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
+                    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)
                 `, [
                     pipeline.sbuId,
                     pipeline.customerId,
@@ -178,7 +198,8 @@ export async function POST(req: Request) {
                     pipeline.nilaiMrc,
                     pipeline.estRevenue,
                     pipeline.warnaStatus,
-                    pipeline.periodeSnapshot
+                    pipeline.periodeSnapshot,
+                    pipeline.targetAktivasi
                 ]);
 
                 successCount++;
