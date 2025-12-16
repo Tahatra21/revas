@@ -105,16 +105,21 @@ export async function POST(req: NextRequest) {
         let detailHeaderRowIdx = -1;
         let colSbu = -1;
         let colGrandTotal = -1;
+        let colPlnGroup = -1; // Column X / org.dev for filtering
 
         detailSheet.eachRow((row, rowNumber) => {
             if (detailHeaderRowIdx !== -1) return; // Already found
 
             const values = row.values as any[];
-            // Look for "SBU CODE" and "Grand Total"
+            // Look for "SBU CODE", "Grand Total", and PLN Group column (X / org.dev / Kelistrikan)
             values.forEach((val, colIdx) => {
                 const str = String(val).toLowerCase().trim();
                 if (str.includes("sbu code")) colSbu = colIdx;
                 if (str.includes("grand total")) colGrandTotal = colIdx;
+                // Look for column X or org.dev or any column with "kelistrikan" pattern
+                if (str === "x" || str.includes("org") || str.includes("dev") || str.includes("pln group")) {
+                    colPlnGroup = colIdx;
+                }
             });
 
             if (colSbu !== -1 && colGrandTotal !== -1) {
@@ -126,34 +131,30 @@ export async function POST(req: NextRequest) {
             throw new Error("Columns 'SBU CODE' and 'Grand Total' not found in DETAIL NON RETAIL");
         }
 
+        console.log(`Found columns - SBU: ${colSbu}, GrandTotal: ${colGrandTotal}, PLNGroup: ${colPlnGroup}`);
+        if (colPlnGroup !== -1) {
+            console.log("PLN Group filter enabled - will only import 'Kelistrikan' rows");
+        }
+
         const sbuMap = new Map<string, number>(); // SBU -> Total Billion
-
-        // Iterate detail rows
-        detailSheet.eachRow(async (row, rowNumber) => {
-            if (rowNumber <= detailHeaderRowIdx) return; // Skip header
-
-            const rawSbu = row.getCell(colSbu).value?.toString() || "";
-            const sbuCode = normalizeCode(rawSbu);
-
-            let grandTotal = 0;
-            const cellVal = row.getCell(colGrandTotal).value;
-            if (typeof cellVal === 'number') grandTotal = cellVal;
-            else if (cellVal && typeof cellVal === 'object' && 'result' in cellVal && typeof cellVal.result === 'number') grandTotal = cellVal.result; // Formula result
-            else grandTotal = Number(cellVal) || 0;
-
-            const grandTotalBillion = grandTotal / 1_000_000_000;
-
-            // Store in DB
-            // We process DB inserts sequentially here (could be batched for performance but row count is likely manageable)
-            // For simplicity/safety in transaction, we'll do raw inserts.
-            // To avoid awaiting inside loop causing slow processing, we can collect params.
-        });
-
-        // Actually, let's just collect data first
+        let totalRowsProcessed = 0;
+        let rowsSkippedByFilter = 0;
         const detailRowsToInsert: any[] = [];
 
         detailSheet.eachRow((row, rowNumber) => {
             if (rowNumber <= detailHeaderRowIdx) return;
+
+            // Apply PLN Group filter if column exists
+            if (colPlnGroup !== -1) {
+                const plnGroupValue = row.getCell(colPlnGroup).value?.toString() || "";
+                // Only process rows with "Kelistrikan" value
+                if (!plnGroupValue.toLowerCase().includes("kelistrikan")) {
+                    rowsSkippedByFilter++;
+                    return; // Skip this row
+                }
+            }
+
+            totalRowsProcessed++;
 
             const rawSbu = row.getCell(colSbu).value?.toString() || "";
             const sbuCode = normalizeCode(rawSbu);
