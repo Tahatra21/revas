@@ -11,6 +11,10 @@ export default function BulkUploadPage() {
     const [uploadingPipeline, setUploadingPipeline] = useState(false);
     const [uploadingPln, setUploadingPln] = useState(false);
 
+    // Manual period override for PLN upload
+    const [plnMonth, setPlnMonth] = useState(new Date().getMonth() + 1);
+    const [plnYear, setPlnYear] = useState(new Date().getFullYear());
+
     const handlePipelineUpload = async () => {
         if (!pipelineFile) {
             alert("Please select a file first");
@@ -54,6 +58,9 @@ export default function BulkUploadPage() {
             const formData = new FormData();
             formData.append("file", plnFile);
             formData.append("uploadedBy", "admin");
+            // Add manual period override (optional, API will auto-detect if not provided)
+            formData.append("periodMonth", plnMonth.toString());
+            formData.append("periodYear", plnYear.toString());
 
             const response = await fetch("/api/revenue/import", {
                 method: "POST",
@@ -158,7 +165,7 @@ export default function BulkUploadPage() {
                 {/* Revenue PLN Upload Section */}
                 <SectionShell
                     title="Revenue PLN"
-                    description="Upload Lampiran Pendapatan PLN (multi-sheet Excel)"
+                    description="Upload data DETAIL NON RETAIL (sheet REVENUE PLN optional)"
                 >
                     <div className="grid md:grid-cols-2 gap-6">
                         {/* Template Info */}
@@ -168,12 +175,15 @@ export default function BulkUploadPage() {
                                 <div className="flex-1">
                                     <h3 className="font-semibold text-sm mb-1">Expected Format</h3>
                                     <p className="text-xs text-primary-subtle mb-2">
-                                        File Excel harus mengandung sheet:
+                                        File Excel wajib mengandung sheet:
                                     </p>
                                     <ul className="text-xs text-primary-subtle space-y-1 list-disc list-inside">
-                                        <li>DETAIL NON RETAIL</li>
-                                        <li>REVENUE PLN</li>
+                                        <li><strong>DETAIL NON RETAIL</strong> (Required)</li>
+                                        <li>REVENUE PLN (Optional)</li>
                                     </ul>
+                                    <p className="text-xs text-amber-400 mt-3">
+                                        💡 Bulan/tahun terdeteksi otomatis dari header Excel, atau dapat di-set manual dibawah.
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -182,6 +192,44 @@ export default function BulkUploadPage() {
                         <div className="space-y-4">
                             <div className="p-4 bg-bg/50 rounded-xl border border-surface-border">
                                 <h3 className="font-semibold text-sm mb-3">Upload Excel File</h3>
+
+                                {/* Manual Period Override */}
+                                <div className="mb-4 grid grid-cols-2 gap-2">
+                                    <div>
+                                        <label className="text-xs text-primary-subtle mb-1 block">Bulan (Override)</label>
+                                        <select
+                                            value={plnMonth}
+                                            onChange={(e) => setPlnMonth(Number(e.target.value))}
+                                            className="w-full px-3 py-2 text-sm bg-surface border border-surface-border rounded-lg"
+                                        >
+                                            <option value={1}>Januari</option>
+                                            <option value={2}>Februari</option>
+                                            <option value={3}>Maret</option>
+                                            <option value={4}>April</option>
+                                            <option value={5}>Mei</option>
+                                            <option value={6}>Juni</option>
+                                            <option value={7}>Juli</option>
+                                            <option value={8}>Agustus</option>
+                                            <option value={9}>September</option>
+                                            <option value={10}>Oktober</option>
+                                            <option value={11}>November</option>
+                                            <option value={12}>Desember</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label className="text-xs text-primary-subtle mb-1 block">Tahun (Override)</label>
+                                        <select
+                                            value={plnYear}
+                                            onChange={(e) => setPlnYear(Number(e.target.value))}
+                                            className="w-full px-3 py-2 text-sm bg-surface border border-surface-border rounded-lg"
+                                        >
+                                            <option value={2024}>2024</option>
+                                            <option value={2025}>2025</option>
+                                            <option value={2026}>2026</option>
+                                        </select>
+                                    </div>
+                                </div>
+
                                 <input
                                     id="pln-upload"
                                     type="file"

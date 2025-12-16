@@ -177,12 +177,32 @@ export async function POST(req: NextRequest) {
             );
         }
 
-        // 4. Process Sheet 2: REVENUE PLN
+        // 4. Process Sheet 2: REVENUE PLN (OPTIONAL - skip if not present)
         const plnSheet = workbook.getWorksheet("REVENUE PLN");
         if (!plnSheet) {
-            console.error("Sheet 'REVENUE PLN' not found. Available sheets:", workbook.worksheets.map(s => s.name));
-            throw new Error("Sheet 'REVENUE PLN' not found");
+            console.log("REVENUE PLN sheet not found - skipping PLN summary processing (only DETAIL NON RETAIL will be imported)");
+
+            // Return success with only detail data
+            return NextResponse.json(
+                {
+                    message: "Import successful (DETAIL NON RETAIL only)",
+                    importId,
+                    detailInserted: detailRowsToInsert.length,
+                    periodMonth,
+                    periodYear,
+                },
+                {
+                    status: 200,
+                    headers: {
+                        "X-Detected-Month": periodMonth.toString(),
+                        "X-Detected-Year": periodYear.toString(),
+                    },
+                }
+            );
         }
+
+        // Continue with REVENUE PLN processing if sheet exists
+        console.log("REVENUE PLN sheet found - processing summary data...");
 
         // Find header and target column
         let plnHeaderRowIdx = -1;
