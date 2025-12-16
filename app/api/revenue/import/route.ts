@@ -57,6 +57,8 @@ export async function POST(req: NextRequest) {
     const client = await getClient();
     const importId = uuidv4();
 
+    console.log("=== Starting Revenue PLN Import ===");
+
     try {
         const formData = await req.formData();
         const file = formData.get("file") as File;
@@ -64,7 +66,10 @@ export async function POST(req: NextRequest) {
         const periodYear = parseInt(formData.get("period_year") as string);
         const uploadedBy = (formData.get("uploaded_by") as string) || "System";
 
+        console.log("Import params:", { periodMonth, periodYear, uploadedBy, filename: file?.name });
+
         if (!file || !periodMonth || !periodYear) {
+            console.error("Missing required fields:", { file: !!file, periodMonth, periodYear });
             return NextResponse.json({ message: "Missing required fields" }, { status: 400 });
         }
 
@@ -74,6 +79,7 @@ export async function POST(req: NextRequest) {
 
         // Start Transaction
         await client.query("BEGIN");
+        console.log("Transaction started");
 
         // 1. Create Import Record
         await client.query(
@@ -82,6 +88,7 @@ export async function POST(req: NextRequest) {
       ) VALUES ($1, $2, $3, $4, $5, 'PENDING')`,
             [importId, file.name, periodMonth, periodYear, uploadedBy]
         );
+        console.log("Import record created:", importId);
 
         // 2. Load Excel
         const buffer = await file.arrayBuffer();
