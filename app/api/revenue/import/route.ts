@@ -208,6 +208,7 @@ export async function POST(req: NextRequest) {
                 // detailRow structure: [importId, sbuCode, grandTotal, grandTotalBillion, rawJson, rowNumber]
                 const sbuCode = detailRow[1]; // Index 1 = sbuCode
                 const grandTotal = detailRow[2]; // Index 2 = grandTotal
+                const grandTotalBillion = detailRow[3]; // Index 3 = grandTotalBillion
 
                 // Create summary row data
                 const rowData: any = {
@@ -223,8 +224,7 @@ export async function POST(req: NextRequest) {
                     periodMonth,
                     periodYear,
                     sbuCode,
-                    grandTotal || 0,
-                    JSON.stringify(rowData)
+                    grandTotalBillion || 0  // Use billion value
                 ]);
             }
 
@@ -232,8 +232,8 @@ export async function POST(req: NextRequest) {
             for (const s of summaryRowsToInsert) {
                 await client.query(
                     `INSERT INTO revenue_summary_pln (
-                        import_id, period_month, period_year, bidang, target_value, row_data
-                    ) VALUES ($1, $2, $3, $4, $5, $6)`,
+                        import_id, period_month, period_year, kode_bidang, realisasi_billion
+                    ) VALUES ($1, $2, $3, $4, $5)`,
                     s
                 );
             }
