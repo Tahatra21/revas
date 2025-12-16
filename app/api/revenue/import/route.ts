@@ -254,7 +254,14 @@ export async function POST(req: NextRequest) {
                 [JSON.stringify(detailHeaders), importId]
             );
 
+            // Update status to SUCCESS
+            await client.query(
+                `UPDATE revenue_imports SET status = 'SUCCESS' WHERE id = $1`,
+                [importId]
+            );
+
             await client.query("COMMIT");
+            console.log("Import completed successfully - status updated to SUCCESS");
 
             return NextResponse.json(
                 {
