@@ -12,11 +12,8 @@ export async function DELETE() {
         await query("DELETE FROM revenue_target_yearly");
         await query("DELETE FROM revenue_target_monthly");
 
-        console.log("Deleting revenue actual records...");
-        await query("DELETE FROM revenue_actual");
-
         console.log("Deleting all SBU records...");
-        const result = await query("DELETE FROM master_sbu");
+        await query("DELETE FROM master_sbu");
 
         // Reset auto-increment sequence
         console.log("Resetting ID sequence...");
@@ -24,8 +21,7 @@ export async function DELETE() {
 
         return NextResponse.json({
             message: "All SBU data and related records deleted successfully",
-            status: "success",
-            deletedRecords: result.rowCount
+            status: "success"
         });
     } catch (error: any) {
         console.error("Error deleting all SBUs:", error);
