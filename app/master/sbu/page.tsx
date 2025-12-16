@@ -219,6 +219,7 @@ export default function SBUPage() {
                                                 variant="ghost"
                                                 size="sm"
                                                 onClick={() => handleDelete(sbu.id)}
+                                                className="hover:bg-red-500/10 hover:text-red-400"
                                             >
                                                 <Trash2 className="w-4 h-4" />
                                             </Button>
