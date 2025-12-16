@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { SectionShell } from "@/components/ui/section-shell";
 import { FormField } from "@/components/ui/form-field";
 import { Button } from "@/components/ui/button";
+import { Modal } from "@/components/ui/modal";
 import { Edit2, Trash2 } from "lucide-react";
 import {
     Table,
@@ -207,78 +208,70 @@ export default function RevenueTargetPage() {
                     </select>
                 </div>
 
-                {/* Add/Edit Form */}
-                {showForm && (
-                    <SectionShell
-                        title={editingId ? "Edit Target" : "Add New Target"}
-                        description="Enter target values in Billion IDR"
-                    >
-                        <form onSubmit={handleSave} className="space-y-4">
-                            <div className="grid gap-4 md:grid-cols-4">
-                                <FormField label="SBU" htmlFor="sbuId" required>
-                                    <select
-                                        name="sbuId"
-                                        value={formData.sbuId}
-                                        onChange={(e) => setFormData({ ...formData, sbuId: e.target.value })}
-                                        disabled={editingId !== null}
-                                    >
-                                        <option value="">Select SBU</option>
-                                        {SBU_ORDER.map(code => {
-                                            const sbu = sbus.find(s => s.code === code);
-                                            return sbu ? (
-                                                <option key={sbu.id} value={sbu.id}>
-                                                    {sbu.code} - {sbu.name}
-                                                </option>
-                                            ) : null;
-                                        })}
-                                    </select>
-                                </FormField>
+                {/* Modal for Add/Edit */}
+                <Modal
+                    isOpen={showForm}
+                    onClose={resetForm}
+                    title={editingId ? "Edit Target" : "Add New Target"}
+                >
+                    <form onSubmit={handleSave} className="space-y-4">
+                        <div className="grid gap-4 md:grid-cols-2">
+                            <FormField label="SBU" htmlFor="sbuId" required>
+                                <select
+                                    name="sbuId"
+                                    value={formData.sbuId}
+                                    onChange={(e) => setFormData({ ...formData, sbuId: e.target.value })}
+                                    disabled={editingId !== null}
+                                >
+                                    <option value="">Select SBU</option>
+                                    {SBU_ORDER.map(code => {
+                                        const sbu = sbus.find(s => s.code === code);
+                                        return sbu ? (
+                                            <option key={sbu.id} value={sbu.id}>
+                                                {sbu.code} - {sbu.name}
+                                            </option>
+                                        ) : null;
+                                    })}
+                                </select>
+                            </FormField>
 
-                                <FormField label="Target RKAP" htmlFor="targetRkap">
-                                    <input
-                                        type="number"
-                                        name="targetRkap"
-                                        placeholder="0"
-                                        value={formData.targetRkap}
-                                        onChange={(e) => setFormData({ ...formData, targetRkap: e.target.value })}
-                                    />
-                                </FormField>
+                            <FormField label="Target RKAP (Billion)" htmlFor="targetRkap">
+                                <input
+                                    type="number"
+                                    name="targetRkap"
+                                    placeholder="0"
+                                    value={formData.targetRkap}
+                                    onChange={(e) => setFormData({ ...formData, targetRkap: e.target.value })}
+                                />
+                            </FormField>
 
-                                <FormField label="CO Tahun Berjalan" htmlFor="coTahunBerjalan">
-                                    <input
-                                        type="number"
-                                        name="coTahunBerjalan"
-                                        placeholder="0"
-                                        value={formData.coTahunBerjalan}
-                                        onChange={(e) => setFormData({ ...formData, coTahunBerjalan: e.target.value })}
-                                    />
-                                </FormField>
+                            <FormField label="CO Tahun Berjalan (Billion)" htmlFor="coTahunBerjalan">
+                                <input
+                                    type="number"
+                                    name="coTahunBerjalan"
+                                    placeholder="0"
+                                    value={formData.coTahunBerjalan}
+                                    onChange={(e) => setFormData({ ...formData, coTahunBerjalan: e.target.value })}
+                                />
+                            </FormField>
 
-                                <FormField label="Target NR" htmlFor="targetNr">
-                                    <input
-                                        type="number"
-                                        name="targetNr"
-                                        placeholder="0"
-                                        value={formData.targetNr}
-                                        onChange={(e) => setFormData({ ...formData, targetNr: e.target.value })}
-                                    />
-                                </FormField>
-                            </div>
+                            <FormField label="Target NR (Billion)" htmlFor="targetNr">
+                                <input
+                                    type="number"
+                                    name="targetNr"
+                                    placeholder="0"
+                                    value={formData.targetNr}
+                                    onChange={(e) => setFormData({ ...formData, targetNr: e.target.value })}
+                                />
+                            </FormField>
+                        </div>
 
-                            <div className="flex gap-2">
-                                <Button type="submit">{editingId ? "Update" : "Save"} Target</Button>
-                                <Button type="button" onClick={resetForm} variant="outline">Cancel</Button>
-                            </div>
-                        </form>
-                    </SectionShell>
-                )}
-
-                {/* Add Button */}
-                {!showForm && (
-                    <div>
-                        <Button onClick={() => setShowForm(true)}>+ Add New Target</Button>
-                    </div>
-                )}
+                        <div className="flex gap-2 justify-end">
+                            <Button type="button" onClick={resetForm}>Cancel</Button>
+                            <Button type="submit">{editingId ? "Update" : "Save"} Target</Button>
+                        </div>
+                    </form>
+                </Modal>
 
                 {/* Targets Table */}
                 <SectionShell
