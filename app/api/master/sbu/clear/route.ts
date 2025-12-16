@@ -8,7 +8,8 @@ export async function DELETE() {
         console.log("Deleting related pipeline records...");
         await query("DELETE FROM pipeline_potensi");
 
-        console.log("Deleting revenue target records...");
+        console.log("Deleting revenue-related records...");
+        await query("DELETE FROM revenue_actual_monthly");
         await query("DELETE FROM revenue_target_yearly");
         await query("DELETE FROM revenue_target_monthly");
 
