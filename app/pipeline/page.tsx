@@ -331,20 +331,15 @@ export default function PipelinePage() {
                                                 {formatRevenue(pipeline.estRevenue)}
                                             </TableCell>
                                             <TableCell>
-                                                <div className="flex items-center gap-2">
-                                                    <div
-                                                        className={`w-3 h-3 rounded-full ${pipeline.warnaStatusPotensi === "HIJAU"
-                                                                ? "bg-green-500"
-                                                                : pipeline.warnaStatusPotensi === "KUNING"
-                                                                    ? "bg-amber-500"
-                                                                    : "bg-red-500"
-                                                            }`}
-                                                        title={pipeline.warnaStatusPotensi}
-                                                    />
-                                                    <span className="text-xs">
-                                                        {pipeline.warnaStatusPotensi}
-                                                    </span>
-                                                </div>
+                                                <div
+                                                    className={`w-3 h-3 rounded-full ${pipeline.warnaStatusPotensi === "HIJAU"
+                                                        ? "bg-green-500"
+                                                        : pipeline.warnaStatusPotensi === "KUNING"
+                                                            ? "bg-amber-500"
+                                                            : "bg-red-500"
+                                                        }`}
+                                                    title={pipeline.warnaStatusPotensi}
+                                                />
                                             </TableCell>
                                             <TableCell className="text-xs">
                                                 {pipeline.targetAktivasi ? new Date(pipeline.targetAktivasi).toLocaleDateString("id-ID") : "-"}
