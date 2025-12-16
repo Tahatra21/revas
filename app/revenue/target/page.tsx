@@ -26,6 +26,9 @@ interface Target {
     sbuName: string;
     kategori: string;
     targetAmount: number;
+    targetRkap: number;
+    coTahunBerjalan: number;
+    targetNr: number;
 }
 
 export default function RevenueTargetPage() {
@@ -36,8 +39,9 @@ export default function RevenueTargetPage() {
     const [formData, setFormData] = useState({
         year: new Date().getFullYear().toString(),
         sbuId: "",
-        kategori: "NR",
-        targetAmount: "",
+        targetRkap: "",
+        coTahunBerjalan: "",
+        targetNr: "",
     });
 
     useEffect(() => {
@@ -74,8 +78,8 @@ export default function RevenueTargetPage() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        if (!formData.sbuId || !formData.targetAmount) {
-            alert("Please fill all required fields");
+        if (!formData.sbuId) {
+            alert("Please select an SBU");
             return;
         }
 
@@ -86,8 +90,9 @@ export default function RevenueTargetPage() {
                 body: JSON.stringify({
                     year: Number(formData.year),
                     sbuId: Number(formData.sbuId),
-                    kategori: formData.kategori,
-                    targetAmount: Number(formData.targetAmount),
+                    targetRkap: Number(formData.targetRkap) || 0,
+                    coTahunBerjalan: Number(formData.coTahunBerjalan) || 0,
+                    targetNr: Number(formData.targetNr) || 0,
                 }),
             });
 
@@ -97,8 +102,9 @@ export default function RevenueTargetPage() {
             setFormData({
                 year: formData.year,
                 sbuId: "",
-                kategori: "NR",
-                targetAmount: "",
+                targetRkap: "",
+                coTahunBerjalan: "",
+                targetNr: "",
             });
             alert("Target saved successfully!");
         } catch (error) {
@@ -119,7 +125,7 @@ export default function RevenueTargetPage() {
                 {/* Input Form */}
                 <SectionShell title="Add/Update Target" description="Enter target details (will upsert if exists)">
                     <form onSubmit={handleSubmit} className="space-y-4">
-                        <div className="grid gap-4 md:grid-cols-4">
+                        <div className="grid gap-4 md:grid-cols-2">
                             <FormField label="Year" htmlFor="year" required>
                                 <input
                                     type="number"
@@ -143,26 +149,36 @@ export default function RevenueTargetPage() {
                                     ))}
                                 </select>
                             </FormField>
+                        </div>
 
-                            <FormField label="Category" htmlFor="kategori" required>
-                                <select
-                                    name="kategori"
-                                    value={formData.kategori}
-                                    onChange={(e) => setFormData({ ...formData, kategori: e.target.value })}
-                                >
-                                    <option value="NR">NR (New Revenue)</option>
-                                    <option value="CO">CO (Change Order)</option>
-                                    <option value="TOTAL">TOTAL</option>
-                                </select>
-                            </FormField>
-
-                            <FormField label="Target Amount" htmlFor="targetAmount" required>
+                        <div className="grid gap-4 md:grid-cols-3">
+                            <FormField label="Target RKAP (Billion IDR)" htmlFor="targetRkap">
                                 <input
                                     type="number"
-                                    name="targetAmount"
+                                    name="targetRkap"
                                     placeholder="0"
-                                    value={formData.targetAmount}
-                                    onChange={(e) => setFormData({ ...formData, targetAmount: e.target.value })}
+                                    value={formData.targetRkap}
+                                    onChange={(e) => setFormData({ ...formData, targetRkap: e.target.value })}
+                                />
+                            </FormField>
+
+                            <FormField label="CO Tahun Berjalan (Billion IDR)" htmlFor="coTahunBerjalan">
+                                <input
+                                    type="number"
+                                    name="coTahunBerjalan"
+                                    placeholder="0"
+                                    value={formData.coTahunBerjalan}
+                                    onChange={(e) => setFormData({ ...formData, coTahunBerjalan: e.target.value })}
+                                />
+                            </FormField>
+
+                            <FormField label="Target NR (Billion IDR)" htmlFor="targetNr">
+                                <input
+                                    type="number"
+                                    name="targetNr"
+                                    placeholder="0"
+                                    value={formData.targetNr}
+                                    onChange={(e) => setFormData({ ...formData, targetNr: e.target.value })}
                                 />
                             </FormField>
                         </div>
@@ -200,8 +216,9 @@ export default function RevenueTargetPage() {
                             <TableHeader>
                                 <TableRow>
                                     <TableHead>SBU</TableHead>
-                                    <TableHead>Category</TableHead>
-                                    <TableHead className="text-right">Target Amount</TableHead>
+                                    <TableHead className="text-right">Target RKAP</TableHead>
+                                    <TableHead className="text-right">CO Tahun Berjalan</TableHead>
+                                    <TableHead className="text-right">Target NR</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
@@ -210,9 +227,14 @@ export default function RevenueTargetPage() {
                                         <TableCell className="font-medium">
                                             {target.sbuCode} - {target.sbuName}
                                         </TableCell>
-                                        <TableCell>{target.kategori}</TableCell>
                                         <TableCell className="text-right">
-                                            Rp {target.targetAmount.toLocaleString("id-ID")}
+                                            Rp {target.targetRkap.toLocaleString("id-ID")}
+                                        </TableCell>
+                                        <TableCell className="text-right">
+                                            Rp {target.coTahunBerjalan.toLocaleString("id-ID")}
+                                        </TableCell>
+                                        <TableCell className="text-right">
+                                            Rp {target.targetNr.toLocaleString("id-ID")}
                                         </TableCell>
                                     </TableRow>
                                 ))}

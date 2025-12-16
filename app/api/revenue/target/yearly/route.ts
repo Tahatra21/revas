@@ -14,7 +14,10 @@ export async function GET(req: Request) {
         s.code AS "sbuCode",
         s.name AS "sbuName",
         r.kategori,
-        r.target_amount AS "targetAmount"
+        r.target_amount AS "targetAmount",
+        COALESCE(r.target_rkap, 0) AS "targetRkap",
+        COALESCE(r.co_tahun_berjalan, 0) AS "coTahunBerjalan",
+        COALESCE(r.target_nr, 0) AS "targetNr"
       FROM revenue_target_yearly r
       LEFT JOIN master_sbu s ON r.sbu_id = s.id
       WHERE r.year = $1
@@ -26,7 +29,7 @@ export async function GET(req: Request) {
             sql += ` AND r.sbu_id = $${params.length}`;
         }
 
-        sql += " ORDER BY s.code, r.kategori";
+        sql += " ORDER BY s.code";
 
         const rows = await query(sql, params);
         return NextResponse.json(rows);
@@ -43,22 +46,36 @@ export async function POST(req: Request) {
     try {
         const body = await req.json();
 
-        if (!body.year || !body.sbuId || !body.kategori || body.targetAmount === undefined) {
+        if (!body.year || !body.sbuId) {
             return NextResponse.json(
-                { message: "year, sbuId, kategori, and targetAmount are required" },
+                { message: "year and sbuId are required" },
                 { status: 400 }
             );
         }
 
+        // Extract values with defaults
+        const targetRkap = body.targetRkap || 0;
+        const coTahunBerjalan = body.coTahunBerjalan || 0;
+        const targetNr = body.targetNr || 0;
+
         const sql = `
-      INSERT INTO revenue_target_yearly (year, sbu_id, kategori, target_amount)
-      VALUES ($1, $2, $3, $4)
-      ON CONFLICT (year, sbu_id, kategori)
-      DO UPDATE SET target_amount = EXCLUDED.target_amount,
-                    updated_at = NOW()
-      RETURNING id, year, sbu_id, kategori, target_amount AS "targetAmount"
+      INSERT INTO revenue_target_yearly (
+        year, sbu_id, kategori, target_amount, 
+        target_rkap, co_tahun_berjalan, target_nr
+      )
+      VALUES ($1, $2, 'TOTAL', 0, $3, $4, $5)
+      ON CONFLICT (year, sbu_id)
+      DO UPDATE SET 
+        target_rkap = EXCLUDED.target_rkap,
+        co_tahun_berjalan = EXCLUDED.co_tahun_berjalan,
+        target_nr = EXCLUDED.target_nr,
+        updated_at = NOW()
+      RETURNING id, year, sbu_id, 
+                target_rkap AS "targetRkap",
+                co_tahun_berjalan AS "coTahunBerjalan",
+                target_nr AS "targetNr"
     `;
-        const params = [body.year, body.sbuId, body.kategori, body.targetAmount];
+        const params = [body.year, body.sbuId, targetRkap, coTahunBerjalan, targetNr];
 
         const rows = await query(sql, params);
         return NextResponse.json(rows[0], { status: 201 });
