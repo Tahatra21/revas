@@ -303,14 +303,14 @@ export default function RevenueTargetPage() {
                                 {targets.map((target) => (
                                     <TableRow key={target.sbuCode}>
                                         <TableCell className="font-medium">{target.sbuCode}</TableCell>
-                                        <TableCell className="text-right">
-                                            Rp {target.targetRkap.toLocaleString("id-ID")} B
+                                        <TableCell className="text-right text-xs">
+                                            Rp {target.targetRkap.toLocaleString("id-ID")} M
                                         </TableCell>
-                                        <TableCell className="text-right">
-                                            Rp {target.coTahunBerjalan.toLocaleString("id-ID")} B
+                                        <TableCell className="text-right text-xs">
+                                            Rp {target.coTahunBerjalan.toLocaleString("id-ID")} M
                                         </TableCell>
-                                        <TableCell className="text-right">
-                                            Rp {target.targetNr.toLocaleString("id-ID")} B
+                                        <TableCell className="text-right text-xs">
+                                            Rp {target.targetNr.toLocaleString("id-ID")} M
                                         </TableCell>
                                         <TableCell className="text-right">
                                             <div className="flex gap-2 justify-end">
