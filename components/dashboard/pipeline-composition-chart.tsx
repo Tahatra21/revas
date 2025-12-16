@@ -49,10 +49,13 @@ export function PipelineCompositionChart({ data }: PipelineCompositionChartProps
                     verticalAlign="bottom"
                     height={36}
                     iconType="circle"
+                    formatter={(value, entry: any) => (
+                        <span className="text-slate-600 font-medium ml-1">
+                            {value} <span className="text-slate-400 font-normal">({entry.payload.value.toFixed(1)}M)</span>
+                        </span>
+                    )}
                 />
             </PieChart>
         </ResponsiveContainer>
     );
 }
-
-

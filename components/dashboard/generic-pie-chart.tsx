@@ -70,6 +70,11 @@ export function GenericPieChart({ data, colors = DEFAULT_COLORS, valuePrefix = "
                     align="center"
                     iconType="circle"
                     wrapperStyle={{ fontSize: "11px", paddingTop: "10px" }}
+                    formatter={(value, entry: any) => (
+                        <span className="text-slate-600 ml-1">
+                            {value} <span className="text-slate-400">({entry.payload.value.toFixed(1)}{valuePrefix === "Rp " ? "M" : ""})</span>
+                        </span>
+                    )}
                 />
             </PieChart>
         </ResponsiveContainer>
