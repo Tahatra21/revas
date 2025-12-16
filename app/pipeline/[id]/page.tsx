@@ -129,8 +129,8 @@ export default function PipelineDetailPage({ params }: { params: Promise<{ id: s
                             </Button>
                         </Link>
                         <div>
-                            <h1 className="text-4xl font-bold">Pipeline Detail</h1>
-                            <p className="text-primary-subtle">ID: {pipeline.id}</p>
+                            <h1 className="text-2xl font-bold">Pipeline Detail</h1>
+                            <p className="text-xs text-primary-subtle">ID: {pipeline.id}</p>
                         </div>
                     </div>
                     <div className="flex items-center gap-2">
@@ -166,7 +166,7 @@ export default function PipelineDetailPage({ params }: { params: Promise<{ id: s
                     <div className="grid gap-4 md:grid-cols-2">
                         <div>
                             <p className="text-xs text-primary-subtle mb-1">SBU</p>
-                            <p className="font-medium">{pipeline.sbuCode}</p>
+                            <p className="text-sm font-medium">{pipeline.sbuCode}</p>
                         </div>
                         <div>
                             <p className="text-xs text-primary-subtle mb-1">Customer</p>
