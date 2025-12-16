@@ -34,6 +34,10 @@ interface Pipeline {
     warna_status_potensi: string;
     current_status: string;
     periode_snapshot: string;
+    qty: number;
+    target_aktivasi: string;
+    category_2026: string;
+    sub_category: string;
 }
 
 export default function PipelineDetailPage({ params }: { params: Promise<{ id: string }> }) {
@@ -214,6 +218,10 @@ export default function PipelineDetailPage({ params }: { params: Promise<{ id: s
                             <p className="text-xs text-primary-subtle mb-1">Revenue Type</p>
                             <p className="text-sm font-medium">{pipeline.type_pendapatan || "-"}</p>
                         </div>
+                        <div>
+                            <p className="text-xs text-primary-subtle mb-1">QTY</p>
+                            <p className="text-sm font-medium">{pipeline.qty || "-"}</p>
+                        </div>
                     </div>
                 </SectionShell>
 
@@ -277,6 +285,20 @@ export default function PipelineDetailPage({ params }: { params: Promise<{ id: s
                     </div>
                 </SectionShell>
 
+                {/* Categories */}
+                <SectionShell title="Categories">
+                    <div className="grid gap-4 md:grid-cols-2">
+                        <div>
+                            <p className="text-xs text-primary-subtle mb-1">New Category (2026)</p>
+                            <p className="text-sm font-medium">{pipeline.category_2026 || "-"}</p>
+                        </div>
+                        <div>
+                            <p className="text-xs text-primary-subtle mb-1">Sub Category</p>
+                            <p className="text-sm font-medium">{pipeline.sub_category || "-"}</p>
+                        </div>
+                    </div>
+                </SectionShell>
+
                 {/* Status Information */}
                 <SectionShell title="Status Information">
                     <div className="grid gap-4 md:grid-cols-2">
@@ -299,9 +321,16 @@ export default function PipelineDetailPage({ params }: { params: Promise<{ id: s
                                 {new Date(pipeline.periode_snapshot).toLocaleDateString("id-ID")}
                             </p>
                         </div>
+                        <div>
+                            <p className="text-xs text-primary-subtle mb-1">TARGET Aktivasi</p>
+                            <p className="text-sm font-medium">
+                                {pipeline.target_aktivasi ? new Date(pipeline.target_aktivasi).toLocaleDateString("id-ID") : "-"}
+                            </p>
+                        </div>
                     </div>
                 </SectionShell>
             </div>
         </main>
     );
 }
+```
