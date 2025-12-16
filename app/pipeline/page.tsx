@@ -336,7 +336,7 @@ export default function PipelinePage() {
                                             return (
                                                 <Button
                                                     key={pageNum}
-                                                    variant={currentPage === pageNum ? "default" : "secondary"}
+                                                    variant={currentPage === pageNum ? "primary" : "secondary"}
                                                     size="sm"
                                                     onClick={() => setCurrentPage(pageNum)}
                                                     className="text-xs min-w-[32px]"

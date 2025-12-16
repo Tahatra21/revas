@@ -15,6 +15,7 @@ export async function GET(req: Request) {
         s.code AS "sbuCode",
         c.name AS "customerName",
         p.nama_layanan AS "namaLayanan",
+        p.segment_industri AS "segmentIndustri",
         p.est_revenue AS "estRevenue",
         p.current_status AS "currentStatus",
         p.warna_status_potensi AS "warnaStatusPotensi",
