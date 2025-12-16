@@ -61,6 +61,8 @@ export default function SBUPage() {
             const url = editingId ? `/api/master/sbu/${editingId}` : "/api/master/sbu";
             const method = editingId ? "PUT" : "POST";
 
+            console.log("Saving SBU:", { url, method, formData });
+
             const response = await fetch(url, {
                 method,
                 headers: { "Content-Type": "application/json" },
@@ -71,13 +73,23 @@ export default function SBUPage() {
                 }),
             });
 
-            if (!response.ok) throw new Error("Failed to save SBU");
+            console.log("Response status:", response.status);
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                console.error("API Error:", errorData);
+                throw new Error(errorData.message || "Failed to save SBU");
+            }
+
+            const result = await response.json();
+            console.log("Save successful:", result);
 
             await fetchData();
             resetForm();
-        } catch (error) {
+            alert(editingId ? "SBU berhasil diupdate" : "SBU berhasil dibuat");
+        } catch (error: any) {
             console.error("Error saving SBU:", error);
-            alert("Failed to save SBU");
+            alert(`Gagal menyimpan SBU: ${error.message}`);
         }
     };
 
