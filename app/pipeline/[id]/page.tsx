@@ -14,6 +14,11 @@ interface Pipeline {
     sbuCode: string;
     customerName: string;
     jenis_layanan: string;
+    service_category_id: number;
+    service_category2_id: number;
+    segment_industri: string;
+    b2b_flag: string;
+    type_pendapatan: string;
     nama_layanan: string;
     kapasitas: string;
     satuan_kapasitas: string;
@@ -23,7 +28,9 @@ interface Pipeline {
     nilai_mrc: number;
     est_revenue: number;
     mapping_revenue: number;
-    type_pendapatan: string;
+    sumber_anggaran: string;
+    fungsi: string;
+    no_invoice: string;
     warna_status_potensi: string;
     current_status: string;
     periode_snapshot: string;
@@ -226,6 +233,46 @@ export default function PipelineDetailPage({ params }: { params: Promise<{ id: s
                         <div>
                             <p className="text-xs text-primary-subtle mb-1">Terminating</p>
                             <p className="font-medium">{pipeline.terminating || "-"}</p>
+                        </div>
+                    </div>
+                </SectionShell>
+
+                {/* Business Information */}
+                <SectionShell title="Business Information">
+                    <div className="grid gap-4 md:grid-cols-2">
+                        <div>
+                            <p className="text-xs text-primary-subtle mb-1">Segment Industri</p>
+                            <p className="font-medium">{pipeline.segment_industri || "-"}</p>
+                        </div>
+                        <div>
+                            <p className="text-xs text-primary-subtle mb-1">B2B Flag</p>
+                            <p className="font-medium">{pipeline.b2b_flag || "-"}</p>
+                        </div>
+                        <div>
+                            <p className="text-xs text-primary-subtle mb-1">Service Category ID</p>
+                            <p className="font-medium">{pipeline.service_category_id || "-"}</p>
+                        </div>
+                        <div>
+                            <p className="text-xs text-primary-subtle mb-1">Service Category 2 ID</p>
+                            <p className="font-medium">{pipeline.service_category2_id || "-"}</p>
+                        </div>
+                    </div>
+                </SectionShell>
+
+                {/* Budget & Finance */}
+                <SectionShell title="Budget & Finance">
+                    <div className="grid gap-4 md:grid-cols-2">
+                        <div>
+                            <p className="text-xs text-primary-subtle mb-1">Sumber Anggaran</p>
+                            <p className="font-medium">{pipeline.sumber_anggaran || "-"}</p>
+                        </div>
+                        <div>
+                            <p className="text-xs text-primary-subtle mb-1">Fungsi</p>
+                            <p className="font-medium">{pipeline.fungsi || "-"}</p>
+                        </div>
+                        <div>
+                            <p className="text-xs text-primary-subtle mb-1">No Invoice</p>
+                            <p className="font-medium">{pipeline.no_invoice || "-"}</p>
                         </div>
                     </div>
                 </SectionShell>
