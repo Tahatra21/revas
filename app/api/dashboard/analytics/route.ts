@@ -106,6 +106,36 @@ export async function GET(req: Request) {
             [year]
         );
 
+        // 7. Pipeline by Segment (for Pie Chart)
+        const pipelineBySegment = await query(
+            `
+            SELECT COALESCE(UPPER(segment_industri), 'UNCATEGORIZED') as name, SUM(est_revenue) as value
+            FROM pipeline_potensi
+            WHERE EXTRACT(YEAR FROM periode_snapshot) = $1
+            GROUP BY UPPER(segment_industri)
+            ORDER BY value DESC
+            LIMIT 6
+            `,
+            [year]
+        );
+
+        // 8. Pipeline by Pelanggan Group (for Pie Chart)
+        const pipelineByGroup = await query(
+            `
+            SELECT 
+                COALESCE(sg.name, 'Non-Group') as name, 
+                SUM(p.est_revenue) as value
+            FROM pipeline_potensi p
+            LEFT JOIN master_customer c ON p.customer_id = c.id
+            LEFT JOIN master_segment_pln_group sg ON c.pln_group_segment_id = sg.id
+            WHERE EXTRACT(YEAR FROM p.periode_snapshot) = $1
+            GROUP BY sg.name
+            ORDER BY value DESC
+            LIMIT 6
+            `,
+            [year]
+        );
+
         return NextResponse.json({
             year,
             summary: {
@@ -134,6 +164,10 @@ export async function GET(req: Request) {
 
     } catch (error) {
         console.error("Error fetching analytics:", error);
-        return NextResponse.json({ message: "Failed to fetch analytics" }, { status: 500 });
+        return NextResponse.json({
+            message: "Failed to fetch analytics",
+            error: error instanceof Error ? error.message : String(error)
+        }, { status: 500 });
     }
 }
+

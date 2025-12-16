@@ -18,7 +18,7 @@ const COLORS: Record<string, string> = {
 export function PipelineCompositionChart({ data }: PipelineCompositionChartProps) {
     const chartData = data.map((item) => ({
         name: item.color,
-        value: item.value / 1000000, // Convert to millions
+        value: item.value / 1000000000, // Convert to Billions
     }));
 
     return (
@@ -33,7 +33,7 @@ export function PipelineCompositionChart({ data }: PipelineCompositionChartProps
                     fill="#8884d8"
                     paddingAngle={5}
                     dataKey="value"
-                    label={(entry) => `${entry.name}: ${entry.value.toFixed(0)}M`}
+                    label={(entry) => `${entry.name}: ${entry.value.toFixed(1)}M`}
                 >
                     {chartData.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={COLORS[entry.name] || "#94a3b8"} />

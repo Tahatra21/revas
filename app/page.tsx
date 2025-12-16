@@ -99,14 +99,14 @@ export default function HomePage() {
                 <section className="grid gap-4 md:grid-cols-4">
                     <KpiCard
                         label="Weighted Projection"
-                        value={`Rp ${(summary.weightedRevenue / 1000000000).toFixed(1)} B`}
+                        value={`Rp ${(summary.weightedRevenue / 1000000000).toLocaleString("id-ID", { maximumFractionDigits: 1 })} M`}
                         icon={<TrendingUp className="w-4 h-4" />}
                         subLabel="Probability adjusted (90/50/10)"
                         tone="positive"
                     />
                     <KpiCard
                         label="Total Pipeline Value"
-                        value={`Rp ${(summary.totalPipelineValue / 1000000000).toFixed(1)} B`}
+                        value={`Rp ${(summary.totalPipelineValue / 1000000000).toLocaleString("id-ID", { maximumFractionDigits: 1 })} M`}
                         icon={<DollarSign className="w-4 h-4" />}
                         subLabel="Gross potential value"
                     />

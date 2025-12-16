@@ -53,7 +53,7 @@ export function SbuLeaderboard({ data }: SbuLeaderboardProps) {
                             </div>
                         </TableCell>
                         <TableCell className="text-right align-top">
-                            <div className="font-mono font-medium">Rp {(item.value / 1000000000).toFixed(2)} B</div>
+                            <div className="font-mono font-medium">Rp {(item.value / 1000000000).toLocaleString("id-ID", { maximumFractionDigits: 2 })} M</div>
                             <div className="flex items-center justify-end gap-1 text-xs text-primary-subtle mt-1">
                                 <TrendingUp className="w-3 h-3" />
                                 <span>{item.deals} deals</span>

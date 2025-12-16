@@ -14,10 +14,10 @@ interface HorizontalBarChartProps {
 export function HorizontalBarChart({ data, color = "#3b82f6", valuePrefix = "Rp " }: HorizontalBarChartProps) {
     const formatValue = (value: number) => {
         if (value >= 1000000000) {
-            return `${(value / 1000000000).toFixed(1)}B`;
+            return `${(value / 1000000000).toFixed(1)}M`;
         }
         if (value >= 1000000) {
-            return `${(value / 1000000).toFixed(1)}M`;
+            return `${(value / 1000000).toFixed(1)}Jt`;
         }
         return value.toLocaleString();
     };
