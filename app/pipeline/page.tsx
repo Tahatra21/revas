@@ -23,6 +23,8 @@ interface Pipeline {
     currentStatus: string;
     warnaStatusPotensi: "HIJAU" | "KUNING" | "MERAH";
     periodeSnapshot: string;
+    segmentIndustri?: string;
+    newCategory?: string;
 }
 
 interface SBU {
@@ -249,6 +251,8 @@ export default function PipelinePage() {
                                         <TableHead className="text-xs">SBU</TableHead>
                                         <TableHead className="text-xs">Customer</TableHead>
                                         <TableHead className="text-xs">Service</TableHead>
+                                        <TableHead className="text-xs">Segment Industri</TableHead>
+                                        <TableHead className="text-xs">New Category</TableHead>
                                         <TableHead className="text-right text-xs">Est Revenue</TableHead>
                                         <TableHead className="text-xs">Status</TableHead>
                                         <TableHead className="text-xs">Color</TableHead>
@@ -265,6 +269,12 @@ export default function PipelinePage() {
                                             <TableCell className="text-xs">{pipeline.customerName}</TableCell>
                                             <TableCell className="max-w-xs truncate text-xs">
                                                 {pipeline.namaLayanan}
+                                            </TableCell>
+                                            <TableCell className="text-xs">
+                                                {pipeline.segmentIndustri || "-"}
+                                            </TableCell>
+                                            <TableCell className="text-xs">
+                                                {pipeline.newCategory || "-"}
                                             </TableCell>
                                             <TableCell className="text-right text-xs font-mono">
                                                 {formatRevenue(pipeline.estRevenue)}
@@ -299,22 +309,48 @@ export default function PipelinePage() {
                             {totalPages > 1 && (
                                 <div className="flex items-center justify-between mt-4 pt-4 border-t border-surface-border">
                                     <div className="text-xs text-primary-subtle">
-                                        Page {currentPage} of {totalPages}
+                                        Showing {startIndex + 1}-{Math.min(endIndex, filteredPipelines.length)} of {filteredPipelines.length}
                                     </div>
-                                    <div className="flex gap-2">
+                                    <div className="flex gap-1">
                                         <Button
                                             variant="secondary"
                                             size="sm"
                                             onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                                             disabled={currentPage === 1}
+                                            className="text-xs"
                                         >
                                             Previous
                                         </Button>
+                                        {Array.from({ length: Math.min(totalPages, 7) }, (_, i) => {
+                                            let pageNum;
+                                            if (totalPages <= 7) {
+                                                pageNum = i + 1;
+                                            } else if (currentPage <= 4) {
+                                                pageNum = i + 1;
+                                            } else if (currentPage >= totalPages - 3) {
+                                                pageNum = totalPages - 6 + i;
+                                            } else {
+                                                pageNum = currentPage - 3 + i;
+                                            }
+
+                                            return (
+                                                <Button
+                                                    key={pageNum}
+                                                    variant={currentPage === pageNum ? "default" : "secondary"}
+                                                    size="sm"
+                                                    onClick={() => setCurrentPage(pageNum)}
+                                                    className="text-xs min-w-[32px]"
+                                                >
+                                                    {pageNum}
+                                                </Button>
+                                            );
+                                        })}
                                         <Button
                                             variant="secondary"
                                             size="sm"
                                             onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
                                             disabled={currentPage === totalPages}
+                                            className="text-xs"
                                         >
                                             Next
                                         </Button>
