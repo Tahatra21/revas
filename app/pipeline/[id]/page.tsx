@@ -170,15 +170,15 @@ export default function PipelineDetailPage({ params }: { params: Promise<{ id: s
                         </div>
                         <div>
                             <p className="text-xs text-primary-subtle mb-1">Customer</p>
-                            <p className="font-medium">{pipeline.customerName}</p>
+                            <p className="text-sm font-medium">{pipeline.customerName}</p>
                         </div>
                         <div>
                             <p className="text-xs text-primary-subtle mb-1">Service Name</p>
-                            <p className="font-medium">{pipeline.nama_layanan}</p>
+                            <p className="text-sm font-medium">{pipeline.nama_layanan}</p>
                         </div>
                         <div>
                             <p className="text-xs text-primary-subtle mb-1">Service Type</p>
-                            <p className="font-medium">{pipeline.jenis_layanan || "-"}</p>
+                            <p className="text-sm font-medium">{pipeline.jenis_layanan || "-"}</p>
                         </div>
                     </div>
                 </SectionShell>
@@ -188,31 +188,31 @@ export default function PipelineDetailPage({ params }: { params: Promise<{ id: s
                     <div className="grid gap-4 md:grid-cols-2">
                         <div>
                             <p className="text-xs text-primary-subtle mb-1">Estimated Revenue</p>
-                            <p className="text-2xl font-semibold font-mono">
+                            <p className="text-xl font-semibold font-mono">
                                 {formatRevenue(pipeline.est_revenue)}
                             </p>
                         </div>
                         <div>
                             <p className="text-xs text-primary-subtle mb-1">Mapping Revenue</p>
-                            <p className="text-2xl font-semibold font-mono">
+                            <p className="text-xl font-semibold font-mono">
                                 {formatRevenue(pipeline.mapping_revenue || 0)}
                             </p>
                         </div>
                         <div>
                             <p className="text-xs text-primary-subtle mb-1">OTC Value</p>
-                            <p className="font-medium font-mono">
+                            <p className="text-sm font-medium font-mono">
                                 {formatRevenue(pipeline.nilai_otc || 0)}
                             </p>
                         </div>
                         <div>
                             <p className="text-xs text-primary-subtle mb-1">MRC Value</p>
-                            <p className="font-medium font-mono">
+                            <p className="text-sm font-medium font-mono">
                                 {formatRevenue(pipeline.nilai_mrc || 0)}
                             </p>
                         </div>
                         <div>
                             <p className="text-xs text-primary-subtle mb-1">Revenue Type</p>
-                            <p className="font-medium">{pipeline.type_pendapatan || "-"}</p>
+                            <p className="text-sm font-medium">{pipeline.type_pendapatan || "-"}</p>
                         </div>
                     </div>
                 </SectionShell>
@@ -222,17 +222,17 @@ export default function PipelineDetailPage({ params }: { params: Promise<{ id: s
                     <div className="grid gap-4 md:grid-cols-2">
                         <div>
                             <p className="text-xs text-primary-subtle mb-1">Capacity</p>
-                            <p className="font-medium">
+                            <p className="text-sm font-medium">
                                 {pipeline.kapasitas || "-"} {pipeline.satuan_kapasitas || ""}
                             </p>
                         </div>
                         <div>
                             <p className="text-xs text-primary-subtle mb-1">Originating</p>
-                            <p className="font-medium">{pipeline.originating || "-"}</p>
+                            <p className="text-sm font-medium">{pipeline.originating || "-"}</p>
                         </div>
                         <div>
                             <p className="text-xs text-primary-subtle mb-1">Terminating</p>
-                            <p className="font-medium">{pipeline.terminating || "-"}</p>
+                            <p className="text-sm font-medium">{pipeline.terminating || "-"}</p>
                         </div>
                     </div>
                 </SectionShell>
@@ -242,19 +242,19 @@ export default function PipelineDetailPage({ params }: { params: Promise<{ id: s
                     <div className="grid gap-4 md:grid-cols-2">
                         <div>
                             <p className="text-xs text-primary-subtle mb-1">Segment Industri</p>
-                            <p className="font-medium">{pipeline.segment_industri || "-"}</p>
+                            <p className="text-sm font-medium">{pipeline.segment_industri || "-"}</p>
                         </div>
                         <div>
                             <p className="text-xs text-primary-subtle mb-1">B2B Flag</p>
-                            <p className="font-medium">{pipeline.b2b_flag || "-"}</p>
+                            <p className="text-sm font-medium">{pipeline.b2b_flag || "-"}</p>
                         </div>
                         <div>
                             <p className="text-xs text-primary-subtle mb-1">Service Category ID</p>
-                            <p className="font-medium">{pipeline.service_category_id || "-"}</p>
+                            <p className="text-sm font-medium">{pipeline.service_category_id || "-"}</p>
                         </div>
                         <div>
                             <p className="text-xs text-primary-subtle mb-1">Service Category 2 ID</p>
-                            <p className="font-medium">{pipeline.service_category2_id || "-"}</p>
+                            <p className="text-sm font-medium">{pipeline.service_category2_id || "-"}</p>
                         </div>
                     </div>
                 </SectionShell>
@@ -264,15 +264,15 @@ export default function PipelineDetailPage({ params }: { params: Promise<{ id: s
                     <div className="grid gap-4 md:grid-cols-2">
                         <div>
                             <p className="text-xs text-primary-subtle mb-1">Sumber Anggaran</p>
-                            <p className="font-medium">{pipeline.sumber_anggaran || "-"}</p>
+                            <p className="text-sm font-medium">{pipeline.sumber_anggaran || "-"}</p>
                         </div>
                         <div>
                             <p className="text-xs text-primary-subtle mb-1">Fungsi</p>
-                            <p className="font-medium">{pipeline.fungsi || "-"}</p>
+                            <p className="text-sm font-medium">{pipeline.fungsi || "-"}</p>
                         </div>
                         <div>
                             <p className="text-xs text-primary-subtle mb-1">No Invoice</p>
-                            <p className="font-medium">{pipeline.no_invoice || "-"}</p>
+                            <p className="text-sm font-medium">{pipeline.no_invoice || "-"}</p>
                         </div>
                     </div>
                 </SectionShell>
@@ -291,11 +291,11 @@ export default function PipelineDetailPage({ params }: { params: Promise<{ id: s
                         </div>
                         <div>
                             <p className="text-xs text-primary-subtle mb-1">Current Status</p>
-                            <p className="font-medium">{pipeline.current_status || "-"}</p>
+                            <p className="text-sm font-medium">{pipeline.current_status || "-"}</p>
                         </div>
                         <div>
                             <p className="text-xs text-primary-subtle mb-1">Period Snapshot</p>
-                            <p className="font-medium">
+                            <p className="text-sm font-medium">
                                 {new Date(pipeline.periode_snapshot).toLocaleDateString("id-ID")}
                             </p>
                         </div>
