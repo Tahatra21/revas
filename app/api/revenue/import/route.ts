@@ -198,7 +198,9 @@ export async function POST(req: NextRequest) {
 
             // Process each detail row and convert to summary format
             for (const detailRow of detailRowsToInsert) {
-                const [, sbuCode, grandTotal] = detailRow;
+                // detailRow structure: [importId, sbuCode, grandTotal, grandTotalBillion, rawJson, rowNumber]
+                const sbuCode = detailRow[1]; // Index 1 = sbuCode
+                const grandTotal = detailRow[2]; // Index 2 = grandTotal
 
                 // Create summary row data
                 const rowData: any = {
