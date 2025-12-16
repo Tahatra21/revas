@@ -45,6 +45,7 @@ export async function GET(req: Request) {
 export async function POST(req: Request) {
     try {
         const body = await req.json();
+        console.log("Target POST request body:", body);
 
         if (!body.year || !body.sbuId) {
             return NextResponse.json(
@@ -77,12 +78,22 @@ export async function POST(req: Request) {
     `;
         const params = [body.year, body.sbuId, targetRkap, coTahunBerjalan, targetNr];
 
+        console.log("Executing SQL with params:", params);
+
         const rows = await query(sql, params);
+        console.log("Query result:", rows[0]);
+
         return NextResponse.json(rows[0], { status: 201 });
-    } catch (error) {
+    } catch (error: any) {
         console.error("Error creating/updating yearly target:", error);
+        console.error("Error details:", {
+            message: error.message,
+            code: error.code,
+            detail: error.detail,
+            constraint: error.constraint
+        });
         return NextResponse.json(
-            { message: "Failed to create/update yearly target" },
+            { message: "Failed to create/update yearly target", error: error.message },
             { status: 500 }
         );
     }
