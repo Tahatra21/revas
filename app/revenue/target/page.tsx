@@ -100,26 +100,35 @@ export default function RevenueTargetPage() {
         }
 
         try {
+            const payload = {
+                year: year,
+                sbuId: Number(formData.sbuId),
+                targetRkap: Number(formData.targetRkap) || 0,
+                coTahunBerjalan: Number(formData.coTahunBerjalan) || 0,
+                targetNr: Number(formData.targetNr) || 0,
+            };
+
+            console.log("Saving target with payload:", payload);
+
             const response = await fetch("/api/revenue/target/yearly", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    year: year,
-                    sbuId: Number(formData.sbuId),
-                    targetRkap: Number(formData.targetRkap) || 0,
-                    coTahunBerjalan: Number(formData.coTahunBerjalan) || 0,
-                    targetNr: Number(formData.targetNr) || 0,
-                }),
+                body: JSON.stringify(payload),
             });
 
-            if (!response.ok) throw new Error("Failed to save target");
+            const data = await response.json();
+            console.log("Save response:", data);
+
+            if (!response.ok) {
+                throw new Error(data.message || "Failed to save target");
+            }
 
             await fetchTargets();
             resetForm();
             alert("Target saved successfully!");
-        } catch (error) {
+        } catch (error: any) {
             console.error("Error saving target:", error);
-            alert("Failed to save target");
+            alert(`Failed to save target: ${error.message}`);
         }
     };
 
