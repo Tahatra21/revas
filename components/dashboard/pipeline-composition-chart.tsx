@@ -18,7 +18,8 @@ const COLORS: Record<string, string> = {
 export function PipelineCompositionChart({ data }: PipelineCompositionChartProps) {
     const chartData = data.map((item) => ({
         name: item.color,
-        value: item.value / 1000000000, // Convert to Billions
+        value: item.value / 1000000000, // Convert to Billions for display
+        rawValue: item.value
     }));
 
     return (
@@ -40,10 +41,16 @@ export function PipelineCompositionChart({ data }: PipelineCompositionChartProps
                 </Pie>
                 <Tooltip
                     contentStyle={{
-                        backgroundColor: "#020617",
-                        borderColor: "#1e293b",
+                        backgroundColor: "#ffffff",
+                        borderColor: "#e2e8f0",
                         borderRadius: "8px",
+                        color: "#1e293b",
+                        boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)"
                     }}
+                    formatter={(value: number, name: string, props: any) => [
+                        `Rp ${props.payload.rawValue.toLocaleString("id-ID")}`,
+                        name
+                    ]}
                 />
                 <Legend
                     verticalAlign="bottom"
