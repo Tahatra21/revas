@@ -217,14 +217,24 @@ export async function POST(req: NextRequest) {
 
             console.log(`Aggregated ${sbuAggregation.size} unique SBUs from ${detailRowsToInsert.length} detail rows`);
 
-            // Process aggregated data
+            // Process aggregated data and build row_data
             for (const [sbuCode, totalBillion] of sbuAggregation) {
+                // Create row_data JSON for display
+                const rowData: any = {
+                    "BIDANG/SBU": sbuCode,
+                    "TARGET": 0,
+                    [`REALISASI ${getMonthName(periodMonth).toUpperCase()} ${periodYear}`]: totalBillion,
+                    "ACHIEVEMENT %": 0,
+                    "GAP": 0 - totalBillion
+                };
+
                 summaryRowsToInsert.push([
                     importId,
                     periodMonth,
                     periodYear,
                     sbuCode,
-                    totalBillion
+                    totalBillion,
+                    JSON.stringify(rowData)
                 ]);
             }
 
@@ -232,8 +242,8 @@ export async function POST(req: NextRequest) {
             for (const s of summaryRowsToInsert) {
                 await client.query(
                     `INSERT INTO revenue_summary_pln (
-                        import_id, period_month, period_year, kode_bidang, realisasi_billion
-                    ) VALUES ($1, $2, $3, $4, $5)`,
+                        import_id, period_month, period_year, kode_bidang, realisasi_billion, row_data
+                    ) VALUES ($1, $2, $3, $4, $5, $6)`,
                     s
                 );
             }
