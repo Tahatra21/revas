@@ -1,18 +1,17 @@
 import { NextResponse } from "next/server";
-import { query } from "@/lib/db";
+import { prisma } from "@/lib/db";
 
 export async function GET() {
     try {
-        const rows = await query<{
-            id: number;
-            code: string;
-            name: string;
-            is_active: boolean;
-        }>(`
-      SELECT id, code, name, is_active
-      FROM master_sbu
-      ORDER BY code
-    `);
+        const rows = await prisma.master_sbu.findMany({
+            orderBy: { code: 'asc' },
+            select: {
+                id: true,
+                code: true,
+                name: true,
+                is_active: true
+            }
+        });
 
         return NextResponse.json(rows);
     } catch (error) {
@@ -35,19 +34,25 @@ export async function POST(req: Request) {
             );
         }
 
-        const sql = `
-      INSERT INTO master_sbu (code, name, is_active)
-      VALUES ($1, $2, COALESCE($3, TRUE))
-      RETURNING id, code, name, is_active
-    `;
-        const params = [body.code, body.name, body.is_active];
+        const newSbu = await prisma.master_sbu.create({
+            data: {
+                code: body.code,
+                name: body.name,
+                is_active: body.is_active ?? true
+            },
+            select: {
+                id: true,
+                code: true,
+                name: true,
+                is_active: true
+            }
+        });
 
-        const rows = await query(sql, params);
-        return NextResponse.json(rows[0], { status: 201 });
+        return NextResponse.json(newSbu, { status: 201 });
     } catch (error: any) {
         console.error("Error creating SBU:", error);
 
-        if (error.code === "23505") {
+        if (error.code === "P2002") {
             return NextResponse.json(
                 { message: "SBU code already exists" },
                 { status: 409 }

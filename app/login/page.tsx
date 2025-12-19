@@ -55,7 +55,7 @@ export default function LoginPage() {
             <div className="w-full max-w-md">
                 {/* Logo */}
                 <div className="text-center mb-8">
-                    <h1 className="text-5xl font-bold mb-2">Revas</h1>
+                    <h1 className="text-5xl font-bold mb-2">REV.AS</h1>
                     <p className="text-primary-subtle">Revenue Assurance Monitoring Application</p>
                 </div>
 
@@ -96,22 +96,11 @@ export default function LoginPage() {
                             Sign In
                         </Button>
                     </form>
-
-                    {/* Default Credentials Info */}
-                    <div className="mt-6 p-4 rounded-xl bg-bg border border-surface-border">
-                        <p className="text-xs text-primary-subtle mb-2">Default Credentials:</p>
-                        <p className="text-sm">
-                            <span className="font-medium">Username:</span> admin
-                        </p>
-                        <p className="text-sm">
-                            <span className="font-medium">Password:</span> admin123
-                        </p>
-                    </div>
                 </div>
 
                 {/* Footer */}
                 <p className="text-center text-xs text-primary-subtle mt-6">
-                    PLN Group © 2025
+                    Solution Architect PLN 1 © 2025
                 </p>
             </div>
         </div>

@@ -4,7 +4,7 @@ import * as React from "react";
 import clsx from "clsx";
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    variant?: "primary" | "secondary" | "ghost" | "danger";
+    variant?: "primary" | "secondary" | "ghost" | "danger" | "outline";
     size?: "sm" | "md" | "lg";
     isLoading?: boolean;
 }
@@ -14,6 +14,7 @@ const variantStyles = {
     secondary: "bg-surface text-primary hover:bg-surface-border border-surface-border",
     ghost: "bg-transparent text-primary hover:bg-surface border-transparent",
     danger: "bg-red-600 text-white hover:bg-red-700 border-red-600",
+    outline: "bg-transparent border-input hover:bg-accent hover:text-accent-foreground",
 };
 
 const sizeStyles = {

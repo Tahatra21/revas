@@ -2,40 +2,20 @@
 
 import { useState, useEffect } from "react";
 import { SectionShell } from "@/components/ui/section-shell";
-import { FormField } from "@/components/ui/form-field";
 import { Button } from "@/components/ui/button";
-import {
-    Table,
-    TableHeader,
-    TableBody,
-    TableRow,
-    TableHead,
-    TableCell,
-} from "@/components/ui/table";
-
-interface SBU {
-    id: number;
-    code: string;
-    name: string;
-}
-
-interface Actual {
-    id: number;
-    year: number;
-    month: number;
-    monthName: string;
-    sbuCode: string;
-    sbuName: string;
-    typePendapatan: string;
-    amount: number;
-}
+import { ActualComparisonTable } from "@/components/revenue/actual-comparison-table";
+import { FormField } from "@/components/ui/form-field";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 export default function RevenueActualPage() {
-    const [sbus, setSbus] = useState<SBU[]>([]);
-    const [actuals, setActuals] = useState<Actual[]>([]);
-    const [loading, setLoading] = useState(true);
     const [year, setYear] = useState(new Date().getFullYear());
-    const [month, setMonth] = useState(new Date().getMonth() + 1);
+    const [comparisonData, setComparisonData] = useState([]);
+    const [weights, setWeights] = useState<number[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [showInput, setShowInput] = useState(false);
+
+    // Form State
+    const [sbus, setSbus] = useState<any[]>([]);
     const [formData, setFormData] = useState({
         year: new Date().getFullYear().toString(),
         month: (new Date().getMonth() + 1).toString(),
@@ -45,48 +25,40 @@ export default function RevenueActualPage() {
     });
 
     useEffect(() => {
+        fetchComparison();
         fetchSBUs();
-    }, []);
+    }, [year]);
 
-    useEffect(() => {
-        fetchActuals();
-    }, [year, month]);
-
-    const fetchSBUs = async () => {
-        try {
-            const response = await fetch("/api/master/sbu");
-            const data = await response.json();
-            setSbus(data);
-        } catch (error) {
-            console.error("Error fetching SBUs:", error);
-        }
-    };
-
-    const fetchActuals = async () => {
+    const fetchComparison = async () => {
         try {
             setLoading(true);
-            const response = await fetch(
-                `/api/revenue/actual/monthly?year=${year}&month=${month}`
-            );
-            const data = await response.json();
-            setActuals(data);
-        } catch (error) {
-            console.error("Error fetching actuals:", error);
+            const res = await fetch(`/api/revenue/actual/comparison?year=${year}`);
+            if (res.ok) {
+                const json = await res.json();
+                if (json.data) {
+                    setComparisonData(json.data);
+                    setWeights(json.weights || []);
+                } else {
+                    // Fallback for old structure if any
+                    setComparisonData(json);
+                }
+            }
+        } catch (e) {
+            console.error("Failed to fetch comparison", e);
         } finally {
             setLoading(false);
         }
     };
 
+    const fetchSBUs = async () => {
+        const res = await fetch("/api/master/sbu");
+        if (res.ok) setSbus(await res.json());
+    };
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-
-        if (!formData.sbuId || !formData.amount) {
-            alert("Please fill all required fields");
-            return;
-        }
-
         try {
-            const response = await fetch("/api/revenue/actual/monthly", {
+            const res = await fetch("/api/revenue/actual/monthly", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -97,164 +69,75 @@ export default function RevenueActualPage() {
                     amount: Number(formData.amount),
                 }),
             });
-
-            if (!response.ok) throw new Error("Failed to save actual revenue");
-
-            await fetchActuals();
-            setFormData({
-                ...formData,
-                sbuId: "",
-                amount: "",
-            });
-            alert("Actual revenue saved successfully!");
-        } catch (error) {
-            console.error("Error saving actual revenue:", error);
-            alert("Failed to save actual revenue");
+            if (res.ok) {
+                alert("Saved!");
+                fetchComparison(); // Refresh table
+                setFormData({ ...formData, amount: "" });
+            }
+        } catch (e) {
+            console.error(e);
         }
     };
 
-    const monthNames = [
-        "January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
-    ];
-
     return (
         <main className="min-h-screen p-8">
-            <div className="max-w-6xl mx-auto space-y-6">
-                {/* Header */}
-                <div>
-                    <h1 className="text-4xl font-bold mb-2">Actual Revenue</h1>
-                    <p className="text-primary-subtle">Record monthly actual revenue by SBU</p>
+            <div className="max-w-[95%] mx-auto space-y-6">
+                <div className="flex justify-between items-end">
+                    <div>
+                        <h1 className="text-4xl font-bold mb-2">Revenue Actual & Comparison</h1>
+                        <p className="text-primary-subtle">Realization vs Weighted Targets</p>
+                    </div>
+                    <div className="flex gap-4 items-center">
+                        <label className="font-bold">Year:</label>
+                        <select
+                            value={year} onChange={(e) => setYear(Number(e.target.value))}
+                            className="px-4 py-2 border rounded-lg"
+                        >
+                            {[2024, 2025, 2026].map(y => <option key={y} value={y}>{y}</option>)}
+                        </select>
+                    </div>
                 </div>
 
-                {/* Input Form */}
-                <SectionShell title="Add/Update Actual" description="Enter actual revenue (will upsert if exists)">
-                    <form onSubmit={handleSubmit} className="space-y-4">
-                        <div className="grid gap-4 md:grid-cols-5">
-                            <FormField label="Year" htmlFor="year" required>
-                                <input
-                                    type="number"
-                                    name="year"
-                                    value={formData.year}
-                                    onChange={(e) => setFormData({ ...formData, year: e.target.value })}
-                                />
-                            </FormField>
+                <div className="border rounded-xl p-4 bg-white shadow-sm">
+                    <button
+                        onClick={() => setShowInput(!showInput)}
+                        className="flex items-center gap-2 font-bold text-primary w-full justify-between"
+                    >
+                        <span>Input Monthly Actual Revenue</span>
+                        {showInput ? <ChevronUp /> : <ChevronDown />}
+                    </button>
 
-                            <FormField label="Month" htmlFor="month" required>
-                                <select
-                                    name="month"
-                                    value={formData.month}
-                                    onChange={(e) => setFormData({ ...formData, month: e.target.value })}
-                                >
-                                    {monthNames.map((name, idx) => (
-                                        <option key={idx + 1} value={idx + 1}>
-                                            {name}
-                                        </option>
-                                    ))}
+                    {showInput && (
+                        <form onSubmit={handleSubmit} className="mt-4 grid gap-4 grid-cols-1 md:grid-cols-6 items-end border-t pt-4">
+                            <FormField label="Year" htmlFor="year">
+                                <input type="number" value={formData.year} onChange={e => setFormData({ ...formData, year: e.target.value })} />
+                            </FormField>
+                            <FormField label="Month" htmlFor="month">
+                                <select value={formData.month} onChange={e => setFormData({ ...formData, month: e.target.value })}>
+                                    {Array.from({ length: 12 }, (_, i) => i + 1).map(m => <option key={m} value={m}>{m}</option>)}
                                 </select>
                             </FormField>
-
-                            <FormField label="SBU" htmlFor="sbuId" required>
-                                <select
-                                    name="sbuId"
-                                    value={formData.sbuId}
-                                    onChange={(e) => setFormData({ ...formData, sbuId: e.target.value })}
-                                >
+                            <FormField label="SBU" htmlFor="sbu">
+                                <select value={formData.sbuId} onChange={e => setFormData({ ...formData, sbuId: e.target.value })}>
                                     <option value="">Select SBU</option>
-                                    {sbus.map((sbu) => (
-                                        <option key={sbu.id} value={sbu.id}>
-                                            {sbu.code}
-                                        </option>
-                                    ))}
+                                    {sbus.map(s => <option key={s.id} value={s.id}>{s.code}</option>)}
                                 </select>
                             </FormField>
-
-                            <FormField label="Type" htmlFor="typePendapatan" required>
-                                <select
-                                    name="typePendapatan"
-                                    value={formData.typePendapatan}
-                                    onChange={(e) => setFormData({ ...formData, typePendapatan: e.target.value })}
-                                >
+                            <FormField label="Type" htmlFor="type">
+                                <select value={formData.typePendapatan} onChange={e => setFormData({ ...formData, typePendapatan: e.target.value })}>
                                     <option value="NR">NR</option>
                                     <option value="CO">CO</option>
-                                    <option value="LAIN_LAIN">Lain-lain</option>
                                 </select>
                             </FormField>
-
-                            <FormField label="Amount" htmlFor="amount" required>
-                                <input
-                                    type="number"
-                                    name="amount"
-                                    placeholder="0"
-                                    value={formData.amount}
-                                    onChange={(e) => setFormData({ ...formData, amount: e.target.value })}
-                                />
+                            <FormField label="Amount" htmlFor="amount">
+                                <input type="number" value={formData.amount} onChange={e => setFormData({ ...formData, amount: e.target.value })} placeholder="0" />
                             </FormField>
-                        </div>
-
-                        <Button type="submit">Save Actual</Button>
-                    </form>
-                </SectionShell>
-
-                {/* Period Filter */}
-                <div className="flex items-center gap-4">
-                    <label className="text-sm font-medium">View Period:</label>
-                    <select
-                        value={year}
-                        onChange={(e) => setYear(Number(e.target.value))}
-                        className="px-4 py-2 rounded-xl border border-surface-border bg-bg text-primary"
-                    >
-                        {[2024, 2025, 2026, 2027].map((y) => (
-                            <option key={y} value={y}>{y}</option>
-                        ))}
-                    </select>
-                    <select
-                        value={month}
-                        onChange={(e) => setMonth(Number(e.target.value))}
-                        className="px-4 py-2 rounded-xl border border-surface-border bg-bg text-primary"
-                    >
-                        {monthNames.map((name, idx) => (
-                            <option key={idx + 1} value={idx + 1}>{name}</option>
-                        ))}
-                    </select>
+                            <Button type="submit">Save</Button>
+                        </form>
+                    )}
                 </div>
 
-                {/* Actuals Table */}
-                <SectionShell
-                    title={`Actuals for ${monthNames[month - 1]} ${year}`}
-                    description={`${actuals.length} records`}
-                >
-                    {loading ? (
-                        <div className="text-center py-12 text-primary-subtle">Loading...</div>
-                    ) : actuals.length === 0 ? (
-                        <div className="text-center py-12 text-primary-subtle">
-                            No actuals found for this period
-                        </div>
-                    ) : (
-                        <Table>
-                            <TableHeader>
-                                <TableRow>
-                                    <TableHead>SBU</TableHead>
-                                    <TableHead>Type</TableHead>
-                                    <TableHead className="text-right">Amount</TableHead>
-                                </TableRow>
-                            </TableHeader>
-                            <TableBody>
-                                {actuals.map((actual) => (
-                                    <TableRow key={actual.id}>
-                                        <TableCell className="font-medium">
-                                            {actual.sbuCode} - {actual.sbuName}
-                                        </TableCell>
-                                        <TableCell>{actual.typePendapatan}</TableCell>
-                                        <TableCell className="text-right">
-                                            Rp {actual.amount.toLocaleString("id-ID")}
-                                        </TableCell>
-                                    </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    )}
-                </SectionShell>
+                <ActualComparisonTable data={comparisonData} weights={weights} loading={loading} />
             </div>
         </main>
     );

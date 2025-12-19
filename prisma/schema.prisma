@@ -1,0 +1,372 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model master_customer {
+  id                       Int                       @id @default(autoincrement())
+  name                     String                    @db.VarChar(255)
+  segment_industri         String?                   @db.VarChar(100)
+  status_pelanggan         String?                   @db.VarChar(50)
+  pln_group_segment_id     Int?
+  alamat                   String?
+  is_active                Boolean?                  @default(true)
+  created_at               DateTime?                 @default(now()) @db.Timestamp(6)
+  updated_at               DateTime?                 @default(now()) @db.Timestamp(6)
+  master_segment_pln_group master_segment_pln_group? @relation(fields: [pln_group_segment_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  pipeline_potensi         pipeline_potensi[]
+
+  @@index([pln_group_segment_id], map: "idx_customer_segment")
+}
+
+model master_region {
+  id         Int          @id @default(autoincrement())
+  code       String       @unique @db.VarChar(50)
+  name       String       @db.VarChar(255)
+  is_active  Boolean?     @default(true)
+  created_at DateTime?    @default(now()) @db.Timestamp(6)
+  updated_at DateTime?    @default(now()) @db.Timestamp(6)
+  master_sbu master_sbu[]
+}
+
+model master_revenue_weight {
+  id         Int       @id @default(autoincrement())
+  year       Int       @unique
+  jan        Decimal?  @default(0) @db.Decimal(5, 2)
+  feb        Decimal?  @default(0) @db.Decimal(5, 2)
+  mar        Decimal?  @default(0) @db.Decimal(5, 2)
+  apr        Decimal?  @default(0) @db.Decimal(5, 2)
+  may        Decimal?  @default(0) @db.Decimal(5, 2)
+  jun        Decimal?  @default(0) @db.Decimal(5, 2)
+  jul        Decimal?  @default(0) @db.Decimal(5, 2)
+  aug        Decimal?  @default(0) @db.Decimal(5, 2)
+  sep        Decimal?  @default(0) @db.Decimal(5, 2)
+  oct        Decimal?  @default(0) @db.Decimal(5, 2)
+  nov        Decimal?  @default(0) @db.Decimal(5, 2)
+  dec        Decimal?  @default(0) @db.Decimal(5, 2)
+  created_at DateTime? @default(now()) @db.Timestamp(6)
+  updated_at DateTime? @default(now()) @db.Timestamp(6)
+}
+
+model master_sbu {
+  id                     Int                      @id @default(autoincrement())
+  code                   String                   @unique @db.VarChar(50)
+  name                   String                   @db.VarChar(255)
+  region_id              Int?
+  is_active              Boolean?                 @default(true)
+  created_at             DateTime?                @default(now()) @db.Timestamp(6)
+  updated_at             DateTime?                @default(now()) @db.Timestamp(6)
+  master_region          master_region?           @relation(fields: [region_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  pipeline_potensi       pipeline_potensi[]
+  revenue_actual_monthly revenue_actual_monthly[]
+  revenue_target_monthly revenue_target_monthly[]
+  revenue_target_yearly  revenue_target_yearly[]
+  users                  users[]
+  units                  Unit[]
+
+  @@index([region_id], map: "idx_sbu_region")
+}
+
+model master_segment_pln_group {
+  id              Int               @id @default(autoincrement())
+  code            String            @unique @db.VarChar(50)
+  name            String            @db.VarChar(255)
+  is_active       Boolean?          @default(true)
+  created_at      DateTime?         @default(now()) @db.Timestamp(6)
+  updated_at      DateTime?         @default(now()) @db.Timestamp(6)
+  master_customer master_customer[]
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model master_service_category {
+  id                                                                              Int                       @id @default(autoincrement())
+  code                                                                            String                    @unique @db.VarChar(50)
+  name                                                                            String                    @db.VarChar(255)
+  level                                                                           Int
+  parent_id                                                                       Int?
+  is_active                                                                       Boolean?                  @default(true)
+  created_at                                                                      DateTime?                 @default(now()) @db.Timestamp(6)
+  updated_at                                                                      DateTime?                 @default(now()) @db.Timestamp(6)
+  master_service_category                                                         master_service_category?  @relation("master_service_categoryTomaster_service_category", fields: [parent_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  other_master_service_category                                                   master_service_category[] @relation("master_service_categoryTomaster_service_category")
+  pipeline_potensi_pipeline_potensi_service_category2_idTomaster_service_category pipeline_potensi[]        @relation("pipeline_potensi_service_category2_idTomaster_service_category")
+  pipeline_potensi_pipeline_potensi_service_category_idTomaster_service_category  pipeline_potensi[]        @relation("pipeline_potensi_service_category_idTomaster_service_category")
+
+  @@index([parent_id], map: "idx_service_category_parent")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model master_time_month {
+  id                     Int                      @id @default(autoincrement())
+  year                   Int
+  month                  Int
+  month_name             String?                  @db.VarChar(20)
+  start_date             DateTime                 @db.Date
+  end_date               DateTime                 @db.Date
+  created_at             DateTime?                @default(now()) @db.Timestamp(6)
+  revenue_actual_monthly revenue_actual_monthly[]
+  revenue_target_monthly revenue_target_monthly[]
+
+  @@unique([year, month])
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model pipeline_potensi {
+  id                                                                                     Int                      @id @default(autoincrement())
+  sbu_id                                                                                 Int
+  customer_id                                                                            Int
+  jenis_layanan                                                                          String?                  @db.VarChar(100)
+  service_category_id                                                                    Int?
+  service_category2_id                                                                   Int?
+  segment_industri                                                                       String?                  @db.VarChar(100)
+  b2b_flag                                                                               String?                  @db.VarChar(10)
+  type_pendapatan                                                                        String?                  @db.VarChar(50)
+  nama_layanan                                                                           String                   @db.VarChar(255)
+  kapasitas                                                                              String?                  @db.VarChar(100)
+  satuan_kapasitas                                                                       String?                  @db.VarChar(50)
+  originating                                                                            String?                  @db.VarChar(255)
+  terminating                                                                            String?                  @db.VarChar(255)
+  nilai_otc                                                                              Decimal?                 @db.Decimal(20, 4)
+  nilai_mrc                                                                              Decimal?                 @db.Decimal(20, 4)
+  est_revenue                                                                            Decimal                  @db.Decimal(20, 4)
+  mapping_revenue                                                                        Decimal?                 @db.Decimal(20, 4)
+  sumber_anggaran                                                                        String?                  @db.VarChar(100)
+  fungsi                                                                                 String?                  @db.VarChar(100)
+  no_invoice                                                                             String?                  @db.VarChar(100)
+  warna_status_potensi                                                                   String                   @db.VarChar(20)
+  current_status                                                                         String?                  @db.VarChar(100)
+  periode_snapshot                                                                       DateTime                 @db.Date
+  created_at                                                                             DateTime?                @default(now()) @db.Timestamp(6)
+  updated_at                                                                             DateTime?                @default(now()) @db.Timestamp(6)
+  target_aktivasi                                                                        DateTime?                @db.Date
+  qty                                                                                    Int?                     @default(1)
+  category_2026                                                                          String?                  @db.VarChar(100)
+  sub_category                                                                           String?                  @db.VarChar(100)
+  master_customer                                                                        master_customer          @relation(fields: [customer_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  master_sbu                                                                             master_sbu               @relation(fields: [sbu_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  master_service_category_pipeline_potensi_service_category2_idTomaster_service_category master_service_category? @relation("pipeline_potensi_service_category2_idTomaster_service_category", fields: [service_category2_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  master_service_category_pipeline_potensi_service_category_idTomaster_service_category  master_service_category? @relation("pipeline_potensi_service_category_idTomaster_service_category", fields: [service_category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([customer_id], map: "idx_pipeline_customer")
+  @@index([periode_snapshot], map: "idx_pipeline_periode")
+  @@index([sbu_id], map: "idx_pipeline_sbu")
+  @@index([sbu_id, warna_status_potensi], map: "idx_pipeline_sbu_status")
+  @@index([warna_status_potensi], map: "idx_pipeline_status")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model revenue_actual_monthly {
+  id                Int               @id @default(autoincrement())
+  time_month_id     Int
+  sbu_id            Int
+  type_pendapatan   String            @db.VarChar(50)
+  amount            BigInt
+  source_reference  String?           @db.VarChar(255)
+  notes             String?
+  created_at        DateTime?         @default(now()) @db.Timestamp(6)
+  updated_at        DateTime?         @default(now()) @db.Timestamp(6)
+  master_sbu        master_sbu        @relation(fields: [sbu_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  master_time_month master_time_month @relation(fields: [time_month_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@unique([time_month_id, sbu_id, type_pendapatan])
+  @@index([sbu_id], map: "idx_revenue_actual_sbu")
+  @@index([time_month_id], map: "idx_revenue_actual_time")
+}
+
+model revenue_detail_non_retail {
+  id                  BigInt           @id @default(autoincrement())
+  import_id           String?          @db.Uuid
+  sbu_code            String?          @db.VarChar(100)
+  grand_total         Decimal?         @db.Decimal(20, 2)
+  grand_total_billion Decimal?         @db.Decimal(20, 2)
+  raw_json            Json?
+  source_rownum       Int?
+  revenue_imports     revenue_imports? @relation(fields: [import_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([import_id], map: "idx_revenue_detail_import_id")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model revenue_imports {
+  id                        String                      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  source_filename           String                      @db.VarChar(255)
+  period_month              Int
+  period_year               Int
+  uploaded_by               String?                     @db.VarChar(255)
+  uploaded_at               DateTime?                   @default(now()) @db.Timestamp(6)
+  status                    String                      @db.VarChar(50)
+  error_message             String?
+  target_realisasi_column   String?                     @db.VarChar(100)
+  table_headers             Json?
+  revenue_detail_non_retail revenue_detail_non_retail[]
+  revenue_summary_pln       revenue_summary_pln[]
+
+  @@index([period_year, period_month], map: "idx_revenue_imports_year_month")
+}
+
+model revenue_summary_pln {
+  id                BigInt           @id @default(autoincrement())
+  import_id         String?          @db.Uuid
+  period_month      Int
+  period_year       Int
+  kode_bidang       String?          @db.VarChar(100)
+  realisasi_billion Decimal?         @db.Decimal(20, 2)
+  row_data          Json?
+  revenue_imports   revenue_imports? @relation(fields: [import_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([import_id, kode_bidang])
+  @@index([import_id], map: "idx_revenue_summary_import_id")
+}
+
+model revenue_target_monthly {
+  id                Int               @id @default(autoincrement())
+  time_month_id     Int
+  sbu_id            Int
+  kategori          String            @db.VarChar(50)
+  target_amount     BigInt
+  created_at        DateTime?         @default(now()) @db.Timestamp(6)
+  updated_at        DateTime?         @default(now()) @db.Timestamp(6)
+  master_sbu        master_sbu        @relation(fields: [sbu_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  master_time_month master_time_month @relation(fields: [time_month_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@unique([time_month_id, sbu_id, kategori])
+}
+
+model revenue_target_yearly {
+  id                 Int        @id @default(autoincrement())
+  year               Int
+  sbu_id             Int
+  kategori           String     @db.VarChar(50)
+  target_amount      BigInt
+  created_at         DateTime?  @default(now()) @db.Timestamp(6)
+  updated_at         DateTime?  @default(now()) @db.Timestamp(6)
+  target_rkap        Decimal?   @default(0) @db.Decimal(15, 2)
+  co_tahun_berjalan  Decimal?   @default(0) @db.Decimal(15, 2)
+  target_nr          Decimal?   @default(0) @db.Decimal(15, 2)
+  target_komitmen    Decimal?   @default(0) @db.Decimal(20, 2)
+  target_beyond_rkap Decimal?   @default(0) @db.Decimal(20, 2)
+  master_sbu         master_sbu @relation(fields: [sbu_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@unique([year, sbu_id])
+  @@index([sbu_id], map: "idx_revenue_target_yearly_sbu")
+  @@index([year], map: "idx_revenue_target_yearly_year")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model users {
+  id            Int         @id @default(autoincrement())
+  username      String      @unique @db.VarChar(100)
+  email         String      @unique @db.VarChar(255)
+  password_hash String      @db.VarChar(255)
+  full_name     String?     @db.VarChar(255)
+  role          String?     @default("user") @db.VarChar(50)
+  sbu_id        Int?
+  is_active     Boolean?    @default(true)
+  last_login    DateTime?   @db.Timestamp(6)
+  created_at    DateTime?   @default(now()) @db.Timestamp(6)
+  updated_at    DateTime?   @default(now()) @db.Timestamp(6)
+  master_sbu    master_sbu? @relation(fields: [sbu_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  activity_logs ActivityLog[]
+
+  @@index([email], map: "idx_users_email")
+  @@index([sbu_id], map: "idx_users_sbu")
+  @@index([username], map: "idx_users_username")
+}
+
+// --- Rpms Models ---
+
+model Unit {
+  id        Int      @id @default(autoincrement())
+  name      String
+  code      String   @unique
+  level     UnitLevel
+  parentId  Int?
+  parent    Unit?    @relation("UnitHierarchy", fields: [parentId], references: [id])
+  children  Unit[]   @relation("UnitHierarchy")
+  targets   Target[]
+  actuals   Actual[]
+  
+  sbuId     Int?
+  sbu       master_sbu? @relation(fields: [sbuId], references: [id])
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum UnitLevel {
+  SBU
+  DIVISION
+  SUB_UNIT
+}
+
+enum TargetType {
+  RKAP
+  BEYOND_RKAP
+  COMMITMENT
+  NR
+}
+
+model Target {
+  id            Int        @id @default(autoincrement())
+  year          Int
+  month         Int // 1-12
+  unitId        Int
+  unit          Unit       @relation(fields: [unitId], references: [id])
+  targetType    TargetType
+  amount        Decimal    @db.Decimal(15, 2)
+  
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  @@unique([year, month, unitId, targetType])
+}
+
+model Actual {
+  id            Int      @id @default(autoincrement())
+  year          Int
+  month         Int
+  unitId        Int
+  unit          Unit     @relation(fields: [unitId], references: [id])
+  amount        Decimal  @db.Decimal(15, 2)
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@unique([year, month, unitId])
+}
+
+model AuditLog {
+  id          Int      @id @default(autoincrement())
+  filename    String
+  uploadedBy  String?
+  rawJson     Json?
+  mappingJson Json?
+  createdAt   DateTime @default(now())
+}
+
+model ActivityLog {
+  id        Int      @id @default(autoincrement())
+  userId    Int?
+  userName  String
+  action    String
+  details   String?
+  type      String   @default("info") // info, success, warning, critical, system
+  ipAddress String?
+  createdAt DateTime @default(now())
+
+  user users? @relation(fields: [userId], references: [id])
+
+  @@map("activity_logs")
+}
+
+model SystemSetting {
+  id        Int      @id @default(autoincrement())
+  key       String   @unique
+  value     String
+  updatedAt DateTime @updatedAt
+
+  @@map("system_settings")
+}

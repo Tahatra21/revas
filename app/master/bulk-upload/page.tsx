@@ -1,111 +1,138 @@
 "use client";
 
 import { useState } from "react";
-import { Upload, FileSpreadsheet, Download } from "lucide-react";
+import { Upload, FileSpreadsheet, Download, Activity, PieChart, ChevronRight, LayoutGrid } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { SectionShell } from "@/components/ui/section-shell";
+import { Modal } from "@/components/ui/modal";
+
+interface BulkUploadCardProps {
+    title: string;
+    description: string;
+    icon: React.ElementType;
+    onClick: () => void;
+    colorClass: string;
+    bgClass: string;
+}
+
+function BulkUploadCard({ title, description, icon: Icon, onClick, colorClass, bgClass }: BulkUploadCardProps) {
+    return (
+        <div
+            onClick={onClick}
+            className="group bg-white p-6 rounded-2xl border border-surface-border shadow-sm hover:shadow-md hover:border-blue-200 transition-all cursor-pointer flex items-center justify-between"
+        >
+            <div className="flex items-start gap-4">
+                <div className={`p-3 rounded-xl ${bgClass} group-hover:scale-105 transition-transform`}>
+                    <Icon className={`w-6 h-6 ${colorClass}`} />
+                </div>
+                <div>
+                    <h3 className="font-bold text-gray-900 mb-1 group-hover:text-blue-600 transition-colors">{title}</h3>
+                    <p className="text-sm text-gray-500 line-clamp-2">{description}</p>
+                </div>
+            </div>
+            <ChevronRight className="w-5 h-5 text-gray-300 group-hover:text-blue-500 transition-colors" />
+        </div>
+    );
+}
 
 export default function BulkUploadPage() {
+    // State
+    const [activeModal, setActiveModal] = useState<'rpms' | 'pipeline' | 'pln' | null>(null);
+
+    // Upload States
     const [pipelineFile, setPipelineFile] = useState<File | null>(null);
     const [plnFile, setPlnFile] = useState<File | null>(null);
-    const [targetFile, setTargetFile] = useState<File | null>(null);
+    const [rpmsFile, setRpmsFile] = useState<File | null>(null);
     const [uploadingPipeline, setUploadingPipeline] = useState(false);
     const [uploadingPln, setUploadingPln] = useState(false);
-    const [uploadingTarget, setUploadingTarget] = useState(false);
-    const [targetUploadResult, setTargetUploadResult] = useState<any>(null);
+    const [uploadingRpms, setUploadingRpms] = useState(false);
 
-    // Manual period override for PLN upload
     const [plnMonth, setPlnMonth] = useState(new Date().getMonth() + 1);
     const [plnYear, setPlnYear] = useState(new Date().getFullYear());
+    const [isAdmin, setIsAdmin] = useState(false);
+    const [isCheckingRole, setIsCheckingRole] = useState(true);
 
-    // Year for target upload
-    const [targetYear, setTargetYear] = useState(new Date().getFullYear());
-
-    const handleTargetUpload = async () => {
-        if (!targetFile) {
-            alert("Please select a file first");
-            return;
+    // Check role on mount
+    useState(() => {
+        if (typeof window !== "undefined") {
+            try {
+                const userStr = localStorage.getItem("user");
+                if (userStr) {
+                    const user = JSON.parse(userStr);
+                    // Standardize role check (case insensitive)
+                    if (user.role?.toLowerCase() === 'admin') {
+                        setIsAdmin(true);
+                    }
+                }
+            } catch (e) {
+                console.error("Error parsing user role", e);
+            } finally {
+                setIsCheckingRole(false);
+            }
         }
+    });
 
-        setUploadingTarget(true);
-        setTargetUploadResult(null);
+    if (!isCheckingRole && !isAdmin) {
+        return (
+            <main className="min-h-screen p-8 bg-slate-50/50 flex flex-col items-center justify-center">
+                <div className="text-center space-y-4">
+                    <div className="bg-red-100 p-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto">
+                        <Activity className="w-8 h-8 text-red-500" />
+                    </div>
+                    <h1 className="text-2xl font-bold text-gray-900">Restricted Access</h1>
+                    <p className="text-gray-500 max-w-md mx-auto">
+                        You do not have permission to access the Bulk Upload feature.
+                        This area is restricted to <strong>Administrators</strong> only.
+                    </p>
+                    <Button variant="outline" onClick={() => window.history.back()}>
+                        Go Back
+                    </Button>
+                </div>
+            </main>
+        );
+    }
 
+
+    // Handlers
+    const handleRpmsUpload = async () => {
+        if (!rpmsFile) return;
+        setUploadingRpms(true);
         try {
             const formData = new FormData();
-            formData.append("file", targetFile);
-            formData.append("year", targetYear.toString());
-
-            const response = await fetch("/api/revenue/target/bulk-upload", {
-                method: "POST",
-                body: formData,
-            });
-
-            const result = await response.json();
-
+            formData.append("file", rpmsFile);
+            const response = await fetch("/api/rpms/upload", { method: "POST", body: formData });
             if (response.ok) {
-                setTargetUploadResult(result);
-                alert(`Success! Uploaded ${result.successCount} targets.${result.errors ? `\n${result.errors.length} errors occurred.` : ''}`);
-                setTargetFile(null);
+                const res = await response.json();
+                alert(`Success! Processed ${res.count} rows.`);
+                setRpmsFile(null);
+                setActiveModal(null);
             } else {
-                alert(`Error: ${result.message || "Upload failed"}`);
+                alert("Upload failed.");
             }
-        } catch (error) {
-            console.error("Target upload error:", error);
-            alert("Network error during upload");
+        } catch (e) {
+            console.error(e);
+            alert("Error uploading RPMS file.");
         } finally {
-            setUploadingTarget(false);
-        }
-    };
-
-    const handleDownloadTemplate = async () => {
-        try {
-            const response = await fetch("/api/revenue/target/download-template");
-
-            if (response.ok) {
-                const blob = await response.blob();
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `Revenue_Target_Template_${new Date().toISOString().split('T')[0]}.xlsx`;
-                document.body.appendChild(a);
-                a.click();
-                window.URL.revokeObjectURL(url);
-                document.body.removeChild(a);
-            } else {
-                alert("Failed to download template");
-            }
-        } catch (error) {
-            console.error("Template download error:", error);
-            alert("Error downloading template");
+            setUploadingRpms(false);
         }
     };
 
     const handlePipelineUpload = async () => {
-        if (!pipelineFile) {
-            alert("Please select a file first");
-            return;
-        }
-
+        if (!pipelineFile) { alert("Please select a file first"); return; }
         setUploadingPipeline(true);
         try {
             const formData = new FormData();
             formData.append("file", pipelineFile);
-
-            const response = await fetch("/api/pipeline/bulk-upload", {
-                method: "POST",
-                body: formData,
-            });
-
+            const response = await fetch("/api/pipeline/bulk-upload", { method: "POST", body: formData });
             if (response.ok) {
                 const result = await response.json();
                 alert(`Success! Uploaded ${result.inserted || 0} pipeline records.`);
                 setPipelineFile(null);
+                setActiveModal(null);
             } else {
                 const error = await response.json();
                 alert(`Error: ${error.message || "Upload failed"}`);
             }
         } catch (error) {
-            console.error("Pipeline upload error:", error);
             alert("Network error during upload");
         } finally {
             setUploadingPipeline(false);
@@ -113,34 +140,25 @@ export default function BulkUploadPage() {
     };
 
     const handlePlnUpload = async () => {
-        if (!plnFile) {
-            alert("Please select a file first");
-            return;
-        }
-
+        if (!plnFile) { alert("Please select a file first"); return; }
         setUploadingPln(true);
         try {
             const formData = new FormData();
             formData.append("file", plnFile);
             formData.append("uploaded_by", "admin");
-            // Add manual period override (optional, API will auto-detect if not provided)
             formData.append("period_month", plnMonth.toString());
             formData.append("period_year", plnYear.toString());
 
-            const response = await fetch("/api/revenue/import", {
-                method: "POST",
-                body: formData,
-            });
-
+            const response = await fetch("/api/revenue/import", { method: "POST", body: formData });
             if (response.ok) {
                 alert("Revenue PLN data uploaded successfully!");
                 setPlnFile(null);
+                setActiveModal(null);
             } else {
                 const error = await response.json();
                 alert(`Error: ${error.message || "Upload failed"}`);
             }
         } catch (error) {
-            console.error("PLN upload error:", error);
             alert("Network error during upload");
         } finally {
             setUploadingPln(false);
@@ -148,294 +166,189 @@ export default function BulkUploadPage() {
     };
 
     return (
-        <main className="min-h-screen p-8">
-            <div className="max-w-6xl mx-auto space-y-6">
+        <main className="min-h-screen p-8 bg-slate-50/50">
+            <div className="max-w-6xl mx-auto space-y-8">
                 {/* Header */}
                 <div>
-                    <h1 className="text-4xl font-bold mb-2">Bulk Upload</h1>
-                    <p className="text-primary-subtle">
-                        Upload multiple data records from Excel files
+                    <h1 className="text-3xl font-bold text-slate-900">Bulk Upload Center</h1>
+                    <p className="text-slate-500 mt-2">
+                        Centralized data management for easy bulk imports and updates.
                     </p>
                 </div>
 
-                {/* Pipeline Upload Section */}
-                <SectionShell
-                    title="Pipeline Management"
-                    description="Upload multiple pipeline data from Excel"
-                >
-                    <div className="grid md:grid-cols-2 gap-6">
-                        {/* Template Download */}
-                        <div className="space-y-4">
-                            <div className="flex items-start gap-3 p-4 bg-bg/50 rounded-xl border border-surface-border">
-                                <FileSpreadsheet className="w-6 h-6 text-emerald-400 flex-shrink-0 mt-1" />
-                                <div className="flex-1">
-                                    <h3 className="font-semibold text-sm mb-1">Excel Template</h3>
-                                    <p className="text-xs text-primary-subtle mb-3">
-                                        Download template dengan contoh data
-                                    </p>
-                                    <Button
-                                        variant="secondary"
-                                        size="sm"
-                                        onClick={() => {
-                                            // Download template logic
-                                            window.location.href = "/templates/pipeline-template.xlsx";
-                                        }}
-                                    >
-                                        <Download className="w-4 h-4 mr-2" />
-                                        Download Template
-                                    </Button>
-                                </div>
-                            </div>
-                        </div>
+                {/* Grid Layout */}
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <BulkUploadCard
+                        title="RPMS Data Import"
+                        description="Upload Target & Realization data from Book3.xlsx"
+                        icon={Activity}
+                        colorClass="text-emerald-600"
+                        bgClass="bg-emerald-100"
+                        onClick={() => setActiveModal('rpms')}
+                    />
+                    <BulkUploadCard
+                        title="Pipeline Management"
+                        description="Import multiple pipeline opportunities via Excel"
+                        icon={PieChart}
+                        colorClass="text-purple-600"
+                        bgClass="bg-purple-100"
+                        onClick={() => setActiveModal('pipeline')}
+                    />
+                    <BulkUploadCard
+                        title="Revenue PLN"
+                        description="Detail Non-Retail revenue data import"
+                        icon={FileSpreadsheet}
+                        colorClass="text-blue-600"
+                        bgClass="bg-blue-100"
+                        onClick={() => setActiveModal('pln')}
+                    />
+                    <BulkUploadCard
+                        title="Data Templates"
+                        description="Download standard Excel templates for imports"
+                        icon={LayoutGrid}
+                        colorClass="text-amber-600"
+                        bgClass="bg-amber-100"
+                        onClick={() => alert("Templates coming soon!")}
+                    />
+                </div>
+            </div>
 
-                        {/* Upload File */}
-                        <div className="space-y-4">
-                            <div className="p-4 bg-bg/50 rounded-xl border border-surface-border">
-                                <h3 className="font-semibold text-sm mb-3">Upload Excel File</h3>
-                                <input
-                                    id="pipeline-upload"
-                                    type="file"
-                                    accept=".xlsx,.xls"
-                                    onChange={(e) => setPipelineFile(e.target.files?.[0] || null)}
-                                    className="hidden"
-                                />
-                                <div className="space-y-3">
-                                    <Button
-                                        variant="secondary"
-                                        onClick={() => document.getElementById("pipeline-upload")?.click()}
-                                        className="w-full"
-                                    >
-                                        Choose File
-                                    </Button>
-                                    {pipelineFile && (
-                                        <div className="text-xs text-primary-subtle bg-surface px-3 py-2 rounded-lg">
-                                            Selected: {pipelineFile.name}
-                                        </div>
-                                    )}
-                                    <Button
-                                        onClick={handlePipelineUpload}
-                                        disabled={!pipelineFile || uploadingPipeline}
-                                        isLoading={uploadingPipeline}
-                                        className="w-full"
-                                    >
-                                        <Upload className="w-4 h-4 mr-2" />
-                                        {uploadingPipeline ? "Uploading..." : "Upload Data"}
-                                    </Button>
-                                </div>
-                            </div>
-                        </div>
+            {/* Modals */}
+            <Modal isOpen={activeModal === 'rpms'} onClose={() => setActiveModal(null)} title="RPMS Data Import">
+                <div className="space-y-6">
+                    <div className="bg-emerald-50 p-4 rounded-xl border border-emerald-100 text-sm text-emerald-800">
+                        Upload file <strong>Book3.xlsx</strong> untuk memperbarui data Target RKAP, Komitmen, Beyond, dan Realisasi.
                     </div>
-                </SectionShell>
-
-                {/* Revenue PLN Upload Section */}
-                <SectionShell
-                    title="Revenue PLN"
-                    description="Upload data DETAIL NON RETAIL (sheet REVENUE PLN optional)"
-                >
-                    <div className="grid md:grid-cols-2 gap-6">
-                        {/* Template Info */}
-                        <div className="space-y-4">
-                            <div className="flex items-start gap-3 p-4 bg-bg/50 rounded-xl border border-surface-border">
-                                <FileSpreadsheet className="w-6 h-6 text-blue-400 flex-shrink-0 mt-1" />
-                                <div className="flex-1">
-                                    <h3 className="font-semibold text-sm mb-1">Expected Format</h3>
-                                    <p className="text-xs text-primary-subtle mb-2">
-                                        File Excel wajib mengandung sheet:
-                                    </p>
-                                    <ul className="text-xs text-primary-subtle space-y-1 list-disc list-inside">
-                                        <li><strong>DETAIL NON RETAIL</strong> (Required)</li>
-                                        <li>REVENUE PLN (Optional)</li>
-                                    </ul>
-                                    <p className="text-xs text-amber-400 mt-3">
-                                        💡 Bulan/tahun terdeteksi otomatis dari header Excel, atau dapat di-set manual dibawah.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Upload File */}
-                        <div className="space-y-4">
-                            <div className="p-4 bg-bg/50 rounded-xl border border-surface-border">
-                                <h3 className="font-semibold text-sm mb-3">Upload Excel File</h3>
-
-                                {/* Manual Period Override */}
-                                <div className="mb-4 grid grid-cols-2 gap-2">
-                                    <div>
-                                        <label className="text-xs text-primary-subtle mb-1 block">Bulan (Override)</label>
-                                        <select
-                                            value={plnMonth}
-                                            onChange={(e) => setPlnMonth(Number(e.target.value))}
-                                            className="w-full px-3 py-2 text-sm bg-surface border border-surface-border rounded-lg"
-                                        >
-                                            <option value={1}>Januari</option>
-                                            <option value={2}>Februari</option>
-                                            <option value={3}>Maret</option>
-                                            <option value={4}>April</option>
-                                            <option value={5}>Mei</option>
-                                            <option value={6}>Juni</option>
-                                            <option value={7}>Juli</option>
-                                            <option value={8}>Agustus</option>
-                                            <option value={9}>September</option>
-                                            <option value={10}>Oktober</option>
-                                            <option value={11}>November</option>
-                                            <option value={12}>Desember</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <label className="text-xs text-primary-subtle mb-1 block">Tahun (Override)</label>
-                                        <select
-                                            value={plnYear}
-                                            onChange={(e) => setPlnYear(Number(e.target.value))}
-                                            className="w-full px-3 py-2 text-sm bg-surface border border-surface-border rounded-lg"
-                                        >
-                                            <option value={2024}>2024</option>
-                                            <option value={2025}>2025</option>
-                                            <option value={2026}>2026</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <input
-                                    id="pln-upload"
-                                    type="file"
-                                    accept=".xlsx,.xls"
-                                    onChange={(e) => setPlnFile(e.target.files?.[0] || null)}
-                                    className="hidden"
-                                />
-                                <div className="space-y-3">
-                                    <Button
-                                        variant="secondary"
-                                        onClick={() => document.getElementById("pln-upload")?.click()}
-                                        className="w-full"
-                                    >
-                                        Choose File
-                                    </Button>
-                                    {plnFile && (
-                                        <div className="text-xs text-primary-subtle bg-surface px-3 py-2 rounded-lg">
-                                            Selected: {plnFile.name}
-                                        </div>
-                                    )}
-                                    <Button
-                                        onClick={handlePlnUpload}
-                                        disabled={!plnFile || uploadingPln}
-                                        isLoading={uploadingPln}
-                                        className="w-full"
-                                    >
-                                        <Upload className="w-4 h-4 mr-2" />
-                                        {uploadingPln ? "Uploading..." : "Upload Data"}
-                                    </Button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </SectionShell>
-
-                {/* Revenue Target Upload Section */}
-                <SectionShell
-                    title="Revenue Targets"
-                    description="Upload yearly revenue targets (Target RKAP, CO Tahun Berjalan, Target NR)"
-                >
-                    <div className="grid gap-6 md:grid-cols-2">
-                        {/* Left: Instructions & Template */}
-                        <div className="space-y-4">
-                            <div className="bg-surface-subtle p-4 rounded-xl border border-surface-border">
-                                <h3 className="font-semibold mb-2 flex items-center gap-2">
-                                    <FileSpreadsheet className="w-5 h-5" />
-                                    Instructions
-                                </h3>
-                                <ul className="text-sm text-primary-subtle space-y-1 list-disc list-inside">
-                                    <li>Download the Excel template below</li>
-                                    <li>Fill in target values (in Billion IDR) for each SBU</li>
-                                    <li>Leave cells empty for 0 values</li>
-                                    <li>Upload the completed file</li>
-                                </ul>
-                            </div>
-
-                            <div className="space-y-2">
-                                <label className="text-sm font-medium">Target Year</label>
-                                <select
-                                    value={targetYear}
-                                    onChange={(e) => setTargetYear(Number(e.target.value))}
-                                    className="w-full px-4 py-2 rounded-xl border border-surface-border bg-bg"
-                                >
-                                    {[2024, 2025, 2026, 2027].map((y) => (
-                                        <option key={y} value={y}>{y}</option>
-                                    ))}
-                                </select>
-                            </div>
-
-                            <Button
-                                variant="secondary"
-                                onClick={handleDownloadTemplate}
-                                className="w-full"
-                            >
-                                <Download className="w-4 h-4 mr-2" />
-                                Download Template
-                            </Button>
-
-                            {targetUploadResult && (
-                                <div className="bg-surface px-4 py-3 rounded-xl border border-surface-border text-sm">
-                                    <p className="font-medium text-green-600">
-                                        ✓ Uploaded {targetUploadResult.successCount} of {targetUploadResult.totalRows} targets
-                                    </p>
-                                    {targetUploadResult.errors && targetUploadResult.errors.length > 0 && (
-                                        <details className="mt-2">
-                                            <summary className="cursor-pointer text-red-600">
-                                                {targetUploadResult.errors.length} errors - click to view
-                                            </summary>
-                                            <ul className="mt-2 text-xs space-y-1 max-h-40 overflow-y-auto">
-                                                {targetUploadResult.errors.map((err: string, idx: number) => (
-                                                    <li key={idx} className="text-red-600">• {err}</li>
-                                                ))}
-                                            </ul>
-                                        </details>
-                                    )}
-                                </div>
-                            )}
-                        </div>
-
-                        {/* Right: Upload */}
-                        <div className="bg-surface-subtle p-8 rounded-xl border-2 border-dashed border-surface-border flex flex-col items-center justify-center space-y-4">
+                    <div className="space-y-4">
+                        <div className="border-2 border-dashed border-gray-200 rounded-xl p-8 flex flex-col items-center justify-center text-center hover:bg-gray-50 transition-colors">
+                            <Activity className="w-10 h-10 text-gray-300 mb-3" />
+                            <p className="text-sm text-gray-500 mb-4">Click to select or drag file here</p>
                             <input
-                                id="target-upload"
+                                id="rpms-upload"
                                 type="file"
                                 accept=".xlsx,.xls"
+                                onChange={(e) => setRpmsFile(e.target.files?.[0] || null)}
                                 className="hidden"
-                                onChange={(e) => setTargetFile(e.target.files?.[0] || null)}
                             />
-                            <FileSpreadsheet className="w-16 h-16 text-primary-subtle" />
-                            <div className="text-center">
-                                <p className="text-sm text-primary-subtle mb-1">
-                                    Supported formats: .xlsx, .xls
-                                </p>
-                            </div>
-                            <div className="space-y-3 w-full">
-                                <Button
-                                    variant="secondary"
-                                    onClick={() => document.getElementById("target-upload")?.click()}
-                                    className="w-full"
-                                >
-                                    Choose File
-                                </Button>
-                                {targetFile && (
-                                    <div className="text-xs text-primary-subtle bg-surface px-3 py-2 rounded-lg">
-                                        Selected: {targetFile.name}
-                                    </div>
-                                )}
-                                <Button
-                                    onClick={handleTargetUpload}
-                                    disabled={!targetFile || uploadingTarget}
-                                    isLoading={uploadingTarget}
-                                    className="w-full"
-                                >
-                                    <Upload className="w-4 h-4 mr-2" />
-                                    {uploadingTarget ? "Uploading..." : "Upload Targets"}
-                                </Button>
-                            </div>
+                            <Button
+                                variant="secondary"
+                                onClick={() => document.getElementById("rpms-upload")?.click()}
+                            >
+                                {rpmsFile ? rpmsFile.name : "Choose File"}
+                            </Button>
+                        </div>
+                        <Button
+                            onClick={handleRpmsUpload}
+                            disabled={!rpmsFile || uploadingRpms}
+                            className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
+                        >
+                            {uploadingRpms ? "Processing..." : "Upload Process"}
+                        </Button>
+                    </div>
+                </div>
+            </Modal>
+
+            <Modal isOpen={activeModal === 'pipeline'} onClose={() => setActiveModal(null)} title="Pipeline Import">
+                <div className="space-y-6">
+                    <div className="flex justify-between items-center bg-purple-50 p-4 rounded-xl border border-purple-100">
+                        <span className="text-sm text-purple-800">Need the standard format?</span>
+                        <Button
+                            variant="outline"
+                            size="sm"
+                            className="text-purple-700 border-purple-200 hover:bg-purple-100"
+                            onClick={() => window.location.href = "/templates/pipeline-template.xlsx"}
+                        >
+                            <Download className="w-4 h-4 mr-2" /> Template
+                        </Button>
+                    </div>
+                    <div className="space-y-4">
+                        <div className="border-2 border-dashed border-gray-200 rounded-xl p-8 flex flex-col items-center justify-center text-center hover:bg-gray-50 transition-colors">
+                            <PieChart className="w-10 h-10 text-gray-300 mb-3" />
+                            <input
+                                id="pipeline-upload"
+                                type="file"
+                                accept=".xlsx,.xls"
+                                onChange={(e) => setPipelineFile(e.target.files?.[0] || null)}
+                                className="hidden"
+                            />
+                            <Button
+                                variant="secondary"
+                                onClick={() => document.getElementById("pipeline-upload")?.click()}
+                            >
+                                {pipelineFile ? pipelineFile.name : "Select Excel File"}
+                            </Button>
+                        </div>
+                        <Button
+                            onClick={handlePipelineUpload}
+                            disabled={!pipelineFile || uploadingPipeline}
+                            isLoading={uploadingPipeline}
+                            className="w-full bg-purple-600 hover:bg-purple-700 text-white"
+                        >
+                            {uploadingPipeline ? "Uploading..." : "Import Pipeline"}
+                        </Button>
+                    </div>
+                </div>
+            </Modal>
+
+            <Modal isOpen={activeModal === 'pln'} onClose={() => setActiveModal(null)} title="Revenue PLN Import">
+                <div className="space-y-6">
+                    <div className="bg-blue-50 p-4 rounded-xl border border-blue-100 text-sm text-blue-800">
+                        Wajib sheet: <strong>DETAIL NON RETAIL</strong>. Bulan/Tahun terdeteksi otomatis.
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
+                        <div>
+                            <label className="text-xs font-semibold text-gray-500 mb-1 block">Month (Override)</label>
+                            <select
+                                value={plnMonth}
+                                onChange={(e) => setPlnMonth(Number(e.target.value))}
+                                className="w-full px-3 py-2 text-sm bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                            >
+                                {Array.from({ length: 12 }, (_, i) => (
+                                    <option key={i} value={i + 1}>{new Date(0, i).toLocaleString('default', { month: 'long' })}</option>
+                                ))}
+                            </select>
+                        </div>
+                        <div>
+                            <label className="text-xs font-semibold text-gray-500 mb-1 block">Year (Override)</label>
+                            <select
+                                value={plnYear}
+                                onChange={(e) => setPlnYear(Number(e.target.value))}
+                                className="w-full px-3 py-2 text-sm bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                            >
+                                {[2024, 2025, 2026].map(y => <option key={y} value={y}>{y}</option>)}
+                            </select>
                         </div>
                     </div>
-                </SectionShell>
-            </div>
+
+                    <div className="space-y-4">
+                        <div className="border-2 border-dashed border-gray-200 rounded-xl p-8 flex flex-col items-center justify-center text-center hover:bg-gray-50 transition-colors">
+                            <FileSpreadsheet className="w-10 h-10 text-gray-300 mb-3" />
+                            <input
+                                id="pln-upload"
+                                type="file"
+                                accept=".xlsx,.xls"
+                                onChange={(e) => setPlnFile(e.target.files?.[0] || null)}
+                                className="hidden"
+                            />
+                            <Button
+                                variant="secondary"
+                                onClick={() => document.getElementById("pln-upload")?.click()}
+                            >
+                                {plnFile ? plnFile.name : "Select Excel File"}
+                            </Button>
+                        </div>
+                        <Button
+                            onClick={handlePlnUpload}
+                            disabled={!plnFile || uploadingPln}
+                            isLoading={uploadingPln}
+                            className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+                        >
+                            {uploadingPln ? "Uploading..." : "Import Data"}
+                        </Button>
+                    </div>
+                </div>
+            </Modal>
         </main>
     );
 }

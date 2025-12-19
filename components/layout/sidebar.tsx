@@ -12,6 +12,8 @@ import {
     ChevronDown,
     LogOut,
     User,
+    Activity,
+    Settings,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import clsx from "clsx";
@@ -25,18 +27,22 @@ const navigation = [
         children: [
             { name: "Target", href: "/revenue/target" },
             { name: "Actual", href: "/revenue/actual" },
-            { name: "Revenue PLN", href: "/revenue/pln" },
+            { name: "Rev Performance", href: "/rpms/dashboard" },
+            /*{ name: "Revenue PLN", href: "/revenue/pln" },*/
         ],
     },
     {
         name: "Master Data",
         icon: Database,
         children: [
+            { name: "Overview", href: "/master" },
             { name: "Bulk Upload", href: "/master/bulk-upload" },
-            { name: "SBUs", href: "/master/sbu" },
-            { name: "Customers", href: "/master/customer" },
-            { name: "Service Categories", href: "/master/service-category" },
         ],
+    },
+    {
+        name: "Settings",
+        icon: Settings,
+        href: "/settings",
     },
 ];
 
@@ -99,8 +105,11 @@ export function Sidebar() {
                 <div className="flex flex-col h-full">
                     {/* Logo */}
                     <div className="p-4 border-b border-surface-border">
-                        <h1 className="text-xl font-bold">Revas</h1>
-                        <p className="text-[10px] text-primary-subtle">Revenue Assurance</p>
+                        <img
+                            src="/logo-pln.png"
+                            alt="PLN Icon Plus"
+                            className="h-12 w-auto object-contain"
+                        />
                     </div>
 
                     {/* Navigation */}
@@ -172,22 +181,32 @@ export function Sidebar() {
                     </nav>
 
                     {/* User Info & Logout */}
-                    <div className="p-6 border-t border-surface-border mt-auto">
-                        <div className="flex items-center gap-3 mb-4">
-                            <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center">
-                                <User className="w-5 h-5 text-accent" />
+                    <div className="p-4 border-t border-surface-border mt-auto">
+                        <Link href="/settings/profile" className="block group">
+                            <div className="bg-surface-active/30 rounded-xl p-3 mb-2 flex items-center gap-3 transition-colors hover:bg-surface-active/50 cursor-pointer">
+                                <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center border border-blue-200 shadow-sm group-hover:scale-105 transition-transform">
+                                    <span className="text-blue-700 font-bold text-sm">
+                                        {(user?.username || "A").charAt(0).toUpperCase()}
+                                    </span>
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                    <p className="text-sm font-semibold truncate capitalize text-primary group-hover:text-blue-600 transition-colors">
+                                        {user?.username || "Admin"}
+                                    </p>
+                                    <p className="text-[10px] text-primary-subtle capitalize truncate">
+                                        {user?.role || "Administrator"}
+                                    </p>
+                                </div>
+                                <Settings className="w-4 h-4 text-primary-subtle group-hover:text-blue-500 transition-colors" />
                             </div>
-                            <div className="flex-1">
-                                <p className="text-sm font-medium">{user?.username || "Admin"}</p>
-                                <p className="text-xs text-primary-subtle">{user?.role || "Administrator"}</p>
-                            </div>
-                        </div>
+                        </Link>
+
                         <button
                             onClick={handleLogout}
-                            className="w-full flex items-center gap-3 px-4 py-2 rounded-xl text-sm font-medium text-red-600 hover:bg-red-50 transition-colors"
+                            className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-xs font-medium text-red-600 bg-red-50 hover:bg-red-100/80 transition-all border border-red-100 hover:border-red-200"
                         >
-                            <LogOut className="w-4 h-4" />
-                            Logout
+                            <LogOut className="w-3.5 h-3.5" />
+                            <span>Sign Out</span>
                         </button>
                     </div>
                 </div>

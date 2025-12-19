@@ -189,16 +189,16 @@ export async function POST(req: Request) {
                 // Normalizing Segment Industri
                 let normalizedSegmenIndustri = segmenIndustri;
                 if (normalizedSegmenIndustri) {
-                    const segmentUpper = normalizedSegmenIndust.toUpperCase();
+                    const segmentUpper = normalizedSegmenIndustri.toUpperCase();
 
-                    if (segmentUpper === 'DISTRIBUSI') normalizedSegmenIndust = 'Distribusi';
-                    else if (['PEMBANGKIT', 'PEMBANGKITAN'].includes(segmentUpper)) normalizedSegmenIndust = 'Pembangkitan';
-                    else if (segmentUpper === 'TRANSMISI') normalizedSegmenIndust = 'Transmisi';
-                    else if (segmentUpper === 'PELAYANAN PELANGGAN') normalizedSegmenIndust = 'Pelayanan Pelanggan';
-                    else if (segmentUpper === 'SUPPORT') normalizedSegmenIndust = 'Support';
+                    if (segmentUpper === 'DISTRIBUSI') normalizedSegmenIndustri = 'Distribusi';
+                    else if (['PEMBANGKIT', 'PEMBANGKITAN'].includes(segmentUpper)) normalizedSegmenIndustri = 'Pembangkitan';
+                    else if (segmentUpper === 'TRANSMISI') normalizedSegmenIndustri = 'Transmisi';
+                    else if (segmentUpper === 'PELAYANAN PELANGGAN') normalizedSegmenIndustri = 'Pelayanan Pelanggan';
+                    else if (segmentUpper === 'SUPPORT') normalizedSegmenIndustri = 'Support';
                     // Fallback: Title Case for unknown segments
                     else {
-                        normalizedSegmenIndust = normalizedSegmenIndust.charAt(0).toUpperCase() + normalizedSegmenIndust.slice(1).toLowerCase();
+                        normalizedSegmenIndustri = normalizedSegmenIndustri.charAt(0).toUpperCase() + normalizedSegmenIndustri.slice(1).toLowerCase();
                     }
                 }
 
@@ -206,7 +206,7 @@ export async function POST(req: Request) {
                     sbuId,
                     customerId,
                     jenisLayanan,
-                    segmenIndustri: normalizedSegmenIndust, // Use normalized value
+                    segmenIndustri: normalizedSegmenIndustri, // Use normalized value
                     type,
                     namaLayanan: finalNamaLayanan,
                     kapasitas,

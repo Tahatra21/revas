@@ -182,9 +182,9 @@ export default function RevenuePLNPage() {
             <div className="max-w-6xl mx-auto space-y-6">
                 <div className="flex items-center justify-between">
                     <div>
-                        <h1 className="text-4xl font-bold mb-2">Revenue PLN</h1>
+                        <h1 className="text-4xl font-bold mb-2">Realisasi Akuntansi</h1>
                         <p className="text-primary-subtle">
-                            Data Realisasi Pendapatan PLN per Bidang/SBU
+                            Data Realisasi Pendapatan PLN per Bidang/SBU by Data Akuntansi
                         </p>
                     </div>
                 </div>

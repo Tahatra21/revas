@@ -73,6 +73,26 @@ CREATE TABLE IF NOT EXISTS master_time_month (
   UNIQUE(year, month)
 );
 
+-- Master Revenue Weight (Monthly Cumulative %)
+CREATE TABLE IF NOT EXISTS master_revenue_weight (
+  id SERIAL PRIMARY KEY,
+  year INTEGER NOT NULL UNIQUE,
+  jan DECIMAL(5,2) DEFAULT 0,
+  feb DECIMAL(5,2) DEFAULT 0,
+  mar DECIMAL(5,2) DEFAULT 0,
+  apr DECIMAL(5,2) DEFAULT 0,
+  may DECIMAL(5,2) DEFAULT 0,
+  jun DECIMAL(5,2) DEFAULT 0,
+  jul DECIMAL(5,2) DEFAULT 0,
+  aug DECIMAL(5,2) DEFAULT 0,
+  sep DECIMAL(5,2) DEFAULT 0,
+  oct DECIMAL(5,2) DEFAULT 0,
+  nov DECIMAL(5,2) DEFAULT 0,
+  dec DECIMAL(5,2) DEFAULT 0 NOT NULL CHECK (dec = 100.00),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 -- ============================================
 -- TRANSACTION TABLES
 -- ============================================

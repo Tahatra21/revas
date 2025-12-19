@@ -5,10 +5,12 @@ import { Target, TrendingUp, DollarSign, PieChart, Briefcase, Zap } from "lucide
 import { KpiCard } from "@/components/ui/kpi-card";
 import { SectionShell } from "@/components/ui/section-shell";
 import { MonthlyRevenueChart } from "@/components/dashboard/monthly-revenue-chart";
+import { MonthlyRevenueBeyondChart } from "@/components/dashboard/monthly-revenue-beyond-chart";
 import { PipelineCompositionChart } from "@/components/dashboard/pipeline-composition-chart";
 import { GenericPieChart } from "@/components/dashboard/generic-pie-chart";
 import { HorizontalBarChart } from "@/components/dashboard/horizontal-bar-chart";
 import { SbuLeaderboard } from "@/components/dashboard/sbu-leaderboard";
+import { StrategicAnalysisCard } from "@/components/dashboard/strategic-analysis-card";
 import {
     Table,
     TableHeader,
@@ -125,13 +127,91 @@ export default function HomePage() {
                     />
                 </section>
 
+                {/* Section 1.5: Revenue Targets */}
+                <section className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+                    <div className="bg-white p-6 rounded-2xl border border-surface-border shadow-sm flex flex-col">
+                        <span className="text-sm font-medium text-slate-500 mb-1 flex items-center gap-2">
+                            <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                            TARGET RKAP
+                        </span>
+                        <div className="flex items-baseline gap-2">
+                            <span className="text-2xl font-bold text-slate-900">
+                                {(summary.targetRkap || 0).toLocaleString("id-ID", { maximumFractionDigits: 1 })} M
+                            </span>
+                        </div>
+                        <span className="text-xs text-slate-400 mt-2">Baseline Annual Target</span>
+                    </div>
+
+                    <div className="bg-white p-6 rounded-2xl border border-surface-border shadow-sm flex flex-col">
+                        <span className="text-sm font-medium text-slate-500 mb-1 flex items-center gap-2">
+                            <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
+                            TARGET KOMITMEN
+                        </span>
+                        <div className="flex items-baseline gap-2">
+                            <span className="text-2xl font-bold text-emerald-700">
+                                {(summary.targetKomitmen || 0).toLocaleString("id-ID", { maximumFractionDigits: 1 })} M
+                            </span>
+                        </div>
+                        <span className="text-xs text-slate-400 mt-2">Commitment Target</span>
+                    </div>
+
+                    <div className="bg-white p-6 rounded-2xl border border-surface-border shadow-sm flex flex-col">
+                        <span className="text-sm font-medium text-slate-500 mb-1 flex items-center gap-2">
+                            <div className="w-2 h-2 rounded-full bg-amber-500"></div>
+                            TARGET BEYOND
+                        </span>
+                        <div className="flex items-baseline gap-2">
+                            <span className="text-2xl font-bold text-amber-700">
+                                {(summary.targetBeyondRkap || 0).toLocaleString("id-ID", { maximumFractionDigits: 1 })} M
+                            </span>
+                        </div>
+                        <span className="text-xs text-slate-400 mt-2">Beyond RKAP Target</span>
+                    </div>
+
+                    <div className="bg-white p-6 rounded-2xl border border-surface-border shadow-sm flex flex-col">
+                        <span className="text-sm font-medium text-slate-500 mb-1 flex items-center gap-2">
+                            <div className="w-2 h-2 rounded-full bg-orange-400"></div>
+                            TARGET NR
+                        </span>
+                        <div className="flex items-baseline gap-2">
+                            <span className="text-2xl font-bold text-orange-600">
+                                {(summary.targetNr || 0).toLocaleString("id-ID", { maximumFractionDigits: 1 })} M
+                            </span>
+                        </div>
+                        <span className="text-xs text-slate-400 mt-2">Non-Retail Target</span>
+                    </div>
+
+                    <div className="bg-white p-6 rounded-2xl border border-surface-border shadow-sm flex flex-col bg-emerald-50/50 border-emerald-100">
+                        <span className="text-sm font-medium text-emerald-800 mb-1 flex items-center gap-2">
+                            <TrendingUp className="w-4 h-4" />
+                            REALISASI YTD
+                        </span>
+                        <div className="flex items-baseline gap-2">
+                            <span className="text-2xl font-bold text-emerald-800">
+                                {(summary.actualTotalYTD || 0).toLocaleString("id-ID", { maximumFractionDigits: 1 })} M
+                            </span>
+                            <span className="text-xs font-semibold text-emerald-600 bg-emerald-100 px-2 py-0.5 rounded-full">
+                                {summary.targetRkap > 0 ? ((summary.actualTotalYTD / summary.targetRkap) * 100).toFixed(1) : 0}% Ach
+                            </span>
+                        </div>
+                        <span className="text-xs text-emerald-600/70 mt-2">Total Actual Revenue</span>
+                    </div>
+                </section>
+
                 {/* Section 2: Macro Trends */}
-                <section className="grid gap-4 lg:grid-cols-1">
+                <section className="grid gap-6 grid-cols-1">
                     <SectionShell
-                        title="Monthly Revenue Trend"
-                        description="NR vs CO realization trend"
+                        title="Monthly Revenue Trend (RKAP)"
+                        description="Target RKAP vs Realization (NR & CO)"
                     >
                         <MonthlyRevenueChart data={charts.monthlyRevenue} />
+                    </SectionShell>
+
+                    <SectionShell
+                        title="Monthly Revenue Trend (Beyond)"
+                        description="Target Beyond vs Realization (NR & CO)"
+                    >
+                        <MonthlyRevenueBeyondChart data={charts.monthlyRevenue} />
                     </SectionShell>
                 </section>
 
@@ -186,31 +266,11 @@ export default function HomePage() {
                         <SbuLeaderboard data={leaderboard.sbu} />
                     </SectionShell>
 
-                    {/* Using the same component for simple list, ideally separate but reused for simplicity */}
                     <SectionShell
                         title="Strategic Analysis"
-                        description="Actionable insights"
+                        description="Actionable insights & anomaly detection"
                     >
-                        <div className="p-4 space-y-4">
-                            <div className="bg-blue-50 p-4 rounded-lg border border-blue-100">
-                                <h3 className="font-semibold text-blue-900 mb-1">💡 Focus Area</h3>
-                                <p className="text-sm text-blue-800">
-                                    Top 5 segments contribute to <strong>{((charts.topSegments.reduce((a: number, b: any) => a + b.value, 0) / summary.totalPipelineValue) * 100).toFixed(0)}%</strong> of the total pipeline. Prioritize sales support for these key verticals.
-                                </p>
-                            </div>
-                            <div className="bg-amber-50 p-4 rounded-lg border border-amber-100">
-                                <h3 className="font-semibold text-amber-900 mb-1">⚠️ Risk Alert</h3>
-                                <p className="text-sm text-amber-800">
-                                    Win Rate Potential is at <strong>{summary.winRatePotential}%</strong>. Aim to convert 'KUNING' opportunities to 'HIJAU' to improve projection accuracy.
-                                </p>
-                            </div>
-                            <div className="bg-emerald-50 p-4 rounded-lg border border-emerald-100">
-                                <h3 className="font-semibold text-emerald-900 mb-1">📈 Growth Driver</h3>
-                                <p className="text-sm text-emerald-800">
-                                    <strong>{charts.topProducts[0]?.name}</strong> is the top product demand. Ensure capacity and delivery readiness.
-                                </p>
-                            </div>
-                        </div>
+                        <StrategicAnalysisCard data={data} />
                     </SectionShell>
                 </section>
             </div>

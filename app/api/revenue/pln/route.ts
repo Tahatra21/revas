@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { query } from "@/lib/db";
+import { prisma } from "@/lib/db";
 
 export async function GET(req: NextRequest) {
     const searchParams = req.nextUrl.searchParams;
@@ -8,36 +8,47 @@ export async function GET(req: NextRequest) {
 
     try {
         // 1. Find the latest successful import for this period
-        const imports = await query<{ id: string; uploaded_at: Date; table_headers: any }>(
-            `SELECT id, uploaded_at, table_headers 
-       FROM revenue_imports 
-       WHERE period_year = $1 AND period_month = $2 AND status = 'SUCCESS'
-       ORDER BY uploaded_at DESC 
-       LIMIT 1`,
-            [year, month]
-        );
+        const importRecord = await prisma.revenue_imports.findFirst({
+            where: {
+                period_year: year,
+                period_month: month,
+                status: 'SUCCESS'
+            },
+            orderBy: {
+                uploaded_at: 'desc'
+            },
+            select: {
+                id: true,
+                uploaded_at: true,
+                table_headers: true
+            }
+        });
 
-        if (imports.length === 0) {
+        if (!importRecord) {
             return NextResponse.json({ data: [], lastUpdated: null });
         }
 
-        const importId = imports[0].id;
-        const lastUpdated = imports[0].uploaded_at;
-        const headers = imports[0].table_headers || [];
+        const importId = importRecord.id;
+        const lastUpdated = importRecord.uploaded_at;
+        const headers = importRecord.table_headers || [];
 
         // 2. Fetch summary data for this import
-        const rows = await query(
-            `SELECT row_data
-       FROM revenue_summary_pln
-       WHERE import_id = $1
-       ORDER BY id ASC`,
-            [importId]
-        );
+        const rows = await prisma.revenue_summary_pln.findMany({
+            where: {
+                import_id: importId
+            },
+            orderBy: {
+                id: 'asc'
+            },
+            select: {
+                row_data: true
+            }
+        });
 
         // Extract items from row_data
         const cleanRows = rows
-            .map((r: any) => r.row_data)
-            .filter((r: any) => r !== null && typeof r === 'object');
+            .map((r) => r.row_data)
+            .filter((r) => r !== null && typeof r === 'object');
 
         return NextResponse.json({
             headers: headers,
@@ -67,35 +78,19 @@ export async function DELETE(req: NextRequest) {
     }
 
     try {
-        // Delete revenue_summary_pln records for this period
-        await query(
-            `DELETE FROM revenue_summary_pln 
-             WHERE import_id IN (
-                 SELECT id FROM revenue_imports 
-                 WHERE period_year = $1 AND period_month = $2
-             )`,
-            [year, month]
-        );
-
-        // Delete revenue_detail_non_retail records for this period
-        await query(
-            `DELETE FROM revenue_detail_non_retail 
-             WHERE import_id IN (
-                 SELECT id FROM revenue_imports 
-                 WHERE period_year = $1 AND period_month = $2
-             )`,
-            [year, month]
-        );
-
         // Delete the import records themselves
-        const result = await query(
-            `DELETE FROM revenue_imports 
-             WHERE period_year = $1 AND period_month = $2`,
-            [year, month]
-        );
+        // Assuming database FKs are set to CASCADE as per schema.
+        // If not, this might fail, but checking schema allows onDelete: Cascade.
+        const result = await prisma.revenue_imports.deleteMany({
+            where: {
+                period_year: year,
+                period_month: month
+            }
+        });
 
         return NextResponse.json({
             message: "Data deleted successfully",
+            count: result.count,
             year,
             month
         });
