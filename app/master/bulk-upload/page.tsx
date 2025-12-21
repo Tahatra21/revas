@@ -180,7 +180,7 @@ export default function BulkUploadPage() {
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <BulkUploadCard
                         title="RPMS Data Import"
-                        description="Upload Target & Realization data from Book3.xlsx"
+                        description="Upload Target & Realization data"
                         icon={Activity}
                         colorClass="text-emerald-600"
                         bgClass="bg-emerald-100"
