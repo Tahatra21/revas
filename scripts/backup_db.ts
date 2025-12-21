@@ -1,9 +1,14 @@
 
 import { PrismaClient } from '@prisma/client';
+import { PrismaPg } from '@prisma/adapter-pg';
+import { Pool } from 'pg';
 import fs from 'fs';
 import path from 'path';
 
-const prisma = new PrismaClient();
+const connectionString = process.env.DATABASE_URL || "postgres://jmaharyuda@localhost:5432/revas_db";
+const pool = new Pool({ connectionString });
+const adapter = new PrismaPg(pool);
+const prisma = new PrismaClient({ adapter });
 
 async function backup() {
     console.log('Starting database backup...');

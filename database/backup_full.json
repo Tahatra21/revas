@@ -1,0 +1,6777 @@
+{
+  "timestamp": "2025-12-21T13:19:28.835Z",
+  "counts": {
+    "users": 1,
+    "masterSbu": 12,
+    "units": 12,
+    "targets": 543,
+    "actuals": 120,
+    "activityLogs": 0,
+    "systemSettings": 0
+  },
+  "data": {
+    "users": [
+      {
+        "id": 1,
+        "username": "admin",
+        "email": "admin@revas.com",
+        "password_hash": "$2b$10$oiko7bykIv/0KZZCFU/0TOr2CuRYAtl2KXhfhkrCa8N.at2CHoo6u",
+        "full_name": "System Administrator",
+        "role": "admin",
+        "sbu_id": null,
+        "is_active": true,
+        "last_login": "2025-12-19T15:44:45.752Z",
+        "created_at": "2025-12-15T10:56:12.480Z",
+        "updated_at": "2025-12-19T15:44:45.752Z"
+      }
+    ],
+    "masterSbu": [
+      {
+        "id": 1,
+        "code": "KONFRA",
+        "name": "Layanan Konfra Diryanti",
+        "region_id": null,
+        "is_active": true,
+        "created_at": "2025-12-16T11:02:28.122Z",
+        "updated_at": "2025-12-16T11:02:28.122Z"
+      },
+      {
+        "id": 2,
+        "code": "APLIKASI",
+        "name": "Layanan Aplikasi Diryanti",
+        "region_id": null,
+        "is_active": true,
+        "created_at": "2025-12-16T11:02:40.444Z",
+        "updated_at": "2025-12-16T11:02:40.444Z"
+      },
+      {
+        "id": 3,
+        "code": "JKB",
+        "name": "SBU Jakarta Banten Segment Ketenagalistrikan",
+        "region_id": null,
+        "is_active": true,
+        "created_at": "2025-12-16T11:03:16.533Z",
+        "updated_at": "2025-12-16T11:03:16.533Z"
+      },
+      {
+        "id": 4,
+        "code": "JBB",
+        "name": "SBU Jawa Bagian Barat Segment Ketenagalistrikan",
+        "region_id": null,
+        "is_active": true,
+        "created_at": "2025-12-16T11:03:45.487Z",
+        "updated_at": "2025-12-16T11:03:45.487Z"
+      },
+      {
+        "id": 5,
+        "code": "JTG",
+        "name": "SBU Jawa Bagian Tengah Segment Ketenagalistrikan",
+        "region_id": null,
+        "is_active": true,
+        "created_at": "2025-12-16T11:04:11.721Z",
+        "updated_at": "2025-12-16T11:04:11.721Z"
+      },
+      {
+        "id": 6,
+        "code": "JBT",
+        "name": "SBU Jawa Bagian Timur Segment Ketenagalistrikan",
+        "region_id": null,
+        "is_active": true,
+        "created_at": "2025-12-16T11:04:35.683Z",
+        "updated_at": "2025-12-16T11:04:35.683Z"
+      },
+      {
+        "id": 7,
+        "code": "BNR",
+        "name": "SBU Bali Nusra Segment Ketenagalistrikan",
+        "region_id": null,
+        "is_active": true,
+        "created_at": "2025-12-16T11:04:58.659Z",
+        "updated_at": "2025-12-16T11:04:58.659Z"
+      },
+      {
+        "id": 8,
+        "code": "SBU",
+        "name": "SBU Sumatera Bagian Utara Segment Ketenagalistrikan",
+        "region_id": null,
+        "is_active": true,
+        "created_at": "2025-12-16T11:05:20.111Z",
+        "updated_at": "2025-12-16T11:05:20.111Z"
+      },
+      {
+        "id": 9,
+        "code": "SBT",
+        "name": "SBU Sumatera Bagian Tengah Segment Ketenagalistrikan",
+        "region_id": null,
+        "is_active": true,
+        "created_at": "2025-12-16T11:05:41.838Z",
+        "updated_at": "2025-12-16T11:05:41.838Z"
+      },
+      {
+        "id": 10,
+        "code": "SBS",
+        "name": "SBU Sumatera Bagian Selatan Segment Ketenagalistrikan",
+        "region_id": null,
+        "is_active": true,
+        "created_at": "2025-12-16T11:05:50.790Z",
+        "updated_at": "2025-12-16T11:05:50.790Z"
+      },
+      {
+        "id": 11,
+        "code": "SLW",
+        "name": "SBU Sulawesi & Indonesia Timur Segment Ketenagalistrikan",
+        "region_id": null,
+        "is_active": true,
+        "created_at": "2025-12-16T11:06:16.043Z",
+        "updated_at": "2025-12-16T11:06:16.043Z"
+      },
+      {
+        "id": 12,
+        "code": "KLM",
+        "name": "SBU Kalimantan Segment Ketenagalistrikan",
+        "region_id": null,
+        "is_active": true,
+        "created_at": "2025-12-16T11:06:35.322Z",
+        "updated_at": "2025-12-16T11:06:35.322Z"
+      }
+    ],
+    "units": [
+      {
+        "id": 1,
+        "name": "Layanan Konfra Diryanti",
+        "code": "KONFRA - JUSOL",
+        "level": "SBU",
+        "parentId": null,
+        "sbuId": 1,
+        "createdAt": "2025-12-18T06:53:42.252Z",
+        "updatedAt": "2025-12-19T08:13:51.754Z"
+      },
+      {
+        "id": 2,
+        "name": "Layanan Aplikasi Diryanti",
+        "code": "APLIKASI - JUSOL",
+        "level": "SBU",
+        "parentId": null,
+        "sbuId": 2,
+        "createdAt": "2025-12-18T06:53:42.300Z",
+        "updatedAt": "2025-12-19T08:13:51.806Z"
+      },
+      {
+        "id": 3,
+        "name": "JKB ​",
+        "code": "JKB ​",
+        "level": "SBU",
+        "parentId": null,
+        "sbuId": null,
+        "createdAt": "2025-12-18T06:53:42.316Z",
+        "updatedAt": "2025-12-19T08:13:51.860Z"
+      },
+      {
+        "id": 4,
+        "name": "JBB ​",
+        "code": "JBB ​",
+        "level": "SBU",
+        "parentId": null,
+        "sbuId": null,
+        "createdAt": "2025-12-18T06:53:42.333Z",
+        "updatedAt": "2025-12-19T08:13:51.899Z"
+      },
+      {
+        "id": 5,
+        "name": "JTG ​",
+        "code": "JTG ​",
+        "level": "SBU",
+        "parentId": null,
+        "sbuId": null,
+        "createdAt": "2025-12-18T06:53:42.349Z",
+        "updatedAt": "2025-12-19T08:13:51.932Z"
+      },
+      {
+        "id": 6,
+        "name": "JBT ​",
+        "code": "JBT ​",
+        "level": "SBU",
+        "parentId": null,
+        "sbuId": null,
+        "createdAt": "2025-12-18T06:55:37.776Z",
+        "updatedAt": "2025-12-19T08:13:51.970Z"
+      },
+      {
+        "id": 7,
+        "name": "BNR ​",
+        "code": "BNR ​",
+        "level": "SBU",
+        "parentId": null,
+        "sbuId": null,
+        "createdAt": "2025-12-18T06:55:37.805Z",
+        "updatedAt": "2025-12-19T08:13:52.011Z"
+      },
+      {
+        "id": 8,
+        "name": "SBU ​",
+        "code": "SBU ​",
+        "level": "SBU",
+        "parentId": null,
+        "sbuId": null,
+        "createdAt": "2025-12-18T06:55:37.838Z",
+        "updatedAt": "2025-12-19T08:13:52.052Z"
+      },
+      {
+        "id": 9,
+        "name": "SBT ​",
+        "code": "SBT ​",
+        "level": "SBU",
+        "parentId": null,
+        "sbuId": null,
+        "createdAt": "2025-12-18T06:55:37.866Z",
+        "updatedAt": "2025-12-19T08:13:52.087Z"
+      },
+      {
+        "id": 10,
+        "name": "SBS ​",
+        "code": "SBS ​",
+        "level": "SBU",
+        "parentId": null,
+        "sbuId": null,
+        "createdAt": "2025-12-18T06:55:37.895Z",
+        "updatedAt": "2025-12-19T08:13:52.124Z"
+      },
+      {
+        "id": 11,
+        "name": "SLW ​",
+        "code": "SLW ​",
+        "level": "SBU",
+        "parentId": null,
+        "sbuId": null,
+        "createdAt": "2025-12-18T06:55:37.922Z",
+        "updatedAt": "2025-12-19T08:13:52.160Z"
+      },
+      {
+        "id": 12,
+        "name": "KLM ​",
+        "code": "KLM ​",
+        "level": "SBU",
+        "parentId": null,
+        "sbuId": null,
+        "createdAt": "2025-12-18T06:55:37.951Z",
+        "updatedAt": "2025-12-19T08:13:52.195Z"
+      }
+    ],
+    "targets": [
+      {
+        "id": 1,
+        "year": 2025,
+        "month": 1,
+        "unitId": 1,
+        "targetType": "RKAP",
+        "amount": "0",
+        "createdAt": "2025-12-18T06:53:42.278Z",
+        "updatedAt": "2025-12-18T06:53:42.278Z"
+      },
+      {
+        "id": 4,
+        "year": 2025,
+        "month": 4,
+        "unitId": 1,
+        "targetType": "RKAP",
+        "amount": "336.08",
+        "createdAt": "2025-12-18T06:53:42.288Z",
+        "updatedAt": "2025-12-19T08:13:51.775Z"
+      },
+      {
+        "id": 5,
+        "year": 2025,
+        "month": 5,
+        "unitId": 1,
+        "targetType": "RKAP",
+        "amount": "420.11",
+        "createdAt": "2025-12-18T06:53:42.290Z",
+        "updatedAt": "2025-12-19T08:13:51.778Z"
+      },
+      {
+        "id": 6,
+        "year": 2025,
+        "month": 6,
+        "unitId": 1,
+        "targetType": "RKAP",
+        "amount": "672.17",
+        "createdAt": "2025-12-18T06:53:42.292Z",
+        "updatedAt": "2025-12-19T08:13:51.782Z"
+      },
+      {
+        "id": 7,
+        "year": 2025,
+        "month": 7,
+        "unitId": 1,
+        "targetType": "RKAP",
+        "amount": "756.19",
+        "createdAt": "2025-12-18T06:53:42.293Z",
+        "updatedAt": "2025-12-19T08:13:51.785Z"
+      },
+      {
+        "id": 8,
+        "year": 2025,
+        "month": 8,
+        "unitId": 1,
+        "targetType": "RKAP",
+        "amount": "924.23",
+        "createdAt": "2025-12-18T06:53:42.295Z",
+        "updatedAt": "2025-12-19T08:13:51.789Z"
+      },
+      {
+        "id": 9,
+        "year": 2025,
+        "month": 9,
+        "unitId": 1,
+        "targetType": "RKAP",
+        "amount": "1092.27",
+        "createdAt": "2025-12-18T06:53:42.296Z",
+        "updatedAt": "2025-12-19T08:13:51.793Z"
+      },
+      {
+        "id": 73,
+        "year": 2025,
+        "month": 10,
+        "unitId": 1,
+        "targetType": "RKAP",
+        "amount": "1344.34",
+        "createdAt": "2025-12-18T06:55:37.611Z",
+        "updatedAt": "2025-12-19T08:13:51.795Z"
+      },
+      {
+        "id": 10,
+        "year": 2025,
+        "month": 11,
+        "unitId": 1,
+        "targetType": "RKAP",
+        "amount": "1512.38",
+        "createdAt": "2025-12-18T06:53:42.299Z",
+        "updatedAt": "2025-12-19T08:13:51.800Z"
+      },
+      {
+        "id": 12,
+        "year": 2025,
+        "month": 1,
+        "unitId": 2,
+        "targetType": "RKAP",
+        "amount": "57.57",
+        "createdAt": "2025-12-18T06:53:42.302Z",
+        "updatedAt": "2025-12-19T08:13:51.806Z"
+      },
+      {
+        "id": 13,
+        "year": 2025,
+        "month": 2,
+        "unitId": 2,
+        "targetType": "RKAP",
+        "amount": "115.14",
+        "createdAt": "2025-12-18T06:53:42.304Z",
+        "updatedAt": "2025-12-19T08:13:51.810Z"
+      },
+      {
+        "id": 84,
+        "year": 2025,
+        "month": 3,
+        "unitId": 2,
+        "targetType": "BEYOND_RKAP",
+        "amount": "209.44",
+        "createdAt": "2025-12-18T06:55:37.625Z",
+        "updatedAt": "2025-12-19T08:13:51.814Z"
+      },
+      {
+        "id": 86,
+        "year": 2025,
+        "month": 4,
+        "unitId": 2,
+        "targetType": "BEYOND_RKAP",
+        "amount": "279.25",
+        "createdAt": "2025-12-18T06:55:37.627Z",
+        "updatedAt": "2025-12-19T08:13:51.817Z"
+      },
+      {
+        "id": 16,
+        "year": 2025,
+        "month": 5,
+        "unitId": 2,
+        "targetType": "RKAP",
+        "amount": "287.86",
+        "createdAt": "2025-12-18T06:53:42.308Z",
+        "updatedAt": "2025-12-19T08:13:51.820Z"
+      },
+      {
+        "id": 17,
+        "year": 2025,
+        "month": 6,
+        "unitId": 2,
+        "targetType": "RKAP",
+        "amount": "460.57",
+        "createdAt": "2025-12-18T06:53:42.309Z",
+        "updatedAt": "2025-12-19T08:13:51.824Z"
+      },
+      {
+        "id": 18,
+        "year": 2025,
+        "month": 7,
+        "unitId": 2,
+        "targetType": "RKAP",
+        "amount": "518.14",
+        "createdAt": "2025-12-18T06:53:42.310Z",
+        "updatedAt": "2025-12-19T08:13:51.827Z"
+      },
+      {
+        "id": 19,
+        "year": 2025,
+        "month": 8,
+        "unitId": 2,
+        "targetType": "RKAP",
+        "amount": "633.28",
+        "createdAt": "2025-12-18T06:53:42.312Z",
+        "updatedAt": "2025-12-19T08:13:51.831Z"
+      },
+      {
+        "id": 20,
+        "year": 2025,
+        "month": 9,
+        "unitId": 2,
+        "targetType": "RKAP",
+        "amount": "748.42",
+        "createdAt": "2025-12-18T06:53:42.313Z",
+        "updatedAt": "2025-12-19T08:13:51.836Z"
+      },
+      {
+        "id": 97,
+        "year": 2025,
+        "month": 10,
+        "unitId": 2,
+        "targetType": "RKAP",
+        "amount": "921.14",
+        "createdAt": "2025-12-18T06:55:37.639Z",
+        "updatedAt": "2025-12-19T08:13:51.842Z"
+      },
+      {
+        "id": 21,
+        "year": 2025,
+        "month": 11,
+        "unitId": 2,
+        "targetType": "RKAP",
+        "amount": "1036.28",
+        "createdAt": "2025-12-18T06:53:42.315Z",
+        "updatedAt": "2025-12-19T08:13:51.850Z"
+      },
+      {
+        "id": 23,
+        "year": 2025,
+        "month": 1,
+        "unitId": 3,
+        "targetType": "RKAP",
+        "amount": "1.57",
+        "createdAt": "2025-12-18T06:53:42.318Z",
+        "updatedAt": "2025-12-19T08:13:51.860Z"
+      },
+      {
+        "id": 24,
+        "year": 2025,
+        "month": 2,
+        "unitId": 3,
+        "targetType": "RKAP",
+        "amount": "3.15",
+        "createdAt": "2025-12-18T06:53:42.320Z",
+        "updatedAt": "2025-12-19T08:13:51.865Z"
+      },
+      {
+        "id": 25,
+        "year": 2025,
+        "month": 3,
+        "unitId": 3,
+        "targetType": "RKAP",
+        "amount": "4.72",
+        "createdAt": "2025-12-18T06:53:42.321Z",
+        "updatedAt": "2025-12-19T08:13:51.869Z"
+      },
+      {
+        "id": 26,
+        "year": 2025,
+        "month": 4,
+        "unitId": 3,
+        "targetType": "RKAP",
+        "amount": "6.29",
+        "createdAt": "2025-12-18T06:53:42.322Z",
+        "updatedAt": "2025-12-19T08:13:51.872Z"
+      },
+      {
+        "id": 27,
+        "year": 2025,
+        "month": 5,
+        "unitId": 3,
+        "targetType": "RKAP",
+        "amount": "7.87",
+        "createdAt": "2025-12-18T06:53:42.324Z",
+        "updatedAt": "2025-12-19T08:13:51.874Z"
+      },
+      {
+        "id": 28,
+        "year": 2025,
+        "month": 6,
+        "unitId": 3,
+        "targetType": "RKAP",
+        "amount": "12.58",
+        "createdAt": "2025-12-18T06:53:42.325Z",
+        "updatedAt": "2025-12-19T08:13:51.878Z"
+      },
+      {
+        "id": 29,
+        "year": 2025,
+        "month": 7,
+        "unitId": 3,
+        "targetType": "RKAP",
+        "amount": "14.16",
+        "createdAt": "2025-12-18T06:53:42.326Z",
+        "updatedAt": "2025-12-19T08:13:51.881Z"
+      },
+      {
+        "id": 30,
+        "year": 2025,
+        "month": 8,
+        "unitId": 3,
+        "targetType": "RKAP",
+        "amount": "17.3",
+        "createdAt": "2025-12-18T06:53:42.328Z",
+        "updatedAt": "2025-12-19T08:13:51.883Z"
+      },
+      {
+        "id": 120,
+        "year": 2025,
+        "month": 9,
+        "unitId": 3,
+        "targetType": "BEYOND_RKAP",
+        "amount": "39.16",
+        "createdAt": "2025-12-18T06:55:37.670Z",
+        "updatedAt": "2025-12-19T08:13:51.888Z"
+      },
+      {
+        "id": 122,
+        "year": 2025,
+        "month": 10,
+        "unitId": 3,
+        "targetType": "BEYOND_RKAP",
+        "amount": "48.2",
+        "createdAt": "2025-12-18T06:55:37.672Z",
+        "updatedAt": "2025-12-19T08:13:51.891Z"
+      },
+      {
+        "id": 32,
+        "year": 2025,
+        "month": 11,
+        "unitId": 3,
+        "targetType": "RKAP",
+        "amount": "28.31",
+        "createdAt": "2025-12-18T06:53:42.331Z",
+        "updatedAt": "2025-12-19T08:13:51.894Z"
+      },
+      {
+        "id": 34,
+        "year": 2025,
+        "month": 1,
+        "unitId": 4,
+        "targetType": "RKAP",
+        "amount": "1.71",
+        "createdAt": "2025-12-18T06:53:42.335Z",
+        "updatedAt": "2025-12-19T08:13:51.899Z"
+      },
+      {
+        "id": 35,
+        "year": 2025,
+        "month": 2,
+        "unitId": 4,
+        "targetType": "RKAP",
+        "amount": "3.42",
+        "createdAt": "2025-12-18T06:53:42.337Z",
+        "updatedAt": "2025-12-19T08:13:51.902Z"
+      },
+      {
+        "id": 36,
+        "year": 2025,
+        "month": 3,
+        "unitId": 4,
+        "targetType": "RKAP",
+        "amount": "5.13",
+        "createdAt": "2025-12-18T06:53:42.338Z",
+        "updatedAt": "2025-12-19T08:13:51.905Z"
+      },
+      {
+        "id": 37,
+        "year": 2025,
+        "month": 4,
+        "unitId": 4,
+        "targetType": "RKAP",
+        "amount": "6.84",
+        "createdAt": "2025-12-18T06:53:42.340Z",
+        "updatedAt": "2025-12-19T08:13:51.907Z"
+      },
+      {
+        "id": 38,
+        "year": 2025,
+        "month": 5,
+        "unitId": 4,
+        "targetType": "RKAP",
+        "amount": "8.55",
+        "createdAt": "2025-12-18T06:53:42.341Z",
+        "updatedAt": "2025-12-19T08:13:51.910Z"
+      },
+      {
+        "id": 39,
+        "year": 2025,
+        "month": 6,
+        "unitId": 4,
+        "targetType": "RKAP",
+        "amount": "13.68",
+        "createdAt": "2025-12-18T06:53:42.342Z",
+        "updatedAt": "2025-12-19T08:13:51.913Z"
+      },
+      {
+        "id": 40,
+        "year": 2025,
+        "month": 7,
+        "unitId": 4,
+        "targetType": "RKAP",
+        "amount": "15.39",
+        "createdAt": "2025-12-18T06:53:42.343Z",
+        "updatedAt": "2025-12-19T08:13:51.915Z"
+      },
+      {
+        "id": 41,
+        "year": 2025,
+        "month": 8,
+        "unitId": 4,
+        "targetType": "RKAP",
+        "amount": "18.81",
+        "createdAt": "2025-12-18T06:53:42.345Z",
+        "updatedAt": "2025-12-19T08:13:51.918Z"
+      },
+      {
+        "id": 42,
+        "year": 2025,
+        "month": 9,
+        "unitId": 4,
+        "targetType": "RKAP",
+        "amount": "22.23",
+        "createdAt": "2025-12-18T06:53:42.346Z",
+        "updatedAt": "2025-12-19T08:13:51.921Z"
+      },
+      {
+        "id": 145,
+        "year": 2025,
+        "month": 10,
+        "unitId": 4,
+        "targetType": "RKAP",
+        "amount": "27.36",
+        "createdAt": "2025-12-18T06:55:37.700Z",
+        "updatedAt": "2025-12-19T08:13:51.924Z"
+      },
+      {
+        "id": 44,
+        "year": 2025,
+        "month": 12,
+        "unitId": 4,
+        "targetType": "RKAP",
+        "amount": "34.2",
+        "createdAt": "2025-12-18T06:53:42.348Z",
+        "updatedAt": "2025-12-19T08:13:51.929Z"
+      },
+      {
+        "id": 47,
+        "year": 2025,
+        "month": 3,
+        "unitId": 5,
+        "targetType": "RKAP",
+        "amount": "7.68",
+        "createdAt": "2025-12-18T06:53:42.354Z",
+        "updatedAt": "2025-12-19T08:13:51.939Z"
+      },
+      {
+        "id": 48,
+        "year": 2025,
+        "month": 4,
+        "unitId": 5,
+        "targetType": "RKAP",
+        "amount": "10.24",
+        "createdAt": "2025-12-18T06:53:42.355Z",
+        "updatedAt": "2025-12-19T08:13:51.942Z"
+      },
+      {
+        "id": 49,
+        "year": 2025,
+        "month": 5,
+        "unitId": 5,
+        "targetType": "RKAP",
+        "amount": "12.8",
+        "createdAt": "2025-12-18T06:53:42.357Z",
+        "updatedAt": "2025-12-19T08:13:51.946Z"
+      },
+      {
+        "id": 50,
+        "year": 2025,
+        "month": 6,
+        "unitId": 5,
+        "targetType": "RKAP",
+        "amount": "20.48",
+        "createdAt": "2025-12-18T06:53:42.358Z",
+        "updatedAt": "2025-12-19T08:13:51.948Z"
+      },
+      {
+        "id": 51,
+        "year": 2025,
+        "month": 7,
+        "unitId": 5,
+        "targetType": "RKAP",
+        "amount": "23.04",
+        "createdAt": "2025-12-18T06:53:42.359Z",
+        "updatedAt": "2025-12-19T08:13:51.951Z"
+      },
+      {
+        "id": 53,
+        "year": 2025,
+        "month": 9,
+        "unitId": 5,
+        "targetType": "RKAP",
+        "amount": "33.28",
+        "createdAt": "2025-12-18T06:53:42.361Z",
+        "updatedAt": "2025-12-19T08:13:51.958Z"
+      },
+      {
+        "id": 54,
+        "year": 2025,
+        "month": 11,
+        "unitId": 5,
+        "targetType": "RKAP",
+        "amount": "46.08",
+        "createdAt": "2025-12-18T06:53:42.363Z",
+        "updatedAt": "2025-12-19T08:13:51.964Z"
+      },
+      {
+        "id": 55,
+        "year": 2025,
+        "month": 12,
+        "unitId": 5,
+        "targetType": "RKAP",
+        "amount": "51.2",
+        "createdAt": "2025-12-18T06:53:42.363Z",
+        "updatedAt": "2025-12-19T08:13:51.967Z"
+      },
+      {
+        "id": 56,
+        "year": 2025,
+        "month": 1,
+        "unitId": 1,
+        "targetType": "BEYOND_RKAP",
+        "amount": "99.96",
+        "createdAt": "2025-12-18T06:55:37.575Z",
+        "updatedAt": "2025-12-19T08:13:51.758Z"
+      },
+      {
+        "id": 2,
+        "year": 2025,
+        "month": 2,
+        "unitId": 1,
+        "targetType": "RKAP",
+        "amount": "168.04",
+        "createdAt": "2025-12-18T06:53:42.283Z",
+        "updatedAt": "2025-12-19T08:13:51.765Z"
+      },
+      {
+        "id": 58,
+        "year": 2025,
+        "month": 2,
+        "unitId": 1,
+        "targetType": "BEYOND_RKAP",
+        "amount": "199.93",
+        "createdAt": "2025-12-18T06:55:37.582Z",
+        "updatedAt": "2025-12-19T08:13:51.765Z"
+      },
+      {
+        "id": 3,
+        "year": 2025,
+        "month": 3,
+        "unitId": 1,
+        "targetType": "RKAP",
+        "amount": "252.06",
+        "createdAt": "2025-12-18T06:53:42.285Z",
+        "updatedAt": "2025-12-19T08:13:51.770Z"
+      },
+      {
+        "id": 60,
+        "year": 2025,
+        "month": 3,
+        "unitId": 1,
+        "targetType": "BEYOND_RKAP",
+        "amount": "299.89",
+        "createdAt": "2025-12-18T06:55:37.587Z",
+        "updatedAt": "2025-12-19T08:13:51.771Z"
+      },
+      {
+        "id": 62,
+        "year": 2025,
+        "month": 4,
+        "unitId": 1,
+        "targetType": "BEYOND_RKAP",
+        "amount": "399.85",
+        "createdAt": "2025-12-18T06:55:37.596Z",
+        "updatedAt": "2025-12-19T08:13:51.776Z"
+      },
+      {
+        "id": 64,
+        "year": 2025,
+        "month": 5,
+        "unitId": 1,
+        "targetType": "BEYOND_RKAP",
+        "amount": "499.81",
+        "createdAt": "2025-12-18T06:55:37.600Z",
+        "updatedAt": "2025-12-19T08:13:51.779Z"
+      },
+      {
+        "id": 66,
+        "year": 2025,
+        "month": 6,
+        "unitId": 1,
+        "targetType": "BEYOND_RKAP",
+        "amount": "799.7",
+        "createdAt": "2025-12-18T06:55:37.603Z",
+        "updatedAt": "2025-12-19T08:13:51.783Z"
+      },
+      {
+        "id": 68,
+        "year": 2025,
+        "month": 7,
+        "unitId": 1,
+        "targetType": "BEYOND_RKAP",
+        "amount": "899.66",
+        "createdAt": "2025-12-18T06:55:37.606Z",
+        "updatedAt": "2025-12-19T08:13:51.786Z"
+      },
+      {
+        "id": 70,
+        "year": 2025,
+        "month": 8,
+        "unitId": 1,
+        "targetType": "BEYOND_RKAP",
+        "amount": "1099.59",
+        "createdAt": "2025-12-18T06:55:37.608Z",
+        "updatedAt": "2025-12-19T08:13:51.790Z"
+      },
+      {
+        "id": 72,
+        "year": 2025,
+        "month": 9,
+        "unitId": 1,
+        "targetType": "BEYOND_RKAP",
+        "amount": "1299.51",
+        "createdAt": "2025-12-18T06:55:37.610Z",
+        "updatedAt": "2025-12-19T08:13:51.793Z"
+      },
+      {
+        "id": 74,
+        "year": 2025,
+        "month": 10,
+        "unitId": 1,
+        "targetType": "BEYOND_RKAP",
+        "amount": "1599.4",
+        "createdAt": "2025-12-18T06:55:37.612Z",
+        "updatedAt": "2025-12-19T08:13:51.797Z"
+      },
+      {
+        "id": 76,
+        "year": 2025,
+        "month": 11,
+        "unitId": 1,
+        "targetType": "BEYOND_RKAP",
+        "amount": "1799.33",
+        "createdAt": "2025-12-18T06:55:37.614Z",
+        "updatedAt": "2025-12-19T08:13:51.801Z"
+      },
+      {
+        "id": 11,
+        "year": 2025,
+        "month": 12,
+        "unitId": 1,
+        "targetType": "RKAP",
+        "amount": "1680.42",
+        "createdAt": "2025-12-18T06:53:42.300Z",
+        "updatedAt": "2025-12-19T08:13:51.803Z"
+      },
+      {
+        "id": 78,
+        "year": 2025,
+        "month": 12,
+        "unitId": 1,
+        "targetType": "BEYOND_RKAP",
+        "amount": "1999.25",
+        "createdAt": "2025-12-18T06:55:37.617Z",
+        "updatedAt": "2025-12-19T08:13:51.804Z"
+      },
+      {
+        "id": 80,
+        "year": 2025,
+        "month": 1,
+        "unitId": 2,
+        "targetType": "BEYOND_RKAP",
+        "amount": "69.81",
+        "createdAt": "2025-12-18T06:55:37.621Z",
+        "updatedAt": "2025-12-19T08:13:51.807Z"
+      },
+      {
+        "id": 14,
+        "year": 2025,
+        "month": 3,
+        "unitId": 2,
+        "targetType": "RKAP",
+        "amount": "172.71",
+        "createdAt": "2025-12-18T06:53:42.305Z",
+        "updatedAt": "2025-12-19T08:13:51.813Z"
+      },
+      {
+        "id": 15,
+        "year": 2025,
+        "month": 4,
+        "unitId": 2,
+        "targetType": "RKAP",
+        "amount": "230.28",
+        "createdAt": "2025-12-18T06:53:42.306Z",
+        "updatedAt": "2025-12-19T08:13:51.816Z"
+      },
+      {
+        "id": 88,
+        "year": 2025,
+        "month": 5,
+        "unitId": 2,
+        "targetType": "BEYOND_RKAP",
+        "amount": "349.06",
+        "createdAt": "2025-12-18T06:55:37.630Z",
+        "updatedAt": "2025-12-19T08:13:51.821Z"
+      },
+      {
+        "id": 90,
+        "year": 2025,
+        "month": 6,
+        "unitId": 2,
+        "targetType": "BEYOND_RKAP",
+        "amount": "558.5",
+        "createdAt": "2025-12-18T06:55:37.632Z",
+        "updatedAt": "2025-12-19T08:13:51.825Z"
+      },
+      {
+        "id": 92,
+        "year": 2025,
+        "month": 7,
+        "unitId": 2,
+        "targetType": "BEYOND_RKAP",
+        "amount": "628.31",
+        "createdAt": "2025-12-18T06:55:37.634Z",
+        "updatedAt": "2025-12-19T08:13:51.828Z"
+      },
+      {
+        "id": 94,
+        "year": 2025,
+        "month": 8,
+        "unitId": 2,
+        "targetType": "BEYOND_RKAP",
+        "amount": "767.94",
+        "createdAt": "2025-12-18T06:55:37.636Z",
+        "updatedAt": "2025-12-19T08:13:51.831Z"
+      },
+      {
+        "id": 96,
+        "year": 2025,
+        "month": 9,
+        "unitId": 2,
+        "targetType": "BEYOND_RKAP",
+        "amount": "907.56",
+        "createdAt": "2025-12-18T06:55:37.638Z",
+        "updatedAt": "2025-12-19T08:13:51.837Z"
+      },
+      {
+        "id": 98,
+        "year": 2025,
+        "month": 10,
+        "unitId": 2,
+        "targetType": "BEYOND_RKAP",
+        "amount": "1117",
+        "createdAt": "2025-12-18T06:55:37.640Z",
+        "updatedAt": "2025-12-19T08:13:51.843Z"
+      },
+      {
+        "id": 100,
+        "year": 2025,
+        "month": 11,
+        "unitId": 2,
+        "targetType": "BEYOND_RKAP",
+        "amount": "1256.63",
+        "createdAt": "2025-12-18T06:55:37.642Z",
+        "updatedAt": "2025-12-19T08:13:51.851Z"
+      },
+      {
+        "id": 22,
+        "year": 2025,
+        "month": 12,
+        "unitId": 2,
+        "targetType": "RKAP",
+        "amount": "1151.42",
+        "createdAt": "2025-12-18T06:53:42.315Z",
+        "updatedAt": "2025-12-19T08:13:51.856Z"
+      },
+      {
+        "id": 102,
+        "year": 2025,
+        "month": 12,
+        "unitId": 2,
+        "targetType": "BEYOND_RKAP",
+        "amount": "1396.25",
+        "createdAt": "2025-12-18T06:55:37.645Z",
+        "updatedAt": "2025-12-19T08:13:51.857Z"
+      },
+      {
+        "id": 104,
+        "year": 2025,
+        "month": 1,
+        "unitId": 3,
+        "targetType": "BEYOND_RKAP",
+        "amount": "3.01",
+        "createdAt": "2025-12-18T06:55:37.648Z",
+        "updatedAt": "2025-12-19T08:13:51.861Z"
+      },
+      {
+        "id": 106,
+        "year": 2025,
+        "month": 2,
+        "unitId": 3,
+        "targetType": "BEYOND_RKAP",
+        "amount": "6.03",
+        "createdAt": "2025-12-18T06:55:37.651Z",
+        "updatedAt": "2025-12-19T08:13:51.866Z"
+      },
+      {
+        "id": 108,
+        "year": 2025,
+        "month": 3,
+        "unitId": 3,
+        "targetType": "BEYOND_RKAP",
+        "amount": "9.04",
+        "createdAt": "2025-12-18T06:55:37.653Z",
+        "updatedAt": "2025-12-19T08:13:51.869Z"
+      },
+      {
+        "id": 110,
+        "year": 2025,
+        "month": 4,
+        "unitId": 3,
+        "targetType": "BEYOND_RKAP",
+        "amount": "12.05",
+        "createdAt": "2025-12-18T06:55:37.659Z",
+        "updatedAt": "2025-12-19T08:13:51.872Z"
+      },
+      {
+        "id": 112,
+        "year": 2025,
+        "month": 5,
+        "unitId": 3,
+        "targetType": "BEYOND_RKAP",
+        "amount": "15.06",
+        "createdAt": "2025-12-18T06:55:37.662Z",
+        "updatedAt": "2025-12-19T08:13:51.875Z"
+      },
+      {
+        "id": 114,
+        "year": 2025,
+        "month": 6,
+        "unitId": 3,
+        "targetType": "BEYOND_RKAP",
+        "amount": "24.1",
+        "createdAt": "2025-12-18T06:55:37.664Z",
+        "updatedAt": "2025-12-19T08:13:51.879Z"
+      },
+      {
+        "id": 116,
+        "year": 2025,
+        "month": 7,
+        "unitId": 3,
+        "targetType": "BEYOND_RKAP",
+        "amount": "27.11",
+        "createdAt": "2025-12-18T06:55:37.666Z",
+        "updatedAt": "2025-12-19T08:13:51.882Z"
+      },
+      {
+        "id": 31,
+        "year": 2025,
+        "month": 9,
+        "unitId": 3,
+        "targetType": "RKAP",
+        "amount": "20.45",
+        "createdAt": "2025-12-18T06:53:42.329Z",
+        "updatedAt": "2025-12-19T08:13:51.888Z"
+      },
+      {
+        "id": 121,
+        "year": 2025,
+        "month": 10,
+        "unitId": 3,
+        "targetType": "RKAP",
+        "amount": "25.17",
+        "createdAt": "2025-12-18T06:55:37.671Z",
+        "updatedAt": "2025-12-19T08:13:51.890Z"
+      },
+      {
+        "id": 124,
+        "year": 2025,
+        "month": 11,
+        "unitId": 3,
+        "targetType": "BEYOND_RKAP",
+        "amount": "54.23",
+        "createdAt": "2025-12-18T06:55:37.674Z",
+        "updatedAt": "2025-12-19T08:13:51.894Z"
+      },
+      {
+        "id": 33,
+        "year": 2025,
+        "month": 12,
+        "unitId": 3,
+        "targetType": "RKAP",
+        "amount": "31.46",
+        "createdAt": "2025-12-18T06:53:42.332Z",
+        "updatedAt": "2025-12-19T08:13:51.896Z"
+      },
+      {
+        "id": 126,
+        "year": 2025,
+        "month": 12,
+        "unitId": 3,
+        "targetType": "BEYOND_RKAP",
+        "amount": "60.25",
+        "createdAt": "2025-12-18T06:55:37.677Z",
+        "updatedAt": "2025-12-19T08:13:51.897Z"
+      },
+      {
+        "id": 128,
+        "year": 2025,
+        "month": 1,
+        "unitId": 4,
+        "targetType": "BEYOND_RKAP",
+        "amount": "2.96",
+        "createdAt": "2025-12-18T06:55:37.680Z",
+        "updatedAt": "2025-12-19T08:13:51.900Z"
+      },
+      {
+        "id": 130,
+        "year": 2025,
+        "month": 2,
+        "unitId": 4,
+        "targetType": "BEYOND_RKAP",
+        "amount": "5.93",
+        "createdAt": "2025-12-18T06:55:37.682Z",
+        "updatedAt": "2025-12-19T08:13:51.903Z"
+      },
+      {
+        "id": 132,
+        "year": 2025,
+        "month": 3,
+        "unitId": 4,
+        "targetType": "BEYOND_RKAP",
+        "amount": "8.89",
+        "createdAt": "2025-12-18T06:55:37.684Z",
+        "updatedAt": "2025-12-19T08:13:51.906Z"
+      },
+      {
+        "id": 134,
+        "year": 2025,
+        "month": 4,
+        "unitId": 4,
+        "targetType": "BEYOND_RKAP",
+        "amount": "11.85",
+        "createdAt": "2025-12-18T06:55:37.688Z",
+        "updatedAt": "2025-12-19T08:13:51.908Z"
+      },
+      {
+        "id": 136,
+        "year": 2025,
+        "month": 5,
+        "unitId": 4,
+        "targetType": "BEYOND_RKAP",
+        "amount": "14.81",
+        "createdAt": "2025-12-18T06:55:37.690Z",
+        "updatedAt": "2025-12-19T08:13:51.911Z"
+      },
+      {
+        "id": 138,
+        "year": 2025,
+        "month": 6,
+        "unitId": 4,
+        "targetType": "BEYOND_RKAP",
+        "amount": "23.7",
+        "createdAt": "2025-12-18T06:55:37.693Z",
+        "updatedAt": "2025-12-19T08:13:51.914Z"
+      },
+      {
+        "id": 140,
+        "year": 2025,
+        "month": 7,
+        "unitId": 4,
+        "targetType": "BEYOND_RKAP",
+        "amount": "26.66",
+        "createdAt": "2025-12-18T06:55:37.695Z",
+        "updatedAt": "2025-12-19T08:13:51.916Z"
+      },
+      {
+        "id": 142,
+        "year": 2025,
+        "month": 8,
+        "unitId": 4,
+        "targetType": "BEYOND_RKAP",
+        "amount": "32.59",
+        "createdAt": "2025-12-18T06:55:37.697Z",
+        "updatedAt": "2025-12-19T08:13:51.919Z"
+      },
+      {
+        "id": 144,
+        "year": 2025,
+        "month": 9,
+        "unitId": 4,
+        "targetType": "BEYOND_RKAP",
+        "amount": "38.51",
+        "createdAt": "2025-12-18T06:55:37.700Z",
+        "updatedAt": "2025-12-19T08:13:51.922Z"
+      },
+      {
+        "id": 43,
+        "year": 2025,
+        "month": 11,
+        "unitId": 4,
+        "targetType": "RKAP",
+        "amount": "30.78",
+        "createdAt": "2025-12-18T06:53:42.347Z",
+        "updatedAt": "2025-12-19T08:13:51.927Z"
+      },
+      {
+        "id": 45,
+        "year": 2025,
+        "month": 1,
+        "unitId": 5,
+        "targetType": "RKAP",
+        "amount": "2.56",
+        "createdAt": "2025-12-18T06:53:42.351Z",
+        "updatedAt": "2025-12-19T08:13:51.932Z"
+      },
+      {
+        "id": 46,
+        "year": 2025,
+        "month": 2,
+        "unitId": 5,
+        "targetType": "RKAP",
+        "amount": "5.12",
+        "createdAt": "2025-12-18T06:53:42.352Z",
+        "updatedAt": "2025-12-19T08:13:51.936Z"
+      },
+      {
+        "id": 154,
+        "year": 2025,
+        "month": 2,
+        "unitId": 5,
+        "targetType": "BEYOND_RKAP",
+        "amount": "6.13",
+        "createdAt": "2025-12-18T06:55:37.719Z",
+        "updatedAt": "2025-12-19T08:13:51.936Z"
+      },
+      {
+        "id": 156,
+        "year": 2025,
+        "month": 3,
+        "unitId": 5,
+        "targetType": "BEYOND_RKAP",
+        "amount": "9.19",
+        "createdAt": "2025-12-18T06:55:37.723Z",
+        "updatedAt": "2025-12-19T08:13:51.939Z"
+      },
+      {
+        "id": 158,
+        "year": 2025,
+        "month": 4,
+        "unitId": 5,
+        "targetType": "BEYOND_RKAP",
+        "amount": "12.25",
+        "createdAt": "2025-12-18T06:55:37.733Z",
+        "updatedAt": "2025-12-19T08:13:51.943Z"
+      },
+      {
+        "id": 160,
+        "year": 2025,
+        "month": 5,
+        "unitId": 5,
+        "targetType": "BEYOND_RKAP",
+        "amount": "15.31",
+        "createdAt": "2025-12-18T06:55:37.739Z",
+        "updatedAt": "2025-12-19T08:13:51.946Z"
+      },
+      {
+        "id": 162,
+        "year": 2025,
+        "month": 6,
+        "unitId": 5,
+        "targetType": "BEYOND_RKAP",
+        "amount": "24.5",
+        "createdAt": "2025-12-18T06:55:37.745Z",
+        "updatedAt": "2025-12-19T08:13:51.949Z"
+      },
+      {
+        "id": 164,
+        "year": 2025,
+        "month": 7,
+        "unitId": 5,
+        "targetType": "BEYOND_RKAP",
+        "amount": "27.56",
+        "createdAt": "2025-12-18T06:55:37.750Z",
+        "updatedAt": "2025-12-19T08:13:51.952Z"
+      },
+      {
+        "id": 166,
+        "year": 2025,
+        "month": 8,
+        "unitId": 5,
+        "targetType": "BEYOND_RKAP",
+        "amount": "33.69",
+        "createdAt": "2025-12-18T06:55:37.755Z",
+        "updatedAt": "2025-12-19T08:13:51.956Z"
+      },
+      {
+        "id": 168,
+        "year": 2025,
+        "month": 9,
+        "unitId": 5,
+        "targetType": "BEYOND_RKAP",
+        "amount": "39.81",
+        "createdAt": "2025-12-18T06:55:37.758Z",
+        "updatedAt": "2025-12-19T08:13:51.959Z"
+      },
+      {
+        "id": 169,
+        "year": 2025,
+        "month": 10,
+        "unitId": 5,
+        "targetType": "RKAP",
+        "amount": "40.96",
+        "createdAt": "2025-12-18T06:55:37.760Z",
+        "updatedAt": "2025-12-19T08:13:51.962Z"
+      },
+      {
+        "id": 170,
+        "year": 2025,
+        "month": 10,
+        "unitId": 5,
+        "targetType": "BEYOND_RKAP",
+        "amount": "49",
+        "createdAt": "2025-12-18T06:55:37.762Z",
+        "updatedAt": "2025-12-19T08:13:51.962Z"
+      },
+      {
+        "id": 172,
+        "year": 2025,
+        "month": 11,
+        "unitId": 5,
+        "targetType": "BEYOND_RKAP",
+        "amount": "55.13",
+        "createdAt": "2025-12-18T06:55:37.767Z",
+        "updatedAt": "2025-12-19T08:13:51.965Z"
+      },
+      {
+        "id": 174,
+        "year": 2025,
+        "month": 12,
+        "unitId": 5,
+        "targetType": "BEYOND_RKAP",
+        "amount": "61.25",
+        "createdAt": "2025-12-18T06:55:37.775Z",
+        "updatedAt": "2025-12-19T08:13:51.968Z"
+      },
+      {
+        "id": 175,
+        "year": 2025,
+        "month": 1,
+        "unitId": 6,
+        "targetType": "RKAP",
+        "amount": "1.89",
+        "createdAt": "2025-12-18T06:55:37.778Z",
+        "updatedAt": "2025-12-19T08:13:51.970Z"
+      },
+      {
+        "id": 176,
+        "year": 2025,
+        "month": 1,
+        "unitId": 6,
+        "targetType": "BEYOND_RKAP",
+        "amount": "3.01",
+        "createdAt": "2025-12-18T06:55:37.779Z",
+        "updatedAt": "2025-12-19T08:13:51.971Z"
+      },
+      {
+        "id": 177,
+        "year": 2025,
+        "month": 2,
+        "unitId": 6,
+        "targetType": "RKAP",
+        "amount": "3.77",
+        "createdAt": "2025-12-18T06:55:37.781Z",
+        "updatedAt": "2025-12-19T08:13:51.973Z"
+      },
+      {
+        "id": 178,
+        "year": 2025,
+        "month": 2,
+        "unitId": 6,
+        "targetType": "BEYOND_RKAP",
+        "amount": "6.03",
+        "createdAt": "2025-12-18T06:55:37.782Z",
+        "updatedAt": "2025-12-19T08:13:51.974Z"
+      },
+      {
+        "id": 179,
+        "year": 2025,
+        "month": 3,
+        "unitId": 6,
+        "targetType": "RKAP",
+        "amount": "5.66",
+        "createdAt": "2025-12-18T06:55:37.784Z",
+        "updatedAt": "2025-12-19T08:13:51.976Z"
+      },
+      {
+        "id": 180,
+        "year": 2025,
+        "month": 3,
+        "unitId": 6,
+        "targetType": "BEYOND_RKAP",
+        "amount": "9.04",
+        "createdAt": "2025-12-18T06:55:37.785Z",
+        "updatedAt": "2025-12-19T08:13:51.977Z"
+      },
+      {
+        "id": 181,
+        "year": 2025,
+        "month": 4,
+        "unitId": 6,
+        "targetType": "RKAP",
+        "amount": "7.55",
+        "createdAt": "2025-12-18T06:55:37.786Z",
+        "updatedAt": "2025-12-19T08:13:51.980Z"
+      },
+      {
+        "id": 182,
+        "year": 2025,
+        "month": 4,
+        "unitId": 6,
+        "targetType": "BEYOND_RKAP",
+        "amount": "12.05",
+        "createdAt": "2025-12-18T06:55:37.787Z",
+        "updatedAt": "2025-12-19T08:13:51.981Z"
+      },
+      {
+        "id": 183,
+        "year": 2025,
+        "month": 5,
+        "unitId": 6,
+        "targetType": "RKAP",
+        "amount": "9.44",
+        "createdAt": "2025-12-18T06:55:37.788Z",
+        "updatedAt": "2025-12-19T08:13:51.982Z"
+      },
+      {
+        "id": 184,
+        "year": 2025,
+        "month": 5,
+        "unitId": 6,
+        "targetType": "BEYOND_RKAP",
+        "amount": "15.06",
+        "createdAt": "2025-12-18T06:55:37.789Z",
+        "updatedAt": "2025-12-19T08:13:51.983Z"
+      },
+      {
+        "id": 185,
+        "year": 2025,
+        "month": 6,
+        "unitId": 6,
+        "targetType": "RKAP",
+        "amount": "15.1",
+        "createdAt": "2025-12-18T06:55:37.791Z",
+        "updatedAt": "2025-12-19T08:13:51.986Z"
+      },
+      {
+        "id": 186,
+        "year": 2025,
+        "month": 6,
+        "unitId": 6,
+        "targetType": "BEYOND_RKAP",
+        "amount": "24.1",
+        "createdAt": "2025-12-18T06:55:37.791Z",
+        "updatedAt": "2025-12-19T08:13:51.986Z"
+      },
+      {
+        "id": 188,
+        "year": 2025,
+        "month": 7,
+        "unitId": 6,
+        "targetType": "BEYOND_RKAP",
+        "amount": "27.11",
+        "createdAt": "2025-12-18T06:55:37.794Z",
+        "updatedAt": "2025-12-19T08:13:51.991Z"
+      },
+      {
+        "id": 189,
+        "year": 2025,
+        "month": 8,
+        "unitId": 6,
+        "targetType": "RKAP",
+        "amount": "20.76",
+        "createdAt": "2025-12-18T06:55:37.795Z",
+        "updatedAt": "2025-12-19T08:13:51.994Z"
+      },
+      {
+        "id": 190,
+        "year": 2025,
+        "month": 8,
+        "unitId": 6,
+        "targetType": "BEYOND_RKAP",
+        "amount": "33.14",
+        "createdAt": "2025-12-18T06:55:37.796Z",
+        "updatedAt": "2025-12-19T08:13:51.995Z"
+      },
+      {
+        "id": 191,
+        "year": 2025,
+        "month": 9,
+        "unitId": 6,
+        "targetType": "RKAP",
+        "amount": "24.53",
+        "createdAt": "2025-12-18T06:55:37.798Z",
+        "updatedAt": "2025-12-19T08:13:51.998Z"
+      },
+      {
+        "id": 192,
+        "year": 2025,
+        "month": 9,
+        "unitId": 6,
+        "targetType": "BEYOND_RKAP",
+        "amount": "39.16",
+        "createdAt": "2025-12-18T06:55:37.798Z",
+        "updatedAt": "2025-12-19T08:13:51.999Z"
+      },
+      {
+        "id": 193,
+        "year": 2025,
+        "month": 10,
+        "unitId": 6,
+        "targetType": "RKAP",
+        "amount": "30.19",
+        "createdAt": "2025-12-18T06:55:37.799Z",
+        "updatedAt": "2025-12-19T08:13:52.001Z"
+      },
+      {
+        "id": 194,
+        "year": 2025,
+        "month": 10,
+        "unitId": 6,
+        "targetType": "BEYOND_RKAP",
+        "amount": "48.2",
+        "createdAt": "2025-12-18T06:55:37.800Z",
+        "updatedAt": "2025-12-19T08:13:52.002Z"
+      },
+      {
+        "id": 195,
+        "year": 2025,
+        "month": 11,
+        "unitId": 6,
+        "targetType": "RKAP",
+        "amount": "33.97",
+        "createdAt": "2025-12-18T06:55:37.802Z",
+        "updatedAt": "2025-12-19T08:13:52.004Z"
+      },
+      {
+        "id": 196,
+        "year": 2025,
+        "month": 11,
+        "unitId": 6,
+        "targetType": "BEYOND_RKAP",
+        "amount": "54.23",
+        "createdAt": "2025-12-18T06:55:37.802Z",
+        "updatedAt": "2025-12-19T08:13:52.005Z"
+      },
+      {
+        "id": 197,
+        "year": 2025,
+        "month": 12,
+        "unitId": 6,
+        "targetType": "RKAP",
+        "amount": "37.74",
+        "createdAt": "2025-12-18T06:55:37.804Z",
+        "updatedAt": "2025-12-19T08:13:52.008Z"
+      },
+      {
+        "id": 198,
+        "year": 2025,
+        "month": 12,
+        "unitId": 6,
+        "targetType": "BEYOND_RKAP",
+        "amount": "60.25",
+        "createdAt": "2025-12-18T06:55:37.804Z",
+        "updatedAt": "2025-12-19T08:13:52.009Z"
+      },
+      {
+        "id": 199,
+        "year": 2025,
+        "month": 1,
+        "unitId": 7,
+        "targetType": "RKAP",
+        "amount": "1.58",
+        "createdAt": "2025-12-18T06:55:37.807Z",
+        "updatedAt": "2025-12-19T08:13:52.011Z"
+      },
+      {
+        "id": 200,
+        "year": 2025,
+        "month": 1,
+        "unitId": 7,
+        "targetType": "BEYOND_RKAP",
+        "amount": "2.79",
+        "createdAt": "2025-12-18T06:55:37.808Z",
+        "updatedAt": "2025-12-19T08:13:52.012Z"
+      },
+      {
+        "id": 201,
+        "year": 2025,
+        "month": 2,
+        "unitId": 7,
+        "targetType": "RKAP",
+        "amount": "3.16",
+        "createdAt": "2025-12-18T06:55:37.809Z",
+        "updatedAt": "2025-12-19T08:13:52.013Z"
+      },
+      {
+        "id": 202,
+        "year": 2025,
+        "month": 2,
+        "unitId": 7,
+        "targetType": "BEYOND_RKAP",
+        "amount": "5.58",
+        "createdAt": "2025-12-18T06:55:37.810Z",
+        "updatedAt": "2025-12-19T08:13:52.014Z"
+      },
+      {
+        "id": 203,
+        "year": 2025,
+        "month": 3,
+        "unitId": 7,
+        "targetType": "RKAP",
+        "amount": "4.74",
+        "createdAt": "2025-12-18T06:55:37.812Z",
+        "updatedAt": "2025-12-19T08:13:52.017Z"
+      },
+      {
+        "id": 204,
+        "year": 2025,
+        "month": 3,
+        "unitId": 7,
+        "targetType": "BEYOND_RKAP",
+        "amount": "8.36",
+        "createdAt": "2025-12-18T06:55:37.812Z",
+        "updatedAt": "2025-12-19T08:13:52.017Z"
+      },
+      {
+        "id": 205,
+        "year": 2025,
+        "month": 4,
+        "unitId": 7,
+        "targetType": "RKAP",
+        "amount": "6.33",
+        "createdAt": "2025-12-18T06:55:37.814Z",
+        "updatedAt": "2025-12-19T08:13:52.019Z"
+      },
+      {
+        "id": 207,
+        "year": 2025,
+        "month": 5,
+        "unitId": 7,
+        "targetType": "RKAP",
+        "amount": "7.91",
+        "createdAt": "2025-12-18T06:55:37.819Z",
+        "updatedAt": "2025-12-19T08:13:52.022Z"
+      },
+      {
+        "id": 208,
+        "year": 2025,
+        "month": 5,
+        "unitId": 7,
+        "targetType": "BEYOND_RKAP",
+        "amount": "13.94",
+        "createdAt": "2025-12-18T06:55:37.821Z",
+        "updatedAt": "2025-12-19T08:13:52.022Z"
+      },
+      {
+        "id": 209,
+        "year": 2025,
+        "month": 6,
+        "unitId": 7,
+        "targetType": "RKAP",
+        "amount": "12.65",
+        "createdAt": "2025-12-18T06:55:37.822Z",
+        "updatedAt": "2025-12-19T08:13:52.025Z"
+      },
+      {
+        "id": 210,
+        "year": 2025,
+        "month": 6,
+        "unitId": 7,
+        "targetType": "BEYOND_RKAP",
+        "amount": "22.3",
+        "createdAt": "2025-12-18T06:55:37.823Z",
+        "updatedAt": "2025-12-19T08:13:52.026Z"
+      },
+      {
+        "id": 211,
+        "year": 2025,
+        "month": 7,
+        "unitId": 7,
+        "targetType": "RKAP",
+        "amount": "14.23",
+        "createdAt": "2025-12-18T06:55:37.825Z",
+        "updatedAt": "2025-12-19T08:13:52.029Z"
+      },
+      {
+        "id": 212,
+        "year": 2025,
+        "month": 7,
+        "unitId": 7,
+        "targetType": "BEYOND_RKAP",
+        "amount": "25.09",
+        "createdAt": "2025-12-18T06:55:37.825Z",
+        "updatedAt": "2025-12-19T08:13:52.029Z"
+      },
+      {
+        "id": 213,
+        "year": 2025,
+        "month": 8,
+        "unitId": 7,
+        "targetType": "RKAP",
+        "amount": "17.4",
+        "createdAt": "2025-12-18T06:55:37.827Z",
+        "updatedAt": "2025-12-19T08:13:52.032Z"
+      },
+      {
+        "id": 214,
+        "year": 2025,
+        "month": 8,
+        "unitId": 7,
+        "targetType": "BEYOND_RKAP",
+        "amount": "30.66",
+        "createdAt": "2025-12-18T06:55:37.828Z",
+        "updatedAt": "2025-12-19T08:13:52.033Z"
+      },
+      {
+        "id": 215,
+        "year": 2025,
+        "month": 9,
+        "unitId": 7,
+        "targetType": "RKAP",
+        "amount": "20.56",
+        "createdAt": "2025-12-18T06:55:37.829Z",
+        "updatedAt": "2025-12-19T08:13:52.039Z"
+      },
+      {
+        "id": 216,
+        "year": 2025,
+        "month": 9,
+        "unitId": 7,
+        "targetType": "BEYOND_RKAP",
+        "amount": "36.24",
+        "createdAt": "2025-12-18T06:55:37.830Z",
+        "updatedAt": "2025-12-19T08:13:52.040Z"
+      },
+      {
+        "id": 217,
+        "year": 2025,
+        "month": 10,
+        "unitId": 7,
+        "targetType": "RKAP",
+        "amount": "25.3",
+        "createdAt": "2025-12-18T06:55:37.831Z",
+        "updatedAt": "2025-12-19T08:13:52.042Z"
+      },
+      {
+        "id": 218,
+        "year": 2025,
+        "month": 10,
+        "unitId": 7,
+        "targetType": "BEYOND_RKAP",
+        "amount": "44.6",
+        "createdAt": "2025-12-18T06:55:37.832Z",
+        "updatedAt": "2025-12-19T08:13:52.043Z"
+      },
+      {
+        "id": 219,
+        "year": 2025,
+        "month": 11,
+        "unitId": 7,
+        "targetType": "RKAP",
+        "amount": "28.47",
+        "createdAt": "2025-12-18T06:55:37.833Z",
+        "updatedAt": "2025-12-19T08:13:52.046Z"
+      },
+      {
+        "id": 220,
+        "year": 2025,
+        "month": 11,
+        "unitId": 7,
+        "targetType": "BEYOND_RKAP",
+        "amount": "50.18",
+        "createdAt": "2025-12-18T06:55:37.834Z",
+        "updatedAt": "2025-12-19T08:13:52.047Z"
+      },
+      {
+        "id": 221,
+        "year": 2025,
+        "month": 12,
+        "unitId": 7,
+        "targetType": "RKAP",
+        "amount": "31.63",
+        "createdAt": "2025-12-18T06:55:37.836Z",
+        "updatedAt": "2025-12-19T08:13:52.049Z"
+      },
+      {
+        "id": 222,
+        "year": 2025,
+        "month": 12,
+        "unitId": 7,
+        "targetType": "BEYOND_RKAP",
+        "amount": "55.75",
+        "createdAt": "2025-12-18T06:55:37.837Z",
+        "updatedAt": "2025-12-19T08:13:52.050Z"
+      },
+      {
+        "id": 223,
+        "year": 2025,
+        "month": 1,
+        "unitId": 8,
+        "targetType": "RKAP",
+        "amount": "2.58",
+        "createdAt": "2025-12-18T06:55:37.839Z",
+        "updatedAt": "2025-12-19T08:13:52.053Z"
+      },
+      {
+        "id": 224,
+        "year": 2025,
+        "month": 1,
+        "unitId": 8,
+        "targetType": "BEYOND_RKAP",
+        "amount": "2.96",
+        "createdAt": "2025-12-18T06:55:37.840Z",
+        "updatedAt": "2025-12-19T08:13:52.053Z"
+      },
+      {
+        "id": 226,
+        "year": 2025,
+        "month": 2,
+        "unitId": 8,
+        "targetType": "BEYOND_RKAP",
+        "amount": "5.93",
+        "createdAt": "2025-12-18T06:55:37.844Z",
+        "updatedAt": "2025-12-19T08:13:52.056Z"
+      },
+      {
+        "id": 227,
+        "year": 2025,
+        "month": 3,
+        "unitId": 8,
+        "targetType": "RKAP",
+        "amount": "7.74",
+        "createdAt": "2025-12-18T06:55:37.845Z",
+        "updatedAt": "2025-12-19T08:13:52.058Z"
+      },
+      {
+        "id": 228,
+        "year": 2025,
+        "month": 3,
+        "unitId": 8,
+        "targetType": "BEYOND_RKAP",
+        "amount": "8.89",
+        "createdAt": "2025-12-18T06:55:37.846Z",
+        "updatedAt": "2025-12-19T08:13:52.059Z"
+      },
+      {
+        "id": 229,
+        "year": 2025,
+        "month": 4,
+        "unitId": 8,
+        "targetType": "RKAP",
+        "amount": "10.32",
+        "createdAt": "2025-12-18T06:55:37.848Z",
+        "updatedAt": "2025-12-19T08:13:52.061Z"
+      },
+      {
+        "id": 230,
+        "year": 2025,
+        "month": 4,
+        "unitId": 8,
+        "targetType": "BEYOND_RKAP",
+        "amount": "11.85",
+        "createdAt": "2025-12-18T06:55:37.848Z",
+        "updatedAt": "2025-12-19T08:13:52.062Z"
+      },
+      {
+        "id": 231,
+        "year": 2025,
+        "month": 5,
+        "unitId": 8,
+        "targetType": "RKAP",
+        "amount": "12.9",
+        "createdAt": "2025-12-18T06:55:37.850Z",
+        "updatedAt": "2025-12-19T08:13:52.064Z"
+      },
+      {
+        "id": 232,
+        "year": 2025,
+        "month": 5,
+        "unitId": 8,
+        "targetType": "BEYOND_RKAP",
+        "amount": "14.81",
+        "createdAt": "2025-12-18T06:55:37.851Z",
+        "updatedAt": "2025-12-19T08:13:52.065Z"
+      },
+      {
+        "id": 233,
+        "year": 2025,
+        "month": 6,
+        "unitId": 8,
+        "targetType": "RKAP",
+        "amount": "20.64",
+        "createdAt": "2025-12-18T06:55:37.852Z",
+        "updatedAt": "2025-12-19T08:13:52.067Z"
+      },
+      {
+        "id": 234,
+        "year": 2025,
+        "month": 6,
+        "unitId": 8,
+        "targetType": "BEYOND_RKAP",
+        "amount": "23.7",
+        "createdAt": "2025-12-18T06:55:37.853Z",
+        "updatedAt": "2025-12-19T08:13:52.068Z"
+      },
+      {
+        "id": 235,
+        "year": 2025,
+        "month": 7,
+        "unitId": 8,
+        "targetType": "RKAP",
+        "amount": "23.22",
+        "createdAt": "2025-12-18T06:55:37.854Z",
+        "updatedAt": "2025-12-19T08:13:52.070Z"
+      },
+      {
+        "id": 236,
+        "year": 2025,
+        "month": 7,
+        "unitId": 8,
+        "targetType": "BEYOND_RKAP",
+        "amount": "26.66",
+        "createdAt": "2025-12-18T06:55:37.855Z",
+        "updatedAt": "2025-12-19T08:13:52.071Z"
+      },
+      {
+        "id": 237,
+        "year": 2025,
+        "month": 8,
+        "unitId": 8,
+        "targetType": "RKAP",
+        "amount": "28.38",
+        "createdAt": "2025-12-18T06:55:37.857Z",
+        "updatedAt": "2025-12-19T08:13:52.074Z"
+      },
+      {
+        "id": 238,
+        "year": 2025,
+        "month": 8,
+        "unitId": 8,
+        "targetType": "BEYOND_RKAP",
+        "amount": "32.59",
+        "createdAt": "2025-12-18T06:55:37.857Z",
+        "updatedAt": "2025-12-19T08:13:52.074Z"
+      },
+      {
+        "id": 239,
+        "year": 2025,
+        "month": 9,
+        "unitId": 8,
+        "targetType": "RKAP",
+        "amount": "33.54",
+        "createdAt": "2025-12-18T06:55:37.859Z",
+        "updatedAt": "2025-12-19T08:13:52.077Z"
+      },
+      {
+        "id": 240,
+        "year": 2025,
+        "month": 9,
+        "unitId": 8,
+        "targetType": "BEYOND_RKAP",
+        "amount": "38.51",
+        "createdAt": "2025-12-18T06:55:37.860Z",
+        "updatedAt": "2025-12-19T08:13:52.077Z"
+      },
+      {
+        "id": 241,
+        "year": 2025,
+        "month": 10,
+        "unitId": 8,
+        "targetType": "RKAP",
+        "amount": "41.28",
+        "createdAt": "2025-12-18T06:55:37.860Z",
+        "updatedAt": "2025-12-19T08:13:52.079Z"
+      },
+      {
+        "id": 242,
+        "year": 2025,
+        "month": 10,
+        "unitId": 8,
+        "targetType": "BEYOND_RKAP",
+        "amount": "47.4",
+        "createdAt": "2025-12-18T06:55:37.861Z",
+        "updatedAt": "2025-12-19T08:13:52.080Z"
+      },
+      {
+        "id": 243,
+        "year": 2025,
+        "month": 11,
+        "unitId": 8,
+        "targetType": "RKAP",
+        "amount": "46.44",
+        "createdAt": "2025-12-18T06:55:37.863Z",
+        "updatedAt": "2025-12-19T08:13:52.083Z"
+      },
+      {
+        "id": 245,
+        "year": 2025,
+        "month": 12,
+        "unitId": 8,
+        "targetType": "RKAP",
+        "amount": "51.6",
+        "createdAt": "2025-12-18T06:55:37.865Z",
+        "updatedAt": "2025-12-19T08:13:52.085Z"
+      },
+      {
+        "id": 246,
+        "year": 2025,
+        "month": 12,
+        "unitId": 8,
+        "targetType": "BEYOND_RKAP",
+        "amount": "59.25",
+        "createdAt": "2025-12-18T06:55:37.865Z",
+        "updatedAt": "2025-12-19T08:13:52.086Z"
+      },
+      {
+        "id": 247,
+        "year": 2025,
+        "month": 1,
+        "unitId": 9,
+        "targetType": "RKAP",
+        "amount": "3",
+        "createdAt": "2025-12-18T06:55:37.868Z",
+        "updatedAt": "2025-12-19T08:13:52.088Z"
+      },
+      {
+        "id": 248,
+        "year": 2025,
+        "month": 1,
+        "unitId": 9,
+        "targetType": "BEYOND_RKAP",
+        "amount": "3.16",
+        "createdAt": "2025-12-18T06:55:37.869Z",
+        "updatedAt": "2025-12-19T08:13:52.089Z"
+      },
+      {
+        "id": 249,
+        "year": 2025,
+        "month": 2,
+        "unitId": 9,
+        "targetType": "RKAP",
+        "amount": "6",
+        "createdAt": "2025-12-18T06:55:37.870Z",
+        "updatedAt": "2025-12-19T08:13:52.090Z"
+      },
+      {
+        "id": 250,
+        "year": 2025,
+        "month": 2,
+        "unitId": 9,
+        "targetType": "BEYOND_RKAP",
+        "amount": "6.33",
+        "createdAt": "2025-12-18T06:55:37.871Z",
+        "updatedAt": "2025-12-19T08:13:52.091Z"
+      },
+      {
+        "id": 251,
+        "year": 2025,
+        "month": 3,
+        "unitId": 9,
+        "targetType": "RKAP",
+        "amount": "9",
+        "createdAt": "2025-12-18T06:55:37.872Z",
+        "updatedAt": "2025-12-19T08:13:52.094Z"
+      },
+      {
+        "id": 252,
+        "year": 2025,
+        "month": 3,
+        "unitId": 9,
+        "targetType": "BEYOND_RKAP",
+        "amount": "9.49",
+        "createdAt": "2025-12-18T06:55:37.873Z",
+        "updatedAt": "2025-12-19T08:13:52.094Z"
+      },
+      {
+        "id": 253,
+        "year": 2025,
+        "month": 4,
+        "unitId": 9,
+        "targetType": "RKAP",
+        "amount": "12",
+        "createdAt": "2025-12-18T06:55:37.874Z",
+        "updatedAt": "2025-12-19T08:13:52.096Z"
+      },
+      {
+        "id": 254,
+        "year": 2025,
+        "month": 4,
+        "unitId": 9,
+        "targetType": "BEYOND_RKAP",
+        "amount": "12.65",
+        "createdAt": "2025-12-18T06:55:37.875Z",
+        "updatedAt": "2025-12-19T08:13:52.097Z"
+      },
+      {
+        "id": 255,
+        "year": 2025,
+        "month": 5,
+        "unitId": 9,
+        "targetType": "RKAP",
+        "amount": "15",
+        "createdAt": "2025-12-18T06:55:37.876Z",
+        "updatedAt": "2025-12-19T08:13:52.099Z"
+      },
+      {
+        "id": 256,
+        "year": 2025,
+        "month": 5,
+        "unitId": 9,
+        "targetType": "BEYOND_RKAP",
+        "amount": "15.81",
+        "createdAt": "2025-12-18T06:55:37.877Z",
+        "updatedAt": "2025-12-19T08:13:52.100Z"
+      },
+      {
+        "id": 257,
+        "year": 2025,
+        "month": 6,
+        "unitId": 9,
+        "targetType": "RKAP",
+        "amount": "24",
+        "createdAt": "2025-12-18T06:55:37.881Z",
+        "updatedAt": "2025-12-19T08:13:52.102Z"
+      },
+      {
+        "id": 258,
+        "year": 2025,
+        "month": 6,
+        "unitId": 9,
+        "targetType": "BEYOND_RKAP",
+        "amount": "25.3",
+        "createdAt": "2025-12-18T06:55:37.882Z",
+        "updatedAt": "2025-12-19T08:13:52.103Z"
+      },
+      {
+        "id": 259,
+        "year": 2025,
+        "month": 7,
+        "unitId": 9,
+        "targetType": "RKAP",
+        "amount": "27",
+        "createdAt": "2025-12-18T06:55:37.884Z",
+        "updatedAt": "2025-12-19T08:13:52.106Z"
+      },
+      {
+        "id": 260,
+        "year": 2025,
+        "month": 7,
+        "unitId": 9,
+        "targetType": "BEYOND_RKAP",
+        "amount": "28.46",
+        "createdAt": "2025-12-18T06:55:37.884Z",
+        "updatedAt": "2025-12-19T08:13:52.106Z"
+      },
+      {
+        "id": 261,
+        "year": 2025,
+        "month": 8,
+        "unitId": 9,
+        "targetType": "RKAP",
+        "amount": "33",
+        "createdAt": "2025-12-18T06:55:37.886Z",
+        "updatedAt": "2025-12-19T08:13:52.109Z"
+      },
+      {
+        "id": 262,
+        "year": 2025,
+        "month": 8,
+        "unitId": 9,
+        "targetType": "BEYOND_RKAP",
+        "amount": "34.79",
+        "createdAt": "2025-12-18T06:55:37.887Z",
+        "updatedAt": "2025-12-19T08:13:52.110Z"
+      },
+      {
+        "id": 264,
+        "year": 2025,
+        "month": 9,
+        "unitId": 9,
+        "targetType": "BEYOND_RKAP",
+        "amount": "41.11",
+        "createdAt": "2025-12-18T06:55:37.889Z",
+        "updatedAt": "2025-12-19T08:13:52.113Z"
+      },
+      {
+        "id": 148,
+        "year": 2025,
+        "month": 11,
+        "unitId": 4,
+        "targetType": "BEYOND_RKAP",
+        "amount": "53.33",
+        "createdAt": "2025-12-18T06:55:37.706Z",
+        "updatedAt": "2025-12-19T08:13:51.927Z"
+      },
+      {
+        "id": 150,
+        "year": 2025,
+        "month": 12,
+        "unitId": 4,
+        "targetType": "BEYOND_RKAP",
+        "amount": "59.25",
+        "createdAt": "2025-12-18T06:55:37.708Z",
+        "updatedAt": "2025-12-19T08:13:51.930Z"
+      },
+      {
+        "id": 152,
+        "year": 2025,
+        "month": 1,
+        "unitId": 5,
+        "targetType": "BEYOND_RKAP",
+        "amount": "3.06",
+        "createdAt": "2025-12-18T06:55:37.713Z",
+        "updatedAt": "2025-12-19T08:13:51.933Z"
+      },
+      {
+        "id": 269,
+        "year": 2025,
+        "month": 12,
+        "unitId": 9,
+        "targetType": "RKAP",
+        "amount": "60",
+        "createdAt": "2025-12-18T06:55:37.894Z",
+        "updatedAt": "2025-12-19T08:13:52.121Z"
+      },
+      {
+        "id": 270,
+        "year": 2025,
+        "month": 12,
+        "unitId": 9,
+        "targetType": "BEYOND_RKAP",
+        "amount": "63.25",
+        "createdAt": "2025-12-18T06:55:37.894Z",
+        "updatedAt": "2025-12-19T08:13:52.121Z"
+      },
+      {
+        "id": 271,
+        "year": 2025,
+        "month": 1,
+        "unitId": 10,
+        "targetType": "RKAP",
+        "amount": "1.4",
+        "createdAt": "2025-12-18T06:55:37.897Z",
+        "updatedAt": "2025-12-19T08:13:52.124Z"
+      },
+      {
+        "id": 272,
+        "year": 2025,
+        "month": 1,
+        "unitId": 10,
+        "targetType": "BEYOND_RKAP",
+        "amount": "2.79",
+        "createdAt": "2025-12-18T06:55:37.898Z",
+        "updatedAt": "2025-12-19T08:13:52.125Z"
+      },
+      {
+        "id": 273,
+        "year": 2025,
+        "month": 2,
+        "unitId": 10,
+        "targetType": "RKAP",
+        "amount": "2.79",
+        "createdAt": "2025-12-18T06:55:37.900Z",
+        "updatedAt": "2025-12-19T08:13:52.128Z"
+      },
+      {
+        "id": 274,
+        "year": 2025,
+        "month": 2,
+        "unitId": 10,
+        "targetType": "BEYOND_RKAP",
+        "amount": "5.58",
+        "createdAt": "2025-12-18T06:55:37.900Z",
+        "updatedAt": "2025-12-19T08:13:52.128Z"
+      },
+      {
+        "id": 276,
+        "year": 2025,
+        "month": 3,
+        "unitId": 10,
+        "targetType": "BEYOND_RKAP",
+        "amount": "8.36",
+        "createdAt": "2025-12-18T06:55:37.902Z",
+        "updatedAt": "2025-12-19T08:13:52.131Z"
+      },
+      {
+        "id": 277,
+        "year": 2025,
+        "month": 4,
+        "unitId": 10,
+        "targetType": "RKAP",
+        "amount": "5.59",
+        "createdAt": "2025-12-18T06:55:37.904Z",
+        "updatedAt": "2025-12-19T08:13:52.133Z"
+      },
+      {
+        "id": 278,
+        "year": 2025,
+        "month": 4,
+        "unitId": 10,
+        "targetType": "BEYOND_RKAP",
+        "amount": "11.15",
+        "createdAt": "2025-12-18T06:55:37.904Z",
+        "updatedAt": "2025-12-19T08:13:52.133Z"
+      },
+      {
+        "id": 279,
+        "year": 2025,
+        "month": 5,
+        "unitId": 10,
+        "targetType": "RKAP",
+        "amount": "6.98",
+        "createdAt": "2025-12-18T06:55:37.906Z",
+        "updatedAt": "2025-12-19T08:13:52.136Z"
+      },
+      {
+        "id": 280,
+        "year": 2025,
+        "month": 5,
+        "unitId": 10,
+        "targetType": "BEYOND_RKAP",
+        "amount": "13.94",
+        "createdAt": "2025-12-18T06:55:37.907Z",
+        "updatedAt": "2025-12-19T08:13:52.136Z"
+      },
+      {
+        "id": 281,
+        "year": 2025,
+        "month": 6,
+        "unitId": 10,
+        "targetType": "RKAP",
+        "amount": "11.17",
+        "createdAt": "2025-12-18T06:55:37.908Z",
+        "updatedAt": "2025-12-19T08:13:52.139Z"
+      },
+      {
+        "id": 282,
+        "year": 2025,
+        "month": 6,
+        "unitId": 10,
+        "targetType": "BEYOND_RKAP",
+        "amount": "22.3",
+        "createdAt": "2025-12-18T06:55:37.909Z",
+        "updatedAt": "2025-12-19T08:13:52.140Z"
+      },
+      {
+        "id": 283,
+        "year": 2025,
+        "month": 7,
+        "unitId": 10,
+        "targetType": "RKAP",
+        "amount": "12.57",
+        "createdAt": "2025-12-18T06:55:37.910Z",
+        "updatedAt": "2025-12-19T08:13:52.142Z"
+      },
+      {
+        "id": 284,
+        "year": 2025,
+        "month": 7,
+        "unitId": 10,
+        "targetType": "BEYOND_RKAP",
+        "amount": "25.09",
+        "createdAt": "2025-12-18T06:55:37.911Z",
+        "updatedAt": "2025-12-19T08:13:52.143Z"
+      },
+      {
+        "id": 285,
+        "year": 2025,
+        "month": 8,
+        "unitId": 10,
+        "targetType": "RKAP",
+        "amount": "15.36",
+        "createdAt": "2025-12-18T06:55:37.912Z",
+        "updatedAt": "2025-12-19T08:13:52.145Z"
+      },
+      {
+        "id": 286,
+        "year": 2025,
+        "month": 8,
+        "unitId": 10,
+        "targetType": "BEYOND_RKAP",
+        "amount": "30.66",
+        "createdAt": "2025-12-18T06:55:37.913Z",
+        "updatedAt": "2025-12-19T08:13:52.146Z"
+      },
+      {
+        "id": 287,
+        "year": 2025,
+        "month": 9,
+        "unitId": 10,
+        "targetType": "RKAP",
+        "amount": "18.15",
+        "createdAt": "2025-12-18T06:55:37.914Z",
+        "updatedAt": "2025-12-19T08:13:52.148Z"
+      },
+      {
+        "id": 288,
+        "year": 2025,
+        "month": 9,
+        "unitId": 10,
+        "targetType": "BEYOND_RKAP",
+        "amount": "36.24",
+        "createdAt": "2025-12-18T06:55:37.915Z",
+        "updatedAt": "2025-12-19T08:13:52.149Z"
+      },
+      {
+        "id": 289,
+        "year": 2025,
+        "month": 10,
+        "unitId": 10,
+        "targetType": "RKAP",
+        "amount": "22.34",
+        "createdAt": "2025-12-18T06:55:37.916Z",
+        "updatedAt": "2025-12-19T08:13:52.151Z"
+      },
+      {
+        "id": 290,
+        "year": 2025,
+        "month": 10,
+        "unitId": 10,
+        "targetType": "BEYOND_RKAP",
+        "amount": "44.6",
+        "createdAt": "2025-12-18T06:55:37.917Z",
+        "updatedAt": "2025-12-19T08:13:52.152Z"
+      },
+      {
+        "id": 291,
+        "year": 2025,
+        "month": 11,
+        "unitId": 10,
+        "targetType": "RKAP",
+        "amount": "25.14",
+        "createdAt": "2025-12-18T06:55:37.918Z",
+        "updatedAt": "2025-12-19T08:13:52.154Z"
+      },
+      {
+        "id": 292,
+        "year": 2025,
+        "month": 11,
+        "unitId": 10,
+        "targetType": "BEYOND_RKAP",
+        "amount": "50.18",
+        "createdAt": "2025-12-18T06:55:37.919Z",
+        "updatedAt": "2025-12-19T08:13:52.155Z"
+      },
+      {
+        "id": 293,
+        "year": 2025,
+        "month": 12,
+        "unitId": 10,
+        "targetType": "RKAP",
+        "amount": "27.93",
+        "createdAt": "2025-12-18T06:55:37.920Z",
+        "updatedAt": "2025-12-19T08:13:52.158Z"
+      },
+      {
+        "id": 295,
+        "year": 2025,
+        "month": 1,
+        "unitId": 11,
+        "targetType": "RKAP",
+        "amount": "1.67",
+        "createdAt": "2025-12-18T06:55:37.924Z",
+        "updatedAt": "2025-12-19T08:13:52.161Z"
+      },
+      {
+        "id": 296,
+        "year": 2025,
+        "month": 1,
+        "unitId": 11,
+        "targetType": "BEYOND_RKAP",
+        "amount": "3.24",
+        "createdAt": "2025-12-18T06:55:37.925Z",
+        "updatedAt": "2025-12-19T08:13:52.161Z"
+      },
+      {
+        "id": 297,
+        "year": 2025,
+        "month": 2,
+        "unitId": 11,
+        "targetType": "RKAP",
+        "amount": "3.34",
+        "createdAt": "2025-12-18T06:55:37.926Z",
+        "updatedAt": "2025-12-19T08:13:52.163Z"
+      },
+      {
+        "id": 298,
+        "year": 2025,
+        "month": 2,
+        "unitId": 11,
+        "targetType": "BEYOND_RKAP",
+        "amount": "6.48",
+        "createdAt": "2025-12-18T06:55:37.927Z",
+        "updatedAt": "2025-12-19T08:13:52.164Z"
+      },
+      {
+        "id": 299,
+        "year": 2025,
+        "month": 3,
+        "unitId": 11,
+        "targetType": "RKAP",
+        "amount": "5.01",
+        "createdAt": "2025-12-18T06:55:37.928Z",
+        "updatedAt": "2025-12-19T08:13:52.166Z"
+      },
+      {
+        "id": 300,
+        "year": 2025,
+        "month": 3,
+        "unitId": 11,
+        "targetType": "BEYOND_RKAP",
+        "amount": "9.71",
+        "createdAt": "2025-12-18T06:55:37.929Z",
+        "updatedAt": "2025-12-19T08:13:52.166Z"
+      },
+      {
+        "id": 301,
+        "year": 2025,
+        "month": 4,
+        "unitId": 11,
+        "targetType": "RKAP",
+        "amount": "6.68",
+        "createdAt": "2025-12-18T06:55:37.930Z",
+        "updatedAt": "2025-12-19T08:13:52.169Z"
+      },
+      {
+        "id": 302,
+        "year": 2025,
+        "month": 4,
+        "unitId": 11,
+        "targetType": "BEYOND_RKAP",
+        "amount": "12.95",
+        "createdAt": "2025-12-18T06:55:37.931Z",
+        "updatedAt": "2025-12-19T08:13:52.169Z"
+      },
+      {
+        "id": 303,
+        "year": 2025,
+        "month": 5,
+        "unitId": 11,
+        "targetType": "RKAP",
+        "amount": "8.44",
+        "createdAt": "2025-12-18T06:55:37.932Z",
+        "updatedAt": "2025-12-19T08:13:52.171Z"
+      },
+      {
+        "id": 304,
+        "year": 2025,
+        "month": 5,
+        "unitId": 11,
+        "targetType": "BEYOND_RKAP",
+        "amount": "16.19",
+        "createdAt": "2025-12-18T06:55:37.933Z",
+        "updatedAt": "2025-12-19T08:13:52.172Z"
+      },
+      {
+        "id": 305,
+        "year": 2025,
+        "month": 6,
+        "unitId": 11,
+        "targetType": "RKAP",
+        "amount": "13.36",
+        "createdAt": "2025-12-18T06:55:37.934Z",
+        "updatedAt": "2025-12-19T08:13:52.175Z"
+      },
+      {
+        "id": 306,
+        "year": 2025,
+        "month": 6,
+        "unitId": 11,
+        "targetType": "BEYOND_RKAP",
+        "amount": "25.9",
+        "createdAt": "2025-12-18T06:55:37.935Z",
+        "updatedAt": "2025-12-19T08:13:52.175Z"
+      },
+      {
+        "id": 307,
+        "year": 2025,
+        "month": 7,
+        "unitId": 11,
+        "targetType": "RKAP",
+        "amount": "15.03",
+        "createdAt": "2025-12-18T06:55:37.939Z",
+        "updatedAt": "2025-12-19T08:13:52.178Z"
+      },
+      {
+        "id": 308,
+        "year": 2025,
+        "month": 7,
+        "unitId": 11,
+        "targetType": "BEYOND_RKAP",
+        "amount": "29.14",
+        "createdAt": "2025-12-18T06:55:37.940Z",
+        "updatedAt": "2025-12-19T08:13:52.178Z"
+      },
+      {
+        "id": 309,
+        "year": 2025,
+        "month": 8,
+        "unitId": 11,
+        "targetType": "RKAP",
+        "amount": "18.37",
+        "createdAt": "2025-12-18T06:55:37.941Z",
+        "updatedAt": "2025-12-19T08:13:52.180Z"
+      },
+      {
+        "id": 310,
+        "year": 2025,
+        "month": 8,
+        "unitId": 11,
+        "targetType": "BEYOND_RKAP",
+        "amount": "35.61",
+        "createdAt": "2025-12-18T06:55:37.942Z",
+        "updatedAt": "2025-12-19T08:13:52.181Z"
+      },
+      {
+        "id": 311,
+        "year": 2025,
+        "month": 9,
+        "unitId": 11,
+        "targetType": "RKAP",
+        "amount": "21.71",
+        "createdAt": "2025-12-18T06:55:37.943Z",
+        "updatedAt": "2025-12-19T08:13:52.183Z"
+      },
+      {
+        "id": 312,
+        "year": 2025,
+        "month": 9,
+        "unitId": 11,
+        "targetType": "BEYOND_RKAP",
+        "amount": "42.09",
+        "createdAt": "2025-12-18T06:55:37.944Z",
+        "updatedAt": "2025-12-19T08:13:52.184Z"
+      },
+      {
+        "id": 314,
+        "year": 2025,
+        "month": 10,
+        "unitId": 11,
+        "targetType": "BEYOND_RKAP",
+        "amount": "51.8",
+        "createdAt": "2025-12-18T06:55:37.946Z",
+        "updatedAt": "2025-12-19T08:13:52.186Z"
+      },
+      {
+        "id": 315,
+        "year": 2025,
+        "month": 11,
+        "unitId": 11,
+        "targetType": "RKAP",
+        "amount": "30.06",
+        "createdAt": "2025-12-18T06:55:37.947Z",
+        "updatedAt": "2025-12-19T08:13:52.189Z"
+      },
+      {
+        "id": 316,
+        "year": 2025,
+        "month": 11,
+        "unitId": 11,
+        "targetType": "BEYOND_RKAP",
+        "amount": "58.28",
+        "createdAt": "2025-12-18T06:55:37.948Z",
+        "updatedAt": "2025-12-19T08:13:52.190Z"
+      },
+      {
+        "id": 317,
+        "year": 2025,
+        "month": 12,
+        "unitId": 11,
+        "targetType": "RKAP",
+        "amount": "33.4",
+        "createdAt": "2025-12-18T06:55:37.949Z",
+        "updatedAt": "2025-12-19T08:13:52.192Z"
+      },
+      {
+        "id": 318,
+        "year": 2025,
+        "month": 12,
+        "unitId": 11,
+        "targetType": "BEYOND_RKAP",
+        "amount": "64.75",
+        "createdAt": "2025-12-18T06:55:37.950Z",
+        "updatedAt": "2025-12-19T08:13:52.193Z"
+      },
+      {
+        "id": 319,
+        "year": 2025,
+        "month": 1,
+        "unitId": 12,
+        "targetType": "RKAP",
+        "amount": "2",
+        "createdAt": "2025-12-18T06:55:37.952Z",
+        "updatedAt": "2025-12-19T08:13:52.196Z"
+      },
+      {
+        "id": 320,
+        "year": 2025,
+        "month": 1,
+        "unitId": 12,
+        "targetType": "BEYOND_RKAP",
+        "amount": "3.24",
+        "createdAt": "2025-12-18T06:55:37.953Z",
+        "updatedAt": "2025-12-19T08:13:52.196Z"
+      },
+      {
+        "id": 321,
+        "year": 2025,
+        "month": 2,
+        "unitId": 12,
+        "targetType": "RKAP",
+        "amount": "4",
+        "createdAt": "2025-12-18T06:55:37.955Z",
+        "updatedAt": "2025-12-19T08:13:52.199Z"
+      },
+      {
+        "id": 322,
+        "year": 2025,
+        "month": 2,
+        "unitId": 12,
+        "targetType": "BEYOND_RKAP",
+        "amount": "6.48",
+        "createdAt": "2025-12-18T06:55:37.955Z",
+        "updatedAt": "2025-12-19T08:13:52.199Z"
+      },
+      {
+        "id": 323,
+        "year": 2025,
+        "month": 3,
+        "unitId": 12,
+        "targetType": "RKAP",
+        "amount": "6",
+        "createdAt": "2025-12-18T06:55:37.957Z",
+        "updatedAt": "2025-12-19T08:13:52.202Z"
+      },
+      {
+        "id": 324,
+        "year": 2025,
+        "month": 3,
+        "unitId": 12,
+        "targetType": "BEYOND_RKAP",
+        "amount": "9.71",
+        "createdAt": "2025-12-18T06:55:37.957Z",
+        "updatedAt": "2025-12-19T08:13:52.203Z"
+      },
+      {
+        "id": 325,
+        "year": 2025,
+        "month": 4,
+        "unitId": 12,
+        "targetType": "RKAP",
+        "amount": "8",
+        "createdAt": "2025-12-18T06:55:37.959Z",
+        "updatedAt": "2025-12-19T08:13:52.206Z"
+      },
+      {
+        "id": 326,
+        "year": 2025,
+        "month": 4,
+        "unitId": 12,
+        "targetType": "BEYOND_RKAP",
+        "amount": "12.95",
+        "createdAt": "2025-12-18T06:55:37.960Z",
+        "updatedAt": "2025-12-19T08:13:52.206Z"
+      },
+      {
+        "id": 327,
+        "year": 2025,
+        "month": 5,
+        "unitId": 12,
+        "targetType": "RKAP",
+        "amount": "10",
+        "createdAt": "2025-12-18T06:55:37.961Z",
+        "updatedAt": "2025-12-19T08:13:52.209Z"
+      },
+      {
+        "id": 328,
+        "year": 2025,
+        "month": 5,
+        "unitId": 12,
+        "targetType": "BEYOND_RKAP",
+        "amount": "16.19",
+        "createdAt": "2025-12-18T06:55:37.962Z",
+        "updatedAt": "2025-12-19T08:13:52.209Z"
+      },
+      {
+        "id": 329,
+        "year": 2025,
+        "month": 6,
+        "unitId": 12,
+        "targetType": "RKAP",
+        "amount": "16",
+        "createdAt": "2025-12-18T06:55:37.963Z",
+        "updatedAt": "2025-12-19T08:13:52.212Z"
+      },
+      {
+        "id": 330,
+        "year": 2025,
+        "month": 6,
+        "unitId": 12,
+        "targetType": "BEYOND_RKAP",
+        "amount": "25.9",
+        "createdAt": "2025-12-18T06:55:37.964Z",
+        "updatedAt": "2025-12-19T08:13:52.213Z"
+      },
+      {
+        "id": 331,
+        "year": 2025,
+        "month": 7,
+        "unitId": 12,
+        "targetType": "RKAP",
+        "amount": "18",
+        "createdAt": "2025-12-18T06:55:37.965Z",
+        "updatedAt": "2025-12-19T08:13:52.215Z"
+      },
+      {
+        "id": 333,
+        "year": 2025,
+        "month": 8,
+        "unitId": 12,
+        "targetType": "RKAP",
+        "amount": "22",
+        "createdAt": "2025-12-18T06:55:37.967Z",
+        "updatedAt": "2025-12-19T08:13:52.218Z"
+      },
+      {
+        "id": 334,
+        "year": 2025,
+        "month": 8,
+        "unitId": 12,
+        "targetType": "BEYOND_RKAP",
+        "amount": "35.61",
+        "createdAt": "2025-12-18T06:55:37.968Z",
+        "updatedAt": "2025-12-19T08:13:52.219Z"
+      },
+      {
+        "id": 335,
+        "year": 2025,
+        "month": 9,
+        "unitId": 12,
+        "targetType": "RKAP",
+        "amount": "26",
+        "createdAt": "2025-12-18T06:55:37.969Z",
+        "updatedAt": "2025-12-19T08:13:52.221Z"
+      },
+      {
+        "id": 336,
+        "year": 2025,
+        "month": 9,
+        "unitId": 12,
+        "targetType": "BEYOND_RKAP",
+        "amount": "42.09",
+        "createdAt": "2025-12-18T06:55:37.970Z",
+        "updatedAt": "2025-12-19T08:13:52.222Z"
+      },
+      {
+        "id": 337,
+        "year": 2025,
+        "month": 10,
+        "unitId": 12,
+        "targetType": "RKAP",
+        "amount": "32",
+        "createdAt": "2025-12-18T06:55:37.971Z",
+        "updatedAt": "2025-12-19T08:13:52.224Z"
+      },
+      {
+        "id": 338,
+        "year": 2025,
+        "month": 10,
+        "unitId": 12,
+        "targetType": "BEYOND_RKAP",
+        "amount": "51.8",
+        "createdAt": "2025-12-18T06:55:37.971Z",
+        "updatedAt": "2025-12-19T08:13:52.225Z"
+      },
+      {
+        "id": 339,
+        "year": 2025,
+        "month": 11,
+        "unitId": 12,
+        "targetType": "RKAP",
+        "amount": "36",
+        "createdAt": "2025-12-18T06:55:37.973Z",
+        "updatedAt": "2025-12-19T08:13:52.226Z"
+      },
+      {
+        "id": 340,
+        "year": 2025,
+        "month": 11,
+        "unitId": 12,
+        "targetType": "BEYOND_RKAP",
+        "amount": "58.28",
+        "createdAt": "2025-12-18T06:55:37.974Z",
+        "updatedAt": "2025-12-19T08:13:52.227Z"
+      },
+      {
+        "id": 341,
+        "year": 2025,
+        "month": 12,
+        "unitId": 12,
+        "targetType": "RKAP",
+        "amount": "40",
+        "createdAt": "2025-12-18T06:55:37.975Z",
+        "updatedAt": "2025-12-19T08:13:52.229Z"
+      },
+      {
+        "id": 342,
+        "year": 2025,
+        "month": 12,
+        "unitId": 12,
+        "targetType": "BEYOND_RKAP",
+        "amount": "64.75",
+        "createdAt": "2025-12-18T06:55:37.976Z",
+        "updatedAt": "2025-12-19T08:13:52.230Z"
+      },
+      {
+        "id": 344,
+        "year": 2025,
+        "month": 1,
+        "unitId": 1,
+        "targetType": "COMMITMENT",
+        "amount": "102.88",
+        "createdAt": "2025-12-19T02:28:49.070Z",
+        "updatedAt": "2025-12-19T08:13:51.760Z"
+      },
+      {
+        "id": 345,
+        "year": 2025,
+        "month": 1,
+        "unitId": 1,
+        "targetType": "NR",
+        "amount": "8.14",
+        "createdAt": "2025-12-19T02:28:49.072Z",
+        "updatedAt": "2025-12-19T08:13:51.762Z"
+      },
+      {
+        "id": 348,
+        "year": 2025,
+        "month": 2,
+        "unitId": 1,
+        "targetType": "COMMITMENT",
+        "amount": "205.76",
+        "createdAt": "2025-12-19T02:28:49.077Z",
+        "updatedAt": "2025-12-19T08:13:51.767Z"
+      },
+      {
+        "id": 349,
+        "year": 2025,
+        "month": 2,
+        "unitId": 1,
+        "targetType": "NR",
+        "amount": "34.57",
+        "createdAt": "2025-12-19T02:28:49.080Z",
+        "updatedAt": "2025-12-19T08:13:51.768Z"
+      },
+      {
+        "id": 352,
+        "year": 2025,
+        "month": 3,
+        "unitId": 1,
+        "targetType": "COMMITMENT",
+        "amount": "308.64",
+        "createdAt": "2025-12-19T02:28:49.083Z",
+        "updatedAt": "2025-12-19T08:13:51.772Z"
+      },
+      {
+        "id": 353,
+        "year": 2025,
+        "month": 3,
+        "unitId": 1,
+        "targetType": "NR",
+        "amount": "62.33",
+        "createdAt": "2025-12-19T02:28:49.084Z",
+        "updatedAt": "2025-12-19T08:13:51.773Z"
+      },
+      {
+        "id": 356,
+        "year": 2025,
+        "month": 4,
+        "unitId": 1,
+        "targetType": "COMMITMENT",
+        "amount": "411.52",
+        "createdAt": "2025-12-19T02:28:49.088Z",
+        "updatedAt": "2025-12-19T08:13:51.777Z"
+      },
+      {
+        "id": 357,
+        "year": 2025,
+        "month": 4,
+        "unitId": 1,
+        "targetType": "NR",
+        "amount": "54.18",
+        "createdAt": "2025-12-19T02:28:49.089Z",
+        "updatedAt": "2025-12-19T08:13:51.777Z"
+      },
+      {
+        "id": 361,
+        "year": 2025,
+        "month": 5,
+        "unitId": 1,
+        "targetType": "NR",
+        "amount": "22.43",
+        "createdAt": "2025-12-19T02:28:49.092Z",
+        "updatedAt": "2025-12-19T08:13:51.780Z"
+      },
+      {
+        "id": 364,
+        "year": 2025,
+        "month": 6,
+        "unitId": 1,
+        "targetType": "COMMITMENT",
+        "amount": "617.28",
+        "createdAt": "2025-12-19T02:28:49.095Z",
+        "updatedAt": "2025-12-19T08:13:51.783Z"
+      },
+      {
+        "id": 365,
+        "year": 2025,
+        "month": 6,
+        "unitId": 1,
+        "targetType": "NR",
+        "amount": "12.61",
+        "createdAt": "2025-12-19T02:28:49.096Z",
+        "updatedAt": "2025-12-19T08:13:51.784Z"
+      },
+      {
+        "id": 368,
+        "year": 2025,
+        "month": 7,
+        "unitId": 1,
+        "targetType": "COMMITMENT",
+        "amount": "720.16",
+        "createdAt": "2025-12-19T02:28:49.099Z",
+        "updatedAt": "2025-12-19T08:13:51.787Z"
+      },
+      {
+        "id": 369,
+        "year": 2025,
+        "month": 7,
+        "unitId": 1,
+        "targetType": "NR",
+        "amount": "24.22",
+        "createdAt": "2025-12-19T02:28:49.099Z",
+        "updatedAt": "2025-12-19T08:13:51.788Z"
+      },
+      {
+        "id": 372,
+        "year": 2025,
+        "month": 8,
+        "unitId": 1,
+        "targetType": "COMMITMENT",
+        "amount": "823.04",
+        "createdAt": "2025-12-19T02:28:49.102Z",
+        "updatedAt": "2025-12-19T08:13:51.791Z"
+      },
+      {
+        "id": 373,
+        "year": 2025,
+        "month": 8,
+        "unitId": 1,
+        "targetType": "NR",
+        "amount": "83.57",
+        "createdAt": "2025-12-19T02:28:49.103Z",
+        "updatedAt": "2025-12-19T08:13:51.791Z"
+      },
+      {
+        "id": 376,
+        "year": 2025,
+        "month": 9,
+        "unitId": 1,
+        "targetType": "COMMITMENT",
+        "amount": "411.52",
+        "createdAt": "2025-12-19T02:28:49.106Z",
+        "updatedAt": "2025-12-19T08:13:51.794Z"
+      },
+      {
+        "id": 377,
+        "year": 2025,
+        "month": 9,
+        "unitId": 1,
+        "targetType": "NR",
+        "amount": "508.45",
+        "createdAt": "2025-12-19T02:28:49.107Z",
+        "updatedAt": "2025-12-19T08:13:51.795Z"
+      },
+      {
+        "id": 380,
+        "year": 2025,
+        "month": 10,
+        "unitId": 1,
+        "targetType": "COMMITMENT",
+        "amount": "1028.8",
+        "createdAt": "2025-12-19T02:28:49.109Z",
+        "updatedAt": "2025-12-19T08:13:51.798Z"
+      },
+      {
+        "id": 381,
+        "year": 2025,
+        "month": 10,
+        "unitId": 1,
+        "targetType": "NR",
+        "amount": "251.52",
+        "createdAt": "2025-12-19T02:28:49.110Z",
+        "updatedAt": "2025-12-19T08:13:51.798Z"
+      },
+      {
+        "id": 384,
+        "year": 2025,
+        "month": 11,
+        "unitId": 1,
+        "targetType": "COMMITMENT",
+        "amount": "205.76",
+        "createdAt": "2025-12-19T02:28:49.113Z",
+        "updatedAt": "2025-12-19T08:13:51.801Z"
+      },
+      {
+        "id": 385,
+        "year": 2025,
+        "month": 11,
+        "unitId": 1,
+        "targetType": "NR",
+        "amount": "254.87",
+        "createdAt": "2025-12-19T02:28:49.113Z",
+        "updatedAt": "2025-12-19T08:13:51.802Z"
+      },
+      {
+        "id": 388,
+        "year": 2025,
+        "month": 12,
+        "unitId": 1,
+        "targetType": "COMMITMENT",
+        "amount": "1234.55",
+        "createdAt": "2025-12-19T02:28:49.116Z",
+        "updatedAt": "2025-12-19T08:13:51.805Z"
+      },
+      {
+        "id": 389,
+        "year": 2025,
+        "month": 12,
+        "unitId": 1,
+        "targetType": "NR",
+        "amount": "105.84",
+        "createdAt": "2025-12-19T02:28:49.117Z",
+        "updatedAt": "2025-12-19T08:13:51.805Z"
+      },
+      {
+        "id": 392,
+        "year": 2025,
+        "month": 1,
+        "unitId": 2,
+        "targetType": "COMMITMENT",
+        "amount": "59.75",
+        "createdAt": "2025-12-19T02:28:49.121Z",
+        "updatedAt": "2025-12-19T08:13:51.808Z"
+      },
+      {
+        "id": 393,
+        "year": 2025,
+        "month": 1,
+        "unitId": 2,
+        "targetType": "NR",
+        "amount": "5.28",
+        "createdAt": "2025-12-19T02:28:49.122Z",
+        "updatedAt": "2025-12-19T08:13:51.809Z"
+      },
+      {
+        "id": 82,
+        "year": 2025,
+        "month": 2,
+        "unitId": 2,
+        "targetType": "BEYOND_RKAP",
+        "amount": "139.63",
+        "createdAt": "2025-12-18T06:55:37.623Z",
+        "updatedAt": "2025-12-19T08:13:51.811Z"
+      },
+      {
+        "id": 397,
+        "year": 2025,
+        "month": 2,
+        "unitId": 2,
+        "targetType": "NR",
+        "amount": "10.93",
+        "createdAt": "2025-12-19T02:28:49.126Z",
+        "updatedAt": "2025-12-19T08:13:51.812Z"
+      },
+      {
+        "id": 266,
+        "year": 2025,
+        "month": 10,
+        "unitId": 9,
+        "targetType": "BEYOND_RKAP",
+        "amount": "50.6",
+        "createdAt": "2025-12-18T06:55:37.890Z",
+        "updatedAt": "2025-12-19T08:13:52.116Z"
+      },
+      {
+        "id": 267,
+        "year": 2025,
+        "month": 11,
+        "unitId": 9,
+        "targetType": "RKAP",
+        "amount": "54",
+        "createdAt": "2025-12-18T06:55:37.891Z",
+        "updatedAt": "2025-12-19T08:13:52.118Z"
+      },
+      {
+        "id": 268,
+        "year": 2025,
+        "month": 11,
+        "unitId": 9,
+        "targetType": "BEYOND_RKAP",
+        "amount": "56.93",
+        "createdAt": "2025-12-18T06:55:37.892Z",
+        "updatedAt": "2025-12-19T08:13:52.118Z"
+      },
+      {
+        "id": 405,
+        "year": 2025,
+        "month": 4,
+        "unitId": 2,
+        "targetType": "NR",
+        "amount": "24.56",
+        "createdAt": "2025-12-19T02:28:49.133Z",
+        "updatedAt": "2025-12-19T08:13:51.818Z"
+      },
+      {
+        "id": 408,
+        "year": 2025,
+        "month": 5,
+        "unitId": 2,
+        "targetType": "COMMITMENT",
+        "amount": "325.15",
+        "createdAt": "2025-12-19T02:28:49.135Z",
+        "updatedAt": "2025-12-19T08:13:51.822Z"
+      },
+      {
+        "id": 409,
+        "year": 2025,
+        "month": 5,
+        "unitId": 2,
+        "targetType": "NR",
+        "amount": "10.24",
+        "createdAt": "2025-12-19T02:28:49.136Z",
+        "updatedAt": "2025-12-19T08:13:51.823Z"
+      },
+      {
+        "id": 412,
+        "year": 2025,
+        "month": 6,
+        "unitId": 2,
+        "targetType": "COMMITMENT",
+        "amount": "358.5",
+        "createdAt": "2025-12-19T02:28:49.139Z",
+        "updatedAt": "2025-12-19T08:13:51.825Z"
+      },
+      {
+        "id": 413,
+        "year": 2025,
+        "month": 6,
+        "unitId": 2,
+        "targetType": "NR",
+        "amount": "41.23",
+        "createdAt": "2025-12-19T02:28:49.139Z",
+        "updatedAt": "2025-12-19T08:13:51.826Z"
+      },
+      {
+        "id": 416,
+        "year": 2025,
+        "month": 7,
+        "unitId": 2,
+        "targetType": "COMMITMENT",
+        "amount": "418.25",
+        "createdAt": "2025-12-19T02:28:49.142Z",
+        "updatedAt": "2025-12-19T08:13:51.829Z"
+      },
+      {
+        "id": 417,
+        "year": 2025,
+        "month": 7,
+        "unitId": 2,
+        "targetType": "NR",
+        "amount": "23.49",
+        "createdAt": "2025-12-19T02:28:49.143Z",
+        "updatedAt": "2025-12-19T08:13:51.830Z"
+      },
+      {
+        "id": 421,
+        "year": 2025,
+        "month": 8,
+        "unitId": 2,
+        "targetType": "NR",
+        "amount": "10.05",
+        "createdAt": "2025-12-19T02:28:49.146Z",
+        "updatedAt": "2025-12-19T08:13:51.833Z"
+      },
+      {
+        "id": 424,
+        "year": 2025,
+        "month": 9,
+        "unitId": 2,
+        "targetType": "COMMITMENT",
+        "amount": "239",
+        "createdAt": "2025-12-19T02:28:49.149Z",
+        "updatedAt": "2025-12-19T08:13:51.839Z"
+      },
+      {
+        "id": 425,
+        "year": 2025,
+        "month": 9,
+        "unitId": 2,
+        "targetType": "NR",
+        "amount": "550.62",
+        "createdAt": "2025-12-19T02:28:49.149Z",
+        "updatedAt": "2025-12-19T08:13:51.841Z"
+      },
+      {
+        "id": 428,
+        "year": 2025,
+        "month": 10,
+        "unitId": 2,
+        "targetType": "COMMITMENT",
+        "amount": "597.5",
+        "createdAt": "2025-12-19T02:28:49.151Z",
+        "updatedAt": "2025-12-19T08:13:51.845Z"
+      },
+      {
+        "id": 429,
+        "year": 2025,
+        "month": 10,
+        "unitId": 2,
+        "targetType": "NR",
+        "amount": "118.41",
+        "createdAt": "2025-12-19T02:28:49.152Z",
+        "updatedAt": "2025-12-19T08:13:51.846Z"
+      },
+      {
+        "id": 432,
+        "year": 2025,
+        "month": 11,
+        "unitId": 2,
+        "targetType": "COMMITMENT",
+        "amount": "119.5",
+        "createdAt": "2025-12-19T02:28:49.154Z",
+        "updatedAt": "2025-12-19T08:13:51.853Z"
+      },
+      {
+        "id": 433,
+        "year": 2025,
+        "month": 11,
+        "unitId": 2,
+        "targetType": "NR",
+        "amount": "229.56",
+        "createdAt": "2025-12-19T02:28:49.155Z",
+        "updatedAt": "2025-12-19T08:13:51.854Z"
+      },
+      {
+        "id": 436,
+        "year": 2025,
+        "month": 12,
+        "unitId": 2,
+        "targetType": "COMMITMENT",
+        "amount": "717",
+        "createdAt": "2025-12-19T02:28:49.158Z",
+        "updatedAt": "2025-12-19T08:13:51.858Z"
+      },
+      {
+        "id": 437,
+        "year": 2025,
+        "month": 12,
+        "unitId": 2,
+        "targetType": "NR",
+        "amount": "182.27",
+        "createdAt": "2025-12-19T02:28:49.159Z",
+        "updatedAt": "2025-12-19T08:13:51.858Z"
+      },
+      {
+        "id": 440,
+        "year": 2025,
+        "month": 1,
+        "unitId": 3,
+        "targetType": "COMMITMENT",
+        "amount": "0.54",
+        "createdAt": "2025-12-19T02:28:49.162Z",
+        "updatedAt": "2025-12-19T08:13:51.862Z"
+      },
+      {
+        "id": 443,
+        "year": 2025,
+        "month": 2,
+        "unitId": 3,
+        "targetType": "COMMITMENT",
+        "amount": "1.08",
+        "createdAt": "2025-12-19T02:28:49.165Z",
+        "updatedAt": "2025-12-19T08:13:51.867Z"
+      },
+      {
+        "id": 446,
+        "year": 2025,
+        "month": 3,
+        "unitId": 3,
+        "targetType": "COMMITMENT",
+        "amount": "1.62",
+        "createdAt": "2025-12-19T02:28:49.168Z",
+        "updatedAt": "2025-12-19T08:13:51.870Z"
+      },
+      {
+        "id": 449,
+        "year": 2025,
+        "month": 4,
+        "unitId": 3,
+        "targetType": "COMMITMENT",
+        "amount": "2.16",
+        "createdAt": "2025-12-19T02:28:49.171Z",
+        "updatedAt": "2025-12-19T08:13:51.873Z"
+      },
+      {
+        "id": 452,
+        "year": 2025,
+        "month": 5,
+        "unitId": 3,
+        "targetType": "COMMITMENT",
+        "amount": "2",
+        "createdAt": "2025-12-19T02:28:49.174Z",
+        "updatedAt": "2025-12-19T08:13:51.876Z"
+      },
+      {
+        "id": 453,
+        "year": 2025,
+        "month": 5,
+        "unitId": 3,
+        "targetType": "NR",
+        "amount": "2.68",
+        "createdAt": "2025-12-19T02:28:49.174Z",
+        "updatedAt": "2025-12-19T08:13:51.876Z"
+      },
+      {
+        "id": 456,
+        "year": 2025,
+        "month": 6,
+        "unitId": 3,
+        "targetType": "COMMITMENT",
+        "amount": "3.24",
+        "createdAt": "2025-12-19T02:28:49.177Z",
+        "updatedAt": "2025-12-19T08:13:51.879Z"
+      },
+      {
+        "id": 457,
+        "year": 2025,
+        "month": 6,
+        "unitId": 3,
+        "targetType": "NR",
+        "amount": "0.18",
+        "createdAt": "2025-12-19T02:28:49.178Z",
+        "updatedAt": "2025-12-19T08:13:51.880Z"
+      },
+      {
+        "id": 460,
+        "year": 2025,
+        "month": 7,
+        "unitId": 3,
+        "targetType": "COMMITMENT",
+        "amount": "3.78",
+        "createdAt": "2025-12-19T02:28:49.180Z",
+        "updatedAt": "2025-12-19T08:13:51.882Z"
+      },
+      {
+        "id": 463,
+        "year": 2025,
+        "month": 8,
+        "unitId": 3,
+        "targetType": "COMMITMENT",
+        "amount": "4.32",
+        "createdAt": "2025-12-19T02:28:49.183Z",
+        "updatedAt": "2025-12-19T08:13:51.885Z"
+      },
+      {
+        "id": 464,
+        "year": 2025,
+        "month": 8,
+        "unitId": 3,
+        "targetType": "NR",
+        "amount": "0.09",
+        "createdAt": "2025-12-19T02:28:49.184Z",
+        "updatedAt": "2025-12-19T08:13:51.886Z"
+      },
+      {
+        "id": 467,
+        "year": 2025,
+        "month": 9,
+        "unitId": 3,
+        "targetType": "COMMITMENT",
+        "amount": "2.16",
+        "createdAt": "2025-12-19T02:28:49.188Z",
+        "updatedAt": "2025-12-19T08:13:51.889Z"
+      },
+      {
+        "id": 468,
+        "year": 2025,
+        "month": 9,
+        "unitId": 3,
+        "targetType": "NR",
+        "amount": "13.68",
+        "createdAt": "2025-12-19T02:28:49.188Z",
+        "updatedAt": "2025-12-19T08:13:51.889Z"
+      },
+      {
+        "id": 471,
+        "year": 2025,
+        "month": 10,
+        "unitId": 3,
+        "targetType": "COMMITMENT",
+        "amount": "5.4",
+        "createdAt": "2025-12-19T02:28:49.190Z",
+        "updatedAt": "2025-12-19T08:13:51.891Z"
+      },
+      {
+        "id": 472,
+        "year": 2025,
+        "month": 10,
+        "unitId": 3,
+        "targetType": "NR",
+        "amount": "0.14",
+        "createdAt": "2025-12-19T02:28:49.191Z",
+        "updatedAt": "2025-12-19T08:13:51.892Z"
+      },
+      {
+        "id": 475,
+        "year": 2025,
+        "month": 11,
+        "unitId": 3,
+        "targetType": "COMMITMENT",
+        "amount": "1.08",
+        "createdAt": "2025-12-19T02:28:49.195Z",
+        "updatedAt": "2025-12-19T08:13:51.895Z"
+      },
+      {
+        "id": 478,
+        "year": 2025,
+        "month": 12,
+        "unitId": 3,
+        "targetType": "COMMITMENT",
+        "amount": "6.46",
+        "createdAt": "2025-12-19T02:28:49.197Z",
+        "updatedAt": "2025-12-19T08:13:51.898Z"
+      },
+      {
+        "id": 481,
+        "year": 2025,
+        "month": 1,
+        "unitId": 4,
+        "targetType": "COMMITMENT",
+        "amount": "1.77",
+        "createdAt": "2025-12-19T02:28:49.201Z",
+        "updatedAt": "2025-12-19T08:13:51.901Z"
+      },
+      {
+        "id": 484,
+        "year": 2025,
+        "month": 2,
+        "unitId": 4,
+        "targetType": "COMMITMENT",
+        "amount": "3.54",
+        "createdAt": "2025-12-19T02:28:49.203Z",
+        "updatedAt": "2025-12-19T08:13:51.904Z"
+      },
+      {
+        "id": 487,
+        "year": 2025,
+        "month": 3,
+        "unitId": 4,
+        "targetType": "COMMITMENT",
+        "amount": "5.31",
+        "createdAt": "2025-12-19T02:28:49.206Z",
+        "updatedAt": "2025-12-19T08:13:51.907Z"
+      },
+      {
+        "id": 490,
+        "year": 2025,
+        "month": 4,
+        "unitId": 4,
+        "targetType": "COMMITMENT",
+        "amount": "7.08",
+        "createdAt": "2025-12-19T02:28:49.209Z",
+        "updatedAt": "2025-12-19T08:13:51.909Z"
+      },
+      {
+        "id": 493,
+        "year": 2025,
+        "month": 5,
+        "unitId": 4,
+        "targetType": "COMMITMENT",
+        "amount": "5.1",
+        "createdAt": "2025-12-19T02:28:49.212Z",
+        "updatedAt": "2025-12-19T08:13:51.912Z"
+      },
+      {
+        "id": 496,
+        "year": 2025,
+        "month": 6,
+        "unitId": 4,
+        "targetType": "COMMITMENT",
+        "amount": "10.62",
+        "createdAt": "2025-12-19T02:28:49.214Z",
+        "updatedAt": "2025-12-19T08:13:51.914Z"
+      },
+      {
+        "id": 499,
+        "year": 2025,
+        "month": 7,
+        "unitId": 4,
+        "targetType": "COMMITMENT",
+        "amount": "12.39",
+        "createdAt": "2025-12-19T02:28:49.217Z",
+        "updatedAt": "2025-12-19T08:13:51.917Z"
+      },
+      {
+        "id": 502,
+        "year": 2025,
+        "month": 8,
+        "unitId": 4,
+        "targetType": "COMMITMENT",
+        "amount": "14.16",
+        "createdAt": "2025-12-19T02:28:49.220Z",
+        "updatedAt": "2025-12-19T08:13:51.919Z"
+      },
+      {
+        "id": 503,
+        "year": 2025,
+        "month": 8,
+        "unitId": 4,
+        "targetType": "NR",
+        "amount": "0.5",
+        "createdAt": "2025-12-19T02:28:49.221Z",
+        "updatedAt": "2025-12-19T08:13:51.920Z"
+      },
+      {
+        "id": 506,
+        "year": 2025,
+        "month": 9,
+        "unitId": 4,
+        "targetType": "COMMITMENT",
+        "amount": "7.08",
+        "createdAt": "2025-12-19T02:28:49.224Z",
+        "updatedAt": "2025-12-19T08:13:51.923Z"
+      },
+      {
+        "id": 146,
+        "year": 2025,
+        "month": 10,
+        "unitId": 4,
+        "targetType": "BEYOND_RKAP",
+        "amount": "47.4",
+        "createdAt": "2025-12-18T06:55:37.701Z",
+        "updatedAt": "2025-12-19T08:13:51.925Z"
+      },
+      {
+        "id": 510,
+        "year": 2025,
+        "month": 10,
+        "unitId": 4,
+        "targetType": "COMMITMENT",
+        "amount": "17.7",
+        "createdAt": "2025-12-19T02:28:49.227Z",
+        "updatedAt": "2025-12-19T08:13:51.926Z"
+      },
+      {
+        "id": 513,
+        "year": 2025,
+        "month": 11,
+        "unitId": 4,
+        "targetType": "COMMITMENT",
+        "amount": "3.54",
+        "createdAt": "2025-12-19T02:28:49.229Z",
+        "updatedAt": "2025-12-19T08:13:51.928Z"
+      },
+      {
+        "id": 516,
+        "year": 2025,
+        "month": 12,
+        "unitId": 4,
+        "targetType": "COMMITMENT",
+        "amount": "21.25",
+        "createdAt": "2025-12-19T02:28:49.232Z",
+        "updatedAt": "2025-12-19T08:13:51.930Z"
+      },
+      {
+        "id": 517,
+        "year": 2025,
+        "month": 12,
+        "unitId": 4,
+        "targetType": "NR",
+        "amount": "1.57",
+        "createdAt": "2025-12-19T02:28:49.232Z",
+        "updatedAt": "2025-12-19T08:13:51.931Z"
+      },
+      {
+        "id": 520,
+        "year": 2025,
+        "month": 1,
+        "unitId": 5,
+        "targetType": "COMMITMENT",
+        "amount": "0.68",
+        "createdAt": "2025-12-19T02:28:49.236Z",
+        "updatedAt": "2025-12-19T08:13:51.934Z"
+      },
+      {
+        "id": 521,
+        "year": 2025,
+        "month": 1,
+        "unitId": 5,
+        "targetType": "NR",
+        "amount": "1.26",
+        "createdAt": "2025-12-19T02:28:49.237Z",
+        "updatedAt": "2025-12-19T08:13:51.935Z"
+      },
+      {
+        "id": 524,
+        "year": 2025,
+        "month": 2,
+        "unitId": 5,
+        "targetType": "COMMITMENT",
+        "amount": "1.37",
+        "createdAt": "2025-12-19T02:28:49.239Z",
+        "updatedAt": "2025-12-19T08:13:51.937Z"
+      },
+      {
+        "id": 525,
+        "year": 2025,
+        "month": 2,
+        "unitId": 5,
+        "targetType": "NR",
+        "amount": "2.05",
+        "createdAt": "2025-12-19T02:28:49.240Z",
+        "updatedAt": "2025-12-19T08:13:51.938Z"
+      },
+      {
+        "id": 528,
+        "year": 2025,
+        "month": 3,
+        "unitId": 5,
+        "targetType": "COMMITMENT",
+        "amount": "2.05",
+        "createdAt": "2025-12-19T02:28:49.243Z",
+        "updatedAt": "2025-12-19T08:13:51.940Z"
+      },
+      {
+        "id": 529,
+        "year": 2025,
+        "month": 3,
+        "unitId": 5,
+        "targetType": "NR",
+        "amount": "1.46",
+        "createdAt": "2025-12-19T02:28:49.243Z",
+        "updatedAt": "2025-12-19T08:13:51.941Z"
+      },
+      {
+        "id": 532,
+        "year": 2025,
+        "month": 4,
+        "unitId": 5,
+        "targetType": "COMMITMENT",
+        "amount": "2.72",
+        "createdAt": "2025-12-19T02:28:49.246Z",
+        "updatedAt": "2025-12-19T08:13:51.944Z"
+      },
+      {
+        "id": 533,
+        "year": 2025,
+        "month": 4,
+        "unitId": 5,
+        "targetType": "NR",
+        "amount": "3.61",
+        "createdAt": "2025-12-19T02:28:49.247Z",
+        "updatedAt": "2025-12-19T08:13:51.944Z"
+      },
+      {
+        "id": 536,
+        "year": 2025,
+        "month": 5,
+        "unitId": 5,
+        "targetType": "COMMITMENT",
+        "amount": "9.7",
+        "createdAt": "2025-12-19T02:28:49.249Z",
+        "updatedAt": "2025-12-19T08:13:51.947Z"
+      },
+      {
+        "id": 539,
+        "year": 2025,
+        "month": 6,
+        "unitId": 5,
+        "targetType": "COMMITMENT",
+        "amount": "4.08",
+        "createdAt": "2025-12-19T02:28:49.252Z",
+        "updatedAt": "2025-12-19T08:13:51.949Z"
+      },
+      {
+        "id": 540,
+        "year": 2025,
+        "month": 6,
+        "unitId": 5,
+        "targetType": "NR",
+        "amount": "8.2",
+        "createdAt": "2025-12-19T02:28:49.252Z",
+        "updatedAt": "2025-12-19T08:13:51.950Z"
+      },
+      {
+        "id": 543,
+        "year": 2025,
+        "month": 7,
+        "unitId": 5,
+        "targetType": "COMMITMENT",
+        "amount": "4.76",
+        "createdAt": "2025-12-19T02:28:49.255Z",
+        "updatedAt": "2025-12-19T08:13:51.953Z"
+      },
+      {
+        "id": 544,
+        "year": 2025,
+        "month": 7,
+        "unitId": 5,
+        "targetType": "NR",
+        "amount": "3.4",
+        "createdAt": "2025-12-19T02:28:49.256Z",
+        "updatedAt": "2025-12-19T08:13:51.953Z"
+      },
+      {
+        "id": 547,
+        "year": 2025,
+        "month": 8,
+        "unitId": 5,
+        "targetType": "COMMITMENT",
+        "amount": "5.44",
+        "createdAt": "2025-12-19T02:28:49.259Z",
+        "updatedAt": "2025-12-19T08:13:51.956Z"
+      },
+      {
+        "id": 548,
+        "year": 2025,
+        "month": 8,
+        "unitId": 5,
+        "targetType": "NR",
+        "amount": "10.14",
+        "createdAt": "2025-12-19T02:28:49.259Z",
+        "updatedAt": "2025-12-19T08:13:51.957Z"
+      },
+      {
+        "id": 551,
+        "year": 2025,
+        "month": 9,
+        "unitId": 5,
+        "targetType": "COMMITMENT",
+        "amount": "2.72",
+        "createdAt": "2025-12-19T02:28:49.262Z",
+        "updatedAt": "2025-12-19T08:13:51.960Z"
+      },
+      {
+        "id": 552,
+        "year": 2025,
+        "month": 9,
+        "unitId": 5,
+        "targetType": "NR",
+        "amount": "19.58",
+        "createdAt": "2025-12-19T02:28:49.262Z",
+        "updatedAt": "2025-12-19T08:13:51.961Z"
+      },
+      {
+        "id": 555,
+        "year": 2025,
+        "month": 10,
+        "unitId": 5,
+        "targetType": "COMMITMENT",
+        "amount": "6.8",
+        "createdAt": "2025-12-19T02:28:49.264Z",
+        "updatedAt": "2025-12-19T08:13:51.963Z"
+      },
+      {
+        "id": 558,
+        "year": 2025,
+        "month": 11,
+        "unitId": 5,
+        "targetType": "COMMITMENT",
+        "amount": "4.1",
+        "createdAt": "2025-12-19T02:28:49.266Z",
+        "updatedAt": "2025-12-19T08:13:51.965Z"
+      },
+      {
+        "id": 559,
+        "year": 2025,
+        "month": 11,
+        "unitId": 5,
+        "targetType": "NR",
+        "amount": "0.96",
+        "createdAt": "2025-12-19T02:28:49.267Z",
+        "updatedAt": "2025-12-19T08:13:51.966Z"
+      },
+      {
+        "id": 562,
+        "year": 2025,
+        "month": 12,
+        "unitId": 5,
+        "targetType": "COMMITMENT",
+        "amount": "8.2",
+        "createdAt": "2025-12-19T02:28:49.270Z",
+        "updatedAt": "2025-12-19T08:13:51.968Z"
+      },
+      {
+        "id": 563,
+        "year": 2025,
+        "month": 12,
+        "unitId": 5,
+        "targetType": "NR",
+        "amount": "1.76",
+        "createdAt": "2025-12-19T02:28:49.270Z",
+        "updatedAt": "2025-12-19T08:13:51.969Z"
+      },
+      {
+        "id": 566,
+        "year": 2025,
+        "month": 1,
+        "unitId": 6,
+        "targetType": "COMMITMENT",
+        "amount": "1.15",
+        "createdAt": "2025-12-19T02:28:49.274Z",
+        "updatedAt": "2025-12-19T08:13:51.971Z"
+      },
+      {
+        "id": 567,
+        "year": 2025,
+        "month": 1,
+        "unitId": 6,
+        "targetType": "NR",
+        "amount": "0.09",
+        "createdAt": "2025-12-19T02:28:49.274Z",
+        "updatedAt": "2025-12-19T08:13:51.972Z"
+      },
+      {
+        "id": 570,
+        "year": 2025,
+        "month": 2,
+        "unitId": 6,
+        "targetType": "COMMITMENT",
+        "amount": "2.29",
+        "createdAt": "2025-12-19T02:28:49.277Z",
+        "updatedAt": "2025-12-19T08:13:51.974Z"
+      },
+      {
+        "id": 571,
+        "year": 2025,
+        "month": 2,
+        "unitId": 6,
+        "targetType": "NR",
+        "amount": "1.43",
+        "createdAt": "2025-12-19T02:28:49.278Z",
+        "updatedAt": "2025-12-19T08:13:51.975Z"
+      },
+      {
+        "id": 574,
+        "year": 2025,
+        "month": 3,
+        "unitId": 6,
+        "targetType": "COMMITMENT",
+        "amount": "3.44",
+        "createdAt": "2025-12-19T02:28:49.280Z",
+        "updatedAt": "2025-12-19T08:13:51.978Z"
+      },
+      {
+        "id": 575,
+        "year": 2025,
+        "month": 3,
+        "unitId": 6,
+        "targetType": "NR",
+        "amount": "3.51",
+        "createdAt": "2025-12-19T02:28:49.281Z",
+        "updatedAt": "2025-12-19T08:13:51.979Z"
+      },
+      {
+        "id": 578,
+        "year": 2025,
+        "month": 4,
+        "unitId": 6,
+        "targetType": "COMMITMENT",
+        "amount": "4.6",
+        "createdAt": "2025-12-19T02:28:49.283Z",
+        "updatedAt": "2025-12-19T08:13:51.981Z"
+      },
+      {
+        "id": 581,
+        "year": 2025,
+        "month": 5,
+        "unitId": 6,
+        "targetType": "COMMITMENT",
+        "amount": "6.15",
+        "createdAt": "2025-12-19T02:28:49.286Z",
+        "updatedAt": "2025-12-19T08:13:51.984Z"
+      },
+      {
+        "id": 582,
+        "year": 2025,
+        "month": 5,
+        "unitId": 6,
+        "targetType": "NR",
+        "amount": "1.44",
+        "createdAt": "2025-12-19T02:28:49.286Z",
+        "updatedAt": "2025-12-19T08:13:51.984Z"
+      },
+      {
+        "id": 586,
+        "year": 2025,
+        "month": 6,
+        "unitId": 6,
+        "targetType": "NR",
+        "amount": "8.56",
+        "createdAt": "2025-12-19T02:28:49.289Z",
+        "updatedAt": "2025-12-19T08:13:51.988Z"
+      },
+      {
+        "id": 187,
+        "year": 2025,
+        "month": 7,
+        "unitId": 6,
+        "targetType": "RKAP",
+        "amount": "16.98",
+        "createdAt": "2025-12-18T06:55:37.793Z",
+        "updatedAt": "2025-12-19T08:13:51.990Z"
+      },
+      {
+        "id": 589,
+        "year": 2025,
+        "month": 7,
+        "unitId": 6,
+        "targetType": "COMMITMENT",
+        "amount": "8.05",
+        "createdAt": "2025-12-19T02:28:49.292Z",
+        "updatedAt": "2025-12-19T08:13:51.991Z"
+      },
+      {
+        "id": 590,
+        "year": 2025,
+        "month": 7,
+        "unitId": 6,
+        "targetType": "NR",
+        "amount": "1.74",
+        "createdAt": "2025-12-19T02:28:49.293Z",
+        "updatedAt": "2025-12-19T08:13:51.992Z"
+      },
+      {
+        "id": 593,
+        "year": 2025,
+        "month": 8,
+        "unitId": 6,
+        "targetType": "COMMITMENT",
+        "amount": "9.2",
+        "createdAt": "2025-12-19T02:28:49.295Z",
+        "updatedAt": "2025-12-19T08:13:51.996Z"
+      },
+      {
+        "id": 594,
+        "year": 2025,
+        "month": 8,
+        "unitId": 6,
+        "targetType": "NR",
+        "amount": "4.32",
+        "createdAt": "2025-12-19T02:28:49.296Z",
+        "updatedAt": "2025-12-19T08:13:51.997Z"
+      },
+      {
+        "id": 597,
+        "year": 2025,
+        "month": 9,
+        "unitId": 6,
+        "targetType": "COMMITMENT",
+        "amount": "4.6",
+        "createdAt": "2025-12-19T02:28:49.300Z",
+        "updatedAt": "2025-12-19T08:13:52.000Z"
+      },
+      {
+        "id": 598,
+        "year": 2025,
+        "month": 9,
+        "unitId": 6,
+        "targetType": "NR",
+        "amount": "26.56",
+        "createdAt": "2025-12-19T02:28:49.300Z",
+        "updatedAt": "2025-12-19T08:13:52.000Z"
+      },
+      {
+        "id": 601,
+        "year": 2025,
+        "month": 10,
+        "unitId": 6,
+        "targetType": "COMMITMENT",
+        "amount": "11.5",
+        "createdAt": "2025-12-19T02:28:49.302Z",
+        "updatedAt": "2025-12-19T08:13:52.002Z"
+      },
+      {
+        "id": 602,
+        "year": 2025,
+        "month": 10,
+        "unitId": 6,
+        "targetType": "NR",
+        "amount": "0.2",
+        "createdAt": "2025-12-19T02:28:49.303Z",
+        "updatedAt": "2025-12-19T08:13:52.003Z"
+      },
+      {
+        "id": 605,
+        "year": 2025,
+        "month": 11,
+        "unitId": 6,
+        "targetType": "COMMITMENT",
+        "amount": "2.3",
+        "createdAt": "2025-12-19T02:28:49.305Z",
+        "updatedAt": "2025-12-19T08:13:52.006Z"
+      },
+      {
+        "id": 606,
+        "year": 2025,
+        "month": 11,
+        "unitId": 6,
+        "targetType": "NR",
+        "amount": "8.31",
+        "createdAt": "2025-12-19T02:28:49.306Z",
+        "updatedAt": "2025-12-19T08:13:52.007Z"
+      },
+      {
+        "id": 609,
+        "year": 2025,
+        "month": 12,
+        "unitId": 6,
+        "targetType": "COMMITMENT",
+        "amount": "13.74",
+        "createdAt": "2025-12-19T02:28:49.309Z",
+        "updatedAt": "2025-12-19T08:13:52.009Z"
+      },
+      {
+        "id": 610,
+        "year": 2025,
+        "month": 12,
+        "unitId": 6,
+        "targetType": "NR",
+        "amount": "3.87",
+        "createdAt": "2025-12-19T02:28:49.309Z",
+        "updatedAt": "2025-12-19T08:13:52.010Z"
+      },
+      {
+        "id": 613,
+        "year": 2025,
+        "month": 1,
+        "unitId": 7,
+        "targetType": "COMMITMENT",
+        "amount": "0.76",
+        "createdAt": "2025-12-19T02:28:49.313Z",
+        "updatedAt": "2025-12-19T08:13:52.012Z"
+      },
+      {
+        "id": 616,
+        "year": 2025,
+        "month": 2,
+        "unitId": 7,
+        "targetType": "COMMITMENT",
+        "amount": "1.52",
+        "createdAt": "2025-12-19T02:28:49.316Z",
+        "updatedAt": "2025-12-19T08:13:52.015Z"
+      },
+      {
+        "id": 617,
+        "year": 2025,
+        "month": 2,
+        "unitId": 7,
+        "targetType": "NR",
+        "amount": "0.16",
+        "createdAt": "2025-12-19T02:28:49.317Z",
+        "updatedAt": "2025-12-19T08:13:52.015Z"
+      },
+      {
+        "id": 620,
+        "year": 2025,
+        "month": 3,
+        "unitId": 7,
+        "targetType": "COMMITMENT",
+        "amount": "2.28",
+        "createdAt": "2025-12-19T02:28:49.319Z",
+        "updatedAt": "2025-12-19T08:13:52.018Z"
+      },
+      {
+        "id": 206,
+        "year": 2025,
+        "month": 4,
+        "unitId": 7,
+        "targetType": "BEYOND_RKAP",
+        "amount": "11.15",
+        "createdAt": "2025-12-18T06:55:37.814Z",
+        "updatedAt": "2025-12-19T08:13:52.020Z"
+      },
+      {
+        "id": 401,
+        "year": 2025,
+        "month": 3,
+        "unitId": 2,
+        "targetType": "NR",
+        "amount": "11.53",
+        "createdAt": "2025-12-19T02:28:49.129Z",
+        "updatedAt": "2025-12-19T08:13:51.815Z"
+      },
+      {
+        "id": 404,
+        "year": 2025,
+        "month": 4,
+        "unitId": 2,
+        "targetType": "COMMITMENT",
+        "amount": "239",
+        "createdAt": "2025-12-19T02:28:49.132Z",
+        "updatedAt": "2025-12-19T08:13:51.818Z"
+      },
+      {
+        "id": 631,
+        "year": 2025,
+        "month": 6,
+        "unitId": 7,
+        "targetType": "COMMITMENT",
+        "amount": "4.56",
+        "createdAt": "2025-12-19T02:28:49.328Z",
+        "updatedAt": "2025-12-19T08:13:52.026Z"
+      },
+      {
+        "id": 632,
+        "year": 2025,
+        "month": 6,
+        "unitId": 7,
+        "targetType": "NR",
+        "amount": "0.29",
+        "createdAt": "2025-12-19T02:28:49.329Z",
+        "updatedAt": "2025-12-19T08:13:52.027Z"
+      },
+      {
+        "id": 635,
+        "year": 2025,
+        "month": 7,
+        "unitId": 7,
+        "targetType": "COMMITMENT",
+        "amount": "5.32",
+        "createdAt": "2025-12-19T02:28:49.332Z",
+        "updatedAt": "2025-12-19T08:13:52.030Z"
+      },
+      {
+        "id": 636,
+        "year": 2025,
+        "month": 7,
+        "unitId": 7,
+        "targetType": "NR",
+        "amount": "0.01",
+        "createdAt": "2025-12-19T02:28:49.332Z",
+        "updatedAt": "2025-12-19T08:13:52.030Z"
+      },
+      {
+        "id": 639,
+        "year": 2025,
+        "month": 8,
+        "unitId": 7,
+        "targetType": "COMMITMENT",
+        "amount": "6.08",
+        "createdAt": "2025-12-19T02:28:49.335Z",
+        "updatedAt": "2025-12-19T08:13:52.034Z"
+      },
+      {
+        "id": 640,
+        "year": 2025,
+        "month": 8,
+        "unitId": 7,
+        "targetType": "NR",
+        "amount": "0.39",
+        "createdAt": "2025-12-19T02:28:49.335Z",
+        "updatedAt": "2025-12-19T08:13:52.036Z"
+      },
+      {
+        "id": 643,
+        "year": 2025,
+        "month": 9,
+        "unitId": 7,
+        "targetType": "COMMITMENT",
+        "amount": "3.04",
+        "createdAt": "2025-12-19T02:28:49.338Z",
+        "updatedAt": "2025-12-19T08:13:52.041Z"
+      },
+      {
+        "id": 647,
+        "year": 2025,
+        "month": 10,
+        "unitId": 7,
+        "targetType": "COMMITMENT",
+        "amount": "7.6",
+        "createdAt": "2025-12-19T02:28:49.341Z",
+        "updatedAt": "2025-12-19T08:13:52.044Z"
+      },
+      {
+        "id": 648,
+        "year": 2025,
+        "month": 10,
+        "unitId": 7,
+        "targetType": "NR",
+        "amount": "1.76",
+        "createdAt": "2025-12-19T02:28:49.341Z",
+        "updatedAt": "2025-12-19T08:13:52.045Z"
+      },
+      {
+        "id": 651,
+        "year": 2025,
+        "month": 11,
+        "unitId": 7,
+        "targetType": "NR",
+        "amount": "11.5",
+        "createdAt": "2025-12-19T02:28:49.344Z",
+        "updatedAt": "2025-12-19T08:13:52.047Z"
+      },
+      {
+        "id": 654,
+        "year": 2025,
+        "month": 12,
+        "unitId": 7,
+        "targetType": "COMMITMENT",
+        "amount": "9.12",
+        "createdAt": "2025-12-19T02:28:49.346Z",
+        "updatedAt": "2025-12-19T08:13:52.050Z"
+      },
+      {
+        "id": 655,
+        "year": 2025,
+        "month": 12,
+        "unitId": 7,
+        "targetType": "NR",
+        "amount": "7.49",
+        "createdAt": "2025-12-19T02:28:49.347Z",
+        "updatedAt": "2025-12-19T08:13:52.051Z"
+      },
+      {
+        "id": 658,
+        "year": 2025,
+        "month": 1,
+        "unitId": 8,
+        "targetType": "COMMITMENT",
+        "amount": "2.07",
+        "createdAt": "2025-12-19T02:28:49.350Z",
+        "updatedAt": "2025-12-19T08:13:52.054Z"
+      },
+      {
+        "id": 225,
+        "year": 2025,
+        "month": 2,
+        "unitId": 8,
+        "targetType": "RKAP",
+        "amount": "5.16",
+        "createdAt": "2025-12-18T06:55:37.843Z",
+        "updatedAt": "2025-12-19T08:13:52.055Z"
+      },
+      {
+        "id": 661,
+        "year": 2025,
+        "month": 2,
+        "unitId": 8,
+        "targetType": "COMMITMENT",
+        "amount": "4.15",
+        "createdAt": "2025-12-19T02:28:49.353Z",
+        "updatedAt": "2025-12-19T08:13:52.057Z"
+      },
+      {
+        "id": 664,
+        "year": 2025,
+        "month": 3,
+        "unitId": 8,
+        "targetType": "COMMITMENT",
+        "amount": "6.22",
+        "createdAt": "2025-12-19T02:28:49.355Z",
+        "updatedAt": "2025-12-19T08:13:52.059Z"
+      },
+      {
+        "id": 665,
+        "year": 2025,
+        "month": 3,
+        "unitId": 8,
+        "targetType": "NR",
+        "amount": "1.14",
+        "createdAt": "2025-12-19T02:28:49.356Z",
+        "updatedAt": "2025-12-19T08:13:52.060Z"
+      },
+      {
+        "id": 668,
+        "year": 2025,
+        "month": 4,
+        "unitId": 8,
+        "targetType": "COMMITMENT",
+        "amount": "8.28",
+        "createdAt": "2025-12-19T02:28:49.358Z",
+        "updatedAt": "2025-12-19T08:13:52.063Z"
+      },
+      {
+        "id": 669,
+        "year": 2025,
+        "month": 4,
+        "unitId": 8,
+        "targetType": "NR",
+        "amount": "33.24",
+        "createdAt": "2025-12-19T02:28:49.358Z",
+        "updatedAt": "2025-12-19T08:13:52.063Z"
+      },
+      {
+        "id": 672,
+        "year": 2025,
+        "month": 5,
+        "unitId": 8,
+        "targetType": "COMMITMENT",
+        "amount": "6.15",
+        "createdAt": "2025-12-19T02:28:49.361Z",
+        "updatedAt": "2025-12-19T08:13:52.066Z"
+      },
+      {
+        "id": 675,
+        "year": 2025,
+        "month": 6,
+        "unitId": 8,
+        "targetType": "COMMITMENT",
+        "amount": "12.42",
+        "createdAt": "2025-12-19T02:28:49.363Z",
+        "updatedAt": "2025-12-19T08:13:52.068Z"
+      },
+      {
+        "id": 676,
+        "year": 2025,
+        "month": 6,
+        "unitId": 8,
+        "targetType": "NR",
+        "amount": "0.92",
+        "createdAt": "2025-12-19T02:28:49.364Z",
+        "updatedAt": "2025-12-19T08:13:52.069Z"
+      },
+      {
+        "id": 679,
+        "year": 2025,
+        "month": 7,
+        "unitId": 8,
+        "targetType": "COMMITMENT",
+        "amount": "14.49",
+        "createdAt": "2025-12-19T02:28:49.366Z",
+        "updatedAt": "2025-12-19T08:13:52.072Z"
+      },
+      {
+        "id": 680,
+        "year": 2025,
+        "month": 7,
+        "unitId": 8,
+        "targetType": "NR",
+        "amount": "0.22",
+        "createdAt": "2025-12-19T02:28:49.367Z",
+        "updatedAt": "2025-12-19T08:13:52.072Z"
+      },
+      {
+        "id": 683,
+        "year": 2025,
+        "month": 8,
+        "unitId": 8,
+        "targetType": "COMMITMENT",
+        "amount": "16.56",
+        "createdAt": "2025-12-19T02:28:49.369Z",
+        "updatedAt": "2025-12-19T08:13:52.075Z"
+      },
+      {
+        "id": 687,
+        "year": 2025,
+        "month": 9,
+        "unitId": 8,
+        "targetType": "COMMITMENT",
+        "amount": "8.28",
+        "createdAt": "2025-12-19T02:28:49.373Z",
+        "updatedAt": "2025-12-19T08:13:52.078Z"
+      },
+      {
+        "id": 688,
+        "year": 2025,
+        "month": 9,
+        "unitId": 8,
+        "targetType": "NR",
+        "amount": "12",
+        "createdAt": "2025-12-19T02:28:49.373Z",
+        "updatedAt": "2025-12-19T08:13:52.078Z"
+      },
+      {
+        "id": 691,
+        "year": 2025,
+        "month": 10,
+        "unitId": 8,
+        "targetType": "COMMITMENT",
+        "amount": "20.7",
+        "createdAt": "2025-12-19T02:28:49.375Z",
+        "updatedAt": "2025-12-19T08:13:52.081Z"
+      },
+      {
+        "id": 692,
+        "year": 2025,
+        "month": 10,
+        "unitId": 8,
+        "targetType": "NR",
+        "amount": "3.57",
+        "createdAt": "2025-12-19T02:28:49.376Z",
+        "updatedAt": "2025-12-19T08:13:52.081Z"
+      },
+      {
+        "id": 244,
+        "year": 2025,
+        "month": 11,
+        "unitId": 8,
+        "targetType": "BEYOND_RKAP",
+        "amount": "53.33",
+        "createdAt": "2025-12-18T06:55:37.863Z",
+        "updatedAt": "2025-12-19T08:13:52.083Z"
+      },
+      {
+        "id": 695,
+        "year": 2025,
+        "month": 11,
+        "unitId": 8,
+        "targetType": "COMMITMENT",
+        "amount": "2",
+        "createdAt": "2025-12-19T02:28:49.378Z",
+        "updatedAt": "2025-12-19T08:13:52.084Z"
+      },
+      {
+        "id": 698,
+        "year": 2025,
+        "month": 12,
+        "unitId": 8,
+        "targetType": "COMMITMENT",
+        "amount": "24.88",
+        "createdAt": "2025-12-19T02:28:49.381Z",
+        "updatedAt": "2025-12-19T08:13:52.086Z"
+      },
+      {
+        "id": 701,
+        "year": 2025,
+        "month": 1,
+        "unitId": 9,
+        "targetType": "COMMITMENT",
+        "amount": "1.83",
+        "createdAt": "2025-12-19T02:28:49.384Z",
+        "updatedAt": "2025-12-19T08:13:52.089Z"
+      },
+      {
+        "id": 704,
+        "year": 2025,
+        "month": 2,
+        "unitId": 9,
+        "targetType": "COMMITMENT",
+        "amount": "3.67",
+        "createdAt": "2025-12-19T02:28:49.388Z",
+        "updatedAt": "2025-12-19T08:13:52.092Z"
+      },
+      {
+        "id": 705,
+        "year": 2025,
+        "month": 2,
+        "unitId": 9,
+        "targetType": "NR",
+        "amount": "0.56",
+        "createdAt": "2025-12-19T02:28:49.388Z",
+        "updatedAt": "2025-12-19T08:13:52.092Z"
+      },
+      {
+        "id": 708,
+        "year": 2025,
+        "month": 3,
+        "unitId": 9,
+        "targetType": "COMMITMENT",
+        "amount": "5.5",
+        "createdAt": "2025-12-19T02:28:49.390Z",
+        "updatedAt": "2025-12-19T08:13:52.094Z"
+      },
+      {
+        "id": 709,
+        "year": 2025,
+        "month": 3,
+        "unitId": 9,
+        "targetType": "NR",
+        "amount": "0.59",
+        "createdAt": "2025-12-19T02:28:49.391Z",
+        "updatedAt": "2025-12-19T08:13:52.095Z"
+      },
+      {
+        "id": 712,
+        "year": 2025,
+        "month": 4,
+        "unitId": 9,
+        "targetType": "COMMITMENT",
+        "amount": "7.32",
+        "createdAt": "2025-12-19T02:28:49.395Z",
+        "updatedAt": "2025-12-19T08:13:52.098Z"
+      },
+      {
+        "id": 713,
+        "year": 2025,
+        "month": 4,
+        "unitId": 9,
+        "targetType": "NR",
+        "amount": "0.32",
+        "createdAt": "2025-12-19T02:28:49.396Z",
+        "updatedAt": "2025-12-19T08:13:52.098Z"
+      },
+      {
+        "id": 716,
+        "year": 2025,
+        "month": 5,
+        "unitId": 9,
+        "targetType": "COMMITMENT",
+        "amount": "9",
+        "createdAt": "2025-12-19T02:28:49.399Z",
+        "updatedAt": "2025-12-19T08:13:52.101Z"
+      },
+      {
+        "id": 717,
+        "year": 2025,
+        "month": 5,
+        "unitId": 9,
+        "targetType": "NR",
+        "amount": "4.06",
+        "createdAt": "2025-12-19T02:28:49.399Z",
+        "updatedAt": "2025-12-19T08:13:52.101Z"
+      },
+      {
+        "id": 720,
+        "year": 2025,
+        "month": 6,
+        "unitId": 9,
+        "targetType": "COMMITMENT",
+        "amount": "10.98",
+        "createdAt": "2025-12-19T02:28:49.402Z",
+        "updatedAt": "2025-12-19T08:13:52.104Z"
+      },
+      {
+        "id": 721,
+        "year": 2025,
+        "month": 6,
+        "unitId": 9,
+        "targetType": "NR",
+        "amount": "10.7",
+        "createdAt": "2025-12-19T02:28:49.403Z",
+        "updatedAt": "2025-12-19T08:13:52.104Z"
+      },
+      {
+        "id": 725,
+        "year": 2025,
+        "month": 7,
+        "unitId": 9,
+        "targetType": "NR",
+        "amount": "0.18",
+        "createdAt": "2025-12-19T02:28:49.406Z",
+        "updatedAt": "2025-12-19T08:13:52.108Z"
+      },
+      {
+        "id": 728,
+        "year": 2025,
+        "month": 8,
+        "unitId": 9,
+        "targetType": "COMMITMENT",
+        "amount": "14.64",
+        "createdAt": "2025-12-19T02:28:49.408Z",
+        "updatedAt": "2025-12-19T08:13:52.110Z"
+      },
+      {
+        "id": 729,
+        "year": 2025,
+        "month": 8,
+        "unitId": 9,
+        "targetType": "NR",
+        "amount": "2.82",
+        "createdAt": "2025-12-19T02:28:49.409Z",
+        "updatedAt": "2025-12-19T08:13:52.111Z"
+      },
+      {
+        "id": 263,
+        "year": 2025,
+        "month": 9,
+        "unitId": 9,
+        "targetType": "RKAP",
+        "amount": "39",
+        "createdAt": "2025-12-18T06:55:37.888Z",
+        "updatedAt": "2025-12-19T08:13:52.112Z"
+      },
+      {
+        "id": 732,
+        "year": 2025,
+        "month": 9,
+        "unitId": 9,
+        "targetType": "COMMITMENT",
+        "amount": "12",
+        "createdAt": "2025-12-19T02:28:49.412Z",
+        "updatedAt": "2025-12-19T08:13:52.114Z"
+      },
+      {
+        "id": 733,
+        "year": 2025,
+        "month": 9,
+        "unitId": 9,
+        "targetType": "NR",
+        "amount": "9",
+        "createdAt": "2025-12-19T02:28:49.413Z",
+        "updatedAt": "2025-12-19T08:13:52.114Z"
+      },
+      {
+        "id": 265,
+        "year": 2025,
+        "month": 10,
+        "unitId": 9,
+        "targetType": "RKAP",
+        "amount": "48",
+        "createdAt": "2025-12-18T06:55:37.889Z",
+        "updatedAt": "2025-12-19T08:13:52.115Z"
+      },
+      {
+        "id": 736,
+        "year": 2025,
+        "month": 10,
+        "unitId": 9,
+        "targetType": "COMMITMENT",
+        "amount": "18.3",
+        "createdAt": "2025-12-19T02:28:49.415Z",
+        "updatedAt": "2025-12-19T08:13:52.116Z"
+      },
+      {
+        "id": 739,
+        "year": 2025,
+        "month": 11,
+        "unitId": 9,
+        "targetType": "COMMITMENT",
+        "amount": "8.8",
+        "createdAt": "2025-12-19T02:28:49.417Z",
+        "updatedAt": "2025-12-19T08:13:52.119Z"
+      },
+      {
+        "id": 740,
+        "year": 2025,
+        "month": 11,
+        "unitId": 9,
+        "targetType": "NR",
+        "amount": "4.3",
+        "createdAt": "2025-12-19T02:28:49.418Z",
+        "updatedAt": "2025-12-19T08:13:52.120Z"
+      },
+      {
+        "id": 743,
+        "year": 2025,
+        "month": 12,
+        "unitId": 9,
+        "targetType": "COMMITMENT",
+        "amount": "22",
+        "createdAt": "2025-12-19T02:28:49.422Z",
+        "updatedAt": "2025-12-19T08:13:52.122Z"
+      },
+      {
+        "id": 744,
+        "year": 2025,
+        "month": 12,
+        "unitId": 9,
+        "targetType": "NR",
+        "amount": "4.4",
+        "createdAt": "2025-12-19T02:28:49.422Z",
+        "updatedAt": "2025-12-19T08:13:52.123Z"
+      },
+      {
+        "id": 747,
+        "year": 2025,
+        "month": 1,
+        "unitId": 10,
+        "targetType": "COMMITMENT",
+        "amount": "1.08",
+        "createdAt": "2025-12-19T02:28:49.426Z",
+        "updatedAt": "2025-12-19T08:13:52.126Z"
+      },
+      {
+        "id": 748,
+        "year": 2025,
+        "month": 1,
+        "unitId": 10,
+        "targetType": "NR",
+        "amount": "0.3",
+        "createdAt": "2025-12-19T02:28:49.427Z",
+        "updatedAt": "2025-12-19T08:13:52.127Z"
+      },
+      {
+        "id": 751,
+        "year": 2025,
+        "month": 2,
+        "unitId": 10,
+        "targetType": "COMMITMENT",
+        "amount": "2.16",
+        "createdAt": "2025-12-19T02:28:49.429Z",
+        "updatedAt": "2025-12-19T08:13:52.129Z"
+      },
+      {
+        "id": 752,
+        "year": 2025,
+        "month": 2,
+        "unitId": 10,
+        "targetType": "NR",
+        "amount": "1.67",
+        "createdAt": "2025-12-19T02:28:49.429Z",
+        "updatedAt": "2025-12-19T08:13:52.129Z"
+      },
+      {
+        "id": 275,
+        "year": 2025,
+        "month": 3,
+        "unitId": 10,
+        "targetType": "RKAP",
+        "amount": "4.19",
+        "createdAt": "2025-12-18T06:55:37.902Z",
+        "updatedAt": "2025-12-19T08:13:52.131Z"
+      },
+      {
+        "id": 755,
+        "year": 2025,
+        "month": 3,
+        "unitId": 10,
+        "targetType": "COMMITMENT",
+        "amount": "3.23",
+        "createdAt": "2025-12-19T02:28:49.432Z",
+        "updatedAt": "2025-12-19T08:13:52.132Z"
+      },
+      {
+        "id": 759,
+        "year": 2025,
+        "month": 4,
+        "unitId": 10,
+        "targetType": "NR",
+        "amount": "0.41",
+        "createdAt": "2025-12-19T02:28:49.435Z",
+        "updatedAt": "2025-12-19T08:13:52.135Z"
+      },
+      {
+        "id": 762,
+        "year": 2025,
+        "month": 5,
+        "unitId": 10,
+        "targetType": "COMMITMENT",
+        "amount": "6.9",
+        "createdAt": "2025-12-19T02:28:49.438Z",
+        "updatedAt": "2025-12-19T08:13:52.137Z"
+      },
+      {
+        "id": 763,
+        "year": 2025,
+        "month": 5,
+        "unitId": 10,
+        "targetType": "NR",
+        "amount": "0.01",
+        "createdAt": "2025-12-19T02:28:49.438Z",
+        "updatedAt": "2025-12-19T08:13:52.138Z"
+      },
+      {
+        "id": 766,
+        "year": 2025,
+        "month": 6,
+        "unitId": 10,
+        "targetType": "COMMITMENT",
+        "amount": "6.48",
+        "createdAt": "2025-12-19T02:28:49.441Z",
+        "updatedAt": "2025-12-19T08:13:52.140Z"
+      },
+      {
+        "id": 767,
+        "year": 2025,
+        "month": 6,
+        "unitId": 10,
+        "targetType": "NR",
+        "amount": "6.38",
+        "createdAt": "2025-12-19T02:28:49.442Z",
+        "updatedAt": "2025-12-19T08:13:52.141Z"
+      },
+      {
+        "id": 770,
+        "year": 2025,
+        "month": 7,
+        "unitId": 10,
+        "targetType": "COMMITMENT",
+        "amount": "7.56",
+        "createdAt": "2025-12-19T02:28:49.444Z",
+        "updatedAt": "2025-12-19T08:13:52.144Z"
+      },
+      {
+        "id": 771,
+        "year": 2025,
+        "month": 7,
+        "unitId": 10,
+        "targetType": "NR",
+        "amount": "3.77",
+        "createdAt": "2025-12-19T02:28:49.445Z",
+        "updatedAt": "2025-12-19T08:13:52.144Z"
+      },
+      {
+        "id": 774,
+        "year": 2025,
+        "month": 8,
+        "unitId": 10,
+        "targetType": "COMMITMENT",
+        "amount": "8.64",
+        "createdAt": "2025-12-19T02:28:49.447Z",
+        "updatedAt": "2025-12-19T08:13:52.147Z"
+      },
+      {
+        "id": 775,
+        "year": 2025,
+        "month": 8,
+        "unitId": 10,
+        "targetType": "NR",
+        "amount": "0.2",
+        "createdAt": "2025-12-19T02:28:49.447Z",
+        "updatedAt": "2025-12-19T08:13:52.147Z"
+      },
+      {
+        "id": 778,
+        "year": 2025,
+        "month": 9,
+        "unitId": 10,
+        "targetType": "COMMITMENT",
+        "amount": "4.32",
+        "createdAt": "2025-12-19T02:28:49.450Z",
+        "updatedAt": "2025-12-19T08:13:52.150Z"
+      },
+      {
+        "id": 779,
+        "year": 2025,
+        "month": 9,
+        "unitId": 10,
+        "targetType": "NR",
+        "amount": "12.18",
+        "createdAt": "2025-12-19T02:28:49.451Z",
+        "updatedAt": "2025-12-19T08:13:52.150Z"
+      },
+      {
+        "id": 782,
+        "year": 2025,
+        "month": 10,
+        "unitId": 10,
+        "targetType": "COMMITMENT",
+        "amount": "10.8",
+        "createdAt": "2025-12-19T02:28:49.453Z",
+        "updatedAt": "2025-12-19T08:13:52.152Z"
+      },
+      {
+        "id": 783,
+        "year": 2025,
+        "month": 10,
+        "unitId": 10,
+        "targetType": "NR",
+        "amount": "9.19",
+        "createdAt": "2025-12-19T02:28:49.453Z",
+        "updatedAt": "2025-12-19T08:13:52.153Z"
+      },
+      {
+        "id": 786,
+        "year": 2025,
+        "month": 11,
+        "unitId": 10,
+        "targetType": "COMMITMENT",
+        "amount": "2.16",
+        "createdAt": "2025-12-19T02:28:49.456Z",
+        "updatedAt": "2025-12-19T08:13:52.156Z"
+      },
+      {
+        "id": 787,
+        "year": 2025,
+        "month": 11,
+        "unitId": 10,
+        "targetType": "NR",
+        "amount": "6.6",
+        "createdAt": "2025-12-19T02:28:49.457Z",
+        "updatedAt": "2025-12-19T08:13:52.156Z"
+      },
+      {
+        "id": 294,
+        "year": 2025,
+        "month": 12,
+        "unitId": 10,
+        "targetType": "BEYOND_RKAP",
+        "amount": "55.75",
+        "createdAt": "2025-12-18T06:55:37.921Z",
+        "updatedAt": "2025-12-19T08:13:52.158Z"
+      },
+      {
+        "id": 790,
+        "year": 2025,
+        "month": 12,
+        "unitId": 10,
+        "targetType": "COMMITMENT",
+        "amount": "12.93",
+        "createdAt": "2025-12-19T02:28:49.459Z",
+        "updatedAt": "2025-12-19T08:13:52.159Z"
+      },
+      {
+        "id": 791,
+        "year": 2025,
+        "month": 12,
+        "unitId": 10,
+        "targetType": "NR",
+        "amount": "5.7",
+        "createdAt": "2025-12-19T02:28:49.460Z",
+        "updatedAt": "2025-12-19T08:13:52.160Z"
+      },
+      {
+        "id": 795,
+        "year": 2025,
+        "month": 1,
+        "unitId": 11,
+        "targetType": "NR",
+        "amount": "0.03",
+        "createdAt": "2025-12-19T02:28:49.464Z",
+        "updatedAt": "2025-12-19T08:13:52.162Z"
+      },
+      {
+        "id": 798,
+        "year": 2025,
+        "month": 2,
+        "unitId": 11,
+        "targetType": "COMMITMENT",
+        "amount": "3.12",
+        "createdAt": "2025-12-19T02:28:49.466Z",
+        "updatedAt": "2025-12-19T08:13:52.165Z"
+      },
+      {
+        "id": 801,
+        "year": 2025,
+        "month": 3,
+        "unitId": 11,
+        "targetType": "COMMITMENT",
+        "amount": "4.68",
+        "createdAt": "2025-12-19T02:28:49.469Z",
+        "updatedAt": "2025-12-19T08:13:52.167Z"
+      },
+      {
+        "id": 802,
+        "year": 2025,
+        "month": 3,
+        "unitId": 11,
+        "targetType": "NR",
+        "amount": "20.06",
+        "createdAt": "2025-12-19T02:28:49.470Z",
+        "updatedAt": "2025-12-19T08:13:52.167Z"
+      },
+      {
+        "id": 805,
+        "year": 2025,
+        "month": 4,
+        "unitId": 11,
+        "targetType": "COMMITMENT",
+        "amount": "6.24",
+        "createdAt": "2025-12-19T02:28:49.472Z",
+        "updatedAt": "2025-12-19T08:13:52.170Z"
+      },
+      {
+        "id": 808,
+        "year": 2025,
+        "month": 5,
+        "unitId": 11,
+        "targetType": "COMMITMENT",
+        "amount": "7.95",
+        "createdAt": "2025-12-19T02:28:49.475Z",
+        "updatedAt": "2025-12-19T08:13:52.173Z"
+      },
+      {
+        "id": 809,
+        "year": 2025,
+        "month": 5,
+        "unitId": 11,
+        "targetType": "NR",
+        "amount": "8.43",
+        "createdAt": "2025-12-19T02:28:49.476Z",
+        "updatedAt": "2025-12-19T08:13:52.173Z"
+      },
+      {
+        "id": 812,
+        "year": 2025,
+        "month": 6,
+        "unitId": 11,
+        "targetType": "COMMITMENT",
+        "amount": "9.36",
+        "createdAt": "2025-12-19T02:28:49.478Z",
+        "updatedAt": "2025-12-19T08:13:52.176Z"
+      },
+      {
+        "id": 813,
+        "year": 2025,
+        "month": 6,
+        "unitId": 11,
+        "targetType": "NR",
+        "amount": "22.25",
+        "createdAt": "2025-12-19T02:28:49.479Z",
+        "updatedAt": "2025-12-19T08:13:52.177Z"
+      },
+      {
+        "id": 816,
+        "year": 2025,
+        "month": 7,
+        "unitId": 11,
+        "targetType": "COMMITMENT",
+        "amount": "10.92",
+        "createdAt": "2025-12-19T02:28:49.481Z",
+        "updatedAt": "2025-12-19T08:13:52.179Z"
+      },
+      {
+        "id": 817,
+        "year": 2025,
+        "month": 7,
+        "unitId": 11,
+        "targetType": "NR",
+        "amount": "1.32",
+        "createdAt": "2025-12-19T02:28:49.481Z",
+        "updatedAt": "2025-12-19T08:13:52.179Z"
+      },
+      {
+        "id": 820,
+        "year": 2025,
+        "month": 8,
+        "unitId": 11,
+        "targetType": "COMMITMENT",
+        "amount": "12.48",
+        "createdAt": "2025-12-19T02:28:49.484Z",
+        "updatedAt": "2025-12-19T08:13:52.181Z"
+      },
+      {
+        "id": 821,
+        "year": 2025,
+        "month": 8,
+        "unitId": 11,
+        "targetType": "NR",
+        "amount": "0.9",
+        "createdAt": "2025-12-19T02:28:49.485Z",
+        "updatedAt": "2025-12-19T08:13:52.182Z"
+      },
+      {
+        "id": 824,
+        "year": 2025,
+        "month": 9,
+        "unitId": 11,
+        "targetType": "COMMITMENT",
+        "amount": "6.24",
+        "createdAt": "2025-12-19T02:28:49.488Z",
+        "updatedAt": "2025-12-19T08:13:52.185Z"
+      },
+      {
+        "id": 825,
+        "year": 2025,
+        "month": 9,
+        "unitId": 11,
+        "targetType": "NR",
+        "amount": "25.59",
+        "createdAt": "2025-12-19T02:28:49.488Z",
+        "updatedAt": "2025-12-19T08:13:52.185Z"
+      },
+      {
+        "id": 313,
+        "year": 2025,
+        "month": 10,
+        "unitId": 11,
+        "targetType": "RKAP",
+        "amount": "26.72",
+        "createdAt": "2025-12-18T06:55:37.945Z",
+        "updatedAt": "2025-12-19T08:13:52.186Z"
+      },
+      {
+        "id": 828,
+        "year": 2025,
+        "month": 10,
+        "unitId": 11,
+        "targetType": "COMMITMENT",
+        "amount": "15.6",
+        "createdAt": "2025-12-19T02:28:49.490Z",
+        "updatedAt": "2025-12-19T08:13:52.187Z"
+      },
+      {
+        "id": 829,
+        "year": 2025,
+        "month": 10,
+        "unitId": 11,
+        "targetType": "NR",
+        "amount": "0.71",
+        "createdAt": "2025-12-19T02:28:49.491Z",
+        "updatedAt": "2025-12-19T08:13:52.188Z"
+      },
+      {
+        "id": 833,
+        "year": 2025,
+        "month": 11,
+        "unitId": 11,
+        "targetType": "NR",
+        "amount": "19.56",
+        "createdAt": "2025-12-19T02:28:49.494Z",
+        "updatedAt": "2025-12-19T08:13:52.191Z"
+      },
+      {
+        "id": 627,
+        "year": 2025,
+        "month": 5,
+        "unitId": 7,
+        "targetType": "COMMITMENT",
+        "amount": "2",
+        "createdAt": "2025-12-19T02:28:49.325Z",
+        "updatedAt": "2025-12-19T08:13:52.023Z"
+      },
+      {
+        "id": 628,
+        "year": 2025,
+        "month": 5,
+        "unitId": 7,
+        "targetType": "NR",
+        "amount": "0.06",
+        "createdAt": "2025-12-19T02:28:49.326Z",
+        "updatedAt": "2025-12-19T08:13:52.024Z"
+      },
+      {
+        "id": 883,
+        "year": 2025,
+        "month": 12,
+        "unitId": 12,
+        "targetType": "COMMITMENT",
+        "amount": "5.78",
+        "createdAt": "2025-12-19T02:28:49.535Z",
+        "updatedAt": "2025-12-19T08:13:52.231Z"
+      },
+      {
+        "id": 884,
+        "year": 2025,
+        "month": 12,
+        "unitId": 12,
+        "targetType": "NR",
+        "amount": "7.16",
+        "createdAt": "2025-12-19T02:28:49.535Z",
+        "updatedAt": "2025-12-19T08:13:52.231Z"
+      },
+      {
+        "id": 360,
+        "year": 2025,
+        "month": 5,
+        "unitId": 1,
+        "targetType": "COMMITMENT",
+        "amount": "555.1",
+        "createdAt": "2025-12-19T02:28:49.092Z",
+        "updatedAt": "2025-12-19T08:13:51.780Z"
+      },
+      {
+        "id": 396,
+        "year": 2025,
+        "month": 2,
+        "unitId": 2,
+        "targetType": "COMMITMENT",
+        "amount": "119.5",
+        "createdAt": "2025-12-19T02:28:49.125Z",
+        "updatedAt": "2025-12-19T08:13:51.811Z"
+      },
+      {
+        "id": 400,
+        "year": 2025,
+        "month": 3,
+        "unitId": 2,
+        "targetType": "COMMITMENT",
+        "amount": "179.25",
+        "createdAt": "2025-12-19T02:28:49.128Z",
+        "updatedAt": "2025-12-19T08:13:51.815Z"
+      },
+      {
+        "id": 420,
+        "year": 2025,
+        "month": 8,
+        "unitId": 2,
+        "targetType": "COMMITMENT",
+        "amount": "478",
+        "createdAt": "2025-12-19T02:28:49.145Z",
+        "updatedAt": "2025-12-19T08:13:51.832Z"
+      },
+      {
+        "id": 118,
+        "year": 2025,
+        "month": 8,
+        "unitId": 3,
+        "targetType": "BEYOND_RKAP",
+        "amount": "33.14",
+        "createdAt": "2025-12-18T06:55:37.668Z",
+        "updatedAt": "2025-12-19T08:13:51.884Z"
+      },
+      {
+        "id": 507,
+        "year": 2025,
+        "month": 9,
+        "unitId": 4,
+        "targetType": "NR",
+        "amount": "12",
+        "createdAt": "2025-12-19T02:28:49.225Z",
+        "updatedAt": "2025-12-19T08:13:51.924Z"
+      },
+      {
+        "id": 52,
+        "year": 2025,
+        "month": 8,
+        "unitId": 5,
+        "targetType": "RKAP",
+        "amount": "28.16",
+        "createdAt": "2025-12-18T06:53:42.360Z",
+        "updatedAt": "2025-12-19T08:13:51.955Z"
+      },
+      {
+        "id": 585,
+        "year": 2025,
+        "month": 6,
+        "unitId": 6,
+        "targetType": "COMMITMENT",
+        "amount": "6.9",
+        "createdAt": "2025-12-19T02:28:49.289Z",
+        "updatedAt": "2025-12-19T08:13:51.987Z"
+      },
+      {
+        "id": 621,
+        "year": 2025,
+        "month": 3,
+        "unitId": 7,
+        "targetType": "NR",
+        "amount": "0.26",
+        "createdAt": "2025-12-19T02:28:49.320Z",
+        "updatedAt": "2025-12-19T08:13:52.018Z"
+      },
+      {
+        "id": 624,
+        "year": 2025,
+        "month": 4,
+        "unitId": 7,
+        "targetType": "COMMITMENT",
+        "amount": "3.04",
+        "createdAt": "2025-12-19T02:28:49.322Z",
+        "updatedAt": "2025-12-19T08:13:52.021Z"
+      },
+      {
+        "id": 644,
+        "year": 2025,
+        "month": 9,
+        "unitId": 7,
+        "targetType": "NR",
+        "amount": "7",
+        "createdAt": "2025-12-19T02:28:49.339Z",
+        "updatedAt": "2025-12-19T08:13:52.041Z"
+      },
+      {
+        "id": 684,
+        "year": 2025,
+        "month": 8,
+        "unitId": 8,
+        "targetType": "NR",
+        "amount": "1.13",
+        "createdAt": "2025-12-19T02:28:49.370Z",
+        "updatedAt": "2025-12-19T08:13:52.075Z"
+      },
+      {
+        "id": 724,
+        "year": 2025,
+        "month": 7,
+        "unitId": 9,
+        "targetType": "COMMITMENT",
+        "amount": "12.81",
+        "createdAt": "2025-12-19T02:28:49.405Z",
+        "updatedAt": "2025-12-19T08:13:52.107Z"
+      },
+      {
+        "id": 758,
+        "year": 2025,
+        "month": 4,
+        "unitId": 10,
+        "targetType": "COMMITMENT",
+        "amount": "4.32",
+        "createdAt": "2025-12-19T02:28:49.434Z",
+        "updatedAt": "2025-12-19T08:13:52.134Z"
+      },
+      {
+        "id": 794,
+        "year": 2025,
+        "month": 1,
+        "unitId": 11,
+        "targetType": "COMMITMENT",
+        "amount": "1.56",
+        "createdAt": "2025-12-19T02:28:49.463Z",
+        "updatedAt": "2025-12-19T08:13:52.162Z"
+      },
+      {
+        "id": 832,
+        "year": 2025,
+        "month": 11,
+        "unitId": 11,
+        "targetType": "COMMITMENT",
+        "amount": "3.12",
+        "createdAt": "2025-12-19T02:28:49.494Z",
+        "updatedAt": "2025-12-19T08:13:52.191Z"
+      },
+      {
+        "id": 836,
+        "year": 2025,
+        "month": 12,
+        "unitId": 11,
+        "targetType": "COMMITMENT",
+        "amount": "18.7",
+        "createdAt": "2025-12-19T02:28:49.497Z",
+        "updatedAt": "2025-12-19T08:13:52.194Z"
+      },
+      {
+        "id": 837,
+        "year": 2025,
+        "month": 12,
+        "unitId": 11,
+        "targetType": "NR",
+        "amount": "5.2",
+        "createdAt": "2025-12-19T02:28:49.498Z",
+        "updatedAt": "2025-12-19T08:13:52.194Z"
+      },
+      {
+        "id": 840,
+        "year": 2025,
+        "month": 1,
+        "unitId": 12,
+        "targetType": "COMMITMENT",
+        "amount": "0.48",
+        "createdAt": "2025-12-19T02:28:49.501Z",
+        "updatedAt": "2025-12-19T08:13:52.197Z"
+      },
+      {
+        "id": 841,
+        "year": 2025,
+        "month": 1,
+        "unitId": 12,
+        "targetType": "NR",
+        "amount": "1.01",
+        "createdAt": "2025-12-19T02:28:49.502Z",
+        "updatedAt": "2025-12-19T08:13:52.198Z"
+      },
+      {
+        "id": 844,
+        "year": 2025,
+        "month": 2,
+        "unitId": 12,
+        "targetType": "COMMITMENT",
+        "amount": "0.96",
+        "createdAt": "2025-12-19T02:28:49.504Z",
+        "updatedAt": "2025-12-19T08:13:52.200Z"
+      },
+      {
+        "id": 845,
+        "year": 2025,
+        "month": 2,
+        "unitId": 12,
+        "targetType": "NR",
+        "amount": "2.13",
+        "createdAt": "2025-12-19T02:28:49.505Z",
+        "updatedAt": "2025-12-19T08:13:52.201Z"
+      },
+      {
+        "id": 848,
+        "year": 2025,
+        "month": 3,
+        "unitId": 12,
+        "targetType": "COMMITMENT",
+        "amount": "1.45",
+        "createdAt": "2025-12-19T02:28:49.507Z",
+        "updatedAt": "2025-12-19T08:13:52.204Z"
+      },
+      {
+        "id": 849,
+        "year": 2025,
+        "month": 3,
+        "unitId": 12,
+        "targetType": "NR",
+        "amount": "5.21",
+        "createdAt": "2025-12-19T02:28:49.508Z",
+        "updatedAt": "2025-12-19T08:13:52.204Z"
+      },
+      {
+        "id": 852,
+        "year": 2025,
+        "month": 4,
+        "unitId": 12,
+        "targetType": "COMMITMENT",
+        "amount": "1.92",
+        "createdAt": "2025-12-19T02:28:49.511Z",
+        "updatedAt": "2025-12-19T08:13:52.207Z"
+      },
+      {
+        "id": 853,
+        "year": 2025,
+        "month": 4,
+        "unitId": 12,
+        "targetType": "NR",
+        "amount": "0.24",
+        "createdAt": "2025-12-19T02:28:49.511Z",
+        "updatedAt": "2025-12-19T08:13:52.208Z"
+      },
+      {
+        "id": 856,
+        "year": 2025,
+        "month": 5,
+        "unitId": 12,
+        "targetType": "COMMITMENT",
+        "amount": "7.45",
+        "createdAt": "2025-12-19T02:28:49.513Z",
+        "updatedAt": "2025-12-19T08:13:52.210Z"
+      },
+      {
+        "id": 857,
+        "year": 2025,
+        "month": 5,
+        "unitId": 12,
+        "targetType": "NR",
+        "amount": "0.03",
+        "createdAt": "2025-12-19T02:28:49.514Z",
+        "updatedAt": "2025-12-19T08:13:52.211Z"
+      },
+      {
+        "id": 860,
+        "year": 2025,
+        "month": 6,
+        "unitId": 12,
+        "targetType": "COMMITMENT",
+        "amount": "2.88",
+        "createdAt": "2025-12-19T02:28:49.516Z",
+        "updatedAt": "2025-12-19T08:13:52.213Z"
+      },
+      {
+        "id": 861,
+        "year": 2025,
+        "month": 6,
+        "unitId": 12,
+        "targetType": "NR",
+        "amount": "4.98",
+        "createdAt": "2025-12-19T02:28:49.517Z",
+        "updatedAt": "2025-12-19T08:13:52.214Z"
+      },
+      {
+        "id": 332,
+        "year": 2025,
+        "month": 7,
+        "unitId": 12,
+        "targetType": "BEYOND_RKAP",
+        "amount": "29.14",
+        "createdAt": "2025-12-18T06:55:37.966Z",
+        "updatedAt": "2025-12-19T08:13:52.215Z"
+      },
+      {
+        "id": 864,
+        "year": 2025,
+        "month": 7,
+        "unitId": 12,
+        "targetType": "COMMITMENT",
+        "amount": "3.36",
+        "createdAt": "2025-12-19T02:28:49.519Z",
+        "updatedAt": "2025-12-19T08:13:52.216Z"
+      },
+      {
+        "id": 865,
+        "year": 2025,
+        "month": 7,
+        "unitId": 12,
+        "targetType": "NR",
+        "amount": "0.09",
+        "createdAt": "2025-12-19T02:28:49.520Z",
+        "updatedAt": "2025-12-19T08:13:52.217Z"
+      },
+      {
+        "id": 868,
+        "year": 2025,
+        "month": 8,
+        "unitId": 12,
+        "targetType": "COMMITMENT",
+        "amount": "3.84",
+        "createdAt": "2025-12-19T02:28:49.523Z",
+        "updatedAt": "2025-12-19T08:13:52.219Z"
+      },
+      {
+        "id": 869,
+        "year": 2025,
+        "month": 8,
+        "unitId": 12,
+        "targetType": "NR",
+        "amount": "7.58",
+        "createdAt": "2025-12-19T02:28:49.523Z",
+        "updatedAt": "2025-12-19T08:13:52.220Z"
+      },
+      {
+        "id": 872,
+        "year": 2025,
+        "month": 9,
+        "unitId": 12,
+        "targetType": "COMMITMENT",
+        "amount": "1.92",
+        "createdAt": "2025-12-19T02:28:49.526Z",
+        "updatedAt": "2025-12-19T08:13:52.223Z"
+      },
+      {
+        "id": 873,
+        "year": 2025,
+        "month": 9,
+        "unitId": 12,
+        "targetType": "NR",
+        "amount": "34.95",
+        "createdAt": "2025-12-19T02:28:49.527Z",
+        "updatedAt": "2025-12-19T08:13:52.223Z"
+      },
+      {
+        "id": 876,
+        "year": 2025,
+        "month": 10,
+        "unitId": 12,
+        "targetType": "COMMITMENT",
+        "amount": "4.8",
+        "createdAt": "2025-12-19T02:28:49.529Z",
+        "updatedAt": "2025-12-19T08:13:52.225Z"
+      },
+      {
+        "id": 879,
+        "year": 2025,
+        "month": 11,
+        "unitId": 12,
+        "targetType": "COMMITMENT",
+        "amount": "7.67",
+        "createdAt": "2025-12-19T02:28:49.531Z",
+        "updatedAt": "2025-12-19T08:13:52.228Z"
+      },
+      {
+        "id": 880,
+        "year": 2025,
+        "month": 11,
+        "unitId": 12,
+        "targetType": "NR",
+        "amount": "9.4",
+        "createdAt": "2025-12-19T02:28:49.532Z",
+        "updatedAt": "2025-12-19T08:13:52.228Z"
+      }
+    ],
+    "actuals": [
+      {
+        "id": 31,
+        "year": 2025,
+        "month": 1,
+        "unitId": 4,
+        "amount": "1.02",
+        "createdAt": "2025-12-18T06:53:42.334Z",
+        "updatedAt": "2025-12-19T08:13:51.901Z"
+      },
+      {
+        "id": 32,
+        "year": 2025,
+        "month": 2,
+        "unitId": 4,
+        "amount": "1.47",
+        "createdAt": "2025-12-18T06:53:42.336Z",
+        "updatedAt": "2025-12-19T08:13:51.904Z"
+      },
+      {
+        "id": 33,
+        "year": 2025,
+        "month": 3,
+        "unitId": 4,
+        "amount": "2.4",
+        "createdAt": "2025-12-18T06:53:42.337Z",
+        "updatedAt": "2025-12-19T08:13:51.907Z"
+      },
+      {
+        "id": 34,
+        "year": 2025,
+        "month": 4,
+        "unitId": 4,
+        "amount": "3.51",
+        "createdAt": "2025-12-18T06:53:42.339Z",
+        "updatedAt": "2025-12-19T08:13:51.909Z"
+      },
+      {
+        "id": 35,
+        "year": 2025,
+        "month": 5,
+        "unitId": 4,
+        "amount": "5.21",
+        "createdAt": "2025-12-18T06:53:42.340Z",
+        "updatedAt": "2025-12-19T08:13:51.913Z"
+      },
+      {
+        "id": 36,
+        "year": 2025,
+        "month": 6,
+        "unitId": 4,
+        "amount": "3.37",
+        "createdAt": "2025-12-18T06:53:42.342Z",
+        "updatedAt": "2025-12-19T08:13:51.915Z"
+      },
+      {
+        "id": 37,
+        "year": 2025,
+        "month": 7,
+        "unitId": 4,
+        "amount": "1.41",
+        "createdAt": "2025-12-18T06:53:42.343Z",
+        "updatedAt": "2025-12-19T08:13:51.917Z"
+      },
+      {
+        "id": 38,
+        "year": 2025,
+        "month": 8,
+        "unitId": 4,
+        "amount": "6.29",
+        "createdAt": "2025-12-18T06:53:42.344Z",
+        "updatedAt": "2025-12-19T08:13:51.921Z"
+      },
+      {
+        "id": 39,
+        "year": 2025,
+        "month": 10,
+        "unitId": 4,
+        "amount": "6.33",
+        "createdAt": "2025-12-18T06:53:42.346Z",
+        "updatedAt": "2025-12-19T08:13:51.926Z"
+      },
+      {
+        "id": 40,
+        "year": 2025,
+        "month": 11,
+        "unitId": 4,
+        "amount": "7.73",
+        "createdAt": "2025-12-18T06:53:42.347Z",
+        "updatedAt": "2025-12-19T08:13:51.928Z"
+      },
+      {
+        "id": 41,
+        "year": 2025,
+        "month": 1,
+        "unitId": 5,
+        "amount": "1.94",
+        "createdAt": "2025-12-18T06:53:42.351Z",
+        "updatedAt": "2025-12-19T08:13:51.935Z"
+      },
+      {
+        "id": 42,
+        "year": 2025,
+        "month": 2,
+        "unitId": 5,
+        "amount": "3.42",
+        "createdAt": "2025-12-18T06:53:42.352Z",
+        "updatedAt": "2025-12-19T08:13:51.938Z"
+      },
+      {
+        "id": 43,
+        "year": 2025,
+        "month": 3,
+        "unitId": 5,
+        "amount": "5.56",
+        "createdAt": "2025-12-18T06:53:42.353Z",
+        "updatedAt": "2025-12-19T08:13:51.941Z"
+      },
+      {
+        "id": 44,
+        "year": 2025,
+        "month": 4,
+        "unitId": 5,
+        "amount": "9.85",
+        "createdAt": "2025-12-18T06:53:42.354Z",
+        "updatedAt": "2025-12-19T08:13:51.945Z"
+      },
+      {
+        "id": 45,
+        "year": 2025,
+        "month": 5,
+        "unitId": 5,
+        "amount": "14.08",
+        "createdAt": "2025-12-18T06:53:42.356Z",
+        "updatedAt": "2025-12-19T08:13:51.947Z"
+      },
+      {
+        "id": 46,
+        "year": 2025,
+        "month": 6,
+        "unitId": 5,
+        "amount": "22.96",
+        "createdAt": "2025-12-18T06:53:42.357Z",
+        "updatedAt": "2025-12-19T08:13:51.951Z"
+      },
+      {
+        "id": 47,
+        "year": 2025,
+        "month": 7,
+        "unitId": 5,
+        "amount": "28.82",
+        "createdAt": "2025-12-18T06:53:42.359Z",
+        "updatedAt": "2025-12-19T08:13:51.954Z"
+      },
+      {
+        "id": 48,
+        "year": 2025,
+        "month": 8,
+        "unitId": 5,
+        "amount": "38.95",
+        "createdAt": "2025-12-18T06:53:42.360Z",
+        "updatedAt": "2025-12-19T08:13:51.958Z"
+      },
+      {
+        "id": 49,
+        "year": 2025,
+        "month": 10,
+        "unitId": 5,
+        "amount": "47.94",
+        "createdAt": "2025-12-18T06:53:42.362Z",
+        "updatedAt": "2025-12-19T08:13:51.963Z"
+      },
+      {
+        "id": 50,
+        "year": 2025,
+        "month": 11,
+        "unitId": 5,
+        "amount": "66.21",
+        "createdAt": "2025-12-18T06:53:42.362Z",
+        "updatedAt": "2025-12-19T08:13:51.966Z"
+      },
+      {
+        "id": 101,
+        "year": 2025,
+        "month": 1,
+        "unitId": 6,
+        "amount": "1.23",
+        "createdAt": "2025-12-18T06:55:37.780Z",
+        "updatedAt": "2025-12-19T08:13:51.973Z"
+      },
+      {
+        "id": 102,
+        "year": 2025,
+        "month": 2,
+        "unitId": 6,
+        "amount": "3.72",
+        "createdAt": "2025-12-18T06:55:37.783Z",
+        "updatedAt": "2025-12-19T08:13:51.976Z"
+      },
+      {
+        "id": 103,
+        "year": 2025,
+        "month": 3,
+        "unitId": 6,
+        "amount": "8.38",
+        "createdAt": "2025-12-18T06:55:37.786Z",
+        "updatedAt": "2025-12-19T08:13:51.979Z"
+      },
+      {
+        "id": 104,
+        "year": 2025,
+        "month": 4,
+        "unitId": 6,
+        "amount": "9.53",
+        "createdAt": "2025-12-18T06:55:37.788Z",
+        "updatedAt": "2025-12-19T08:13:51.982Z"
+      },
+      {
+        "id": 105,
+        "year": 2025,
+        "month": 5,
+        "unitId": 6,
+        "amount": "11.37",
+        "createdAt": "2025-12-18T06:55:37.790Z",
+        "updatedAt": "2025-12-19T08:13:51.985Z"
+      },
+      {
+        "id": 106,
+        "year": 2025,
+        "month": 6,
+        "unitId": 6,
+        "amount": "21.08",
+        "createdAt": "2025-12-18T06:55:37.792Z",
+        "updatedAt": "2025-12-19T08:13:51.989Z"
+      },
+      {
+        "id": 107,
+        "year": 2025,
+        "month": 7,
+        "unitId": 6,
+        "amount": "21.96",
+        "createdAt": "2025-12-18T06:55:37.795Z",
+        "updatedAt": "2025-12-19T08:13:51.993Z"
+      },
+      {
+        "id": 108,
+        "year": 2025,
+        "month": 8,
+        "unitId": 6,
+        "amount": "25.63",
+        "createdAt": "2025-12-18T06:55:37.797Z",
+        "updatedAt": "2025-12-19T08:13:51.998Z"
+      },
+      {
+        "id": 109,
+        "year": 2025,
+        "month": 10,
+        "unitId": 6,
+        "amount": "41.72",
+        "createdAt": "2025-12-18T06:55:37.801Z",
+        "updatedAt": "2025-12-19T08:13:52.004Z"
+      },
+      {
+        "id": 110,
+        "year": 2025,
+        "month": 11,
+        "unitId": 6,
+        "amount": "44.98",
+        "createdAt": "2025-12-18T06:55:37.803Z",
+        "updatedAt": "2025-12-19T08:13:52.007Z"
+      },
+      {
+        "id": 111,
+        "year": 2025,
+        "month": 1,
+        "unitId": 7,
+        "amount": "0.4",
+        "createdAt": "2025-12-18T06:55:37.808Z",
+        "updatedAt": "2025-12-19T08:13:52.013Z"
+      },
+      {
+        "id": 112,
+        "year": 2025,
+        "month": 2,
+        "unitId": 7,
+        "amount": "1.68",
+        "createdAt": "2025-12-18T06:55:37.811Z",
+        "updatedAt": "2025-12-19T08:13:52.016Z"
+      },
+      {
+        "id": 115,
+        "year": 2025,
+        "month": 5,
+        "unitId": 7,
+        "amount": "4.17",
+        "createdAt": "2025-12-18T06:55:37.822Z",
+        "updatedAt": "2025-12-19T08:13:52.024Z"
+      },
+      {
+        "id": 116,
+        "year": 2025,
+        "month": 6,
+        "unitId": 7,
+        "amount": "5.22",
+        "createdAt": "2025-12-18T06:55:37.824Z",
+        "updatedAt": "2025-12-19T08:13:52.028Z"
+      },
+      {
+        "id": 117,
+        "year": 2025,
+        "month": 7,
+        "unitId": 7,
+        "amount": "10.93",
+        "createdAt": "2025-12-18T06:55:37.826Z",
+        "updatedAt": "2025-12-19T08:13:52.031Z"
+      },
+      {
+        "id": 118,
+        "year": 2025,
+        "month": 8,
+        "unitId": 7,
+        "amount": "12.2",
+        "createdAt": "2025-12-18T06:55:37.828Z",
+        "updatedAt": "2025-12-19T08:13:52.038Z"
+      },
+      {
+        "id": 119,
+        "year": 2025,
+        "month": 10,
+        "unitId": 7,
+        "amount": "15.5",
+        "createdAt": "2025-12-18T06:55:37.832Z",
+        "updatedAt": "2025-12-19T08:13:52.045Z"
+      },
+      {
+        "id": 120,
+        "year": 2025,
+        "month": 11,
+        "unitId": 7,
+        "amount": "17.3",
+        "createdAt": "2025-12-18T06:55:37.835Z",
+        "updatedAt": "2025-12-19T08:13:52.048Z"
+      },
+      {
+        "id": 1,
+        "year": 2025,
+        "month": 1,
+        "unitId": 1,
+        "amount": "111.02",
+        "createdAt": "2025-12-18T06:53:42.275Z",
+        "updatedAt": "2025-12-19T08:13:51.763Z"
+      },
+      {
+        "id": 2,
+        "year": 2025,
+        "month": 2,
+        "unitId": 1,
+        "amount": "240.33",
+        "createdAt": "2025-12-18T06:53:42.281Z",
+        "updatedAt": "2025-12-19T08:13:51.769Z"
+      },
+      {
+        "id": 3,
+        "year": 2025,
+        "month": 3,
+        "unitId": 1,
+        "amount": "405.54",
+        "createdAt": "2025-12-18T06:53:42.284Z",
+        "updatedAt": "2025-12-19T08:13:51.774Z"
+      },
+      {
+        "id": 4,
+        "year": 2025,
+        "month": 4,
+        "unitId": 1,
+        "amount": "562.6",
+        "createdAt": "2025-12-18T06:53:42.286Z",
+        "updatedAt": "2025-12-19T08:13:51.778Z"
+      },
+      {
+        "id": 5,
+        "year": 2025,
+        "month": 5,
+        "unitId": 1,
+        "amount": "691.52",
+        "createdAt": "2025-12-18T06:53:42.289Z",
+        "updatedAt": "2025-12-19T08:13:51.781Z"
+      },
+      {
+        "id": 6,
+        "year": 2025,
+        "month": 6,
+        "unitId": 1,
+        "amount": "807.01",
+        "createdAt": "2025-12-18T06:53:42.291Z",
+        "updatedAt": "2025-12-19T08:13:51.785Z"
+      },
+      {
+        "id": 7,
+        "year": 2025,
+        "month": 7,
+        "unitId": 1,
+        "amount": "836.93",
+        "createdAt": "2025-12-18T06:53:42.292Z",
+        "updatedAt": "2025-12-19T08:13:51.788Z"
+      },
+      {
+        "id": 8,
+        "year": 2025,
+        "month": 8,
+        "unitId": 1,
+        "amount": "1095.42",
+        "createdAt": "2025-12-18T06:53:42.294Z",
+        "updatedAt": "2025-12-19T08:13:51.792Z"
+      },
+      {
+        "id": 9,
+        "year": 2025,
+        "month": 10,
+        "unitId": 1,
+        "amount": "1415.76",
+        "createdAt": "2025-12-18T06:53:42.297Z",
+        "updatedAt": "2025-12-19T08:13:51.799Z"
+      },
+      {
+        "id": 10,
+        "year": 2025,
+        "month": 11,
+        "unitId": 1,
+        "amount": "1588.86",
+        "createdAt": "2025-12-18T06:53:42.298Z",
+        "updatedAt": "2025-12-19T08:13:51.803Z"
+      },
+      {
+        "id": 11,
+        "year": 2025,
+        "month": 1,
+        "unitId": 2,
+        "amount": "65.03",
+        "createdAt": "2025-12-18T06:53:42.302Z",
+        "updatedAt": "2025-12-19T08:13:51.809Z"
+      },
+      {
+        "id": 12,
+        "year": 2025,
+        "month": 2,
+        "unitId": 2,
+        "amount": "130.43",
+        "createdAt": "2025-12-18T06:53:42.303Z",
+        "updatedAt": "2025-12-19T08:13:51.813Z"
+      },
+      {
+        "id": 13,
+        "year": 2025,
+        "month": 3,
+        "unitId": 2,
+        "amount": "201.71",
+        "createdAt": "2025-12-18T06:53:42.305Z",
+        "updatedAt": "2025-12-19T08:13:51.816Z"
+      },
+      {
+        "id": 14,
+        "year": 2025,
+        "month": 4,
+        "unitId": 2,
+        "amount": "286.02",
+        "createdAt": "2025-12-18T06:53:42.306Z",
+        "updatedAt": "2025-12-19T08:13:51.819Z"
+      },
+      {
+        "id": 15,
+        "year": 2025,
+        "month": 5,
+        "unitId": 2,
+        "amount": "356.26",
+        "createdAt": "2025-12-18T06:53:42.307Z",
+        "updatedAt": "2025-12-19T08:13:51.823Z"
+      },
+      {
+        "id": 16,
+        "year": 2025,
+        "month": 6,
+        "unitId": 2,
+        "amount": "457.24",
+        "createdAt": "2025-12-18T06:53:42.308Z",
+        "updatedAt": "2025-12-19T08:13:51.827Z"
+      },
+      {
+        "id": 17,
+        "year": 2025,
+        "month": 7,
+        "unitId": 2,
+        "amount": "507.99",
+        "createdAt": "2025-12-18T06:53:42.310Z",
+        "updatedAt": "2025-12-19T08:13:51.830Z"
+      },
+      {
+        "id": 18,
+        "year": 2025,
+        "month": 8,
+        "unitId": 2,
+        "amount": "607.46",
+        "createdAt": "2025-12-18T06:53:42.311Z",
+        "updatedAt": "2025-12-19T08:13:51.835Z"
+      },
+      {
+        "id": 19,
+        "year": 2025,
+        "month": 10,
+        "unitId": 2,
+        "amount": "760.74",
+        "createdAt": "2025-12-18T06:53:42.313Z",
+        "updatedAt": "2025-12-19T08:13:51.848Z"
+      },
+      {
+        "id": 20,
+        "year": 2025,
+        "month": 11,
+        "unitId": 2,
+        "amount": "879.14",
+        "createdAt": "2025-12-18T06:53:42.314Z",
+        "updatedAt": "2025-12-19T08:13:51.855Z"
+      },
+      {
+        "id": 21,
+        "year": 2025,
+        "month": 1,
+        "unitId": 3,
+        "amount": "0.4",
+        "createdAt": "2025-12-18T06:53:42.318Z",
+        "updatedAt": "2025-12-19T08:13:51.863Z"
+      },
+      {
+        "id": 22,
+        "year": 2025,
+        "month": 2,
+        "unitId": 3,
+        "amount": "0.76",
+        "createdAt": "2025-12-18T06:53:42.319Z",
+        "updatedAt": "2025-12-19T08:13:51.868Z"
+      },
+      {
+        "id": 23,
+        "year": 2025,
+        "month": 3,
+        "unitId": 3,
+        "amount": "0.98",
+        "createdAt": "2025-12-18T06:53:42.320Z",
+        "updatedAt": "2025-12-19T08:13:51.871Z"
+      },
+      {
+        "id": 24,
+        "year": 2025,
+        "month": 4,
+        "unitId": 3,
+        "amount": "1.28",
+        "createdAt": "2025-12-18T06:53:42.322Z",
+        "updatedAt": "2025-12-19T08:13:51.874Z"
+      },
+      {
+        "id": 25,
+        "year": 2025,
+        "month": 5,
+        "unitId": 3,
+        "amount": "1.57",
+        "createdAt": "2025-12-18T06:53:42.323Z",
+        "updatedAt": "2025-12-19T08:13:51.877Z"
+      },
+      {
+        "id": 26,
+        "year": 2025,
+        "month": 6,
+        "unitId": 3,
+        "amount": "2.29",
+        "createdAt": "2025-12-18T06:53:42.324Z",
+        "updatedAt": "2025-12-19T08:13:51.880Z"
+      },
+      {
+        "id": 27,
+        "year": 2025,
+        "month": 7,
+        "unitId": 3,
+        "amount": "8.42",
+        "createdAt": "2025-12-18T06:53:42.326Z",
+        "updatedAt": "2025-12-19T08:13:51.883Z"
+      },
+      {
+        "id": 28,
+        "year": 2025,
+        "month": 8,
+        "unitId": 3,
+        "amount": "10.29",
+        "createdAt": "2025-12-18T06:53:42.327Z",
+        "updatedAt": "2025-12-19T08:13:51.887Z"
+      },
+      {
+        "id": 113,
+        "year": 2025,
+        "month": 3,
+        "unitId": 7,
+        "amount": "2.7",
+        "createdAt": "2025-12-18T06:55:37.813Z",
+        "updatedAt": "2025-12-19T08:13:52.019Z"
+      },
+      {
+        "id": 114,
+        "year": 2025,
+        "month": 4,
+        "unitId": 7,
+        "amount": "3.43",
+        "createdAt": "2025-12-18T06:55:37.815Z",
+        "updatedAt": "2025-12-19T08:13:52.021Z"
+      },
+      {
+        "id": 29,
+        "year": 2025,
+        "month": 10,
+        "unitId": 3,
+        "amount": "14.35",
+        "createdAt": "2025-12-18T06:53:42.330Z",
+        "updatedAt": "2025-12-19T08:13:51.893Z"
+      },
+      {
+        "id": 30,
+        "year": 2025,
+        "month": 11,
+        "unitId": 3,
+        "amount": "14.87",
+        "createdAt": "2025-12-18T06:53:42.331Z",
+        "updatedAt": "2025-12-19T08:13:51.896Z"
+      },
+      {
+        "id": 133,
+        "year": 2025,
+        "month": 3,
+        "unitId": 9,
+        "amount": "6.65",
+        "createdAt": "2025-12-18T06:55:37.874Z",
+        "updatedAt": "2025-12-19T08:13:52.096Z"
+      },
+      {
+        "id": 134,
+        "year": 2025,
+        "month": 4,
+        "unitId": 9,
+        "amount": "8.8",
+        "createdAt": "2025-12-18T06:55:37.876Z",
+        "updatedAt": "2025-12-19T08:13:52.099Z"
+      },
+      {
+        "id": 135,
+        "year": 2025,
+        "month": 5,
+        "unitId": 9,
+        "amount": "16.19",
+        "createdAt": "2025-12-18T06:55:37.878Z",
+        "updatedAt": "2025-12-19T08:13:52.102Z"
+      },
+      {
+        "id": 136,
+        "year": 2025,
+        "month": 6,
+        "unitId": 9,
+        "amount": "28.72",
+        "createdAt": "2025-12-18T06:55:37.883Z",
+        "updatedAt": "2025-12-19T08:13:52.105Z"
+      },
+      {
+        "id": 137,
+        "year": 2025,
+        "month": 7,
+        "unitId": 9,
+        "amount": "35.06",
+        "createdAt": "2025-12-18T06:55:37.885Z",
+        "updatedAt": "2025-12-19T08:13:52.108Z"
+      },
+      {
+        "id": 138,
+        "year": 2025,
+        "month": 8,
+        "unitId": 9,
+        "amount": "38.92",
+        "createdAt": "2025-12-18T06:55:37.887Z",
+        "updatedAt": "2025-12-19T08:13:52.112Z"
+      },
+      {
+        "id": 121,
+        "year": 2025,
+        "month": 1,
+        "unitId": 8,
+        "amount": "1.23",
+        "createdAt": "2025-12-18T06:55:37.841Z",
+        "updatedAt": "2025-12-19T08:13:52.055Z"
+      },
+      {
+        "id": 122,
+        "year": 2025,
+        "month": 2,
+        "unitId": 8,
+        "amount": "2.71",
+        "createdAt": "2025-12-18T06:55:37.845Z",
+        "updatedAt": "2025-12-19T08:13:52.057Z"
+      },
+      {
+        "id": 123,
+        "year": 2025,
+        "month": 3,
+        "unitId": 8,
+        "amount": "5.92",
+        "createdAt": "2025-12-18T06:55:37.847Z",
+        "updatedAt": "2025-12-19T08:13:52.061Z"
+      },
+      {
+        "id": 124,
+        "year": 2025,
+        "month": 4,
+        "unitId": 8,
+        "amount": "41.23",
+        "createdAt": "2025-12-18T06:55:37.849Z",
+        "updatedAt": "2025-12-19T08:13:52.064Z"
+      },
+      {
+        "id": 125,
+        "year": 2025,
+        "month": 5,
+        "unitId": 8,
+        "amount": "42.7",
+        "createdAt": "2025-12-18T06:55:37.852Z",
+        "updatedAt": "2025-12-19T08:13:52.066Z"
+      },
+      {
+        "id": 126,
+        "year": 2025,
+        "month": 6,
+        "unitId": 8,
+        "amount": "45.69",
+        "createdAt": "2025-12-18T06:55:37.854Z",
+        "updatedAt": "2025-12-19T08:13:52.070Z"
+      },
+      {
+        "id": 127,
+        "year": 2025,
+        "month": 7,
+        "unitId": 8,
+        "amount": "48.76",
+        "createdAt": "2025-12-18T06:55:37.856Z",
+        "updatedAt": "2025-12-19T08:13:52.073Z"
+      },
+      {
+        "id": 128,
+        "year": 2025,
+        "month": 8,
+        "unitId": 8,
+        "amount": "53.37",
+        "createdAt": "2025-12-18T06:55:37.858Z",
+        "updatedAt": "2025-12-19T08:13:52.076Z"
+      },
+      {
+        "id": 129,
+        "year": 2025,
+        "month": 10,
+        "unitId": 8,
+        "amount": "61.02",
+        "createdAt": "2025-12-18T06:55:37.862Z",
+        "updatedAt": "2025-12-19T08:13:52.082Z"
+      },
+      {
+        "id": 130,
+        "year": 2025,
+        "month": 11,
+        "unitId": 8,
+        "amount": "62.66",
+        "createdAt": "2025-12-18T06:55:37.864Z",
+        "updatedAt": "2025-12-19T08:13:52.085Z"
+      },
+      {
+        "id": 131,
+        "year": 2025,
+        "month": 1,
+        "unitId": 9,
+        "amount": "1.8",
+        "createdAt": "2025-12-18T06:55:37.870Z",
+        "updatedAt": "2025-12-19T08:13:52.090Z"
+      },
+      {
+        "id": 132,
+        "year": 2025,
+        "month": 2,
+        "unitId": 9,
+        "amount": "4.23",
+        "createdAt": "2025-12-18T06:55:37.872Z",
+        "updatedAt": "2025-12-19T08:13:52.093Z"
+      },
+      {
+        "id": 139,
+        "year": 2025,
+        "month": 10,
+        "unitId": 9,
+        "amount": "44.65",
+        "createdAt": "2025-12-18T06:55:37.891Z",
+        "updatedAt": "2025-12-19T08:13:52.117Z"
+      },
+      {
+        "id": 140,
+        "year": 2025,
+        "month": 11,
+        "unitId": 9,
+        "amount": "49.09",
+        "createdAt": "2025-12-18T06:55:37.893Z",
+        "updatedAt": "2025-12-19T08:13:52.120Z"
+      },
+      {
+        "id": 141,
+        "year": 2025,
+        "month": 1,
+        "unitId": 10,
+        "amount": "1.38",
+        "createdAt": "2025-12-18T06:55:37.898Z",
+        "updatedAt": "2025-12-19T08:13:52.127Z"
+      },
+      {
+        "id": 142,
+        "year": 2025,
+        "month": 2,
+        "unitId": 10,
+        "amount": "3.82",
+        "createdAt": "2025-12-18T06:55:37.901Z",
+        "updatedAt": "2025-12-19T08:13:52.130Z"
+      },
+      {
+        "id": 143,
+        "year": 2025,
+        "month": 3,
+        "unitId": 10,
+        "amount": "4.25",
+        "createdAt": "2025-12-18T06:55:37.903Z",
+        "updatedAt": "2025-12-19T08:13:52.132Z"
+      },
+      {
+        "id": 144,
+        "year": 2025,
+        "month": 4,
+        "unitId": 10,
+        "amount": "5.74",
+        "createdAt": "2025-12-18T06:55:37.905Z",
+        "updatedAt": "2025-12-19T08:13:52.135Z"
+      },
+      {
+        "id": 145,
+        "year": 2025,
+        "month": 5,
+        "unitId": 10,
+        "amount": "7.35",
+        "createdAt": "2025-12-18T06:55:37.907Z",
+        "updatedAt": "2025-12-19T08:13:52.138Z"
+      },
+      {
+        "id": 146,
+        "year": 2025,
+        "month": 6,
+        "unitId": 10,
+        "amount": "14.81",
+        "createdAt": "2025-12-18T06:55:37.909Z",
+        "updatedAt": "2025-12-19T08:13:52.142Z"
+      },
+      {
+        "id": 147,
+        "year": 2025,
+        "month": 7,
+        "unitId": 10,
+        "amount": "16.96",
+        "createdAt": "2025-12-18T06:55:37.911Z",
+        "updatedAt": "2025-12-19T08:13:52.145Z"
+      },
+      {
+        "id": 148,
+        "year": 2025,
+        "month": 8,
+        "unitId": 10,
+        "amount": "17.57",
+        "createdAt": "2025-12-18T06:55:37.914Z",
+        "updatedAt": "2025-12-19T08:13:52.148Z"
+      },
+      {
+        "id": 149,
+        "year": 2025,
+        "month": 10,
+        "unitId": 10,
+        "amount": "34.92",
+        "createdAt": "2025-12-18T06:55:37.917Z",
+        "updatedAt": "2025-12-19T08:13:52.154Z"
+      },
+      {
+        "id": 150,
+        "year": 2025,
+        "month": 11,
+        "unitId": 10,
+        "amount": "37.1",
+        "createdAt": "2025-12-18T06:55:37.919Z",
+        "updatedAt": "2025-12-19T08:13:52.157Z"
+      },
+      {
+        "id": 151,
+        "year": 2025,
+        "month": 1,
+        "unitId": 11,
+        "amount": "1.59",
+        "createdAt": "2025-12-18T06:55:37.925Z",
+        "updatedAt": "2025-12-19T08:13:52.163Z"
+      },
+      {
+        "id": 152,
+        "year": 2025,
+        "month": 2,
+        "unitId": 11,
+        "amount": "3.05",
+        "createdAt": "2025-12-18T06:55:37.927Z",
+        "updatedAt": "2025-12-19T08:13:52.165Z"
+      },
+      {
+        "id": 153,
+        "year": 2025,
+        "month": 3,
+        "unitId": 11,
+        "amount": "24.67",
+        "createdAt": "2025-12-18T06:55:37.929Z",
+        "updatedAt": "2025-12-19T08:13:52.168Z"
+      },
+      {
+        "id": 154,
+        "year": 2025,
+        "month": 4,
+        "unitId": 11,
+        "amount": "25.71",
+        "createdAt": "2025-12-18T06:55:37.931Z",
+        "updatedAt": "2025-12-19T08:13:52.171Z"
+      },
+      {
+        "id": 155,
+        "year": 2025,
+        "month": 5,
+        "unitId": 11,
+        "amount": "28.64",
+        "createdAt": "2025-12-18T06:55:37.934Z",
+        "updatedAt": "2025-12-19T08:13:52.174Z"
+      },
+      {
+        "id": 156,
+        "year": 2025,
+        "month": 6,
+        "unitId": 11,
+        "amount": "52.45",
+        "createdAt": "2025-12-18T06:55:37.938Z",
+        "updatedAt": "2025-12-19T08:13:52.177Z"
+      },
+      {
+        "id": 157,
+        "year": 2025,
+        "month": 7,
+        "unitId": 11,
+        "amount": "54.17",
+        "createdAt": "2025-12-18T06:55:37.941Z",
+        "updatedAt": "2025-12-19T08:13:52.179Z"
+      },
+      {
+        "id": 158,
+        "year": 2025,
+        "month": 8,
+        "unitId": 11,
+        "amount": "55.12",
+        "createdAt": "2025-12-18T06:55:37.943Z",
+        "updatedAt": "2025-12-19T08:13:52.183Z"
+      },
+      {
+        "id": 159,
+        "year": 2025,
+        "month": 10,
+        "unitId": 11,
+        "amount": "48.54",
+        "createdAt": "2025-12-18T06:55:37.946Z",
+        "updatedAt": "2025-12-19T08:13:52.189Z"
+      },
+      {
+        "id": 160,
+        "year": 2025,
+        "month": 11,
+        "unitId": 11,
+        "amount": "50",
+        "createdAt": "2025-12-18T06:55:37.949Z",
+        "updatedAt": "2025-12-19T08:13:52.192Z"
+      },
+      {
+        "id": 161,
+        "year": 2025,
+        "month": 1,
+        "unitId": 12,
+        "amount": "1.49",
+        "createdAt": "2025-12-18T06:55:37.954Z",
+        "updatedAt": "2025-12-19T08:13:52.198Z"
+      },
+      {
+        "id": 162,
+        "year": 2025,
+        "month": 2,
+        "unitId": 12,
+        "amount": "3.09",
+        "createdAt": "2025-12-18T06:55:37.956Z",
+        "updatedAt": "2025-12-19T08:13:52.202Z"
+      },
+      {
+        "id": 163,
+        "year": 2025,
+        "month": 3,
+        "unitId": 12,
+        "amount": "8.78",
+        "createdAt": "2025-12-18T06:55:37.958Z",
+        "updatedAt": "2025-12-19T08:13:52.205Z"
+      },
+      {
+        "id": 164,
+        "year": 2025,
+        "month": 4,
+        "unitId": 12,
+        "amount": "9.5",
+        "createdAt": "2025-12-18T06:55:37.960Z",
+        "updatedAt": "2025-12-19T08:13:52.208Z"
+      },
+      {
+        "id": 165,
+        "year": 2025,
+        "month": 5,
+        "unitId": 12,
+        "amount": "11.9",
+        "createdAt": "2025-12-18T06:55:37.962Z",
+        "updatedAt": "2025-12-19T08:13:52.211Z"
+      },
+      {
+        "id": 166,
+        "year": 2025,
+        "month": 6,
+        "unitId": 12,
+        "amount": "17.36",
+        "createdAt": "2025-12-18T06:55:37.964Z",
+        "updatedAt": "2025-12-19T08:13:52.214Z"
+      },
+      {
+        "id": 167,
+        "year": 2025,
+        "month": 7,
+        "unitId": 12,
+        "amount": "20.77",
+        "createdAt": "2025-12-18T06:55:37.967Z",
+        "updatedAt": "2025-12-19T08:13:52.218Z"
+      },
+      {
+        "id": 168,
+        "year": 2025,
+        "month": 8,
+        "unitId": 12,
+        "amount": "28.81",
+        "createdAt": "2025-12-18T06:55:37.969Z",
+        "updatedAt": "2025-12-19T08:13:52.221Z"
+      },
+      {
+        "id": 169,
+        "year": 2025,
+        "month": 10,
+        "unitId": 12,
+        "amount": "29.22",
+        "createdAt": "2025-12-18T06:55:37.972Z",
+        "updatedAt": "2025-12-19T08:13:52.226Z"
+      },
+      {
+        "id": 170,
+        "year": 2025,
+        "month": 11,
+        "unitId": 12,
+        "amount": "40.2",
+        "createdAt": "2025-12-18T06:55:37.974Z",
+        "updatedAt": "2025-12-19T08:13:52.229Z"
+      }
+    ],
+    "activityLogs": [],
+    "systemSettings": []
+  }
+}
