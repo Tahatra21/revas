@@ -439,7 +439,32 @@ NEXT_PUBLIC_BASE_URL=https://your-domain.com
 
 ---
 
+
+## 💾 Backup & Restore
+
+Revas dilengkapi dengan automatic JSON backup script untuk full database snapshot.
+
+### Backup Database
+Untuk melakukan backup seluruh data ke dalam file JSON di folder `/database`:
+
+```bash
+npx tsx scripts/backup_db.ts
+# Output: database/backup_full.json
+```
+
+### Restore Database
+Untuk mengembalikan data dari file backup:
+
+```bash
+npx tsx scripts/restore_db.ts
+```
+
+> **Note:** Restore script menggunakan metode `Upsert`. Data yang sudah ada akan diperbarui, data baru akan ditambahkan.
+
+---
+
 ## 📈 API Endpoints
+
 
 ### Authentication
 - `POST /api/auth/login` - User login
